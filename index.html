@@ -27,7 +27,25 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="is-locked">
+  <!-- ===================================
+       パスワード保護オーバーレイ
+       =================================== -->
+  <div class="lock-overlay" id="lockOverlay">
+    <div class="lock-card wood-frame">
+      <div class="lock-header">
+        <span class="logo-mark">✦</span>
+        <h1 class="wood-burn">White Snow Paws</h1>
+      </div>
+      <p class="lock-msg">このサイトは現在、関係者限定で公開されています。<br>パスワードを入力してください。</p>
+      <form class="lock-form" id="lockForm">
+        <input type="password" id="passInput" placeholder="Password" required>
+        <button type="submit" class="btn-primary">ENTER <span class="arrow">→</span></button>
+      </form>
+      <p id="lockError" class="lock-error">パスワードが正しくありません。</p>
+    </div>
+  </div>
+
 
   <!-- ===================================
        ヘッダー
