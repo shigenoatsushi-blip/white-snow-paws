@@ -64,4 +64,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- フローティングCTA制御 ---
+  const floatingCta = document.getElementById('floatingCta');
+  const heroSection = document.getElementById('hero');
+
+  if (floatingCta && heroSection) {
+    window.addEventListener('scroll', () => {
+      const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+      if (window.scrollY > heroBottom - 100) {
+        floatingCta.classList.add('visible');
+      } else {
+        floatingCta.classList.remove('visible');
+      }
+    });
+  }
+
 });

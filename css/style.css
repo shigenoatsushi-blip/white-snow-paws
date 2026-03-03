@@ -1646,3 +1646,81 @@ body::before {
         font-size: 14px;
     }
 }
+
+/* ===================================
+   追加デザイン & フローティングCTA
+   =================================== */
+
+/* 焼印風テキスト効果 */
+.wood-burn {
+    color: #4A3C30;
+    text-shadow:
+        0.5px 0.5px 0px rgba(255, 255, 255, 0.1),
+        -0.5px -0.5px 1px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(180deg, #4A3C30 0%, #2C241C 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* フフローティングCTA（モバイル用） */
+.floating-cta {
+    position: fixed;
+    bottom: 80px;
+    /* ボトムナビの上 */
+    right: 20px;
+    z-index: 900;
+    transform: translateY(100px);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.floating-cta.visible {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.floating-cta .btn-primary {
+    padding: 12px 24px;
+    box-shadow: 0 8px 24px rgba(44, 36, 28, 0.3);
+    border-radius: 50px;
+    /* 丸みを強調 */
+}
+
+@media (min-width: 768px) {
+    .floating-cta {
+        display: none;
+    }
+}
+
+/* よりリアルな木目表現の強化 */
+.section-wood::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../images/textures/wood_overlay.png');
+    /* あれば */
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+/* カートバッジの微調整 */
+.cart-badge-bottom {
+    position: absolute;
+    top: 5px;
+    right: 50%;
+    transform: translateX(12px);
+    background-color: var(--color-accent);
+    color: white;
+    font-size: 10px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
