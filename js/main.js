@@ -1,0 +1,67 @@
+/* ===================================
+   White Snow Paws - メインロジック
+   =================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // --- ヘッダースクロール制御 ---
+  const header = document.getElementById('header');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+
+    // 100px以降でスクロール済みスタイル適用
+    if (currentScroll > 100) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+
+    lastScroll = currentScroll;
+  });
+
+  // --- ハンバーガーメニュー ---
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuOverlay = document.getElementById('menuOverlay');
+
+  function toggleMenu() {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+  }
+
+  hamburger.addEventListener('click', toggleMenu);
+  menuOverlay.addEventListener('click', toggleMenu);
+
+  // メニュー内リンクをクリックした時に閉じる
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (mobileMenu.classList.contains('active')) {
+        toggleMenu();
+      }
+    });
+  });
+
+  // --- モバイルボトムメニュー（スマホのみ表示） ---
+  // CSSの position: fixed で常に下に表示されるため、特別なJSによる表示制御は不要です。
+
+  // --- パララックス効果（ストーリーセクション） ---
+  const storyBg = document.querySelector('.story-bg');
+
+  if (storyBg) {
+    window.addEventListener('scroll', () => {
+      const section = storyBg.closest('.story-section');
+      const rect = section.getBoundingClientRect();
+      const speed = 0.3;
+
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const yPos = (rect.top * speed);
+        storyBg.style.transform = `translateY(${yPos}px)`;
+      }
+    });
+  }
+
+});

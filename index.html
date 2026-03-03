@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>White Snow Paws｜手作りのぬくもりを、愛犬との毎日に</title>
+  <meta name="description" content="新潟・津南発のペットライフスタイルブランド。BioThane素材のハンドメイドリード＆カラー。防水・軽量・カラフル。大手の半額以下で高品質を実現。">
+  <!-- OGP -->
+  <meta property="og:title" content="White Snow Paws｜手作りBioThaneリード＆カラー">
+  <meta property="og:description" content="新潟・津南発。BioThane素材のハンドメイドリード＆カラー。防水・軽量・カラフル。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/hero/hero1.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Zen+Old+Mincho:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Swiper.js CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- ===================================
+       ヘッダー
+       =================================== -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <!-- ハンバーガーメニュー -->
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- ロゴ -->
+      <a href="/" class="logo">
+        <span class="logo-mark">✦</span>
+        White Snow Paws
+      </a>
+
+      <!-- ヘッダーアイコン -->
+      <div class="header-icons">
+        <button aria-label="検索">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+        <button aria-label="お気に入り">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+        </button>
+        <button aria-label="カート" style="position:relative;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          <span class="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- デスクトップナビゲーション -->
+    <nav class="desktop-nav">
+      <ul>
+        <li><a href="#biothane">BIOTHANE</a></li>
+        <li><a href="#products">PRODUCTS</a></li>
+        <li><a href="#category">CATEGORY</a></li>
+        <li><a href="#story">STORY</a></li>
+        <li><a href="#order">ORDER</a></li>
+        <li><a href="#gallery">GALLERY</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- モバイルメニュー -->
+  <div class="mobile-menu-overlay" id="menuOverlay"></div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#biothane">BIOTHANE LEAD<span class="menu-jp">バイオシーンリード</span></a></li>
+      <li><a href="#products">PRODUCTS<span class="menu-jp">商品一覧</span></a></li>
+      <li><a href="#category">CATEGORY<span class="menu-jp">カテゴリー</span></a></li>
+      <li><a href="#story">OUR STORY<span class="menu-jp">こだわりストーリー</span></a></li>
+      <li><a href="#order">HOW TO ORDER<span class="menu-jp">オーダーの流れ</span></a></li>
+      <li><a href="#gallery">GALLERY & VOICE<span class="menu-jp">ギャラリー・お客様の声</span></a></li>
+      <li><a href="#instagram">INSTAGRAM<span class="menu-jp">インスタグラム</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- ===================================
+       ヒーローセクション
+       =================================== -->
+  <section class="hero" id="hero">
+    <div class="swiper hero-swiper">
+      <div class="swiper-wrapper">
+        <!-- スライド1: BioThaneリード -->
+        <div class="swiper-slide">
+          <img src="images/hero/hero1.png" alt="BioThaneリードをつけた犬の雪景色" class="hero-image" loading="eager">
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <p class="hero-copy-en">Pure Love, Handcrafted</p>
+            <h1 class="hero-copy-jp">手作りのぬくもりを、<br>愛犬との毎日に</h1>
+            <a href="#biothane" class="btn-primary">SHOP NOW <span class="arrow">→</span></a>
+          </div>
+        </div>
+        <!-- スライド2: カラフルリードコレクション -->
+        <div class="swiper-slide">
+          <img src="images/hero/hero2.png" alt="カラフルなBioThaneリードコレクション" class="hero-image" loading="lazy">
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <p class="hero-copy-en">Waterproof, Lightweight, Colorful</p>
+            <h1 class="hero-copy-jp">防水・軽量・カラフル。<br>手作りだから届けられる品質</h1>
+            <a href="#products" class="btn-primary">VIEW PRODUCTS <span class="arrow">→</span></a>
+          </div>
+        </div>
+        <!-- スライド3: 自然と犬 -->
+        <div class="swiper-slide">
+          <img src="images/hero/hero3.png" alt="新潟の自然と愛犬" class="hero-image" loading="lazy">
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <p class="hero-copy-en">Born in Snow Country, Crafted with Love</p>
+            <h1 class="hero-copy-jp">雪国生まれの<br>ハンドメイドリード</h1>
+            <a href="#story" class="btn-primary">OUR STORY <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+      <!-- ページネーション -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <!-- ===================================
+       お知らせバー
+       =================================== -->
+  <div class="notice-bar">
+    <div class="notice-ticker">
+      <span>— ¥5,000以上で送料無料 —</span>
+      <span>— カスタムカラーオーダー受付中 —</span>
+      <span>— BioThane素材 / 防水・軽量・お手入れ簡単 —</span>
+      <span>— ¥5,000以上で送料無料 —</span>
+      <span>— カスタムカラーオーダー受付中 —</span>
+      <span>— BioThane素材 / 防水・軽量・お手入れ簡単 —</span>
+    </div>
+  </div>
+
+  <!-- ===================================
+       BioThane特集セクション（メイン商品訴求）
+       =================================== -->
+  <section class="section section-wood" id="biothane">
+    <div class="container">
+      <div class="section-heading fade-up">
+        <p class="section-heading-en">── BIOTHANE LEAD & COLLAR ──</p>
+        <h2 class="section-heading-jp">ひとつひとつ、手作りだからこそ</h2>
+        <div class="section-heading-line"></div>
+      </div>
+
+      <div class="biothane-feature">
+        <div class="biothane-main fade-up">
+          <div class="biothane-image wood-frame">
+            <img src="images/woodcraft/category.png" alt="BioThaneリード＆カラー" loading="lazy">
+          </div>
+          <div class="biothane-text">
+            <h3>防水・軽量・高耐久。<br>ひとつひとつ手作りで、<br>納得の価格をお届け。</h3>
+            <p>
+              新潟・津南の工房で、一本一本丁寧に手作りするBioThane（バイオシーン）素材のリード＆カラー。
+              雪にも雨にも泥にも強い防水素材で、お手入れは水洗いだけ。<br><br>
+              工房から直接お届けするから、手間をかけてもリーズナブル。
+              カラーオーダーで、あなたの愛犬だけの特別な一本を。
+            </p>
+            <!-- 特徴バッジ -->
+            <div class="feature-badges">
+              <span class="feature-badge">
+                <svg class="feature-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+                </svg>
+                防水・速乾
+              </span>
+              <span class="feature-badge">
+                <svg class="feature-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" />
+                  <line x1="16" y1="8" x2="2" y2="22" />
+                  <line x1="17.5" y1="15" x2="9" y2="15" />
+                </svg>
+                軽量
+              </span>
+              <span class="feature-badge">
+                <svg class="feature-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                高耐久
+              </span>
+              <span class="feature-badge">
+                <svg class="feature-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3" />
+                  <path d="M8 21V11a4 4 0 0 1 8 0v10" />
+                </svg>
+                お手入れ簡単
+              </span>
+              <span class="feature-badge">
+                <svg class="feature-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <circle cx="13.5" cy="6.5" r="2.5" />
+                  <path d="M17.5 10.5 21 3" />
+                  <circle cx="6" cy="12" r="2" />
+                  <path d="M2 12h4" />
+                  <circle cx="18" cy="16" r="2" />
+                  <path d="M22 16h-4" />
+                  <path d="m9 10-5 6" />
+                  <path d="m12 14 6 4" />
+                </svg>
+                カラーオーダー可
+              </span>
+            </div>
+            <!-- 手作りの理由 -->
+            <div class="handmade-reason">
+              <div class="handmade-reason-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+              </div>
+              <div class="handmade-reason-content">
+                <span class="handmade-reason-label">手作りだから、リーズナブル</span>
+                <span class="handmade-reason-price">¥2,980〜<span>(税込)</span></span>
+                <p class="handmade-reason-text">工房から直接お届けするから、中間コストがかかりません。</p>
+              </div>
+            </div>
+            <a href="#products" class="btn-primary">商品を見る <span class="arrow">→</span></a>
+          </div>
+        </div>
+
+        <!-- BioThaneカルーセル -->
+        <div class="swiper biothane-gallery fade-up">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="wood-frame-sm">
+                <img src="images/woodcraft/work1.png" alt="BioThane スタンダードリード" loading="lazy">
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="wood-frame-sm">
+                <img src="images/woodcraft/work2.png" alt="BioThane カラー（首輪）" loading="lazy">
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="wood-frame-sm">
+                <img src="images/woodcraft/work3.png" alt="BioThane ハーネス" loading="lazy">
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="wood-frame-sm">
+                <img src="images/woodcraft/work4.png" alt="BioThane リード＋カラーセット" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wood-plank-divider"></div>
+
+  <!-- ===================================
+       商品一覧セクション（BioThane）
+       =================================== -->
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section-heading fade-up">
+        <p class="section-heading-en">PRODUCTS</p>
+        <h2 class="section-heading-jp">商品ラインナップ</h2>
+        <div class="section-heading-line"></div>
+      </div>
+
+      <!-- 商品カード -->
+      <div class="product-grid">
+        <div class="product-card wood-frame fade-up stagger-1">
+          <div class="product-card-image">
+            <img src="images/woodcraft/work1.png" alt="BioThane スタンダードリード 120cm" loading="lazy">
+            <div class="product-tag">BESTSELLER</div>
+          </div>
+          <div class="product-card-info">
+            <h4>BioThane スタンダードリード 120cm</h4>
+            <p class="product-desc">防水・軽量のベーシックリード</p>
+            <p class="price">¥2,980 <span class="price-tax">(税込)</span></p>
+            <div class="color-dots">
+              <span class="color-dot" style="background:#4A7C59" title="フォレストグリーン"></span>
+              <span class="color-dot" style="background:#2C241C" title="ミッドナイトブラック"></span>
+              <span class="color-dot" style="background:#E85D3A" title="サンセットオレンジ"></span>
+              <span class="color-dot" style="background:#4A8DB7" title="オーシャンブルー"></span>
+              <span class="color-dot" style="background:#D4698A" title="ベリーピンク"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card wood-frame fade-up stagger-2">
+          <div class="product-card-image">
+            <img src="images/woodcraft/work2.png" alt="BioThane カラー（首輪）Mサイズ" loading="lazy">
+          </div>
+          <div class="product-card-info">
+            <h4>BioThane カラー（首輪）M</h4>
+            <p class="product-desc">シンプル＆スタイリッシュ</p>
+            <p class="price">¥2,180 <span class="price-tax">(税込)</span></p>
+            <div class="color-dots">
+              <span class="color-dot" style="background:#9B7EC8" title="ラベンダー"></span>
+              <span class="color-dot" style="background:#D4A843" title="マスタードイエロー"></span>
+              <span class="color-dot" style="background:#FAF8F5; border:1px solid #ccc" title="スノーホワイト"></span>
+              <span class="color-dot" style="background:#C4956A" title="テラコッタ"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card wood-frame fade-up stagger-3">
+          <div class="product-card-image">
+            <img src="images/woodcraft/work3.png" alt="BioThane ハーネス" loading="lazy">
+            <div class="product-tag new">NEW</div>
+          </div>
+          <div class="product-card-info">
+            <h4>BioThane ハーネス</h4>
+            <p class="product-desc">快適フィット＆高耐久</p>
+            <p class="price">¥3,480 <span class="price-tax">(税込)</span></p>
+            <div class="color-dots">
+              <span class="color-dot" style="background:#4A7C59" title="フォレストグリーン"></span>
+              <span class="color-dot" style="background:#E85D3A" title="サンセットオレンジ"></span>
+              <span class="color-dot" style="background:#2C241C" title="ミッドナイトブラック"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card wood-frame fade-up stagger-4">
+          <div class="product-card-image">
+            <img src="images/woodcraft/work4.png" alt="BioThane リード＋カラー セット" loading="lazy">
+            <div class="product-tag sale">SALE</div>
+          </div>
+          <div class="product-card-info">
+            <h4>BioThane リード＋カラー セット</h4>
+            <p class="product-desc">お得なセット割引</p>
+            <p class="price">¥4,480 <span class="price-tax">(税込)</span> <span class="price-original">¥5,160</span></p>
+            <div class="color-dots">
+              <span class="color-dot" style="background:#4A8DB7" title="オーシャンブルー"></span>
+              <span class="color-dot" style="background:#D4698A" title="ベリーピンク"></span>
+              <span class="color-dot" style="background:#4A7C59" title="フォレストグリーン"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center fade-up">
+        <a href="#" class="btn-primary">すべての商品を見る <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="herringbone-divider"></div>
+
+  <!-- ===================================
+       カテゴリーセクション
+       =================================== -->
+  <section class="section section-wood" id="category">
+    <div class="container">
+      <div class="section-heading fade-up">
+        <p class="section-heading-en">CATEGORY</p>
+        <h2 class="section-heading-jp">カテゴリー</h2>
+        <div class="section-heading-line"></div>
+      </div>
+
+      <div class="category-main fade-up">
+        <!-- BioThane（メイン） -->
+        <a href="#biothane" class="category-card category-card-main">
+          <img src="images/woodcraft/category.png" alt="BioThane リード & カラー" loading="lazy">
+          <div class="category-card-text">
+            <h3>BIOTHANE LEAD & COLLAR</h3>
+            <p>バイオシーンリード＆カラー</p>
+          </div>
+        </a>
+
+        <!-- ウッドバーニング（準備中） -->
+        <a href="#" class="category-card category-card-sub">
+          <img src="images/food/category.png" alt="ウッドバーニング木工品" loading="lazy">
+          <div class="category-coming-soon">
+            <span>COMING SOON</span>
+          </div>
+          <div class="category-card-text">
+            <h3>WOOD CRAFT</h3>
+            <p>ウッドバーニング</p>
+          </div>
+        </a>
+
+        <!-- ジビエフード（準備中） -->
+        <a href="#" class="category-card category-card-sub">
+          <img src="images/food/product1.png" alt="ジビエフード" loading="lazy">
+          <div class="category-coming-soon">
+            <span>COMING SOON</span>
+          </div>
+          <div class="category-card-text">
+            <h3>GIBIER FOOD</h3>
+            <p>ジビエフード</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================
+       こだわりストーリーセクション
+       =================================== -->
+  <section class="story-section" id="story">
+    <img src="images/story/bg.png" alt="新潟の自然風景" class="story-bg" loading="lazy">
+    <div class="story-overlay"></div>
+    <div class="story-frame">
+      <div class="story-content fade-up">
+        <h2>雪国で生まれた、<br>愛犬のための手仕事</h2>
+        <p class="story-sub">新潟・津南の工房から、一本一本心を込めて。</p>
+        <a href="#" class="btn-outline">OUR STORY <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wood-plank-divider"></div>
+
+  <!-- ===================================
+       オーダーの流れ
+       =================================== -->
+  <section class="section section-wood" id="order">
+    <div class="container">
+      <div class="section-heading fade-up">
+        <p class="section-heading-en">HOW TO ORDER</p>
+        <h2 class="section-heading-jp">オーダーの流れ</h2>
+        <div class="section-heading-line"></div>
+      </div>
+
+      <div class="order-steps">
+        <div class="order-step wood-sign fade-up stagger-1">
+          <div class="step-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="13.5" cy="6.5" r="2.5" />
+              <path d="M17.5 10.5 21 3" />
+              <circle cx="6" cy="12" r="2" />
+              <path d="M2 12h4" />
+              <circle cx="18" cy="16" r="2" />
+              <path d="M22 16h-4" />
+              <path d="m9 10-5 6" />
+              <path d="m12 14 6 4" />
+            </svg>
+          </div>
+          <div class="step-content">
+            <h4>STEP 1</h4>
+            <h3>カラー & サイズ選択</h3>
+            <p>お好みのカラー、リードの長さ、首輪のサイズをお選びください。LINEやフォームからお気軽にご相談いただけます。</p>
+          </div>
+        </div>
+
+        <div class="order-step wood-sign fade-up stagger-2">
+          <div class="step-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="6" cy="6" r="3" />
+              <path d="M6 9v12" />
+              <path d="M13 6h3a2 2 0 0 1 2 2v3" />
+              <path d="M18 15v6" />
+              <path d="M21 18h-6" />
+            </svg>
+          </div>
+          <div class="step-content">
+            <h4>STEP 2</h4>
+            <h3>制作（約1週間）</h3>
+            <p>ご注文を受けてから一本一本丁寧に手作り。途中経過もお写真でお送りします。</p>
+          </div>
+        </div>
+
+        <div class="order-step wood-sign fade-up stagger-3">
+          <div class="step-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+              <line x1="12" y1="22.08" x2="12" y2="12" />
+            </svg>
+          </div>
+          <div class="step-content">
+            <h4>STEP 3</h4>
+            <h3>お届け</h3>
+            <p>丁寧に梱包してお届け。¥5,000以上で送料無料。ギフトラッピングも承ります。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center fade-up">
+        <a href="#" class="btn-primary">オーダーする <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="herringbone-divider"></div>
+
+  <!-- ===================================
+       お客様の声 / ギャラリー
+       =================================== -->
+  <section class="section" id="gallery">
+    <div class="container">
+      <div class="section-heading fade-up">
+        <p class="section-heading-en">GALLERY & VOICE</p>
+        <h2 class="section-heading-jp">お客様の声</h2>
+        <div class="section-heading-line"></div>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item wood-frame fade-up stagger-1">
+          <div class="gallery-item-image">
+            <img src="images/gallery/gallery1.png" alt="お客様の声1" loading="lazy">
+          </div>
+          <div class="gallery-item-text">
+            <p>"カラーオーダーできるのがうれしい！愛犬のイメージカラーのラベンダーで作ってもらいました。軽くて散歩が楽になりました。"</p>
+            <span class="reviewer">— トイプードル ココちゃんのママ</span>
+          </div>
+        </div>
+
+        <div class="gallery-item wood-frame fade-up stagger-2">
+          <div class="gallery-item-image">
+            <img src="images/gallery/gallery2.png" alt="お客様の声2" loading="lazy">
+          </div>
+          <div class="gallery-item-text">
+            <p>"雨の日の散歩でも全然平気！水洗いできるのでいつも清潔。この価格でこの品質は本当にすごいです。"</p>
+            <span class="reviewer">— ゴールデンレトリバー ハナちゃんのパパ</span>
+          </div>
+        </div>
+
+        <div class="gallery-item wood-frame fade-up stagger-3">
+          <div class="gallery-item-image">
+            <img src="images/gallery/gallery3.png" alt="お客様の声3" loading="lazy">
+          </div>
+          <div class="gallery-item-text">
+            <p>"アウトドアが大好きな愛犬に。泥だらけになっても水で流すだけ。色も可愛くて友達にも好評です！"</p>
+            <span class="reviewer">— 柴犬 コタロウくんのママ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================
+       Instagramフィード
+       =================================== -->
+  <section class="section section-wood" id="instagram">
+    <div class="container">
+      <div class="section-heading fade-up">
+        <p class="section-heading-en">FOLLOW US ON INSTAGRAM</p>
+        <h2 class="section-heading-jp">Instagram</h2>
+        <div class="section-heading-line"></div>
+      </div>
+
+      <p class="insta-handle fade-up">@whitesnowpaws</p>
+
+      <div class="insta-grid fade-up">
+        <div class="insta-item">
+          <img src="images/gallery/gallery1.png" alt="Instagram投稿" loading="lazy">
+          <div class="insta-item-overlay">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="none">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+            128
+          </div>
+        </div>
+        <div class="insta-item">
+          <img src="images/woodcraft/work1.png" alt="Instagram投稿" loading="lazy">
+          <div class="insta-item-overlay">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="none">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+            256
+          </div>
+        </div>
+        <div class="insta-item">
+          <img src="images/gallery/gallery2.png" alt="Instagram投稿" loading="lazy">
+          <div class="insta-item-overlay">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="none">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+            342
+          </div>
+        </div>
+        <div class="insta-item">
+          <img src="images/woodcraft/work2.png" alt="Instagram投稿" loading="lazy">
+          <div class="insta-item-overlay">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="none">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+            198
+          </div>
+        </div>
+        <div class="insta-item">
+          <img src="images/gallery/gallery3.png" alt="Instagram投稿" loading="lazy">
+          <div class="insta-item-overlay">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="none">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+            412
+          </div>
+        </div>
+        <div class="insta-item">
+          <img src="images/woodcraft/work3.png" alt="Instagram投稿" loading="lazy">
+          <div class="insta-item-overlay">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="none">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+            287
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-32 fade-up">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Instagramをフォロー <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================
+       フッター
+       =================================== -->
+  <div class="wood-plank-divider"></div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <a href="/" class="logo">
+          <span class="logo-mark">✦</span>
+          White Snow Paws
+        </a>
+      </div>
+
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h4>SHOP</h4>
+          <ul>
+            <li><a href="#biothane">BioThaneリード</a></li>
+            <li><a href="#products">BioThaneカラー</a></li>
+            <li><a href="#">ギフト</a></li>
+            <li><a href="#">セール</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>GUIDE</h4>
+          <ul>
+            <li><a href="#order">オーダーの流れ</a></li>
+            <li><a href="#">よくある質問</a></li>
+            <li><a href="#">返品について</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>FOLLOW US</h4>
+          <div class="footer-social">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+            <a href="#" aria-label="LINE">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2026 White Snow Paws. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================
+       スマホ用ボトムメニューバー
+       =================================== -->
+  <nav class="mobile-bottom-nav" id="mobileBottomNav">
+    <ul>
+      <li>
+        <a href="/">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>HOME</span>
+        </a>
+      </li>
+      <li>
+        <button aria-label="検索">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span>SEARCH</span>
+        </button>
+      </li>
+      <li>
+        <a href="#products">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="13.5" cy="6.5" r="2.5"></circle>
+            <path d="M17.5 10.5 21 3"></path>
+            <circle cx="6" cy="12" r="2"></circle>
+            <path d="M2 12h4"></path>
+            <circle cx="18" cy="16" r="2"></circle>
+            <path d="M22 16h-4"></path>
+            <path d="m9 10-5 6"></path>
+            <path d="m12 14 6 4"></path>
+          </svg>
+          <span>ORDER</span>
+        </a>
+      </li>
+      <li>
+        <button aria-label="お気に入り">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+            </path>
+          </svg>
+          <span>FAVORITE</span>
+        </button>
+      </li>
+      <li>
+        <button aria-label="カート" style="position:relative;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge-bottom">0</span>
+          <span>CART</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Swiper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/swiper-init.js"></script>
+  <script src="js/scroll-anime.js"></script>
+</body>
+
+</html>
