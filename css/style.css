@@ -40,6 +40,8 @@ html,
 body {
     overflow-x: hidden;
     width: 100%;
+    overscroll-behavior-y: none;
+    /* スクロール時の揺れを抑制 */
 }
 
 body {
@@ -1381,9 +1383,15 @@ body::before {
     padding: 0;
     background: var(--color-white);
     box-shadow: 0 -2px 10px rgba(44, 36, 28, 0.1);
-    z-index: 900;
+    z-index: 1000;
+    /* 重なり順を強化 */
     border-top: 1px solid var(--color-wood-light);
     padding-bottom: env(safe-area-inset-bottom);
+
+    /* 固定表示の安定化策 */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
 }
 
 .mobile-bottom-nav ul {
