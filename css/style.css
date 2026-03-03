@@ -1437,6 +1437,21 @@ body::before {
     font-family: var(--font-body-jp);
 }
 
+/* はみ出し防止の追加措置 */
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
+    height: auto;
+}
+
+
 /* ===================================
    フェードアップアニメーション
    =================================== */
