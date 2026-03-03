@@ -1724,3 +1724,106 @@ body::before {
     align-items: center;
     justify-content: center;
 }
+
+/* ===================================
+   パスワード保護（限定公開）
+   =================================== */
+body.is-locked {
+    overflow: hidden;
+}
+
+.lock-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background:
+        radial-gradient(circle at center, rgba(44, 36, 28, 0.9) 0%, rgba(20, 15, 10, 1) 100%),
+        url('../images/herringbone.png');
+    background-blend-mode: multiply;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.lock-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.lock-card {
+    background: var(--color-bg-main);
+    padding: 40px 30px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.lock-header {
+    margin-bottom: 24px;
+}
+
+.lock-header h1 {
+    font-family: var(--font-heading-en);
+    font-size: 24px;
+    margin-top: 8px;
+}
+
+.lock-msg {
+    font-size: 13px;
+    color: var(--color-text-sub);
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.lock-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.lock-form input {
+    padding: 14px;
+    border: 2px solid var(--color-wood-light);
+    border-radius: 4px;
+    background: var(--color-white);
+    font-size: 16px;
+    text-align: center;
+    transition: border-color var(--transition-base);
+}
+
+.lock-form input:focus {
+    border-color: var(--color-wood-medium);
+    outline: none;
+}
+
+.lock-error {
+    color: #C0392B;
+    font-size: 12px;
+    margin-top: 16px;
+    display: none;
+}
+
+.lock-error.visible {
+    display: block;
+    animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}

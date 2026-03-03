@@ -79,4 +79,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- パスワード認証（限定公開） ---
+  const lockOverlay = document.getElementById('lockOverlay');
+  const lockForm = document.getElementById('lockForm');
+  const passInput = document.getElementById('passInput');
+  const lockError = document.getElementById('lockError');
+  const CORRECT_PASS = 'snowpaws'; // 簡易的なパスワード
+
+  // すでに認証済みかチェック
+  if (sessionStorage.getItem('site_auth') === 'true') {
+    if (lockOverlay) {
+      lockOverlay.classList.add('hidden');
+      document.body.classList.remove('is-locked');
+    }
+  }
+
+  if (lockForm) {
+    lockForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (passInput.value === CORRECT_PASS) {
+        sessionStorage.setItem('site_auth', 'true');
+        lockOverlay.classList.add('hidden');
+        document.body.classList.remove('is-locked');
+      } else {
+        lockError.classList.add('visible');
+        passInput.value = '';
+        setTimeout(() => lockError.classList.remove('visible'), 3000);
+      }
+    });
+  }
+
 });
