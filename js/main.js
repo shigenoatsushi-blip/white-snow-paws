@@ -22,28 +22,36 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --- ハンバーガーメニュー ---
-  const hamburger = document.getElementById('hamburger');
+  const hamburger = document.getElementById('hamburgerMobileBottom');
   const mobileMenu = document.getElementById('mobileMenu');
   const menuOverlay = document.getElementById('menuOverlay');
 
   function toggleMenu() {
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-    menuOverlay.classList.toggle('active');
-    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    if (hamburger) hamburger.classList.toggle('active');
+    if (mobileMenu) mobileMenu.classList.toggle('active');
+    if (menuOverlay) menuOverlay.classList.toggle('active');
+    if (mobileMenu) {
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
   }
 
-  hamburger.addEventListener('click', toggleMenu);
-  menuOverlay.addEventListener('click', toggleMenu);
+  if (hamburger) {
+    hamburger.addEventListener('click', toggleMenu);
+  }
+  if (menuOverlay) {
+    menuOverlay.addEventListener('click', toggleMenu);
+  }
 
   // メニュー内リンクをクリックした時に閉じる
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      if (mobileMenu.classList.contains('active')) {
-        toggleMenu();
-      }
+  if (mobileMenu) {
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('active')) {
+          toggleMenu();
+        }
+      });
     });
-  });
+  }
 
   // --- モバイルボトムメニュー（スマホのみ表示） ---
   // CSSの position: fixed で常に下に表示されるため、特別なJSによる表示制御は不要です。
