@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ｜White Snow Paws</title>
+    <meta name="description" content="White Snow Pawsへのお問い合わせページです。商品について、カスタムオーダーのご相談など、お気軽にご連絡ください。">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Zen+Old+Mincho:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ページ固有スタイル */
+        .contact-hero {
+            background: linear-gradient(180deg, rgba(44, 36, 28, 0.85) 0%, rgba(44, 36, 28, 0.7) 100%);
+            padding: 120px 20px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('images/herringbone.png');
+            background-repeat: repeat;
+            background-size: 200px;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .contact-hero-en {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: rgba(212, 196, 176, 0.8);
+            margin-bottom: 10px;
+        }
+
+        .contact-hero h1 {
+            font-family: 'Zen Old Mincho', serif;
+            font-size: 28px;
+            color: #FAF8F5;
+            letter-spacing: 4px;
+        }
+
+        .contact-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 60px 20px 80px;
+        }
+
+        /* お問い合わせ前の案内 */
+        .contact-intro {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .contact-intro p {
+            font-size: 14px;
+            color: #7A6B5D;
+            line-height: 2;
+        }
+
+        /* LINE誘導ボックス */
+        .contact-line-box {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px 28px;
+            background: linear-gradient(135deg, #06C755 0%, #04A847 100%);
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 16px rgba(6, 199, 85, 0.25);
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-line-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(6, 199, 85, 0.35);
+        }
+
+        .contact-line-icon {
+            flex-shrink: 0;
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-line-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            color: #fff;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+
+        .contact-line-text p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+        }
+
+        .contact-line-arrow {
+            margin-left: auto;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        /* フォームセパレーター */
+        .contact-separator {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .contact-separator::before,
+        .contact-separator::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #D4C4B0;
+        }
+
+        .contact-separator span {
+            font-family: 'Playfair Display', serif;
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: #A08060;
+            white-space: nowrap;
+        }
+
+        /* お問い合わせフォーム */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #3C3228;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .required-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #C0392B;
+            color: #fff;
+            font-size: 10px;
+            border-radius: 3px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .optional-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #A08060;
+            color: #fff;
+            font-size: 10px;
+            border-radius: 3px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #D4C4B0;
+            border-radius: 6px;
+            background: #FFFFFF;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 14px;
+            color: #2C241C;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: #A08060;
+            box-shadow: 0 0 0 3px rgba(160, 128, 96, 0.12);
+            outline: none;
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238B6F47' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 160px;
+            line-height: 1.8;
+        }
+
+        .form-note {
+            font-size: 12px;
+            color: #A08060;
+            line-height: 1.6;
+        }
+
+        /* プライバシー同意 */
+        .privacy-agree {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 20px;
+            background: #F5EDE3;
+            border-radius: 6px;
+            border: 1px solid #D4C4B0;
+        }
+
+        .privacy-agree input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            accent-color: #4A7C59;
+            cursor: pointer;
+        }
+
+        .privacy-agree label {
+            font-size: 13px;
+            color: #4A3C30;
+            line-height: 1.8;
+            cursor: pointer;
+        }
+
+        .privacy-agree a {
+            color: #4A7C59;
+            text-decoration: underline;
+        }
+
+        /* 送信ボタン */
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
+            color: #FAF8F5;
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            letter-spacing: 3px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 124, 89, 0.4);
+        }
+
+        /* 送信完了メッセージ */
+        .contact-success {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(74, 124, 89, 0.05) 0%, transparent 50%), #FAF8F5;
+            border: 2px solid #4A7C59;
+            border-radius: 8px;
+            margin-top: 24px;
+        }
+
+        .contact-success .success-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .contact-success h3 {
+            font-family: 'Zen Old Mincho', serif;
+            font-size: 22px;
+            color: #3C3228;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        .contact-success p {
+            font-size: 14px;
+            color: #7A6B5D;
+            line-height: 2;
+        }
+
+        /* ショップ情報 */
+        .shop-info {
+            margin-top: 60px;
+            padding: 32px;
+            background: linear-gradient(135deg, rgba(212, 196, 176, 0.3) 0%, transparent 50%),
+                linear-gradient(180deg, #FAF8F5 0%, #F5EDE3 100%);
+            border: 2px solid #A08060;
+            border-radius: 6px;
+        }
+
+        .shop-info h3 {
+            font-family: 'Zen Old Mincho', serif;
+            font-size: 16px;
+            color: #3C3228;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #D4C4B0;
+        }
+
+        .shop-info-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .shop-info-table tr {
+            border-bottom: 1px solid rgba(212, 196, 176, 0.5);
+        }
+
+        .shop-info-table th {
+            font-size: 12px;
+            font-weight: 700;
+            color: #8B6F47;
+            padding: 10px 0;
+            width: 120px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .shop-info-table td {
+            font-size: 13px;
+            color: #4A3C30;
+            padding: 10px 0;
+            line-height: 1.8;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 32px;
+            padding: 12px 28px;
+            background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
+            color: #FAF8F5;
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            letter-spacing: 2px;
+            border-radius: 6px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%);
+            transform: translateY(-2px);
+        }
+
+        @media (min-width: 640px) {
+            .form-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===================================
+       ヘッダー
+       =================================== -->
+    <header class="header scrolled" id="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-mark">✦</span>
+                White Snow Paws
+            </a>
+            <div class="header-icons">
+                <button aria-label="検索" class="header-icon-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    <span class="header-icon-label">SEARCH</span>
+                </button>
+                <button aria-label="新規会員登録" class="header-icon-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <line x1="19" y1="8" x2="19" y2="14" />
+                        <line x1="22" y1="11" x2="16" y2="11" />
+                    </svg>
+                    <span class="header-icon-label">SIGN UP</span>
+                </button>
+                <button aria-label="ログイン" class="header-icon-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    <span class="header-icon-label">LOGIN</span>
+                </button>
+                <button aria-label="カート" class="header-icon-btn" style="position:relative;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <path d="M16 10a4 4 0 0 1-8 0" />
+                    </svg>
+                    <span class="cart-badge">0</span>
+                    <span class="header-icon-label">CART</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================================
+       ページヒーロー
+       =================================== -->
+    <div class="contact-hero">
+        <p class="contact-hero-en">── CONTACT US ──</p>
+        <h1>お問い合わせ</h1>
+    </div>
+
+    <!-- ===================================
+       コンテンツ
+       =================================== -->
+    <main class="contact-content">
+
+        <!-- 案内テキスト -->
+        <div class="contact-intro">
+            <p>
+                商品についてのご質問、カスタムオーダーのご相談など、<br>
+                お気軽にご連絡ください。<br>
+                通常2〜3営業日以内にご返信いたします。
+            </p>
+        </div>
+
+        <!-- LINE誘導 -->
+        <a href="#" class="contact-line-box">
+            <div class="contact-line-icon">
+                <svg width="28" height="28" viewBox="0 0 40 40" fill="white">
+                    <path
+                        d="M20 4C11.163 4 4 10.267 4 18c0 4.702 2.557 8.876 6.538 11.564L9 35l5.974-2.71C16.574 32.755 18.252 33 20 33c8.837 0 16-6.267 16-14S28.837 4 20 4zm-5 15H12v-8h1.5v6.5H15V19zm3 0h-1.5v-8H18v8zm6 0l-3-5.25V19h-1.5v-8H16l3 5.25V11h1.5v8H19zm4-6.5h-2V19h-1.5v-8H28v1.5z" />
+                </svg>
+            </div>
+            <div class="contact-line-text">
+                <h3>LINE で気軽に相談</h3>
+                <p>カスタムオーダーのご相談はLINEが便利です</p>
+            </div>
+            <span class="contact-line-arrow">→</span>
+        </a>
+
+        <!-- フォームとLINEの仕切り -->
+        <div class="contact-separator">
+            <span>または、フォームからお問い合わせ</span>
+        </div>
+
+        <!-- お問い合わせフォーム -->
+        <form class="contact-form" id="contactForm" novalidate>
+
+            <!-- 氏名 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="lastName">
+                        お名前（姓）<span class="required-badge">必須</span>
+                    </label>
+                    <input type="text" id="lastName" name="lastName" class="form-input" placeholder="山田" required
+                        autocomplete="family-name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="firstName">
+                        お名前（名）<span class="required-badge">必須</span>
+                    </label>
+                    <input type="text" id="firstName" name="firstName" class="form-input" placeholder="太郎" required
+                        autocomplete="given-name">
+                </div>
+            </div>
+
+            <!-- メールアドレス -->
+            <div class="form-group">
+                <label class="form-label" for="email">
+                    メールアドレス<span class="required-badge">必須</span>
+                </label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="example@email.com" required
+                    autocomplete="email">
+            </div>
+
+            <!-- 電話番号 -->
+            <div class="form-group">
+                <label class="form-label" for="phone">
+                    電話番号<span class="optional-badge">任意</span>
+                </label>
+                <input type="tel" id="phone" name="phone" class="form-input" placeholder="090-0000-0000"
+                    autocomplete="tel">
+            </div>
+
+            <!-- お問い合わせ種別 -->
+            <div class="form-group">
+                <label class="form-label" for="inquiryType">
+                    お問い合わせの種類<span class="required-badge">必須</span>
+                </label>
+                <select id="inquiryType" name="inquiryType" class="form-select" required>
+                    <option value="" disabled selected>選択してください</option>
+                    <option value="order">商品のご注文について</option>
+                    <option value="custom">カスタムオーダーのご相談</option>
+                    <option value="size">サイズ・素材について</option>
+                    <option value="delivery">配送・お届けについて</option>
+                    <option value="return">返品・交換について</option>
+                    <option value="other">その他</option>
+                </select>
+            </div>
+
+            <!-- お問い合わせ内容 -->
+            <div class="form-group">
+                <label class="form-label" for="message">
+                    お問い合わせ内容<span class="required-badge">必須</span>
+                </label>
+                <textarea id="message" name="message" class="form-textarea"
+                    placeholder="カスタムオーダーのご相談の場合は、ご希望のカラー・長さ・サイズ・犬種なども教えていただけるとスムーズです。" required></textarea>
+                <p class="form-note">※ カスタムオーダーのご相談はLINEでも承っております。</p>
+            </div>
+
+            <!-- プライバシーポリシー同意 -->
+            <div class="privacy-agree">
+                <input type="checkbox" id="agreePrivacy" name="agreePrivacy" required>
+                <label for="agreePrivacy">
+                    <a href="privacy.html" target="_blank">プライバシーポリシー</a>に同意の上、送信します。
+                    個人情報はお問い合わせへの回答のみに使用し、第三者に提供することはありません。
+                </label>
+            </div>
+
+            <!-- 送信ボタン -->
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13" />
+                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+                送信する
+            </button>
+
+        </form>
+
+        <!-- 送信完了メッセージ（JS で表示） -->
+        <div class="contact-success" id="contactSuccess">
+            <div class="success-icon">✉️</div>
+            <h3>お問い合わせを受け付けました</h3>
+            <p>
+                ご連絡いただきありがとうございます。<br>
+                通常2〜3営業日以内にご返信いたします。<br>
+                しばらくお待ちくださいませ。
+            </p>
+            <a href="index.html" class="back-btn">← トップページに戻る</a>
+        </div>
+
+        <!-- ショップ情報 -->
+        <div class="shop-info">
+            <h3>ショップ情報</h3>
+            <table class="shop-info-table">
+                <tr>
+                    <th>ショップ名</th>
+                    <td>White Snow Paws（ホワイトスノーパウズ）</td>
+                </tr>
+                <tr>
+                    <th>所在地</th>
+                    <td>〒948-0036 新潟県十日町市川治1530-2</td>
+                </tr>
+                <tr>
+                    <th>メール</th>
+                    <td>info@whitesnowpaws.jp</td>
+                </tr>
+                <tr>
+                    <th>受付時間</th>
+                    <td>10:00〜18:00（土日祝を除く）</td>
+                </tr>
+                <tr>
+                    <th>返信について</th>
+                    <td>通常2〜3営業日以内にご返信いたします。<br>お急ぎの場合はLINEをご利用ください。</td>
+                </tr>
+            </table>
+        </div>
+
+    </main>
+
+    <!-- ===================================
+       フッター
+       =================================== -->
+    <div class="wood-plank-divider"></div>
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <a href="index.html" class="logo">
+                    <span class="logo-mark">✦</span>
+                    White Snow Paws
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                &copy; 2026 White Snow Paws. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript：フォーム送信処理 -->
+    <script>
+        const form = document.getElementById('contactForm');
+        const success = document.getElementById('contactSuccess');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // 同意チェック確認
+            if (!document.getElementById('agreePrivacy').checked) {
+                alert('プライバシーポリシーへの同意をお願いします。');
+                return;
+            }
+
+            // 送信完了演出（実際のバックエンドがない場合のデモ）
+            const btn = document.getElementById('submitBtn');
+            btn.textContent = '送信中...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                form.style.display = 'none';
+                success.style.display = 'block';
+                success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 1200);
+        });
+    </script>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

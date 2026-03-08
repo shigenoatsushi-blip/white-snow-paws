@@ -308,24 +308,44 @@ body::before {
 .header-icons {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 4px;
 }
 
-.header-icons button {
+/* アイコンボタン（縦並び：アイコン上・ラベル下） */
+.header-icon-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 10px;
     color: var(--color-snow);
-    font-size: 18px;
     position: relative;
+    border-radius: 4px;
+    transition: background var(--transition-base);
+}
+
+.header-icon-btn:hover {
+    background: rgba(250, 248, 245, 0.08);
+}
+
+/* アイコン下のテキストラベル */
+.header-icon-label {
+    font-family: var(--font-heading-en);
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: rgba(250, 248, 245, 0.7);
+    line-height: 1;
 }
 
 .cart-badge {
     position: absolute;
-    top: -6px;
-    right: -8px;
+    top: 2px;
+    right: 6px;
     background-color: var(--color-accent);
     color: white;
-    font-size: 10px;
-    width: 16px;
-    height: 16px;
+    font-size: 9px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -768,6 +788,135 @@ body::before {
 .biothane-gallery .swiper-slide {
     width: 200px;
 }
+
+/* ===================================
+   BioThane素材セクション（特性紹介）
+   =================================== */
+
+/* イントロテキスト */
+.biothane-intro-text {
+    font-size: 14px;
+    color: var(--color-text-sub);
+    line-height: 1.9;
+    margin-top: 16px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 素材セクション全体 */
+.biothane-material {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 2px solid var(--color-wood-light);
+}
+
+/* 特徴画像 */
+.biothane-features-image {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 32px;
+}
+
+.biothane-features-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 素材説明テキスト */
+.biothane-material-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 28px;
+    background: var(--color-white);
+    border-radius: 8px;
+    border: 1px solid var(--color-wood-light);
+    box-shadow: 0 2px 12px rgba(44, 36, 28, 0.06);
+}
+
+.biothane-material-lead {
+    font-family: var(--font-heading-jp);
+    font-size: 15px;
+    color: var(--color-text-main);
+    line-height: 1.9;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-wood-light);
+}
+
+.biothane-material-text p {
+    font-size: 13px;
+    color: var(--color-text-sub);
+    line-height: 2;
+}
+
+.biothane-material-text strong {
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
+
+.biothane-feature-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* 特性カード */
+.biothane-feature-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-wood-light);
+    border-radius: 10px;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 2px 12px rgba(44, 36, 28, 0.06);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.biothane-feature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(44, 36, 28, 0.12);
+}
+
+/* 横幅いっぱいの特性カード（カラーオーダー） */
+.biothane-feature-card-wide {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+/* 特性カードのアイコン */
+.biothane-feature-card-icon {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性カードの見出し */
+.biothane-feature-card h4 {
+    font-family: var(--font-heading-jp);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text-main);
+    line-height: 1.4;
+}
+
+/* 特性カードの説明文 */
+.biothane-feature-card p {
+    font-size: 12px;
+    color: var(--color-text-sub);
+    line-height: 1.8;
+}
+
+
 
 /* ===================================
    商品一覧セクション
@@ -1856,4 +2005,79 @@ body.is-locked {
     75% {
         transform: translateX(5px);
     }
+}
+
+/* フッターボトム（コピーライト行）リンク */
+.footer-bottom a {
+    color: rgba(250, 248, 245, 0.45);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: color var(--transition-base);
+    margin-right: 20px;
+}
+
+.footer-bottom a:hover {
+    color: rgba(250, 248, 245, 0.8);
+}
+/* ===================================
+   カートに入れるボタン（商品カード用）
+   =================================== */
+.btn-add-cart {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px 16px;
+    background: transparent;
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
+    font-family: var(--font-body-jp);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background var(--transition-base), color var(--transition-base), transform var(--transition-base);
+}
+
+.btn-add-cart:hover {
+    background: var(--color-accent);
+    color: var(--color-snow);
+    transform: translateY(-1px);
+}
+
+/* 商品カードの画像をa要素にした場合 */
+.product-card-image {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+}
+
+.product-card-info h4 a {
+    color: var(--color-text-main);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+.product-card-info h4 a:hover {
+    color: var(--color-accent);
+}
+
+/* カートバッジのhide/show（0件のときは非表示） */
+.cart-badge,
+.cart-badge-bottom {
+    display: none;
+}
+
+/* mt-32 ユーティリティ */
+.mt-32 {
+    margin-top: 32px;
+}
+
+/* ===================================
+   サブページ共通ヘッダー（scrolled状態）
+   =================================== */
+.header.scrolled .desktop-nav a {
+    color: var(--color-text-main);
 }

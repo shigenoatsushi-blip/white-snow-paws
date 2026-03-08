@@ -87,34 +87,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- パスワード認証（限定公開） ---
-  const lockOverlay = document.getElementById('lockOverlay');
-  const lockForm = document.getElementById('lockForm');
-  const passInput = document.getElementById('passInput');
-  const lockError = document.getElementById('lockError');
-  const CORRECT_PASS = 'snowpaws'; // 簡易的なパスワード
+  // --- Page Up / Page Down キーボード操作 ---
+  document.addEventListener('keydown', (e) => {
+    // 入力欄・テキストエリア・セレクトにフォーカス中は無効
+    const tag = document.activeElement.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
 
-  // すでに認証済みかチェック
-  if (sessionStorage.getItem('site_auth') === 'true') {
-    if (lockOverlay) {
-      lockOverlay.classList.add('hidden');
-      document.body.classList.remove('is-locked');
-    }
-  }
+    const scrollAmount = Math.round(window.innerHeight * 0.85);
+    // 長押し（キーリピート）中はアニメーションなしで即時スクロール
+    const scrollBehavior = e.repeat ? 'instant' : 'smooth';
 
-  if (lockForm) {
-    lockForm.addEventListener('submit', (e) => {
+    if (e.key === 'PageDown') {
       e.preventDefault();
-      if (passInput.value === CORRECT_PASS) {
-        sessionStorage.setItem('site_auth', 'true');
-        lockOverlay.classList.add('hidden');
-        document.body.classList.remove('is-locked');
-      } else {
-        lockError.classList.add('visible');
-        passInput.value = '';
-        setTimeout(() => lockError.classList.remove('visible'), 3000);
-      }
-    });
-  }
+      window.scrollBy({ top: scrollAmount, behavior: scrollBehavior });
+    } else if (e.key === 'PageUp') {
+      e.preventDefault();
+      window.scrollBy({ top: -scrollAmount, behavior: scrollBehavior });
+    }
+  });
+
+  // ページ読み込み時にbodyにフォーカスを当てて、キーボード操作を有効化
+  document.body.setAttribute('tabindex', '-1');
+  document.body.focus();
+  document.body.removeAttribute('tabindex');
 
 });

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>よくある質問｜White Snow Paws</title>
+  <meta name="description" content="White Snow Pawsへのよくある質問（FAQ）。商品・オーダー・配送・素材についてご案内します。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .faq-hero {
+      background: linear-gradient(180deg, rgba(44,36,28,0.88) 0%, rgba(44,36,28,0.75) 100%);
+      padding: 120px 20px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .faq-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('images/herringbone.png');
+      background-repeat: repeat;
+      background-size: 200px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+    .faq-hero-en {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 5px;
+      color: rgba(212,196,176,0.8);
+      margin-bottom: 10px;
+    }
+    .faq-hero h1 {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 28px;
+      color: #FAF8F5;
+      letter-spacing: 4px;
+    }
+
+    .faq-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 52px 20px 80px;
+    }
+
+    /* カテゴリータブ */
+    .faq-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .faq-tab {
+      padding: 9px 20px;
+      border: 2px solid #D4C4B0;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #7A6B5D;
+      background: #FAF8F5;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .faq-tab:hover, .faq-tab.active {
+      border-color: #4A7C59;
+      color: #4A7C59;
+      background: rgba(74,124,89,0.06);
+    }
+
+    /* FAQ セクション */
+    .faq-section { margin-bottom: 48px; display: none; }
+    .faq-section.active { display: block; }
+    .faq-section-title {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 18px;
+      color: #3C3228;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #D4C4B0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .faq-section-title::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #A08060;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* アコーディオン */
+    .faq-item {
+      border: 1px solid #D4C4B0;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .faq-item.open { border-color: #A08060; }
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      cursor: pointer;
+      background: #FAF8F5;
+      transition: background 0.2s;
+      gap: 12px;
+    }
+    .faq-item.open .faq-question { background: #F5EDE3; }
+    .faq-question:hover { background: #F5EDE3; }
+    .faq-q-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #A08060;
+      flex-shrink: 0;
+      letter-spacing: 1px;
+    }
+    .faq-q-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: #2C241C;
+      flex: 1;
+      line-height: 1.6;
+    }
+    .faq-toggle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #D4C4B0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.3s, border-color 0.2s, background 0.2s;
+      color: #A08060;
+      font-size: 16px;
+      font-weight: 300;
+    }
+    .faq-item.open .faq-toggle {
+      transform: rotate(45deg);
+      border-color: #4A7C59;
+      background: #4A7C59;
+      color: #fff;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+    }
+    .faq-item.open .faq-answer { max-height: 1000px; }
+    .faq-answer-inner {
+      padding: 16px 20px 20px;
+      border-top: 1px solid #D4C4B0;
+      background: #fff;
+    }
+    .faq-a-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #4A7C59;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    .faq-answer-inner p, .faq-answer-inner li {
+      font-size: 14px;
+      line-height: 2;
+      color: #4A3C30;
+    }
+    .faq-answer-inner ul { padding-left: 20px; margin-top: 6px; }
+    .faq-answer-inner ul li::marker { color: #A08060; }
+    .faq-answer-inner a { color: #4A7C59; text-decoration: underline; }
+
+    /* お問い合わせCTA */
+    .faq-cta {
+      margin-top: 52px;
+      padding: 36px 28px;
+      background: linear-gradient(135deg, rgba(212,196,176,0.3) 0%, transparent 50%),
+        linear-gradient(180deg, #FAF8F5 0%, #F5EDE3 100%);
+      border: 2px solid #A08060;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .faq-cta h3 {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 18px;
+      color: #3C3228;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+    .faq-cta p { font-size: 14px; color: #7A6B5D; line-height: 2; margin-bottom: 20px; }
+    .faq-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
+      color: #FAF8F5;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      border-radius: 6px;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .back-btn:hover { background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%); transform: translateY(-2px); }
+    .line-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: #06C755;
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      border-radius: 6px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .line-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+  </style>
+</head>
+
+<body>
+  <!-- ヘッダー -->
+  <header class="header scrolled" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">✦</span>
+        White Snow Paws
+      </a>
+      <div class="header-icons">
+        <a href="register.html" class="header-icon-btn" style="text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/>
+          </svg>
+          <span class="header-icon-label">SIGN UP</span>
+        </a>
+        <a href="login.html" class="header-icon-btn" style="text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span class="header-icon-label">LOGIN</span>
+        </a>
+        <a href="cart.html" class="header-icon-btn" style="position:relative;text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+          <span class="header-icon-label">CART</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ヒーロー -->
+  <div class="faq-hero">
+    <p class="faq-hero-en">── FAQ ──</p>
+    <h1>よくある質問</h1>
+  </div>
+
+  <main class="faq-content">
+
+    <!-- カテゴリータブ -->
+    <div class="faq-tabs">
+      <button class="faq-tab active" onclick="showSection('all', this)">すべて</button>
+      <button class="faq-tab" onclick="showSection('product', this)">商品について</button>
+      <button class="faq-tab" onclick="showSection('order', this)">注文・オーダー</button>
+      <button class="faq-tab" onclick="showSection('delivery', this)">配送・返品</button>
+      <button class="faq-tab" onclick="showSection('care', this)">素材・お手入れ</button>
+    </div>
+
+    <!-- 商品について -->
+    <div class="faq-section active" id="faq-product">
+      <h2 class="faq-section-title">商品について</h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q</span>
+          <span class="faq-q-text">BioThane（バイオシーン）とはどんな素材ですか？</span>
+          <span class="faq-toggle">＋</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p class="faq-a-label">A.</p>
+            <p>BioThaneは、ポリエステル芯材を高機能ポリウレタンでコーティングしたヨーロッパ発祥のドッグリード素材です。本革のような質感でありながら、以下の優れた特性を持っています。</p>
+            <ul>
+              <li>完全防水・速乾 — 雨や雪、水たまりも安心</li>
+              <li>軽量 — 同サイズの本革リードより大幅に軽い</li>
+              <li>高耐久 — 引っ張り強度が非常に高く、ちぎれにくい</li>
+              <li>お手入れ簡単 — 水洗いOK、汚れが付きにくい</li>
+              <li>臭いが付きにくい — 雨の日も臭いが気になりません</li>
+            </ul>
+            <p>ヨーロッパのドッグスポーツ競技会でも長年使用されている、信頼性の高い素材です。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q</span>
+          <span class="faq-q-text">カラーバリエーションはいくつありますか？</span>
+          <span class="faq-toggle">＋</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p class="faq-a-label">A.</p>
+            <p>現在9色をご用意しています。</p>
+            <ul>
+              <li>スノーホワイト</li>
+              <li>フォレストグリーン</li>
+              <li>ミッドナイトブラック</li>
+              <li>サンセットオレンジ</li>
+              <li>オーシャンブルー</li>
+              <li>ベリーピンク</li>
+              <li>ラベンダー</li>
+              <li>テラコッタ</li>
+              <li>マスタードイエロー</li>
+            </ul>
+            <p>上記以外のカラーをご希望の場合は、<a href="contact.html">お問い合わせ</a>またはLINEでご相談ください。取り寄せ可能な場合があります。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q</span>
+          <span class="faq-q-text">サイズ（長さ・幅）はカスタムできますか？</span>
+          <span class="faq-toggle">＋</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p class="faq-a-label">A.</p>
+            <p>はい、ご注文時にご希望のサイズをお知らせいただければ対応いたします。リードの長さ・幅、カラーの首回りサイズなど、細かいご要望もLINEやフォームでお気軽にご相談ください。</p>
+            <p>標準ラインナップ外のサイズの場合、制作費が変わる場合があります。お見積りは無料です。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q</span>
+          <span class="faq-q-text">小型犬・大型犬向けの商品はありますか？</span>
+          <span class="faq-toggle">＋</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p class="faq-a-label">A.</p>
+            <p>カラー（首輪）はS・M・Lサイズをご用意しています。リードは幅や長さをカスタムオーダーいただけます。ご愛犬の首回りや体重をお知らせいただければ、最適なサイズをご提案いたします。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 注文・オーダー -->
+    <div class="faq-section active" id="faq-order">
+      <h2 class="faq-section-title">注文・オーダーについて</h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q</span>
+          <span class="faq-q-text">カスタムオーダーはどうすれば注文できますか？</span>
+          <span class="faq-toggle">＋</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p class="faq-a-label">A.</p>
+            <p>カスタムオーダーは以下の方法でご注文いただけます。</p>
+            <ul>
+              <li><strong>LINEから</strong>：一番お気軽にご相談いただけます。カラー・サイズのご要望やご質問を直接お送りください。</li>
+              <li><strong>お問い合わせフォームから</strong>：<a href="contact.html">お問い合わせページ</a>のフォームに必要事項をご記入ください。</li>
+              <li><strong>ウェブサイトの商品ページから</strong>：カートに入れる際にカラーを選択し、備考欄にサイズ等のご要望をご記入ください。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q</span>
+          <span class="faq-q-text">注文してから届くまでどれくらいかかりますか？</span>
+          <span class="faq-toggle">＋</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p class="faq-a-label">A.</p>
+            <p>カスタムオーダー商品は、ご注文確定から約1週間で発送いたします（混雑時は多少前後する場合があります）。</p>
+            <p>制作中の途中経過のお写真もお送りしますので、お楽しみにお待ちください。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q</span>
+          <span class="faq-q-text">注文後のキャンセルはできますか？</span>
+          <span class="faq-toggle">＋</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p class="faq-a-label">A.</p>
+            <p>カスタムオーダー商品は、ご注文確定から24時間以内に限りキャンセルが可能です。制作開始後はキャンセルをお受けできません。</p>
+            <p>在庫品のご注文は、発送前であればキャンセルが可能です。</p>
+            <p>キャンセルのご連絡は<a href="contact.html">お問い合わせページ</a>またはLINEにてお願いします。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q</span>
+          <span class="faq-q-text">ギフト包装はできますか？</span>
+          <span class="faq-toggle">＋</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p class="faq-a-label">A.</p>
+            <p>はい、ギフトラッピングを承っております。ご注文時の備考欄に「ギフト希望」とご記入いただくか、LINEにてお申し付けください。</p>
+            <p>のし紙・メッセージカードへの対応もお気軽にご相談ください。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 配送・返品 -->
+    <div class="faq-section active" id="faq-delivery">
+      <h2 class="faq-section-title">配送・返品について</h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q</span>
+          <span class="faq-q-text">送料はいくらですか？</span>
+          <span class="faq-toggle">＋</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p class="faq-a-label">A.</p>
+            <p>送料は全国一律550円（税込）です。<strong>¥5,000以上のご注文で送料無料</strong>になります。</p>
+            <p>配送はヤマト運輸（宅急便）にてお届けします。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q</span>
+          <span class="faq-q-text">返品・交換はできますか？</span>
+          <span class="faq-toggle">＋</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p class="faq-a-label">A.</p>
+            <p>商品到着後7日以内に限り、以下の場合に返品・交換をお受けします。</p>
+            <ul>
+              <li>商品に製造上の不具合・破損があった場合</li>
+              <li>ご注文と異なる商品が届いた場合</li>
+            </ul>
+            <p>カスタムオーダー商品（カラー・サイズをご指定）は、不具合がない限り返品・交換をお受けできません。</p>
+            <p>返品希望の際は、まず<a href="contact.html">お問い合わせ</a>またはLINEにてご連絡ください。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q</span>
+          <span class="faq-q-text">海外発送はできますか？</span>
+          <span class="faq-toggle">＋</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p class="faq-a-label">A.</p>
+            <p>現在、海外への発送は対応しておりません。日本国内のみとなります。海外発送をご希望の方は<a href="contact.html">お問い合わせ</a>ください。今後対応を検討中です。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 素材・お手入れ -->
+    <div class="faq-section active" id="faq-care">
+      <h2 class="faq-section-title">素材・お手入れについて</h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q</span>
+          <span class="faq-q-text">水洗いはできますか？</span>
+          <span class="faq-toggle">＋</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p class="faq-a-label">A.</p>
+            <p>はい、BioThane素材は完全防水のため水洗いが可能です。中性洗剤を薄めた水で洗い、よくすすいだ後、風通しの良い場所で陰干ししてください。</p>
+            <p>金具部分は水気を拭き取って乾燥させると、より長持ちします。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q</span>
+          <span class="faq-q-text">色落ちはしますか？</span>
+          <span class="faq-toggle">＋</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p class="faq-a-label">A.</p>
+            <p>BioThane素材はコーティングされているため、通常使用では色落ちはほぼありません。ただし、長期間の紫外線にさらされると、わずかに色が変化する場合があります。保管は直射日光を避けた場所でお願いします。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q</span>
+          <span class="faq-q-text">どのくらい長持ちしますか？</span>
+          <span class="faq-toggle">＋</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p class="faq-a-label">A.</p>
+            <p>適切にご使用・保管いただければ、本革リードと同等以上の耐久性があります。素材自体は非常に頑丈で、引っ張りに対しても強い強度を持っています。</p>
+            <p>金具部分が消耗した場合は修理・交換も承りますので、お気軽にご相談ください。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- お問い合わせCTA -->
+    <div class="faq-cta">
+      <h3>解決しない場合はお問い合わせください</h3>
+      <p>
+        ご不明な点がございましたら、お気軽にご連絡ください。<br>
+        LINEでのお問い合わせが一番スムーズです。
+      </p>
+      <div class="faq-cta-btns">
+        <a href="contact.html" class="back-btn">フォームで問い合わせる</a>
+        <a href="#" class="line-btn">LINEで問い合わせる</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- フッター -->
+  <div class="wood-plank-divider"></div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <a href="index.html" class="logo"><span class="logo-mark">✦</span> White Snow Paws</a>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h4>SHOP</h4>
+          <ul>
+            <li><a href="index.html#biothane">BioThaneリード</a></li>
+            <li><a href="index.html#products">商品一覧</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>GUIDE</h4>
+          <ul>
+            <li><a href="index.html#order">オーダーの流れ</a></li>
+            <li><a href="faq.html">よくある質問</a></li>
+            <li><a href="contact.html">お問い合わせ</a></li>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>FOLLOW US</h4>
+          <div class="footer-social">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <a href="terms.html">利用規約</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+        <a href="contact.html">お問い合わせ</a>
+        &copy; 2026 White Snow Paws. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      item.classList.toggle('open');
+    }
+
+    function showSection(category, tab) {
+      document.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      if (category === 'all') {
+        document.querySelectorAll('.faq-section').forEach(s => s.classList.add('active'));
+      } else {
+        document.querySelectorAll('.faq-section').forEach(s => s.classList.remove('active'));
+        const target = document.getElementById('faq-' + category);
+        if (target) target.classList.add('active');
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カート｜White Snow Paws</title>
+  <meta name="description" content="ショッピングカート。White Snow Pawsのご注文内容を確認してください。">
+  <meta name="robots" content="noindex, follow">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ===================================
+       カートページ固有スタイル
+       =================================== */
+    .cart-hero {
+      background: linear-gradient(180deg, rgba(44,36,28,0.88) 0%, rgba(44,36,28,0.75) 100%);
+      padding: 90px 20px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cart-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('images/herringbone.png');
+      background-repeat: repeat;
+      background-size: 200px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+    .cart-hero-en {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 5px;
+      color: rgba(212,196,176,0.8);
+      margin-bottom: 8px;
+    }
+    .cart-hero h1 {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 26px;
+      color: #FAF8F5;
+      letter-spacing: 4px;
+    }
+
+    /* コンテンツ */
+    .cart-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 767px) {
+      .cart-content { grid-template-columns: 1fr; }
+    }
+
+    /* カート空 */
+    .cart-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .cart-empty-icon { font-size: 64px; margin-bottom: 20px; }
+    .cart-empty h2 {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 22px;
+      color: #3C3228;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+    .cart-empty p { font-size: 14px; color: #7A6B5D; line-height: 2; margin-bottom: 28px; }
+
+    /* カートリスト */
+    .cart-list { display: flex; flex-direction: column; gap: 16px; }
+    .cart-item {
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 20px;
+      background: #FAF8F5;
+      border: 2px solid #D4C4B0;
+      border-radius: 6px;
+    }
+    @media (max-width: 480px) { .cart-item { grid-template-columns: 70px 1fr; } }
+    .cart-item-image {
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid #D4C4B0;
+    }
+    .cart-item-image img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
+    .cart-item-info h3 { font-size: 14px; font-weight: 700; color: #2C241C; margin-bottom: 4px; line-height: 1.5; }
+    .cart-item-info h3 a { color: #2C241C; }
+    .cart-item-info h3 a:hover { color: #4A7C59; }
+    .cart-item-color { font-size: 12px; color: #7A6B5D; margin-bottom: 6px; }
+    .cart-item-price { font-family: 'Playfair Display', serif; font-size: 16px; color: #2C241C; }
+    .cart-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .cart-qty-btn {
+      width: 28px;
+      height: 28px;
+      border: 1px solid #D4C4B0;
+      border-radius: 4px;
+      background: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s;
+    }
+    .cart-qty-btn:hover { border-color: #4A7C59; }
+    .cart-qty-num { font-size: 14px; font-weight: 700; min-width: 24px; text-align: center; }
+    .cart-item-subtotal { font-size: 14px; font-weight: 700; color: #2C241C; white-space: nowrap; }
+    .btn-cart-remove {
+      background: none;
+      border: none;
+      color: #A08060;
+      font-size: 11px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+    .btn-cart-remove:hover { color: #C0392B; }
+    .cart-item-right { text-align: right; }
+    @media (max-width: 480px) { .cart-item-right { grid-column: 2; } }
+
+    /* サマリー */
+    .cart-summary {
+      background: #FAF8F5;
+      border: 2px solid #D4C4B0;
+      border-radius: 6px;
+      padding: 28px 24px;
+      position: sticky;
+      top: 80px;
+    }
+    .cart-summary h2 {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 16px;
+      color: #3C3228;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid #D4C4B0;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #4A3C30;
+      margin-bottom: 12px;
+    }
+    .summary-row.free { color: #4A7C59; }
+    .summary-divider { height: 1px; background: #D4C4B0; margin: 16px 0; }
+    .summary-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .summary-total-label {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 16px;
+      color: #2C241C;
+      letter-spacing: 1px;
+    }
+    .summary-total-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: #2C241C;
+    }
+    .summary-tax { font-size: 11px; color: #7A6B5D; text-align: right; margin-bottom: 20px; }
+    .btn-checkout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
+      color: #FAF8F5;
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      letter-spacing: 3px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 12px rgba(74,124,89,0.3);
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .btn-checkout:hover {
+      background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(74,124,89,0.4);
+    }
+    .btn-checkout:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-continue {
+      display: block;
+      text-align: center;
+      font-size: 13px;
+      color: #4A7C59;
+      text-decoration: underline;
+      padding: 8px;
+    }
+    .btn-continue:hover { color: #3A6349; }
+    .summary-note { font-size: 11px; color: #A08060; text-align: center; margin-top: 16px; line-height: 1.8; }
+
+    /* クーポン */
+    .coupon-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+      margin-bottom: 4px;
+    }
+    .coupon-input {
+      flex: 1;
+      padding: 10px 12px;
+      border: 2px solid #D4C4B0;
+      border-radius: 4px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      color: #2C241C;
+      background: #fff;
+    }
+    .coupon-input:focus { border-color: #A08060; outline: none; }
+    .btn-coupon {
+      padding: 10px 14px;
+      border: 2px solid #A08060;
+      border-radius: 4px;
+      background: transparent;
+      color: #8B6F47;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .btn-coupon:hover { background: #A08060; color: #FAF8F5; }
+  </style>
+</head>
+
+<body>
+  <!-- ===================================
+       ヘッダー
+       =================================== -->
+  <header class="header scrolled" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">✦</span>
+        White Snow Paws
+      </a>
+      <div class="header-icons">
+        <button aria-label="検索" class="header-icon-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <span class="header-icon-label">SEARCH</span>
+        </button>
+        <a href="register.html" class="header-icon-btn" style="text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/>
+          </svg>
+          <span class="header-icon-label">SIGN UP</span>
+        </a>
+        <a href="login.html" class="header-icon-btn" style="text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span class="header-icon-label">LOGIN</span>
+        </a>
+        <a href="cart.html" class="header-icon-btn" style="position:relative;text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+          <span class="header-icon-label">CART</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ヒーロー -->
+  <div class="cart-hero">
+    <p class="cart-hero-en">── SHOPPING CART ──</p>
+    <h1>カート</h1>
+  </div>
+
+  <!-- ===================================
+       カートコンテンツ
+       =================================== -->
+  <div class="cart-content" id="cartContent">
+    <!-- JSで描画 -->
+  </div>
+
+  <!-- ===================================
+       フッター
+       =================================== -->
+  <div class="wood-plank-divider"></div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">✦</span>
+          White Snow Paws
+        </a>
+      </div>
+      <div class="footer-bottom">
+        <a href="terms.html">利用規約</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+        <a href="contact.html">お問い合わせ</a>
+        &copy; 2026 White Snow Paws. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    const SHIPPING_FEE = 550;
+    const FREE_SHIPPING_THRESHOLD = 5000;
+
+    function renderCart() {
+      const items = Cart.getItems();
+      const container = document.getElementById('cartContent');
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div class="cart-empty">
+            <div class="cart-empty-icon">🛒</div>
+            <h2>カートは空です</h2>
+            <p>気になる商品をカートに追加して<br>お買い物をお楽しみください。</p>
+            <a href="index.html#products" class="btn-primary">商品を見る <span class="arrow">→</span></a>
+          </div>`;
+        return;
+      }
+
+      const subtotal = Cart.total();
+      const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
+      const total = subtotal + shipping;
+
+      const listHTML = items.map((item, idx) => `
+        <div class="cart-item" id="cart-item-${idx}">
+          <a href="product-detail.html?id=${item.id}" class="cart-item-image">
+            <img src="${item.image || 'images/woodcraft/work1.png'}" alt="${item.name}" loading="lazy">
+          </a>
+          <div class="cart-item-info">
+            <h3><a href="product-detail.html?id=${item.id}">${item.name}</a></h3>
+            ${item.color ? `<p class="cart-item-color">カラー：${item.color}</p>` : ''}
+            <p class="cart-item-price">¥${item.price.toLocaleString()}</p>
+            <div class="cart-item-actions">
+              <button class="cart-qty-btn" onclick="changeItemQty('${item.id}','${item.color}',-1)">−</button>
+              <span class="cart-qty-num">${item.quantity}</span>
+              <button class="cart-qty-btn" onclick="changeItemQty('${item.id}','${item.color}',1)">＋</button>
+              <button class="btn-cart-remove" onclick="removeItem('${item.id}','${item.color}')">削除</button>
+            </div>
+          </div>
+          <div class="cart-item-right">
+            <p class="cart-item-subtotal">¥${(item.price * item.quantity).toLocaleString()}</p>
+          </div>
+        </div>
+      `).join('');
+
+      container.innerHTML = `
+        <div class="cart-list">${listHTML}</div>
+        <div class="cart-summary">
+          <h2>注文サマリー</h2>
+          <div class="summary-row">
+            <span>小計</span>
+            <span>¥${subtotal.toLocaleString()}</span>
+          </div>
+          <div class="summary-row ${shipping === 0 ? 'free' : ''}">
+            <span>送料</span>
+            <span>${shipping === 0 ? '無料' : '¥' + shipping.toLocaleString()}</span>
+          </div>
+          ${shipping > 0 ? `<div class="summary-row" style="font-size:11px;color:#4A7C59;">あと¥${(FREE_SHIPPING_THRESHOLD - subtotal).toLocaleString()}で送料無料</div>` : ''}
+          <div class="summary-divider"></div>
+          <div class="summary-total-row">
+            <span class="summary-total-label">合計</span>
+            <span class="summary-total-price">¥${total.toLocaleString()}</span>
+          </div>
+          <p class="summary-tax">（税込）</p>
+
+          <!-- クーポン -->
+          <div class="coupon-row">
+            <input type="text" class="coupon-input" id="couponInput" placeholder="クーポンコード">
+            <button class="btn-coupon" onclick="applyCoupon()">適用</button>
+          </div>
+
+          <a href="checkout.html" class="btn-checkout">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+            レジに進む
+          </a>
+          <a href="index.html#products" class="btn-continue">← 買い物を続ける</a>
+          <p class="summary-note">
+            🔒 安全な SSL 暗号化通信<br>
+            ¥5,000以上で送料無料
+          </p>
+        </div>`;
+    }
+
+    function changeItemQty(id, color, delta) {
+      const items = Cart.getItems();
+      const key = id + '_' + (color || '');
+      const item = items.find(i => (i.id + '_' + (i.color || '')) === key);
+      if (!item) return;
+      const newQty = item.quantity + delta;
+      if (newQty <= 0) {
+        removeItem(id, color);
+      } else {
+        Cart.updateQuantity(id, color, newQty);
+        renderCart();
+      }
+    }
+
+    function removeItem(id, color) {
+      Cart.removeItem(id, color);
+      renderCart();
+    }
+
+    function applyCoupon() {
+      const code = document.getElementById('couponInput').value.trim().toUpperCase();
+      if (code === 'SNOW10') {
+        alert('クーポン「SNOW10」を適用しました（10%割引）※現在デモ表示のみ');
+      } else {
+        alert('クーポンコードが正しくありません。');
+      }
+    }
+
+    // 初回レンダリング
+    renderCart();
+  </script>
+</body>
+
+</html>

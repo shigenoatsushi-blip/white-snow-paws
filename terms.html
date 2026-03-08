@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利用規約｜White Snow Paws</title>
+    <meta name="description" content="White Snow Pawsのご利用規約です。お買い物の前にご確認ください。">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Zen+Old+Mincho:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .terms-hero {
+            background: linear-gradient(180deg, rgba(44, 36, 28, 0.88) 0%, rgba(44, 36, 28, 0.75) 100%);
+            padding: 120px 20px 48px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terms-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('images/herringbone.png');
+            background-repeat: repeat;
+            background-size: 200px;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .terms-hero-en {
+            font-family: 'Playfair Display', serif;
+            font-size: 12px;
+            letter-spacing: 5px;
+            color: rgba(212, 196, 176, 0.8);
+            margin-bottom: 10px;
+        }
+
+        .terms-hero h1 {
+            font-family: 'Zen Old Mincho', serif;
+            font-size: 28px;
+            color: #FAF8F5;
+            letter-spacing: 4px;
+        }
+
+        .terms-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px 80px;
+        }
+
+        .terms-date {
+            font-size: 13px;
+            color: #7A6B5D;
+            margin-bottom: 16px;
+            text-align: right;
+        }
+
+        .terms-intro {
+            font-size: 14px;
+            line-height: 2;
+            color: #4A3C30;
+            margin-bottom: 48px;
+            padding: 20px 24px;
+            background: #F5EDE3;
+            border-left: 4px solid #A08060;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* 目次 */
+        .terms-toc {
+            margin-bottom: 48px;
+            padding: 24px 28px;
+            background: linear-gradient(135deg, rgba(212, 196, 176, 0.2) 0%, transparent 50%),
+                linear-gradient(180deg, #FAF8F5 0%, #F5EDE3 100%);
+            border: 1px solid #D4C4B0;
+            border-radius: 6px;
+        }
+
+        .terms-toc h3 {
+            font-family: 'Zen Old Mincho', serif;
+            font-size: 14px;
+            color: #3C3228;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .terms-toc ol {
+            padding-left: 20px;
+        }
+
+        .terms-toc li {
+            font-size: 13px;
+            margin-bottom: 6px;
+            line-height: 1.6;
+        }
+
+        .terms-toc a {
+            color: #4A7C59;
+            text-decoration: none;
+        }
+
+        .terms-toc a:hover {
+            text-decoration: underline;
+        }
+
+        /* 各条文 */
+        .terms-section {
+            margin-bottom: 44px;
+            scroll-margin-top: 80px;
+        }
+
+        .terms-section h2 {
+            font-family: 'Zen Old Mincho', serif;
+            font-size: 17px;
+            color: #3C3228;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+            padding: 10px 16px;
+            background: linear-gradient(90deg, rgba(160, 128, 96, 0.1) 0%, transparent 100%);
+            border-left: 4px solid #A08060;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .terms-section p {
+            font-size: 14px;
+            line-height: 2;
+            color: #4A3C30;
+            margin-bottom: 12px;
+        }
+
+        .terms-section ul,
+        .terms-section ol {
+            padding-left: 22px;
+            margin: 8px 0 12px;
+        }
+
+        .terms-section li {
+            font-size: 14px;
+            line-height: 2;
+            color: #4A3C30;
+            margin-bottom: 4px;
+        }
+
+        .terms-section ul li::marker {
+            color: #A08060;
+        }
+
+        .terms-section ol li::marker {
+            color: #A08060;
+            font-weight: 700;
+        }
+
+        /* 禁止事項ボックス */
+        .prohibited-box {
+            padding: 20px 24px;
+            background: rgba(192, 57, 43, 0.04);
+            border: 1px solid rgba(192, 57, 43, 0.2);
+            border-radius: 6px;
+            margin-top: 12px;
+        }
+
+        .prohibited-box li {
+            color: #4A3C30;
+        }
+
+        /* お問い合わせ */
+        .terms-contact {
+            margin-top: 60px;
+            padding: 28px 32px;
+            background: linear-gradient(135deg, rgba(212, 196, 176, 0.3) 0%, transparent 50%),
+                linear-gradient(180deg, #FAF8F5 0%, #F5EDE3 100%);
+            border: 2px solid #A08060;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .terms-contact h3 {
+            font-family: 'Zen Old Mincho', serif;
+            font-size: 16px;
+            color: #3C3228;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .terms-contact p {
+            font-size: 13px;
+            color: #7A6B5D;
+            line-height: 2;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 28px;
+            padding: 12px 28px;
+            background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
+            color: #FAF8F5;
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            letter-spacing: 2px;
+            border-radius: 6px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <header class="header scrolled" id="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-mark">✦</span>
+                White Snow Paws
+            </a>
+            <div class="header-icons">
+                <button aria-label="検索" class="header-icon-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    <span class="header-icon-label">SEARCH</span>
+                </button>
+                <a href="register.html" class="header-icon-btn" style="text-decoration:none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <line x1="19" y1="8" x2="19" y2="14" />
+                        <line x1="22" y1="11" x2="16" y2="11" />
+                    </svg>
+                    <span class="header-icon-label">SIGN UP</span>
+                </a>
+                <button aria-label="ログイン" class="header-icon-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    <span class="header-icon-label">LOGIN</span>
+                </button>
+                <button aria-label="カート" class="header-icon-btn" style="position:relative;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <path d="M16 10a4 4 0 0 1-8 0" />
+                    </svg>
+                    <span class="cart-badge">0</span>
+                    <span class="header-icon-label">CART</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ヒーロー -->
+    <div class="terms-hero">
+        <p class="terms-hero-en">── LEGAL ──</p>
+        <h1>利用規約</h1>
+    </div>
+
+    <!-- コンテンツ -->
+    <main class="terms-content">
+        <p class="terms-date">制定日：2026年3月1日</p>
+
+        <div class="terms-intro">
+            この利用規約（以下「本規約」）は、White Snow
+            Paws（以下「当店」）が提供するオンラインショッピングサービス（以下「本サービス」）の利用条件を定めるものです。お客様は本サービスをご利用になることで、本規約に同意したものとみなします。
+        </div>
+
+        <!-- 目次 -->
+        <nav class="terms-toc">
+            <h3>目次</h3>
+            <ol>
+                <li><a href="#art1">会員登録</a></li>
+                <li><a href="#art2">ご注文・購入</a></li>
+                <li><a href="#art3">料金・お支払い</a></li>
+                <li><a href="#art4">配送・お届け</a></li>
+                <li><a href="#art5">返品・交換</a></li>
+                <li><a href="#art6">キャンセル</a></li>
+                <li><a href="#art7">禁止事項</a></li>
+                <li><a href="#art8">知的財産権</a></li>
+                <li><a href="#art9">免責事項</a></li>
+                <li><a href="#art10">サービスの変更・停止</a></li>
+                <li><a href="#art11">準拠法・管轄裁判所</a></li>
+            </ol>
+        </nav>
+
+        <!-- 第1条 -->
+        <div class="terms-section" id="art1">
+            <h2>第1条（会員登録）</h2>
+            <ol>
+                <li>本サービスへの会員登録は無料です。登録情報は正確かつ最新の情報を入力してください。</li>
+                <li>虚偽の情報を登録した場合、当店は予告なく会員資格を取り消すことができます。</li>
+                <li>登録したメールアドレスとパスワードはお客様自身の責任で管理してください。第三者への譲渡・貸与は禁止します。</li>
+                <li>アカウントの不正利用による損害について、当店は責任を負いません。</li>
+                <li>退会をご希望の場合はお問い合わせページよりご連絡ください。</li>
+            </ol>
+        </div>
+
+        <!-- 第2条 -->
+        <div class="terms-section" id="art2">
+            <h2>第2条（ご注文・購入）</h2>
+            <ol>
+                <li>ご注文はウェブサイト上のフォームまたはLINEにてお受けします。</li>
+                <li>カスタムオーダー商品はご注文確定後、原則としてキャンセルできません。</li>
+                <li>在庫状況や素材の仕入れ状況によって、ご希望に添えない場合があります。その際はご注文後にご連絡します。</li>
+                <li>当店からの注文確認メールをもってご注文の受付完了とします。</li>
+            </ol>
+        </div>
+
+        <!-- 第3条 -->
+        <div class="terms-section" id="art3">
+            <h2>第3条（料金・お支払い）</h2>
+            <ol>
+                <li>商品価格はすべて税込み表示です。</li>
+                <li>送料は全国一律550円（税込）です。¥5,000以上のご注文で送料無料となります。</li>
+                <li>お支払い方法は、クレジットカード・銀行振込・コンビニ払い等からお選びいただけます（決済方法は順次追加予定）。</li>
+                <li>銀行振込の場合、ご注文から5営業日以内にお振込みください。期限内にご入金が確認できない場合、ご注文をキャンセルさせていただく場合があります。</li>
+            </ol>
+        </div>
+
+        <!-- 第4条 -->
+        <div class="terms-section" id="art4">
+            <h2>第4条（配送・お届け）</h2>
+            <ol>
+                <li>カスタムオーダー商品の製作期間は、ご注文確定から約1週間を目安としています（混雑時は変動する場合があります）。</li>
+                <li>在庫品は入金確認後、1〜3営業日以内に発送します。</li>
+                <li>お届けは日本国内に限ります（海外発送は現在対応しておりません）。</li>
+                <li>天候・交通事情・配送業者の都合により、お届けが遅れる場合があります。</li>
+                <li>お届け先の住所が誤っていた場合の再送費用はお客様のご負担となります。</li>
+            </ol>
+        </div>
+
+        <!-- 第5条 -->
+        <div class="terms-section" id="art5">
+            <h2>第5条（返品・交換）</h2>
+            <ol>
+                <li>商品到着後7日以内に限り、以下の場合に限って返品・交換をお受けします。
+                    <ul>
+                        <li>商品に製造上の不具合・破損があった場合</li>
+                        <li>ご注文と異なる商品が届いた場合</li>
+                    </ul>
+                </li>
+                <li>カスタムオーダー商品（色・サイズをご指定いただいたもの）は、不具合がない限り返品・交換をお受けできません。</li>
+                <li>返品・交換をご希望の場合は、まずお問い合わせページまたはLINEにてご連絡ください。返品方法・送料についてご案内します。</li>
+                <li>不具合による返品・交換の送料は当店が負担します。</li>
+            </ol>
+        </div>
+
+        <!-- 第6条 -->
+        <div class="terms-section" id="art6">
+            <h2>第6条（キャンセル）</h2>
+            <ol>
+                <li>在庫品のご注文は、発送前であればキャンセルが可能です。発送後はキャンセルをお受けできません。</li>
+                <li>カスタムオーダー商品は、製作開始前（ご注文確定から24時間以内）に限りキャンセルが可能です。製作開始後はキャンセルをお受けできません。</li>
+                <li>キャンセルのご連絡はお問い合わせページまたはLINEにてお願いします。</li>
+            </ol>
+        </div>
+
+        <!-- 第7条 -->
+        <div class="terms-section" id="art7">
+            <h2>第7条（禁止事項）</h2>
+            <p>本サービスのご利用にあたり、以下の行為を禁止します。</p>
+            <ul class="prohibited-box">
+                <li>虚偽の情報を登録・提供する行為</li>
+                <li>他のお客様や第三者の権利、財産、プライバシーを侵害する行為</li>
+                <li>当店のサービス運営を妨げる行為</li>
+                <li>本サービスを通じて購入した商品の無断転売・商業利用</li>
+                <li>不正アクセス、システムへの不当な負荷をかける行為</li>
+                <li>法令または公序良俗に反する行為</li>
+                <li>その他、当店が不適切と判断する行為</li>
+            </ul>
+        </div>
+
+        <!-- 第8条 -->
+        <div class="terms-section" id="art8">
+            <h2>第8条（知的財産権）</h2>
+            <ol>
+                <li>本ウェブサイト上のすべてのコンテンツ（テキスト・画像・デザイン等）は当店または正当な権利者に帰属します。</li>
+                <li>無断転載・複製・改変・再配布は禁止します。</li>
+            </ol>
+        </div>
+
+        <!-- 第9条 -->
+        <div class="terms-section" id="art9">
+            <h2>第9条（免責事項）</h2>
+            <ol>
+                <li>当店は、本サービスに関して生じた損害（逸失利益・データの損失等を含む）について、当店の故意または重過失による場合を除き、一切責任を負いません。</li>
+                <li>天災・システム障害・通信障害等、当店の責に帰すことができない事由による損害については責任を負いません。</li>
+                <li>外部リンク先のサービス・内容について当店は責任を負いません。</li>
+            </ol>
+        </div>
+
+        <!-- 第10条 -->
+        <div class="terms-section" id="art10">
+            <h2>第10条（サービスの変更・停止）</h2>
+            <p>当店は、以下の場合に本サービスの変更・一時停止・終了を予告なく行うことがあります。</p>
+            <ul>
+                <li>システムの保守・更新を行うとき</li>
+                <li>地震・停電等の不可抗力によってサービス提供が困難なとき</li>
+                <li>その他、当店が必要と判断したとき</li>
+            </ul>
+        </div>
+
+        <!-- 第11条 -->
+        <div class="terms-section" id="art11">
+            <h2>第11条（準拠法・管轄裁判所）</h2>
+            <ol>
+                <li>本規約は日本法に準拠します。</li>
+                <li>本サービスに関して生じた紛争については、新潟地方裁判所を第一審の専属的合意管轄裁判所とします。</li>
+            </ol>
+        </div>
+
+        <!-- お問い合わせ -->
+        <div class="terms-contact">
+            <h3>規約に関するお問い合わせ</h3>
+            <p>
+                White Snow Paws（ホワイトスノーパウズ）<br>
+                〒948-0036 新潟県十日町市川治1530-2<br>
+                メール：info@whitesnowpaws.jp
+            </p>
+            <a href="index.html" class="back-btn">← トップページに戻る</a>
+        </div>
+
+    </main>
+
+    <!-- フッター -->
+    <div class="wood-plank-divider"></div>
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <a href="index.html" class="logo">
+                    <span class="logo-mark">✦</span>
+                    White Snow Paws
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <a href="terms.html">利用規約</a>
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                &copy; 2026 White Snow Paws. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

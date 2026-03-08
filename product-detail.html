@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品詳細｜White Snow Paws</title>
+  <meta name="description" content="BioThane（バイオシーン）素材のハンドメイドリード＆カラー。カラーオーダー対応。防水・軽量・高耐久。">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ===================================
+       商品詳細ページ固有スタイル
+       =================================== */
+    .detail-hero {
+      background: linear-gradient(180deg, rgba(44,36,28,0.85) 0%, rgba(44,36,28,0.7) 100%);
+      padding: 90px 20px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .detail-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('images/herringbone.png');
+      background-repeat: repeat;
+      background-size: 200px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: rgba(212,196,176,0.7);
+      letter-spacing: 1px;
+      justify-content: center;
+    }
+    .breadcrumb a { color: rgba(212,196,176,0.7); }
+    .breadcrumb a:hover { color: rgba(212,196,176,1); }
+    .breadcrumb span { color: rgba(212,196,176,0.4); }
+
+    /* メインコンテンツ */
+    .detail-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+    .detail-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      margin-bottom: 72px;
+    }
+    @media (max-width: 767px) {
+      .detail-main { grid-template-columns: 1fr; gap: 28px; }
+    }
+
+    /* 画像エリア */
+    .detail-images {}
+    .detail-main-image {
+      border: 3px solid var(--color-wood-light);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      background: #fff;
+    }
+    .detail-main-image img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .detail-main-image:hover img { transform: scale(1.03); }
+    .detail-thumb-row {
+      display: flex;
+      gap: 8px;
+    }
+    .detail-thumb {
+      border: 2px solid var(--color-wood-light);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      flex: 1;
+      transition: border-color var(--transition-base);
+    }
+    .detail-thumb.active { border-color: var(--color-accent); }
+    .detail-thumb img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
+
+    /* 情報エリア */
+    .detail-info {}
+    .detail-category {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--color-accent);
+      margin-bottom: 8px;
+    }
+    .detail-name {
+      font-family: var(--font-heading-jp);
+      font-size: 24px;
+      color: var(--color-text-main);
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+    .detail-name-en {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      color: var(--color-text-sub);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    .detail-price-area {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+    .detail-price {
+      font-family: var(--font-heading-en);
+      font-size: 32px;
+      color: var(--color-text-main);
+    }
+    .detail-price-tax { font-size: 13px; color: var(--color-text-sub); }
+    .detail-price-original {
+      font-size: 16px;
+      color: var(--color-text-sub);
+      text-decoration: line-through;
+    }
+    .detail-shipping {
+      font-size: 12px;
+      color: var(--color-accent);
+      margin-bottom: 20px;
+    }
+    .detail-divider {
+      height: 1px;
+      background: var(--color-wood-light);
+      margin: 20px 0;
+    }
+
+    /* カラー選択 */
+    .detail-option-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-text-main);
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .selected-color-name {
+      font-weight: 400;
+      color: var(--color-text-sub);
+      font-size: 12px;
+    }
+    .color-select-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .color-swatch {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: border-color var(--transition-base), transform var(--transition-base);
+      outline: none;
+    }
+    .color-swatch:hover { transform: scale(1.15); }
+    .color-swatch.selected { border-color: var(--color-wood-dark); }
+
+    /* サイズ選択 */
+    .size-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .size-btn {
+      padding: 8px 18px;
+      border: 2px solid var(--color-wood-light);
+      border-radius: 4px;
+      font-family: var(--font-body-jp);
+      font-size: 13px;
+      color: var(--color-text-main);
+      cursor: pointer;
+      background: #fff;
+      transition: border-color var(--transition-base), background var(--transition-base), color var(--transition-base);
+    }
+    .size-btn:hover { border-color: var(--color-accent); }
+    .size-btn.selected { border-color: var(--color-accent); background: var(--color-accent); color: #fff; }
+
+    /* 数量 */
+    .qty-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .qty-btn {
+      width: 36px;
+      height: 36px;
+      border: 2px solid var(--color-wood-light);
+      border-radius: 4px;
+      font-size: 18px;
+      color: var(--color-text-main);
+      background: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color var(--transition-base);
+    }
+    .qty-btn:hover { border-color: var(--color-accent); }
+    .qty-input {
+      width: 52px;
+      height: 36px;
+      border: 2px solid var(--color-wood-light);
+      border-radius: 4px;
+      text-align: center;
+      font-size: 15px;
+      font-family: var(--font-body-jp);
+      color: var(--color-text-main);
+    }
+    .qty-input:focus { border-color: var(--color-accent); outline: none; }
+
+    /* カートボタン */
+    .btn-add-to-cart {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
+      color: var(--color-snow);
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      letter-spacing: 3px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      transition: background var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+      box-shadow: 0 4px 12px rgba(74,124,89,0.3);
+    }
+    .btn-add-to-cart:hover {
+      background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(74,124,89,0.4);
+    }
+    .btn-order-line {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #06C755 0%, #04A847 100%);
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      transition: opacity var(--transition-base), transform var(--transition-base);
+    }
+    .btn-order-line:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* 特徴バッジ */
+    .detail-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .detail-feature-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border: 1px solid var(--color-wood-medium);
+      border-radius: 20px;
+      font-size: 11px;
+      color: var(--color-wood-dark);
+      background: rgba(160,128,96,0.06);
+    }
+
+    /* 商品説明タブ */
+    .detail-tabs {
+      display: flex;
+      border-bottom: 2px solid var(--color-wood-light);
+      margin-bottom: 28px;
+      gap: 4px;
+    }
+    .detail-tab-btn {
+      padding: 12px 24px;
+      font-family: var(--font-body-jp);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--color-text-sub);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      margin-bottom: -2px;
+      transition: color var(--transition-base), border-color var(--transition-base);
+    }
+    .detail-tab-btn.active {
+      color: var(--color-accent);
+      border-bottom-color: var(--color-accent);
+    }
+    .detail-tab-panel { display: none; }
+    .detail-tab-panel.active { display: block; }
+    .detail-tab-panel p { font-size: 14px; line-height: 2; color: var(--color-text-main); margin-bottom: 16px; }
+    .detail-tab-panel ul { padding-left: 20px; margin-bottom: 16px; }
+    .detail-tab-panel li { font-size: 14px; line-height: 2; color: #4A3C30; margin-bottom: 4px; }
+    .detail-tab-panel ul li::marker { color: var(--color-wood-medium); }
+    .spec-table { width: 100%; border-collapse: collapse; }
+    .spec-table tr { border-bottom: 1px solid rgba(212,196,176,0.5); }
+    .spec-table th { font-size: 12px; font-weight: 700; color: var(--color-wood-dark); padding: 10px 0; width: 130px; text-align: left; vertical-align: top; }
+    .spec-table td { font-size: 13px; color: #4A3C30; padding: 10px 0; line-height: 1.8; }
+
+    /* 関連商品 */
+    .related-section { margin-top: 64px; }
+    .related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    @media (max-width: 767px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* 追加成功トースト */
+    .cart-toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--color-accent);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 9999;
+      white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(74,124,89,0.4);
+    }
+    .cart-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===================================
+       ヘッダー
+       =================================== -->
+  <header class="header scrolled" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">✦</span>
+        White Snow Paws
+      </a>
+      <div class="header-icons">
+        <button aria-label="検索" class="header-icon-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <span class="header-icon-label">SEARCH</span>
+        </button>
+        <a href="register.html" class="header-icon-btn" style="text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/>
+          </svg>
+          <span class="header-icon-label">SIGN UP</span>
+        </a>
+        <a href="login.html" class="header-icon-btn" style="text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span class="header-icon-label">LOGIN</span>
+        </a>
+        <a href="cart.html" class="header-icon-btn" style="position:relative;text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+          <span class="header-icon-label">CART</span>
+        </a>
+      </div>
+    </div>
+    <nav class="desktop-nav">
+      <ul>
+        <li><a href="index.html#products">PRODUCTS</a></li>
+        <li><a href="index.html#category">CATEGORY</a></li>
+        <li><a href="index.html#story">STORY</a></li>
+        <li><a href="index.html#order">ORDER</a></li>
+        <li><a href="index.html#gallery">GALLERY</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- パンくず -->
+  <div class="detail-hero">
+    <nav class="breadcrumb">
+      <a href="index.html">HOME</a>
+      <span>›</span>
+      <a href="index.html#products">PRODUCTS</a>
+      <span>›</span>
+      <span id="breadcrumbName">商品詳細</span>
+    </nav>
+  </div>
+
+  <!-- ===================================
+       商品詳細メイン
+       =================================== -->
+  <main class="detail-content">
+    <div class="detail-main">
+
+      <!-- 画像エリア -->
+      <div class="detail-images">
+        <div class="detail-main-image">
+          <img src="images/woodcraft/work1.png" alt="商品画像" id="mainImage">
+        </div>
+        <div class="detail-thumb-row">
+          <div class="detail-thumb active" onclick="switchImage('images/woodcraft/work1.png', this)">
+            <img src="images/woodcraft/work1.png" alt="サムネイル1">
+          </div>
+          <div class="detail-thumb" onclick="switchImage('images/woodcraft/work2.png', this)">
+            <img src="images/woodcraft/work2.png" alt="サムネイル2">
+          </div>
+          <div class="detail-thumb" onclick="switchImage('images/woodcraft/work3.png', this)">
+            <img src="images/woodcraft/work3.png" alt="サムネイル3">
+          </div>
+          <div class="detail-thumb" onclick="switchImage('images/woodcraft/work4.png', this)">
+            <img src="images/woodcraft/work4.png" alt="サムネイル4">
+          </div>
+        </div>
+      </div>
+
+      <!-- 情報エリア -->
+      <div class="detail-info">
+        <p class="detail-category" id="detailCategory">BIOTHANE LEAD</p>
+        <h1 class="detail-name" id="detailName">BioThane スタンダードリード 120cm</h1>
+        <p class="detail-name-en" id="detailNameEn">Standard Lead 120cm — Handmade</p>
+
+        <div class="detail-price-area">
+          <span class="detail-price" id="detailPrice">¥2,980</span>
+          <span class="detail-price-tax">(税込)</span>
+          <span class="detail-price-original" id="detailOriginalPrice" style="display:none;"></span>
+        </div>
+        <p class="detail-shipping">¥5,000以上で送料無料 / 全国一律550円</p>
+
+        <div class="detail-divider"></div>
+
+        <!-- カラー選択 -->
+        <p class="detail-option-label">
+          カラー <span class="selected-color-name" id="selectedColorName">— フォレストグリーン</span>
+        </p>
+        <div class="color-select-row" id="colorSelectRow">
+          <button class="color-swatch selected" style="background:#4A7C59;" title="フォレストグリーン" data-color="フォレストグリーン" onclick="selectColor(this)"></button>
+          <button class="color-swatch" style="background:#2C241C;" title="ミッドナイトブラック" data-color="ミッドナイトブラック" onclick="selectColor(this)"></button>
+          <button class="color-swatch" style="background:#E85D3A;" title="サンセットオレンジ" data-color="サンセットオレンジ" onclick="selectColor(this)"></button>
+          <button class="color-swatch" style="background:#4A8DB7;" title="オーシャンブルー" data-color="オーシャンブルー" onclick="selectColor(this)"></button>
+          <button class="color-swatch" style="background:#D4698A;" title="ベリーピンク" data-color="ベリーピンク" onclick="selectColor(this)"></button>
+          <button class="color-swatch" style="background:#9B7EC8;" title="ラベンダー" data-color="ラベンダー" onclick="selectColor(this)"></button>
+          <button class="color-swatch" style="background:#FAF8F5;border:2px solid #D4C4B0;" title="スノーホワイト" data-color="スノーホワイト" onclick="selectColor(this)"></button>
+          <button class="color-swatch" style="background:#C4956A;" title="テラコッタ" data-color="テラコッタ" onclick="selectColor(this)"></button>
+          <button class="color-swatch" style="background:#D4A843;" title="マスタードイエロー" data-color="マスタードイエロー" onclick="selectColor(this)"></button>
+        </div>
+
+        <!-- 数量 -->
+        <p class="detail-option-label">数量</p>
+        <div class="qty-row">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <input type="number" class="qty-input" id="qtyInput" value="1" min="1" max="10">
+          <button class="qty-btn" onclick="changeQty(1)">＋</button>
+        </div>
+
+        <!-- カートに入れる -->
+        <button class="btn-add-to-cart" id="btnAddToCart" onclick="addToCart()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          カートに入れる
+        </button>
+
+        <!-- LINEで注文 -->
+        <a href="contact.html" class="btn-order-line">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          LINEでオーダー相談
+        </a>
+
+        <!-- 特徴 -->
+        <div class="detail-features">
+          <span class="detail-feature-badge">💧 防水・速乾</span>
+          <span class="detail-feature-badge">🪶 軽量</span>
+          <span class="detail-feature-badge">🛡️ 高耐久</span>
+          <span class="detail-feature-badge">✋ ハンドメイド</span>
+          <span class="detail-feature-badge">🎨 カラーオーダー可</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================
+         商品説明タブ
+         =================================== -->
+    <div class="detail-tabs">
+      <button class="detail-tab-btn active" onclick="switchTab('description', this)">商品説明</button>
+      <button class="detail-tab-btn" onclick="switchTab('spec', this)">仕様・素材</button>
+      <button class="detail-tab-btn" onclick="switchTab('care', this)">お手入れ</button>
+      <button class="detail-tab-btn" onclick="switchTab('shipping', this)">配送・返品</button>
+    </div>
+
+    <div id="tab-description" class="detail-tab-panel active">
+      <p>
+        新潟・十日町の工房で、一本一本丁寧にハンドメイドする BioThane（バイオシーン）素材のリード。
+        スタンダードリード 120cm は、日常の散歩に最適な定番の長さです。
+      </p>
+      <p>
+        BioThane は強靭なポリエステル芯材を高機能ポリウレタンでコーティングしたヨーロッパ発祥の素材。
+        本革のような質感でありながら、防水・軽量・高耐久を実現しました。
+        雪の多い新潟での厳しい環境で徹底的にテストされた、信頼の素材です。
+      </p>
+      <p>
+        工房から直接お届けするから中間コストがなく、大手ブランドの半額以下でご提供できます。
+        9色以上のカラーバリエーションからお選びいただけます。
+      </p>
+      <ul>
+        <li>全長：120cm（ループ部分含む）</li>
+        <li>幅：20mm</li>
+        <li>重さ：約80g</li>
+        <li>対応犬種：小型犬〜中型犬</li>
+        <li>素材：BioThane（ポリエステル芯材＋ポリウレタンコーティング）</li>
+        <li>金具：ステンレス製スナップフック</li>
+      </ul>
+    </div>
+
+    <div id="tab-spec" class="detail-tab-panel">
+      <table class="spec-table">
+        <tr><th>素材</th><td>BioThane（ポリエステル芯材＋ポリウレタンコーティング）</td></tr>
+        <tr><th>全長</th><td>120cm（ループ部分含む）</td></tr>
+        <tr><th>幅</th><td>20mm</td></tr>
+        <tr><th>重さ</th><td>約80g</td></tr>
+        <tr><th>金具</th><td>ステンレス製スナップフック</td></tr>
+        <tr><th>対応犬種</th><td>小型犬〜中型犬</td></tr>
+        <tr><th>カラー</th><td>9色（スノーホワイト / フォレストグリーン / ミッドナイトブラック / サンセットオレンジ / オーシャンブルー / ベリーピンク / ラベンダー / テラコッタ / マスタードイエロー）</td></tr>
+        <tr><th>原産国</th><td>日本（新潟県十日町市 手作り）</td></tr>
+      </table>
+    </div>
+
+    <div id="tab-care" class="detail-tab-panel">
+      <p>BioThane 素材は水に強く、お手入れがとても簡単です。</p>
+      <ul>
+        <li><strong>通常の汚れ</strong>：濡れた布やウェットティッシュで拭き取るだけでOKです。</li>
+        <li><strong>ひどい汚れ</strong>：水洗い可能です。中性洗剤を薄めた水で洗い、しっかりすすいでください。</li>
+        <li><strong>乾燥</strong>：直射日光を避け、風通しの良い場所で陰干しにしてください。</li>
+        <li><strong>保管</strong>：直射日光・高温多湿を避けた場所で保管してください。</li>
+        <li>革製品のような定期的なオイルケアや防水スプレーは不要です。</li>
+        <li>金具部分は水気を拭き取り、乾燥させると長持ちします。</li>
+      </ul>
+    </div>
+
+    <div id="tab-shipping" class="detail-tab-panel">
+      <p><strong>配送について</strong></p>
+      <ul>
+        <li>カスタムオーダー商品の制作期間：ご注文確定から約1週間</li>
+        <li>送料：全国一律550円（税込）</li>
+        <li>¥5,000以上のご注文で送料無料</li>
+        <li>配送業者：ヤマト運輸（宅急便）</li>
+        <li>日本国内のみ対応（海外発送は現在未対応）</li>
+      </ul>
+      <p><strong>返品・交換について</strong></p>
+      <ul>
+        <li>商品到着後7日以内に限り、製造上の不具合・誤送品のみ対応いたします。</li>
+        <li>カスタムオーダー商品（カラー・サイズ指定）は、不具合がない限り返品・交換をお受けできません。</li>
+        <li>詳しくは<a href="terms.html#art5" style="color:var(--color-accent);text-decoration:underline;">利用規約（第5条）</a>をご確認ください。</li>
+      </ul>
+    </div>
+
+    <!-- ===================================
+         関連商品
+         =================================== -->
+    <div class="related-section">
+      <div class="section-heading">
+        <p class="section-heading-en">RELATED PRODUCTS</p>
+        <h2 class="section-heading-jp wood-burn">関連商品</h2>
+        <div class="section-heading-line"></div>
+      </div>
+      <div class="related-grid product-grid">
+        <div class="product-card wood-frame">
+          <a href="product-detail.html?id=4" class="product-card-image">
+            <img src="images/woodcraft/work2.png" alt="BioThane カラー（首輪）S" loading="lazy">
+          </a>
+          <div class="product-card-info">
+            <h4><a href="product-detail.html?id=4">BioThane カラー（首輪）S</a></h4>
+            <p class="product-desc">小型犬にぴったり</p>
+            <p class="price">¥1,980 <span class="price-tax">(税込)</span></p>
+            <button class="btn-add-cart" data-id="4" data-name="BioThane カラー（首輪）S" data-price="1980" data-image="images/woodcraft/work2.png">カートに入れる</button>
+          </div>
+        </div>
+        <div class="product-card wood-frame">
+          <a href="product-detail.html?id=7" class="product-card-image">
+            <img src="images/woodcraft/work3.png" alt="BioThane ハーネス" loading="lazy">
+            <div class="product-tag new">NEW</div>
+          </a>
+          <div class="product-card-info">
+            <h4><a href="product-detail.html?id=7">BioThane ハーネス</a></h4>
+            <p class="product-desc">快適フィット＆高耐久</p>
+            <p class="price">¥3,480 <span class="price-tax">(税込)</span></p>
+            <button class="btn-add-cart" data-id="7" data-name="BioThane ハーネス" data-price="3480" data-image="images/woodcraft/work3.png">カートに入れる</button>
+          </div>
+        </div>
+        <div class="product-card wood-frame">
+          <a href="product-detail.html?id=8" class="product-card-image">
+            <img src="images/woodcraft/work4.png" alt="リード＋カラー セット" loading="lazy">
+            <div class="product-tag sale">SALE</div>
+          </a>
+          <div class="product-card-info">
+            <h4><a href="product-detail.html?id=8">リード＋カラー セット</a></h4>
+            <p class="product-desc">お得なセット割引</p>
+            <p class="price">¥4,480 <span class="price-tax">(税込)</span></p>
+            <button class="btn-add-cart" data-id="8" data-name="BioThane リード＋カラー セット" data-price="4480" data-image="images/woodcraft/work4.png">カートに入れる</button>
+          </div>
+        </div>
+        <div class="product-card wood-frame">
+          <a href="product-detail.html?id=3" class="product-card-image">
+            <img src="images/woodcraft/work1.png" alt="ロングリード 300cm" loading="lazy">
+          </a>
+          <div class="product-card-info">
+            <h4><a href="product-detail.html?id=3">ロングリード 300cm</a></h4>
+            <p class="product-desc">ドッグランや広場に</p>
+            <p class="price">¥3,980 <span class="price-tax">(税込)</span></p>
+            <button class="btn-add-cart" data-id="3" data-name="BioThane ロングリード 300cm" data-price="3980" data-image="images/woodcraft/work1.png">カートに入れる</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- カート追加トースト -->
+  <div class="cart-toast" id="cartToast">✓ カートに追加しました</div>
+
+  <!-- ===================================
+       フッター
+       =================================== -->
+  <div class="wood-plank-divider"></div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">✦</span>
+          White Snow Paws
+        </a>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h4>SHOP</h4>
+          <ul>
+            <li><a href="index.html#biothane">BioThaneリード</a></li>
+            <li><a href="index.html#products">BioThaneカラー</a></li>
+            <li><a href="index.html#products">ギフト</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>GUIDE</h4>
+          <ul>
+            <li><a href="index.html#order">オーダーの流れ</a></li>
+            <li><a href="faq.html">よくある質問</a></li>
+            <li><a href="terms.html#art5">返品について</a></li>
+            <li><a href="contact.html">お問い合わせ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>FOLLOW US</h4>
+          <div class="footer-social">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <a href="terms.html">利用規約</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+        <a href="contact.html">お問い合わせ</a>
+        &copy; 2026 White Snow Paws. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    /* ===================================
+       商品データ（本来はAPIやDBから取得）
+       =================================== */
+    const PRODUCTS = {
+      1: { id:'1', name:'BioThane スタンダードリード 120cm', nameEn:'Standard Lead 120cm', category:'BIOTHANE LEAD', price:2980, originalPrice:null, image:'images/woodcraft/work1.png' },
+      2: { id:'2', name:'BioThane ショートリード 60cm',     nameEn:'Short Lead 60cm',     category:'BIOTHANE LEAD', price:2480, originalPrice:null, image:'images/woodcraft/work1.png' },
+      3: { id:'3', name:'BioThane ロングリード 300cm',     nameEn:'Long Lead 300cm',     category:'BIOTHANE LEAD', price:3980, originalPrice:null, image:'images/woodcraft/work1.png' },
+      4: { id:'4', name:'BioThane カラー（首輪）S',       nameEn:'Collar S',            category:'BIOTHANE COLLAR', price:1980, originalPrice:null, image:'images/woodcraft/work2.png' },
+      5: { id:'5', name:'BioThane カラー（首輪）M',       nameEn:'Collar M',            category:'BIOTHANE COLLAR', price:2180, originalPrice:null, image:'images/woodcraft/work2.png' },
+      6: { id:'6', name:'BioThane カラー（首輪）L',       nameEn:'Collar L',            category:'BIOTHANE COLLAR', price:2380, originalPrice:null, image:'images/woodcraft/work2.png' },
+      7: { id:'7', name:'BioThane ハーネス',             nameEn:'Harness',             category:'BIOTHANE HARNESS', price:3480, originalPrice:null, image:'images/woodcraft/work3.png' },
+      8: { id:'8', name:'BioThane リード＋カラー セット', nameEn:'Lead + Collar Set',   category:'BIOTHANE SET', price:4480, originalPrice:5160, image:'images/woodcraft/work4.png' },
+      9: { id:'9', name:'BioThane トレーニングリード 500cm', nameEn:'Training Lead 500cm', category:'BIOTHANE LEAD', price:4980, originalPrice:null, image:'images/woodcraft/work1.png' },
+    };
+
+    /* URLパラメータから商品IDを取得して表示 */
+    const params = new URLSearchParams(location.search);
+    const pid = params.get('id') || '1';
+    const product = PRODUCTS[pid] || PRODUCTS[1];
+
+    document.title = product.name + '｜White Snow Paws';
+    document.getElementById('breadcrumbName').textContent = product.name;
+    document.getElementById('detailCategory').textContent = product.category;
+    document.getElementById('detailName').textContent = product.name;
+    document.getElementById('detailNameEn').textContent = product.nameEn + ' — Handmade';
+    document.getElementById('detailPrice').textContent = '¥' + product.price.toLocaleString();
+    document.getElementById('mainImage').src = product.image;
+    document.getElementById('mainImage').alt = product.name;
+
+    if (product.originalPrice) {
+      const el = document.getElementById('detailOriginalPrice');
+      el.textContent = '¥' + product.originalPrice.toLocaleString();
+      el.style.display = 'inline';
+    }
+
+    /* 選択中カラー */
+    let selectedColor = 'フォレストグリーン';
+
+    function selectColor(btn) {
+      document.querySelectorAll('.color-swatch').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedColor = btn.dataset.color;
+      document.getElementById('selectedColorName').textContent = '— ' + selectedColor;
+    }
+
+    /* 数量変更 */
+    function changeQty(delta) {
+      const input = document.getElementById('qtyInput');
+      const val = Math.max(1, Math.min(10, parseInt(input.value, 10) + delta));
+      input.value = val;
+    }
+
+    /* カートに追加 */
+    function addToCart() {
+      const qty = parseInt(document.getElementById('qtyInput').value, 10);
+      Cart.addItem({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        color: selectedColor,
+        quantity: qty,
+      });
+      showToast();
+    }
+
+    function showToast() {
+      const toast = document.getElementById('cartToast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    /* サムネイル切替 */
+    function switchImage(src, thumb) {
+      document.getElementById('mainImage').src = src;
+      document.querySelectorAll('.detail-thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    }
+
+    /* タブ切替 */
+    function switchTab(name, btn) {
+      document.querySelectorAll('.detail-tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.detail-tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + name).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+
+</html>

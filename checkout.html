@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ご注文手続き｜White Snow Paws</title>
+  <meta name="description" content="ご注文手続き。配送先・お支払い方法を入力してください。">
+  <meta name="robots" content="noindex, follow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .checkout-hero {
+      background: linear-gradient(180deg, rgba(44,36,28,0.88) 0%, rgba(44,36,28,0.75) 100%);
+      padding: 90px 20px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .checkout-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('images/herringbone.png');
+      background-repeat: repeat;
+      background-size: 200px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+    .checkout-hero-en {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 5px;
+      color: rgba(212,196,176,0.8);
+      margin-bottom: 8px;
+    }
+    .checkout-hero h1 {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 26px;
+      color: #FAF8F5;
+      letter-spacing: 4px;
+    }
+
+    /* ステッパー */
+    .checkout-steps {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      padding: 24px 20px;
+      background: #F5EDE3;
+      border-bottom: 1px solid #D4C4B0;
+    }
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #A08060;
+      letter-spacing: 1px;
+    }
+    .step-item.active { color: #4A7C59; font-weight: 700; }
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #D4C4B0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .step-item.active .step-num { border-color: #4A7C59; background: #4A7C59; color: #fff; }
+    .step-arrow { padding: 0 12px; color: #D4C4B0; font-size: 14px; }
+
+    /* メイン */
+    .checkout-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 767px) {
+      .checkout-content { grid-template-columns: 1fr; }
+      .checkout-summary { order: -1; }
+    }
+
+    /* フォームカード */
+    .checkout-card {
+      background: #FAF8F5;
+      border: 2px solid #D4C4B0;
+      border-radius: 6px;
+      padding: 28px 24px;
+      margin-bottom: 20px;
+    }
+    .checkout-card-title {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 16px;
+      color: #3C3228;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #D4C4B0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-icon { color: #A08060; }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .form-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #3C3228;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .required-badge {
+      display: inline-block;
+      padding: 1px 6px;
+      background: #C0392B;
+      color: #fff;
+      font-size: 9px;
+      border-radius: 3px;
+      font-weight: 400;
+    }
+    .form-input, .form-select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #D4C4B0;
+      border-radius: 5px;
+      background: #FFFFFF;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      color: #2C241C;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+    }
+    .form-input:focus, .form-select:focus { border-color: #A08060; outline: none; box-shadow: 0 0 0 3px rgba(160,128,96,0.12); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238B6F47' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    /* 支払方法 */
+    .payment-options { display: flex; flex-direction: column; gap: 10px; }
+    .payment-option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      border: 2px solid #D4C4B0;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .payment-option:has(input:checked) { border-color: #4A7C59; background: rgba(74,124,89,0.03); }
+    .payment-option input[type="radio"] { accent-color: #4A7C59; width: 16px; height: 16px; flex-shrink: 0; }
+    .payment-option-label { font-size: 14px; font-weight: 700; color: #2C241C; }
+    .payment-option-desc { font-size: 11px; color: #7A6B5D; margin-top: 2px; }
+    .payment-icons { display: flex; gap: 4px; margin-left: auto; }
+    .payment-icon {
+      padding: 4px 8px;
+      border: 1px solid #D4C4B0;
+      border-radius: 3px;
+      font-size: 10px;
+      color: #7A6B5D;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* クレジットカード入力 */
+    .credit-fields {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid #D4C4B0;
+    }
+
+    /* 注文サマリー（右カラム） */
+    .checkout-summary {
+      background: #FAF8F5;
+      border: 2px solid #D4C4B0;
+      border-radius: 6px;
+      padding: 24px 20px;
+      position: sticky;
+      top: 80px;
+    }
+    .checkout-summary h2 {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 15px;
+      color: #3C3228;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #D4C4B0;
+    }
+    .order-item-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .order-item-img {
+      width: 52px;
+      height: 52px;
+      border-radius: 4px;
+      border: 1px solid #D4C4B0;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .order-item-img img { width: 100%; height: 100%; object-fit: cover; }
+    .order-item-name { font-size: 12px; color: #2C241C; flex: 1; line-height: 1.5; }
+    .order-item-price { font-size: 13px; font-weight: 700; color: #2C241C; white-space: nowrap; }
+    .checkout-divider { height: 1px; background: #D4C4B0; margin: 16px 0; }
+    .checkout-summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #4A3C30;
+      margin-bottom: 10px;
+    }
+    .checkout-summary-row.free { color: #4A7C59; }
+    .checkout-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+    .checkout-total-label { font-family: 'Zen Old Mincho', serif; font-size: 15px; color: #2C241C; }
+    .checkout-total-price { font-family: 'Playfair Display', serif; font-size: 24px; color: #2C241C; }
+    .checkout-tax { font-size: 11px; color: #7A6B5D; text-align: right; margin-bottom: 16px; }
+
+    /* 注文ボタン */
+    .btn-place-order {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
+      color: #FAF8F5;
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      letter-spacing: 3px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 12px rgba(74,124,89,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-place-order:hover {
+      background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(74,124,89,0.4);
+    }
+    .order-note { font-size: 11px; color: #A08060; text-align: center; margin-top: 12px; line-height: 1.8; }
+  </style>
+</head>
+
+<body>
+  <!-- ヘッダー -->
+  <header class="header scrolled" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">✦</span>
+        White Snow Paws
+      </a>
+      <div class="header-icons">
+        <a href="cart.html" class="header-icon-btn" style="position:relative;text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+          <span class="header-icon-label">CART</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ヒーロー -->
+  <div class="checkout-hero">
+    <p class="checkout-hero-en">── CHECKOUT ──</p>
+    <h1>ご注文手続き</h1>
+  </div>
+
+  <!-- ステッパー -->
+  <div class="checkout-steps">
+    <div class="step-item active">
+      <span class="step-num">1</span>
+      <span>配送・支払い</span>
+    </div>
+    <span class="step-arrow">›</span>
+    <div class="step-item">
+      <span class="step-num">2</span>
+      <span>注文確認</span>
+    </div>
+    <span class="step-arrow">›</span>
+    <div class="step-item">
+      <span class="step-num">3</span>
+      <span>完了</span>
+    </div>
+  </div>
+
+  <!-- ===================================
+       チェックアウトコンテンツ
+       =================================== -->
+  <div class="checkout-content">
+    <div class="checkout-form-area">
+      <form id="checkoutForm" novalidate>
+
+        <!-- 配送先 -->
+        <div class="checkout-card">
+          <h2 class="checkout-card-title">
+            <svg class="card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            配送先
+          </h2>
+
+          <!-- 氏名 -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="lastName">姓 <span class="required-badge">必須</span></label>
+              <input type="text" id="lastName" name="lastName" class="form-input" placeholder="山田" required autocomplete="family-name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="firstName">名 <span class="required-badge">必須</span></label>
+              <input type="text" id="firstName" name="firstName" class="form-input" placeholder="太郎" required autocomplete="given-name">
+            </div>
+          </div>
+
+          <!-- ふりがな -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="lastKana">せい <span class="required-badge">必須</span></label>
+              <input type="text" id="lastKana" name="lastKana" class="form-input" placeholder="やまだ" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="firstKana">めい <span class="required-badge">必須</span></label>
+              <input type="text" id="firstKana" name="firstKana" class="form-input" placeholder="たろう" required>
+            </div>
+          </div>
+
+          <!-- 郵便番号 -->
+          <div class="form-group">
+            <label class="form-label" for="postal">郵便番号 <span class="required-badge">必須</span></label>
+            <input type="text" id="postal" name="postal" class="form-input" placeholder="000-0000" required autocomplete="postal-code" maxlength="8">
+          </div>
+
+          <!-- 都道府県 -->
+          <div class="form-group">
+            <label class="form-label" for="prefecture">都道府県 <span class="required-badge">必須</span></label>
+            <select id="prefecture" name="prefecture" class="form-select" required>
+              <option value="" disabled selected>選択してください</option>
+              <option>北海道</option><option>青森県</option><option>岩手県</option><option>宮城県</option><option>秋田県</option>
+              <option>山形県</option><option>福島県</option><option>茨城県</option><option>栃木県</option><option>群馬県</option>
+              <option>埼玉県</option><option>千葉県</option><option>東京都</option><option>神奈川県</option><option>新潟県</option>
+              <option>富山県</option><option>石川県</option><option>福井県</option><option>山梨県</option><option>長野県</option>
+              <option>岐阜県</option><option>静岡県</option><option>愛知県</option><option>三重県</option><option>滋賀県</option>
+              <option>京都府</option><option>大阪府</option><option>兵庫県</option><option>奈良県</option><option>和歌山県</option>
+              <option>鳥取県</option><option>島根県</option><option>岡山県</option><option>広島県</option><option>山口県</option>
+              <option>徳島県</option><option>香川県</option><option>愛媛県</option><option>高知県</option><option>福岡県</option>
+              <option>佐賀県</option><option>長崎県</option><option>熊本県</option><option>大分県</option><option>宮崎県</option>
+              <option>鹿児島県</option><option>沖縄県</option>
+            </select>
+          </div>
+
+          <!-- 住所 -->
+          <div class="form-group">
+            <label class="form-label" for="city">市区町村 <span class="required-badge">必須</span></label>
+            <input type="text" id="city" name="city" class="form-input" placeholder="十日町市" required autocomplete="address-level2">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="address">番地・建物名 <span class="required-badge">必須</span></label>
+            <input type="text" id="address" name="address" class="form-input" placeholder="川治1530-2" required autocomplete="street-address">
+          </div>
+
+          <!-- 電話 -->
+          <div class="form-group">
+            <label class="form-label" for="phone">電話番号 <span class="required-badge">必須</span></label>
+            <input type="tel" id="phone" name="phone" class="form-input" placeholder="090-0000-0000" required autocomplete="tel">
+          </div>
+
+          <!-- メール -->
+          <div class="form-group">
+            <label class="form-label" for="email">メールアドレス <span class="required-badge">必須</span></label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="example@email.com" required autocomplete="email">
+          </div>
+        </div>
+
+        <!-- お支払い方法 -->
+        <div class="checkout-card">
+          <h2 class="checkout-card-title">
+            <svg class="card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+            </svg>
+            お支払い方法
+          </h2>
+          <div class="payment-options">
+            <div class="payment-option" style="background:#F5EDE3;border:2px solid #4A7C59;border-radius:6px;padding:16px;cursor:default;">
+              <div>
+                <div class="payment-option-label" style="color:#4A7C59;font-weight:700;">🔒 クレジットカード（Stripe 安全決済）</div>
+                <div class="payment-option-desc" style="margin-top:6px;">Visa / Mastercard / JCB / AMEX 対応<br>カード情報はStripeの安全なページで入力します。このサイトにカード番号は送信されません。</div>
+              </div>
+              <div class="payment-icons">
+                <span class="payment-icon">VISA</span>
+                <span class="payment-icon">MC</span>
+                <span class="payment-icon">JCB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 備考 -->
+        <div class="checkout-card">
+          <h2 class="checkout-card-title">備考・カスタムオーダーのご要望</h2>
+          <div class="form-group">
+            <textarea name="remarks" class="form-input" rows="4" placeholder="カラーオーダーの詳細、犬のサイズ、その他ご要望をお書きください。" style="resize:vertical;line-height:1.8;"></textarea>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- 右カラム：サマリー -->
+    <div class="checkout-summary" id="checkoutSummary">
+      <h2>ご注文内容</h2>
+      <div id="orderItemList"></div>
+      <div class="checkout-divider"></div>
+      <div class="checkout-summary-row" id="subtotalRow">
+        <span>小計</span><span>¥0</span>
+      </div>
+      <div class="checkout-summary-row" id="shippingRow">
+        <span>送料</span><span>¥550</span>
+      </div>
+      <div class="checkout-divider"></div>
+      <div class="checkout-total-row">
+        <span class="checkout-total-label">合計</span>
+        <span class="checkout-total-price" id="totalPrice">¥0</span>
+      </div>
+      <p class="checkout-tax">（税込）</p>
+
+      <button class="btn-place-order" onclick="placeOrder()" id="placeOrderBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        注文を確定する
+      </button>
+      <p class="order-note">
+        🔒 安全な SSL 暗号化通信で<br>お客様の情報を保護しています
+      </p>
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="wood-plank-divider"></div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <a href="index.html" class="logo"><span class="logo-mark">✦</span> White Snow Paws</a>
+      </div>
+      <div class="footer-bottom">
+        <a href="terms.html">利用規約</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+        &copy; 2026 White Snow Paws. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    const SHIPPING_FEE = 500;
+    const FREE_SHIPPING_THRESHOLD = 5000;
+
+    function renderOrderSummary() {
+      const items = Cart.getItems();
+      if (items.length === 0) {
+        location.href = 'cart.html';
+        return;
+      }
+      const subtotal = Cart.total();
+      const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
+      const total = subtotal + shipping;
+
+      const listHTML = items.map(item => `
+        <div class="order-item-row">
+          <div class="order-item-img">
+            <img src="${item.image || 'images/woodcraft/work1.png'}" alt="${item.name}" loading="lazy">
+          </div>
+          <div class="order-item-name">${item.name}${item.color ? ' / ' + item.color : ''}<br>× ${item.quantity}</div>
+          <div class="order-item-price">¥${(item.price * item.quantity).toLocaleString()}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('orderItemList').innerHTML = listHTML;
+      document.getElementById('subtotalRow').innerHTML = `<span>小計</span><span>¥${subtotal.toLocaleString()}</span>`;
+      const shippingEl = document.getElementById('shippingRow');
+      shippingEl.innerHTML = `<span>送料</span><span>${shipping === 0 ? '無料' : '¥' + shipping.toLocaleString()}</span>`;
+      if (shipping === 0) shippingEl.classList.add('free');
+      document.getElementById('totalPrice').textContent = '¥' + total.toLocaleString();
+    }
+
+    // ログイン済みの場合、プロフィール・住所を自動入力
+    async function prefillFromProfile() {
+      const user = await WSP_Auth.getUser();
+      if (!user) return;
+
+      const profile = await WSP_Auth.getProfile(user.id);
+      if (profile) {
+        const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.value = val; };
+        set('lastName', profile.last_name);
+        set('firstName', profile.first_name);
+        set('lastKana', profile.last_kana);
+        set('firstKana', profile.first_kana);
+        set('phone', profile.phone);
+        set('email', user.email);
+      }
+
+      // デフォルト住所を取得
+      const { data: addr } = await _supabase
+        .from('addresses')
+        .select('*')
+        .eq('user_id', user.id)
+        .eq('is_default', true)
+        .single();
+
+      if (addr) {
+        const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.value = val; };
+        set('postal', addr.postal_code);
+        set('city', addr.city);
+        set('address', addr.address1);
+        // 都道府県はselectなので別処理
+        const prefEl = document.getElementById('prefecture');
+        if (prefEl && addr.prefecture) {
+          for (const opt of prefEl.options) {
+            if (opt.value === addr.prefecture || opt.text === addr.prefecture) {
+              prefEl.value = opt.value;
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    async function placeOrder() {
+      const form = document.getElementById('checkoutForm');
+      const required = form.querySelectorAll('[required]');
+      let valid = true;
+      required.forEach(el => {
+        if (!el.value.trim()) {
+          el.style.borderColor = '#C0392B';
+          valid = false;
+        } else {
+          el.style.borderColor = '';
+        }
+      });
+      if (!valid) {
+        alert('必須項目をすべてご入力ください。');
+        return;
+      }
+
+      const btn = document.querySelector('.btn-place-order');
+      btn.textContent = '決済ページへ移動中...';
+      btn.disabled = true;
+
+      const items = Cart.getItems();
+      const user = await WSP_Auth.getUser();
+
+      const shipping = {
+        lastName: document.getElementById('lastName').value,
+        firstName: document.getElementById('firstName').value,
+        postal: document.getElementById('postal').value,
+        prefecture: document.getElementById('prefecture').value,
+        city: document.getElementById('city').value,
+        address: document.getElementById('address').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        remarks: document.querySelector('[name="remarks"]') ? document.querySelector('[name="remarks"]').value : '',
+      };
+
+      const cart = items.map(item => ({
+        id: item.id || '',
+        name: item.name,
+        color: item.color || '',
+        price: item.price,
+        quantity: item.quantity,
+      }));
+
+      try {
+        const resp = await fetch('/.netlify/functions/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ cart, shipping, userId: user ? user.id : null }),
+        });
+        const data = await resp.json();
+        if (data.url) {
+          // カートをクリア
+          localStorage.removeItem('wsp_cart');
+          window.location.href = data.url;
+        } else {
+          throw new Error(data.error || '決済ページの作成に失敗しました');
+        }
+      } catch (err) {
+        alert('エラーが発生しました: ' + err.message);
+        btn.textContent = '注文を確定する';
+        btn.disabled = false;
+      }
+    }
+
+    renderOrderSummary();
+    prefillFromProfile();
+  </script>
+</body>
+
+</html>
