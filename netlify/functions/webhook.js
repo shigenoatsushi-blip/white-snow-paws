@@ -182,6 +182,9 @@ async function sendAdminEmail(order, cart, shipping) {
   const adminEmail = process.env.ADMIN_EMAIL;
   if (!adminEmail) return;
 
+  // 複数の管理者メールアドレスに送信（カンマ区切りで設定可能）
+  const adminEmails = adminEmail.split(',').map(e => e.trim()).filter(Boolean);
+
   const itemsList = cart
     .map((item) => `・${item.name}${item.color ? ` (${item.color})` : ''} × ${item.quantity} = ¥${(item.price * item.quantity).toLocaleString()}`)
     .join('\n');
@@ -189,7 +192,7 @@ async function sendAdminEmail(order, cart, shipping) {
   try {
     await resend.emails.send({
       from: process.env.EMAIL_FROM || 'noreply@whitesnowpaws.jp',
-      to: adminEmail,
+      to: adminEmails,
       subject: `【新規注文】${order.order_number} - ¥${order.total.toLocaleString()}`,
       text: `新規注文が入りました。
 
