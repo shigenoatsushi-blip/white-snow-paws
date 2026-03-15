@@ -22,6 +22,20 @@ document.addEventListener('DOMContentLoaded', () => {
         },
     });
 
+    // --- BioThaneメイン画像スライダー ---
+    new Swiper('.biothane-main-swiper', {
+        loop: true,
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+        speed: 800,
+        pagination: {
+            el: '.biothane-main-pagination',
+            clickable: true,
+        },
+    });
+
     // --- BioThane商品ギャラリー ---
     const biothaneGallery = new Swiper('.biothane-gallery', {
         slidesPerView: 'auto',
