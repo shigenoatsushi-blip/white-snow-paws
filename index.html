@@ -25,6 +25,215 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- ===== トップページ モノトーン上書き ===== -->
+  <style>
+    /* ============================================
+       カラー変数をモノトーンに上書き
+       ============================================ */
+    :root {
+      --color-bg-main:    #F7F7F7;
+      --color-bg-wood:    #EFEFEF;
+      --color-bg-dark:    #111111;
+      --color-text-main:  #111111;
+      --color-text-sub:   #666666;
+      --color-accent:     #111111;
+      --color-accent-hover: #444444;
+      --color-accent-warm:  #888888;
+      --color-wood-light: #DDDDDD;
+      --color-wood-medium:#999999;
+      --color-wood-dark:  #555555;
+      --color-dark:       #111111;
+    }
+
+    /* ============================================
+       ベース
+       ============================================ */
+    body::before { display: none; } /* ヘリンボーン背景テクスチャ無効化 */
+
+    /* ============================================
+       ヘッダー: ダーク系
+       ============================================ */
+    .header {
+      background: rgba(17, 17, 17, 0.95) !important;
+      backdrop-filter: blur(8px);
+    }
+    .header.scrolled {
+      background: rgba(17, 17, 17, 0.98) !important;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.08) !important;
+    }
+
+    /* ============================================
+       セクション背景
+       ============================================ */
+    .section-wood   { background: #EFEFEF !important; }
+    .wood-plank-divider,
+    .herringbone-divider {
+      background: #DDDDDD !important;
+      height: 1px !important;
+    }
+
+    /* ============================================
+       フレーム・カード: ボーダーフラット化
+       ============================================ */
+    .wood-frame,
+    .wood-frame-sm  { box-shadow: none !important; border: 1px solid #CCCCCC !important; }
+
+    .product-card.wood-frame {
+      background: #FFFFFF !important;
+      border: 1px solid #EEEEEE !important;
+      box-shadow: none !important;
+    }
+    .product-card:hover {
+      transform: none !important;
+      box-shadow: none !important;
+      opacity: 0.85;
+    }
+
+    /* ============================================
+       2. 商品グリッド: タイトに詰める
+       ============================================ */
+    .product-grid {
+      gap: 8px !important;
+    }
+    .product-card-info {
+      padding: 10px 8px 14px !important;
+    }
+    .product-desc {
+      display: none !important;  /* 説明文を非表示にすっきり */
+    }
+    .product-card-image img {
+      transition: opacity 0.4s ease !important; /* scale ではなく opacity で */
+    }
+    .product-card:hover .product-card-image img {
+      transform: none !important;
+      opacity: 0.8;
+    }
+
+    /* ============================================
+       3. ボタン: 枠線スタイル（Lutie風）
+       ============================================ */
+
+    /* メインボタン: 透明 + 白枠 → hover で白塗り */
+    .btn-primary {
+      background: transparent !important;
+      border: 1px solid #111111 !important;
+      color: #111111 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      transition: background 0.3s, color 0.3s !important;
+    }
+    .btn-primary:hover {
+      background: #111111 !important;
+      color: #FFFFFF !important;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+    /* ヒーロー内など暗い背景上のボタンは白枠 */
+    .hero .btn-primary,
+    .story-content .btn-outline {
+      border-color: rgba(255,255,255,0.8) !important;
+      color: #FFFFFF !important;
+    }
+    .hero .btn-primary:hover {
+      background: #FFFFFF !important;
+      color: #111111 !important;
+    }
+
+    /* カートボタン: 同じく枠線スタイル */
+    .btn-add-cart {
+      background: transparent !important;
+      border: 1px solid #CCCCCC !important;
+      color: #666666 !important;
+      border-radius: 0 !important;
+      transition: background 0.3s, color 0.3s, border-color 0.3s !important;
+    }
+    .btn-add-cart:hover {
+      background: #111111 !important;
+      color: #FFFFFF !important;
+      border-color: #111111 !important;
+      transform: none !important;
+    }
+
+    /* アウトラインボタン */
+    .btn-outline {
+      border-radius: 0 !important;
+      border: 1px solid rgba(255,255,255,0.7) !important;
+    }
+    .btn-outline:hover {
+      background-color: rgba(255,255,255,0.15) !important;
+      transform: none !important;
+    }
+
+    /* ============================================
+       4. セクション見出し: 英日併記スタイル
+       ============================================ */
+
+    /* 英語タイトルをメインに（大きく・追い込み感）*/
+    .section-heading-en {
+      font-family: 'Cinzel', serif !important;
+      font-size: clamp(20px, 4vw, 32px) !important;
+      font-weight: 700 !important;
+      letter-spacing: 6px !important;
+      color: #111111 !important;
+      margin-bottom: 6px !important;
+    }
+    /* 日本語サブタイトルに格下げ */
+    .section-heading-jp {
+      font-family: 'Zen Old Mincho', serif !important;
+      font-size: 12px !important;
+      font-weight: 400 !important;
+      letter-spacing: 3px !important;
+      color: #888888 !important;
+      text-shadow: none !important;
+    }
+    /* 仕切り線をシンプルな1px に */
+    .section-heading-line {
+      background: #CCCCCC !important;
+      height: 1px !important;
+      width: 40px !important;
+    }
+
+    /* ============================================
+       その他（既存モノトーン設定）
+       ============================================ */
+    .notice-bar {
+      background: #111111 !important;
+      color: #FFFFFF !important;
+      border-top: none !important;
+      border-bottom: none !important;
+    }
+
+    /* ストーリーセクション */
+    .story-bg    { filter: grayscale(100%) !important; }
+    .story-overlay { background: rgba(0,0,0,0.55) !important; }
+    .story-content h2,
+    .story-sub   { color: #FFFFFF !important; }
+
+    /* オーダーステップ */
+    .order-step.wood-sign {
+      background-image: none !important;
+      background: #FFFFFF !important;
+      border: 1px solid #CCCCCC !important;
+      box-shadow: none !important;
+    }
+
+    /* カテゴリー / ギャラリー */
+    .category-card      { border: 1px solid #CCCCCC !important; }
+    .gallery-item.wood-frame { background: #FFFFFF !important; }
+
+    /* フッター */
+    .footer { background: #111111 !important; }
+
+    /* バッジ */
+    .product-tag {
+      background: #111111 !important;
+      color: #FFFFFF !important;
+      border-radius: 0 !important;
+    }
+    .product-tag.sale { background: #555555 !important; }
+    .product-tag.new  { background: #888888 !important; }
+  </style>
 </head>
 
 <body>
@@ -135,9 +344,9 @@
   <section class="hero" id="hero">
     <div class="swiper hero-swiper">
       <div class="swiper-wrapper">
-        <!-- スライド1: BioThaneリード -->
+        <!-- スライド1 -->
         <div class="swiper-slide">
-          <img src="images/hero/hero1.png" alt="BioThaneリードをつけた犬の雪景色" class="hero-image" loading="eager">
+          <img src="images/dog_pics/IMG_3919.jpeg" alt="愛犬との雪景色" class="hero-image" loading="eager">
           <div class="hero-overlay"></div>
           <div class="hero-content">
             <p class="hero-copy-en">Pure Love, Handcrafted</p>
@@ -145,9 +354,9 @@
             <a href="#biothane" class="btn-primary">SHOP NOW <span class="arrow">→</span></a>
           </div>
         </div>
-        <!-- スライド2: カラフルリードコレクション -->
+        <!-- スライド2 -->
         <div class="swiper-slide">
-          <img src="images/hero/hero2.png" alt="カラフルなBioThaneリードコレクション" class="hero-image" loading="lazy">
+          <img src="images/dog_pics/IMG_3886.jpeg" alt="BioThaneリードと愛犬" class="hero-image" loading="lazy">
           <div class="hero-overlay"></div>
           <div class="hero-content">
             <p class="hero-copy-en">Waterproof, Lightweight, Colorful</p>
@@ -155,14 +364,24 @@
             <a href="#products" class="btn-primary">VIEW PRODUCTS <span class="arrow">→</span></a>
           </div>
         </div>
-        <!-- スライド3: 自然と犬 -->
+        <!-- スライド3 -->
         <div class="swiper-slide">
-          <img src="images/hero/hero3.png" alt="新潟の自然と愛犬" class="hero-image" loading="lazy">
+          <img src="images/dog_pics/IMG_3889.jpeg" alt="新潟の自然と愛犬" class="hero-image" loading="lazy">
           <div class="hero-overlay"></div>
           <div class="hero-content">
             <p class="hero-copy-en">Born in Snow Country, Crafted with Love</p>
             <h1 class="hero-copy-jp">雪国生まれの<br>ハンドメイドリード</h1>
             <a href="#story" class="btn-primary">OUR STORY <span class="arrow">→</span></a>
+          </div>
+        </div>
+        <!-- スライド4 -->
+        <div class="swiper-slide">
+          <img src="images/dog_pics/pic10.png" alt="愛犬との散歩" class="hero-image" loading="lazy">
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <p class="hero-copy-en">Your Dog, Your Style</p>
+            <h1 class="hero-copy-jp">カラーオーダーで、<br>あなただけの一本を</h1>
+            <a href="#order" class="btn-primary">ORDER NOW <span class="arrow">→</span></a>
           </div>
         </div>
       </div>
@@ -193,7 +412,7 @@
   <section class="section section-wood" id="biothane">
     <div class="container">
       <div class="section-heading fade-up">
-        <p class="section-heading-en">── BIOTHANE LEAD &amp; COLLAR ──</p>
+        <p class="section-heading-en">BIOTHANE LEAD &amp; COLLAR</p>
         <h2 class="section-heading-jp wood-burn">ひとつひとつ、ハンドメイドだからこそ</h2>
         <div class="section-heading-line"></div>
         <p class="biothane-intro-text">
@@ -614,7 +833,7 @@
       </div>
 
       <div class="order-steps">
-        <div class="order-step wood-sign fade-up stagger-1">
+        <div class="order-step wood-sign fade-up stagger-1" style="background-image: url('images/order/step1_bg.png'); background-size: cover; background-position: center;">
           <div class="step-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
               stroke-linecap="round" stroke-linejoin="round">
@@ -635,7 +854,7 @@
           </div>
         </div>
 
-        <div class="order-step wood-sign fade-up stagger-2">
+        <div class="order-step wood-sign fade-up stagger-2" style="background-image: url('images/order/step2_bg.png'); background-size: cover; background-position: center;">
           <div class="step-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
               stroke-linecap="round" stroke-linejoin="round">
@@ -653,7 +872,7 @@
           </div>
         </div>
 
-        <div class="order-step wood-sign fade-up stagger-3">
+        <div class="order-step wood-sign fade-up stagger-3" style="background-image: url('images/order/step3_bg.png'); background-size: cover; background-position: center; border-radius: 6px;">
           <div class="step-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
               stroke-linecap="round" stroke-linejoin="round">
