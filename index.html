@@ -122,6 +122,13 @@
     }
 
     /* ============================================
+       ⑤ コンテナ幅: Lutie に合わせて 1090px
+       ============================================ */
+    .container {
+      max-width: 1090px !important;
+    }
+
+    /* ============================================
        2. 商品グリッド: タイトに詰める
        ============================================ */
     .product-grid {
@@ -131,64 +138,72 @@
       padding: 10px 8px 14px !important;
     }
     .product-desc {
-      display: none !important;  /* 説明文を非表示にすっきり */
+      display: none !important;
     }
+    /* ③ hover: Lutie と同じ opacity 0.5 */
     .product-card-image img {
-      transition: opacity 0.4s ease !important; /* scale ではなく opacity で */
+      transition: opacity 0.5s ease !important;
     }
     .product-card:hover .product-card-image img {
       transform: none !important;
-      opacity: 0.8;
+      opacity: 0.5 !important;
+    }
+    .product-card:hover {
+      transform: none !important;
+      box-shadow: none !important;
+      opacity: 1 !important;
     }
 
     /* ============================================
-       3. ボタン: 枠線スタイル（Lutie風）
+       3. ボタン: 枠線 + border-radius 5px（Lutie風）
        ============================================ */
 
-    /* メインボタン: 透明 + 白枠 → hover で白塗り */
     .btn-primary {
       background: transparent !important;
       border: 1px solid #111111 !important;
       color: #111111 !important;
-      border-radius: 0 !important;
+      border-radius: 5px !important;
       box-shadow: none !important;
-      transition: background 0.3s, color 0.3s !important;
+      transition: background 0.3s, color 0.3s, opacity 0.3s !important;
     }
     .btn-primary:hover {
       background: #111111 !important;
       color: #FFFFFF !important;
       transform: none !important;
       box-shadow: none !important;
+      opacity: 0.8;
     }
-    /* ヒーロー内など暗い背景上のボタンは白枠 */
+    /* ヒーロー・ストーリーなど暗い背景上 */
     .hero .btn-primary,
     .story-content .btn-outline {
       border-color: rgba(255,255,255,0.8) !important;
       color: #FFFFFF !important;
+      border-radius: 5px !important;
     }
     .hero .btn-primary:hover {
       background: #FFFFFF !important;
       color: #111111 !important;
     }
 
-    /* カートボタン: 同じく枠線スタイル */
+    /* カートボタン */
     .btn-add-cart {
       background: transparent !important;
       border: 1px solid #CCCCCC !important;
       color: #666666 !important;
-      border-radius: 0 !important;
-      transition: background 0.3s, color 0.3s, border-color 0.3s !important;
+      border-radius: 5px !important;
+      transition: opacity 0.3s !important;
     }
     .btn-add-cart:hover {
       background: #111111 !important;
       color: #FFFFFF !important;
       border-color: #111111 !important;
       transform: none !important;
+      opacity: 0.8;
     }
 
     /* アウトラインボタン */
     .btn-outline {
-      border-radius: 0 !important;
+      border-radius: 5px !important;
       border: 1px solid rgba(255,255,255,0.7) !important;
     }
     .btn-outline:hover {
@@ -197,32 +212,38 @@
     }
 
     /* ============================================
-       4. セクション見出し: 英日併記スタイル
+       4. セクション見出し: Lutie スタイル
+          英語ラベル（小・グレー）→ 日本語メイン（大・明朝）
        ============================================ */
 
-    /* 英語タイトルをメインに（大きく・追い込み感）*/
+    .section-heading {
+      border-top: 1px solid #CCCCCC !important;
+      border-bottom: 1px solid #CCCCCC !important;
+      padding: 20px 0 !important;
+      margin-bottom: 48px !important;
+    }
+    /* 英語: 小さくグレーのラベルに */
     .section-heading-en {
       font-family: 'Cinzel', serif !important;
-      font-size: clamp(20px, 4vw, 32px) !important;
-      font-weight: 700 !important;
-      letter-spacing: 6px !important;
-      color: #111111 !important;
-      margin-bottom: 6px !important;
-    }
-    /* 日本語サブタイトルに格下げ */
-    .section-heading-jp {
-      font-family: 'Zen Old Mincho', serif !important;
-      font-size: 12px !important;
+      font-size: 13px !important;
       font-weight: 400 !important;
       letter-spacing: 3px !important;
-      color: #888888 !important;
-      text-shadow: none !important;
+      color: #999999 !important;
+      margin-bottom: 10px !important;
     }
-    /* 仕切り線をシンプルな1px に */
+    /* 日本語: メインに格上げ（Lutie: Noto Serif JP / 32〜40px） */
+    .section-heading-jp {
+      font-family: 'Noto Serif JP', serif !important;
+      font-size: clamp(24px, 4vw, 38px) !important;
+      font-weight: 600 !important;
+      letter-spacing: 2px !important;
+      color: #464646 !important;
+      text-shadow: none !important;
+      line-height: 1.4 !important;
+    }
+    /* 仕切り線は非表示（上下ボーダーに統合） */
     .section-heading-line {
-      background: #CCCCCC !important;
-      height: 1px !important;
-      width: 40px !important;
+      display: none !important;
     }
 
     /* ============================================
