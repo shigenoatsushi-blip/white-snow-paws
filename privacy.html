@@ -12,157 +12,93 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Zen+Old+Mincho:wght@400;700&display=swap"
-        rel="stylesheet">
-
     <!-- CSS -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/overrides.css">
 
     <style>
-        /* ページ固有スタイル */
-        .privacy-page {
-            padding-top: 120px;
-            padding-bottom: 80px;
-            min-height: 100vh;
-        }
+        body { padding-top: 0; }
 
         .privacy-hero {
-            background: linear-gradient(180deg, rgba(44, 36, 28, 0.85) 0%, rgba(44, 36, 28, 0.7) 100%);
+            background: linear-gradient(180deg, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.80) 100%);
             padding: 60px 20px 50px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
-
-        .privacy-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url('images/herringbone.png');
-            background-repeat: repeat;
-            background-size: 200px;
-            opacity: 0.08;
-            pointer-events: none;
-        }
-
         .privacy-hero-en {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cinzel', serif;
             font-size: 13px;
             letter-spacing: 4px;
-            color: rgba(212, 196, 176, 0.8);
+            color: rgba(255,255,255,0.5);
             margin-bottom: 10px;
         }
-
         .privacy-hero h1 {
-            font-family: 'Zen Old Mincho', serif;
+            font-family: 'Noto Serif JP', serif;
             font-size: 28px;
-            color: #FAF8F5;
+            color: #FFFFFF;
             letter-spacing: 4px;
         }
 
-        .privacy-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .privacy-date {
-            font-size: 13px;
-            color: #7A6B5D;
-            margin-bottom: 40px;
-            text-align: right;
-        }
+        .privacy-content { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
+        .privacy-date { font-size: 13px; color: #999999; margin-bottom: 40px; text-align: right; }
 
         .privacy-intro {
             font-size: 15px;
             line-height: 2;
-            color: #2C241C;
+            color: #464646;
             margin-bottom: 48px;
             padding: 24px;
-            background: #F5EDE3;
-            border-left: 4px solid #A08060;
+            background: #F7F7F7;
+            border-left: 4px solid #CCCCCC;
             border-radius: 0 4px 4px 0;
         }
 
-        .privacy-section {
-            margin-bottom: 48px;
-        }
-
+        .privacy-section { margin-bottom: 48px; }
         .privacy-section h2 {
-            font-family: 'Zen Old Mincho', serif;
+            font-family: 'Noto Serif JP', serif;
             font-size: 18px;
-            color: #3C3228;
+            color: #464646;
             letter-spacing: 2px;
             margin-bottom: 16px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #D4C4B0;
+            border-bottom: 1px solid #CCCCCC;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-
         .privacy-section h2::before {
             content: '';
             display: inline-block;
             width: 6px;
             height: 6px;
-            background: #A08060;
+            background: #999999;
             border-radius: 50%;
             flex-shrink: 0;
         }
-
-        .privacy-section p,
-        .privacy-section li {
-            font-size: 14px;
-            line-height: 2;
-            color: #4A3C30;
-        }
-
-        .privacy-section ul,
-        .privacy-section ol {
-            padding-left: 20px;
-            margin-top: 8px;
-        }
-
-        .privacy-section li {
-            margin-bottom: 8px;
-        }
-
-        .privacy-section ul li::marker {
-            color: #A08060;
-        }
-
-        .privacy-section ol li::marker {
-            color: #A08060;
-            font-weight: 700;
-        }
+        .privacy-section p, .privacy-section li { font-size: 14px; line-height: 2; color: #464646; }
+        .privacy-section ul, .privacy-section ol { padding-left: 20px; margin-top: 8px; }
+        .privacy-section li { margin-bottom: 8px; }
+        .privacy-section ul li::marker { color: #999999; }
+        .privacy-section ol li::marker { color: #999999; font-weight: 700; }
 
         .privacy-contact-box {
             margin-top: 60px;
             padding: 32px;
-            background: linear-gradient(135deg, rgba(212, 196, 176, 0.4) 0%, transparent 50%),
-                linear-gradient(180deg, #FAF8F5 0%, #F5EDE3 100%);
-            border: 2px solid #A08060;
-            border-radius: 6px;
+            background: #FFFFFF;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
             text-align: center;
         }
-
         .privacy-contact-box h3 {
-            font-family: 'Zen Old Mincho', serif;
+            font-family: 'Noto Serif JP', serif;
             font-size: 18px;
-            color: #3C3228;
+            color: #464646;
             margin-bottom: 12px;
             letter-spacing: 2px;
         }
-
-        .privacy-contact-box p {
-            font-size: 14px;
-            color: #7A6B5D;
-            line-height: 2;
-        }
+        .privacy-contact-box p { font-size: 14px; color: #666666; line-height: 2; }
 
         .back-btn {
             display: inline-flex;
@@ -170,24 +106,17 @@
             gap: 8px;
             margin-top: 32px;
             padding: 12px 28px;
-            background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
-            color: #FAF8F5;
-            font-family: 'Playfair Display', serif;
+            background: transparent;
+            color: #111111;
+            border: 1px solid #111111;
+            font-family: 'Cinzel', serif;
             font-size: 13px;
             letter-spacing: 2px;
-            border-radius: 6px;
-            transition: background 0.3s ease, transform 0.3s ease;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+            text-decoration: none;
         }
-
-        .back-btn:hover {
-            background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%);
-            transform: translateY(-2px);
-        }
-
-        /* ヘッダーパディングなし版 */
-        body {
-            padding-top: 0;
-        }
+        .back-btn:hover { background: #111111; color: #FFFFFF; }
     </style>
 </head>
 
