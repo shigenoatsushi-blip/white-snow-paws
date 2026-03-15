@@ -23,9 +23,9 @@
     --color-snow: #FAF8F5;
 
     /* タイポグラフィ */
-    --font-heading-en: 'Playfair Display', 'Georgia', serif;
-    --font-heading-jp: 'Zen Old Mincho', 'Noto Serif JP', serif;
-    --font-body-jp: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+    --font-heading-en: 'Cinzel', serif;
+    --font-heading-jp: 'YuMincho', 'Yu Mincho', 'ヒラギノ明朝 ProN', serif;
+    --font-body-jp: 'Noto Serif JP', 'YuMincho', 'Yu Mincho', serif;
 
     /* スペーシング */
     --section-padding: 60px 20px;
