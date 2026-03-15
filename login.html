@@ -12,129 +12,81 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Zen+Old+Mincho:wght@400;700&display=swap"
-        rel="stylesheet">
-
     <!-- CSS -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/overrides.css">
 
     <style>
-        .login-page {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+        .login-page { min-height: 100vh; display: flex; flex-direction: column; }
 
         /* ヒーロー */
         .login-hero {
-            background: linear-gradient(180deg, rgba(44, 36, 28, 0.88) 0%, rgba(44, 36, 28, 0.75) 100%);
+            background: linear-gradient(180deg, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.80) 100%);
             padding: 120px 20px 48px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
-
-        .login-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url('images/herringbone.png');
-            background-repeat: repeat;
-            background-size: 200px;
-            opacity: 0.08;
-            pointer-events: none;
-        }
-
         .login-hero-en {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cinzel', serif;
             font-size: 12px;
             letter-spacing: 5px;
-            color: rgba(212, 196, 176, 0.8);
+            color: rgba(255,255,255,0.5);
             margin-bottom: 10px;
         }
-
         .login-hero h1 {
-            font-family: 'Zen Old Mincho', serif;
+            font-family: 'Noto Serif JP', serif;
             font-size: 26px;
-            color: #FAF8F5;
+            color: #FFFFFF;
             letter-spacing: 4px;
         }
 
-        /* メインコンテナ */
-        .login-container {
-            flex: 1;
-            max-width: 460px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 52px 20px 80px;
-        }
+        /* コンテナ */
+        .login-container { flex: 1; max-width: 460px; width: 100%; margin: 0 auto; padding: 52px 20px 80px; }
 
-        /* ログインカード */
+        /* カード */
         .login-card {
-            background: #FAF8F5;
-            border: 2px solid #D4C4B0;
-            border-radius: 8px;
+            background: #FFFFFF;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
             padding: 40px 36px;
-            box-shadow: 0 4px 24px rgba(44, 36, 28, 0.08);
         }
-
         .login-card-title {
-            font-family: 'Zen Old Mincho', serif;
+            font-family: 'Noto Serif JP', serif;
             font-size: 18px;
-            color: #3C3228;
+            color: #464646;
             letter-spacing: 2px;
             text-align: center;
             margin-bottom: 32px;
             padding-bottom: 16px;
-            border-bottom: 2px solid #D4C4B0;
+            border-bottom: 1px solid #EEEEEE;
         }
 
         /* フォーム */
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            font-size: 12px;
-            font-weight: 700;
-            color: #3C3228;
-            letter-spacing: 1px;
-        }
-
-        .form-input-wrap {
-            position: relative;
-        }
-
+        .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+        .form-label { font-size: 12px; font-weight: 700; color: #464646; letter-spacing: 1px; }
+        .form-input-wrap { position: relative; }
         .form-input {
             width: 100%;
             padding: 14px 16px;
-            border: 2px solid #D4C4B0;
-            border-radius: 6px;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
             background: #FFFFFF;
             font-family: 'Noto Sans JP', sans-serif;
             font-size: 14px;
-            color: #2C241C;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            color: #464646;
+            transition: border-color 0.3s, box-shadow 0.3s;
             box-sizing: border-box;
         }
-
         .form-input:focus {
-            border-color: #A08060;
-            box-shadow: 0 0 0 3px rgba(160, 128, 96, 0.12);
+            border-color: #111111;
+            box-shadow: 0 0 0 2px rgba(17,17,17,0.08);
             outline: none;
         }
+        .form-input.error { border-color: #C0392B; }
 
-        .form-input.error {
-            border-color: #C0392B;
-        }
-
-        /* パスワード表示トグル */
+        /* パスワードトグル */
         .password-toggle {
             position: absolute;
             right: 14px;
@@ -143,21 +95,14 @@
             background: none;
             border: none;
             cursor: pointer;
-            color: #A08060;
+            color: #999999;
             padding: 4px;
             display: flex;
             align-items: center;
-            transition: color 0.2s ease;
+            transition: color 0.2s;
         }
-
-        .password-toggle:hover {
-            color: #6B4E2A;
-        }
-
-        .form-input[type="password"],
-        .form-input[type="text"] {
-            padding-right: 46px;
-        }
+        .password-toggle:hover { color: #111111; }
+        .form-input[type="password"], .form-input[type="text"] { padding-right: 46px; }
 
         /* エラー */
         .form-error-msg {
@@ -165,175 +110,115 @@
             font-size: 12px;
             color: #C0392B;
             padding: 10px 14px;
-            background: rgba(192, 57, 43, 0.06);
-            border: 1px solid rgba(192, 57, 43, 0.2);
+            background: rgba(192,57,43,0.06);
+            border: 1px solid rgba(192,57,43,0.2);
             border-radius: 4px;
             margin-bottom: 16px;
             text-align: center;
         }
+        .form-error-msg.visible { display: block; }
 
-        .form-error-msg.visible {
-            display: block;
-        }
-
-        /* パスワードを忘れた */
+        /* パスワード忘れ */
         .forgot-link {
             display: block;
             text-align: right;
             font-size: 12px;
-            color: #4A7C59;
+            color: #666666;
             margin-top: -8px;
             margin-bottom: 24px;
             text-decoration: underline;
         }
-
-        .forgot-link:hover {
-            color: #3A6349;
-        }
+        .forgot-link:hover { color: #111111; }
 
         /* ログインボタン */
         .login-btn {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
-            color: #FAF8F5;
-            font-family: 'Playfair Display', serif;
+            background: #111111;
+            color: #FFFFFF;
+            font-family: 'Cinzel', serif;
             font-size: 14px;
             letter-spacing: 3px;
-            border-radius: 6px;
-            border: none;
+            border-radius: 5px;
+            border: 1px solid #111111;
             cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+            transition: opacity 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             margin-bottom: 20px;
         }
-
-        .login-btn:hover {
-            background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(74, 124, 89, 0.4);
-        }
-
-        .login-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
+        .login-btn:hover { opacity: 0.8; }
+        .login-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
         /* 区切り */
-        .divider {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 24px 0;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: #D4C4B0;
-        }
-
-        .divider span {
-            font-size: 11px;
-            color: #A08060;
-            letter-spacing: 2px;
-        }
+        .divider { display: flex; align-items: center; gap: 12px; margin: 24px 0; }
+        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #EEEEEE; }
+        .divider span { font-size: 11px; color: #999999; letter-spacing: 2px; }
 
         /* 新規登録リンク */
         .register-link-box {
             text-align: center;
             padding: 16px;
-            background: #F5EDE3;
-            border: 1px solid #D4C4B0;
-            border-radius: 6px;
+            background: #F7F7F7;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
         }
-
-        .register-link-box p {
-            font-size: 13px;
-            color: #7A6B5D;
-            margin-bottom: 10px;
-        }
-
+        .register-link-box p { font-size: 13px; color: #666666; margin-bottom: 10px; }
         .register-link-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 11px 24px;
-            border: 2px solid #A08060;
-            border-radius: 6px;
-            color: #4A3C30;
-            font-family: 'Playfair Display', serif;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
+            color: #464646;
+            font-family: 'Cinzel', serif;
             font-size: 13px;
             letter-spacing: 2px;
-            transition: background 0.3s ease, color 0.3s ease;
+            transition: background 0.3s, color 0.3s, border-color 0.3s;
+            text-decoration: none;
         }
+        .register-link-btn:hover { background: #111111; color: #FFFFFF; border-color: #111111; }
 
-        .register-link-btn:hover {
-            background: #A08060;
-            color: #FAF8F5;
-        }
-
-        /* ログイン完了メッセージ */
+        /* ログイン完了 */
         .login-success {
             display: none;
             text-align: center;
             padding: 48px 24px;
-            background: #FAF8F5;
-            border: 2px solid #4A7C59;
-            border-radius: 8px;
+            background: #FFFFFF;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
         }
-
-        .login-success .success-icon {
-            font-size: 52px;
-            margin-bottom: 16px;
-        }
-
+        .login-success .success-icon { font-size: 52px; margin-bottom: 16px; }
         .login-success h2 {
-            font-family: 'Zen Old Mincho', serif;
+            font-family: 'Noto Serif JP', serif;
             font-size: 22px;
-            color: #3C3228;
+            color: #464646;
             margin-bottom: 10px;
             letter-spacing: 2px;
         }
-
-        .login-success p {
-            font-size: 13px;
-            color: #7A6B5D;
-            line-height: 2;
-            margin-bottom: 24px;
-        }
+        .login-success p { font-size: 13px; color: #666666; line-height: 2; margin-bottom: 24px; }
 
         .back-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 12px 28px;
-            background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
-            color: #FAF8F5;
-            font-family: 'Playfair Display', serif;
+            background: transparent;
+            color: #111111;
+            border: 1px solid #111111;
+            font-family: 'Cinzel', serif;
             font-size: 13px;
             letter-spacing: 2px;
-            border-radius: 6px;
-            transition: background 0.3s ease, transform 0.3s ease;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+            text-decoration: none;
         }
+        .back-btn:hover { background: #111111; color: #FFFFFF; }
 
-        .back-btn:hover {
-            background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%);
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 480px) {
-            .login-card {
-                padding: 28px 20px;
-            }
-        }
+        @media (max-width: 480px) { .login-card { padding: 28px 20px; } }
     </style>
 </head>
 
