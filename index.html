@@ -100,11 +100,15 @@
     /* ============================================
        BioThane左側スライダー
        ============================================ */
+    .biothane-image {
+      aspect-ratio: 1 / 1 !important;  /* features.png に合わせて正方形 */
+    }
     .biothane-main-swiper .swiper-slide img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;  /* 見切れないよう contain */
       display: block;
+      background: #F7F7F7;
     }
     .biothane-main-swiper .biothane-main-pagination {
       bottom: 10px;
