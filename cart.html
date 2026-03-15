@@ -12,51 +12,37 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
-
   <!-- CSS -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/overrides.css">
 
   <style>
-    /* ===================================
-       カートページ固有スタイル
-       =================================== */
+    /* ヒーロー */
     .cart-hero {
-      background: linear-gradient(180deg, rgba(44,36,28,0.88) 0%, rgba(44,36,28,0.75) 100%);
+      background: linear-gradient(180deg, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.80) 100%);
       padding: 90px 20px 36px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
-    .cart-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url('images/herringbone.png');
-      background-repeat: repeat;
-      background-size: 200px;
-      opacity: 0.08;
-      pointer-events: none;
-    }
     .cart-hero-en {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cinzel', serif;
       font-size: 12px;
       letter-spacing: 5px;
-      color: rgba(212,196,176,0.8);
+      color: rgba(255,255,255,0.5);
       margin-bottom: 8px;
     }
     .cart-hero h1 {
-      font-family: 'Zen Old Mincho', serif;
+      font-family: 'Noto Serif JP', serif;
       font-size: 26px;
-      color: #FAF8F5;
+      color: #FFFFFF;
       letter-spacing: 4px;
     }
 
     /* コンテンツ */
     .cart-content {
-      max-width: 1000px;
+      max-width: 1090px;
       margin: 0 auto;
       padding: 48px 20px 80px;
       display: grid;
@@ -76,13 +62,13 @@
     }
     .cart-empty-icon { font-size: 64px; margin-bottom: 20px; }
     .cart-empty h2 {
-      font-family: 'Zen Old Mincho', serif;
+      font-family: 'Noto Serif JP', serif;
       font-size: 22px;
-      color: #3C3228;
+      color: #464646;
       margin-bottom: 12px;
       letter-spacing: 2px;
     }
-    .cart-empty p { font-size: 14px; color: #7A6B5D; line-height: 2; margin-bottom: 28px; }
+    .cart-empty p { font-size: 14px; color: #666666; line-height: 2; margin-bottom: 28px; }
 
     /* カートリスト */
     .cart-list { display: flex; flex-direction: column; gap: 16px; }
@@ -92,22 +78,22 @@
       gap: 16px;
       align-items: center;
       padding: 20px;
-      background: #FAF8F5;
-      border: 2px solid #D4C4B0;
-      border-radius: 6px;
+      background: #FFFFFF;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
     }
     @media (max-width: 480px) { .cart-item { grid-template-columns: 70px 1fr; } }
     .cart-item-image {
       border-radius: 4px;
       overflow: hidden;
-      border: 1px solid #D4C4B0;
+      border: 1px solid #EEEEEE;
     }
     .cart-item-image img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
-    .cart-item-info h3 { font-size: 14px; font-weight: 700; color: #2C241C; margin-bottom: 4px; line-height: 1.5; }
-    .cart-item-info h3 a { color: #2C241C; }
-    .cart-item-info h3 a:hover { color: #4A7C59; }
-    .cart-item-color { font-size: 12px; color: #7A6B5D; margin-bottom: 6px; }
-    .cart-item-price { font-family: 'Playfair Display', serif; font-size: 16px; color: #2C241C; }
+    .cart-item-info h3 { font-size: 14px; font-weight: 700; color: #464646; margin-bottom: 4px; line-height: 1.5; }
+    .cart-item-info h3 a { color: #464646; }
+    .cart-item-info h3 a:hover { color: #111111; }
+    .cart-item-color { font-size: 12px; color: #666666; margin-bottom: 6px; }
+    .cart-item-price { font-family: 'Cinzel', serif; font-size: 16px; color: #464646; }
     .cart-item-actions {
       display: flex;
       align-items: center;
@@ -117,7 +103,7 @@
     .cart-qty-btn {
       width: 28px;
       height: 28px;
-      border: 1px solid #D4C4B0;
+      border: 1px solid #CCCCCC;
       border-radius: 4px;
       background: #fff;
       font-size: 14px;
@@ -127,13 +113,13 @@
       justify-content: center;
       transition: border-color 0.2s;
     }
-    .cart-qty-btn:hover { border-color: #4A7C59; }
+    .cart-qty-btn:hover { border-color: #111111; }
     .cart-qty-num { font-size: 14px; font-weight: 700; min-width: 24px; text-align: center; }
-    .cart-item-subtotal { font-size: 14px; font-weight: 700; color: #2C241C; white-space: nowrap; }
+    .cart-item-subtotal { font-size: 14px; font-weight: 700; color: #464646; white-space: nowrap; }
     .btn-cart-remove {
       background: none;
       border: none;
-      color: #A08060;
+      color: #999999;
       font-size: 11px;
       cursor: pointer;
       letter-spacing: 1px;
@@ -146,32 +132,32 @@
 
     /* サマリー */
     .cart-summary {
-      background: #FAF8F5;
-      border: 2px solid #D4C4B0;
-      border-radius: 6px;
+      background: #FFFFFF;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
       padding: 28px 24px;
       position: sticky;
       top: 80px;
     }
     .cart-summary h2 {
-      font-family: 'Zen Old Mincho', serif;
+      font-family: 'Noto Serif JP', serif;
       font-size: 16px;
-      color: #3C3228;
+      color: #464646;
       letter-spacing: 2px;
       margin-bottom: 20px;
       padding-bottom: 14px;
-      border-bottom: 2px solid #D4C4B0;
+      border-bottom: 1px solid #EEEEEE;
     }
     .summary-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 13px;
-      color: #4A3C30;
+      color: #666666;
       margin-bottom: 12px;
     }
-    .summary-row.free { color: #4A7C59; }
-    .summary-divider { height: 1px; background: #D4C4B0; margin: 16px 0; }
+    .summary-row.free { color: #111111; font-weight: 700; }
+    .summary-divider { height: 1px; background: #EEEEEE; margin: 16px 0; }
     .summary-total-row {
       display: flex;
       justify-content: space-between;
@@ -179,17 +165,17 @@
       margin-bottom: 20px;
     }
     .summary-total-label {
-      font-family: 'Zen Old Mincho', serif;
+      font-family: 'Noto Serif JP', serif;
       font-size: 16px;
-      color: #2C241C;
+      color: #464646;
       letter-spacing: 1px;
     }
     .summary-total-price {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cinzel', serif;
       font-size: 26px;
-      color: #2C241C;
+      color: #111111;
     }
-    .summary-tax { font-size: 11px; color: #7A6B5D; text-align: right; margin-bottom: 20px; }
+    .summary-tax { font-size: 11px; color: #999999; text-align: right; margin-bottom: 20px; }
     .btn-checkout {
       display: flex;
       align-items: center;
@@ -197,39 +183,30 @@
       gap: 8px;
       width: 100%;
       padding: 16px;
-      background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
-      color: #FAF8F5;
-      font-family: 'Playfair Display', serif;
-      font-size: 15px;
+      background: #111111;
+      color: #FFFFFF;
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
       letter-spacing: 3px;
-      border-radius: 6px;
-      border: none;
+      border-radius: 5px;
+      border: 1px solid #111111;
       cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 12px rgba(74,124,89,0.3);
+      transition: opacity 0.3s;
       text-decoration: none;
       margin-bottom: 12px;
     }
-    .btn-checkout:hover {
-      background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(74,124,89,0.4);
-    }
-    .btn-checkout:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
-    }
+    .btn-checkout:hover { opacity: 0.8; }
+    .btn-checkout:disabled { opacity: 0.5; cursor: not-allowed; }
     .btn-continue {
       display: block;
       text-align: center;
       font-size: 13px;
-      color: #4A7C59;
+      color: #666666;
       text-decoration: underline;
       padding: 8px;
     }
-    .btn-continue:hover { color: #3A6349; }
-    .summary-note { font-size: 11px; color: #A08060; text-align: center; margin-top: 16px; line-height: 1.8; }
+    .btn-continue:hover { color: #111111; }
+    .summary-note { font-size: 11px; color: #999999; text-align: center; margin-top: 16px; line-height: 1.8; }
 
     /* クーポン */
     .coupon-row {
@@ -241,27 +218,27 @@
     .coupon-input {
       flex: 1;
       padding: 10px 12px;
-      border: 2px solid #D4C4B0;
+      border: 1px solid #CCCCCC;
       border-radius: 4px;
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 13px;
-      color: #2C241C;
+      color: #464646;
       background: #fff;
     }
-    .coupon-input:focus { border-color: #A08060; outline: none; }
+    .coupon-input:focus { border-color: #111111; outline: none; box-shadow: 0 0 0 2px rgba(17,17,17,0.08); }
     .btn-coupon {
       padding: 10px 14px;
-      border: 2px solid #A08060;
+      border: 1px solid #CCCCCC;
       border-radius: 4px;
       background: transparent;
-      color: #8B6F47;
+      color: #464646;
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
       transition: background 0.2s, color 0.2s;
       white-space: nowrap;
     }
-    .btn-coupon:hover { background: #A08060; color: #FAF8F5; }
+    .btn-coupon:hover { background: #111111; color: #FFFFFF; border-color: #111111; }
   </style>
 </head>
 
@@ -399,7 +376,7 @@
             <span>送料</span>
             <span>${shipping === 0 ? '無料' : '¥' + shipping.toLocaleString()}</span>
           </div>
-          ${shipping > 0 ? `<div class="summary-row" style="font-size:11px;color:#4A7C59;">あと¥${(FREE_SHIPPING_THRESHOLD - subtotal).toLocaleString()}で送料無料</div>` : ''}
+          ${shipping > 0 ? `<div class="summary-row" style="font-size:11px;color:#666666;">あと¥${(FREE_SHIPPING_THRESHOLD - subtotal).toLocaleString()}で送料無料</div>` : ''}
           <div class="summary-divider"></div>
           <div class="summary-total-row">
             <span class="summary-total-label">合計</span>
