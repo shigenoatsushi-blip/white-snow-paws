@@ -98,6 +98,26 @@
     }
 
     /* ============================================
+       BioThane左側スライダー
+       ============================================ */
+    .biothane-main-swiper .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .biothane-main-swiper .biothane-main-pagination {
+      bottom: 10px;
+    }
+    .biothane-main-swiper .swiper-pagination-bullet {
+      background: rgba(255,255,255,0.6);
+      opacity: 1;
+    }
+    .biothane-main-swiper .swiper-pagination-bullet-active {
+      background: #FFFFFF;
+    }
+
+    /* ============================================
        2. 商品グリッド: タイトに詰める
        ============================================ */
     .product-grid {
@@ -428,8 +448,16 @@
 
       <div class="biothane-feature">
         <div class="biothane-main fade-up">
-          <div class="biothane-image wood-frame">
-            <img src="images/woodcraft/category.png" alt="BioThaneリード＆カラー" loading="lazy">
+          <div class="biothane-image wood-frame swiper biothane-main-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="images/woodcraft/category.png" alt="BioThaneリード＆カラー" loading="lazy">
+              </div>
+              <div class="swiper-slide">
+                <img src="images/biothane/features.png" alt="BioThane素材の特長" loading="lazy">
+              </div>
+            </div>
+            <div class="swiper-pagination biothane-main-pagination"></div>
           </div>
           <div class="biothane-text">
             <h3>防水・軽量・高耐久。<br>ひとつひとつハンドメイドで、<br>納得の価格をお届け。</h3>
