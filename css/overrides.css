@@ -1,0 +1,310 @@
+/* =====================================================
+   White Snow Paws - サイト共通スタイル上書き
+   （モノトーン × Lutie参照デザイン）
+   ===================================================== */
+
+/* ============================================
+   カラー変数をモノトーンに上書き
+   ============================================ */
+:root {
+  --color-bg-main:      #F7F7F7;
+  --color-bg-wood:      #EFEFEF;
+  --color-bg-dark:      #111111;
+  --color-text-main:    #111111;
+  --color-text-sub:     #666666;
+  --color-accent:       #111111;
+  --color-accent-hover: #444444;
+  --color-accent-warm:  #888888;
+  --color-wood-light:   #DDDDDD;
+  --color-wood-medium:  #999999;
+  --color-wood-dark:    #555555;
+  --color-dark:         #111111;
+}
+
+/* ============================================
+   ベース
+   ============================================ */
+body::before { display: none; } /* ヘリンボーン背景テクスチャ無効化 */
+
+/* ============================================
+   ヘッダー: ダーク系
+   ============================================ */
+.header {
+  background: rgba(17, 17, 17, 0.95) !important;
+  backdrop-filter: blur(8px);
+}
+.header.scrolled {
+  background: rgba(17, 17, 17, 0.98) !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.08) !important;
+}
+/* スクロール後もナビ文字は白を維持 */
+.header.scrolled .desktop-nav a {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+.header.scrolled .desktop-nav a:hover {
+  color: #FFFFFF !important;
+}
+
+/* ============================================
+   セクション背景
+   ============================================ */
+.section-wood { background: #EFEFEF !important; }
+.wood-plank-divider,
+.herringbone-divider {
+  background: #DDDDDD !important;
+  height: 1px !important;
+}
+
+/* ============================================
+   フレーム・カード: ボーダーフラット化
+   ============================================ */
+.wood-frame,
+.wood-frame-sm { box-shadow: none !important; border: 1px solid #CCCCCC !important; }
+
+.product-card.wood-frame {
+  background: #FFFFFF !important;
+  border: 1px solid #EEEEEE !important;
+  box-shadow: none !important;
+}
+
+/* ============================================
+   コンテナ幅: Lutie に合わせて 1090px
+   ============================================ */
+.container {
+  max-width: 1090px !important;
+}
+
+/* ============================================
+   商品グリッド: タイトに詰める
+   ============================================ */
+.product-grid {
+  gap: 8px !important;
+}
+.product-card-info {
+  padding: 10px 8px 14px !important;
+}
+.product-desc {
+  display: none !important;
+}
+/* hover: Lutie と同じ opacity 0.5 */
+.product-card-image img {
+  transition: opacity 0.5s ease !important;
+}
+.product-card:hover .product-card-image img {
+  transform: none !important;
+  opacity: 0.5 !important;
+}
+.product-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+
+/* ============================================
+   ボタン: 枠線 + border-radius 5px（Lutie風）
+   ============================================ */
+.btn-primary {
+  background: transparent !important;
+  border: 1px solid #111111 !important;
+  color: #111111 !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  transition: background 0.3s, color 0.3s, opacity 0.3s !important;
+}
+.btn-primary:hover {
+  background: #111111 !important;
+  color: #FFFFFF !important;
+  transform: none !important;
+  box-shadow: none !important;
+  opacity: 0.8;
+}
+/* ヒーロー・ストーリーなど暗い背景上 */
+.hero .btn-primary,
+.story-content .btn-outline {
+  border-color: rgba(255,255,255,0.8) !important;
+  color: #FFFFFF !important;
+  border-radius: 5px !important;
+}
+.hero .btn-primary:hover {
+  background: #FFFFFF !important;
+  color: #111111 !important;
+}
+
+/* カートボタン */
+.btn-add-cart {
+  background: transparent !important;
+  border: 1px solid #CCCCCC !important;
+  color: #666666 !important;
+  border-radius: 5px !important;
+  transition: opacity 0.3s !important;
+}
+.btn-add-cart:hover {
+  background: #111111 !important;
+  color: #FFFFFF !important;
+  border-color: #111111 !important;
+  transform: none !important;
+  opacity: 0.8;
+}
+
+/* アウトラインボタン */
+.btn-outline {
+  border-radius: 5px !important;
+  border: 1px solid rgba(255,255,255,0.7) !important;
+}
+.btn-outline:hover {
+  background-color: rgba(255,255,255,0.15) !important;
+  transform: none !important;
+}
+
+/* ============================================
+   セクション見出し: Lutie スタイル
+   英語ラベル（小・グレー）→ 日本語メイン（大・明朝）
+   ============================================ */
+.section-heading {
+  border-top: 1px solid #CCCCCC !important;
+  border-bottom: 1px solid #CCCCCC !important;
+  padding: 20px 0 !important;
+  margin-bottom: 48px !important;
+}
+.section-heading-en {
+  font-family: 'Cinzel', serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  letter-spacing: 3px !important;
+  color: #999999 !important;
+  margin-bottom: 10px !important;
+}
+.section-heading-jp {
+  font-family: 'Noto Serif JP', serif !important;
+  font-size: clamp(24px, 4vw, 38px) !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  color: #464646 !important;
+  text-shadow: none !important;
+  line-height: 1.4 !important;
+}
+.section-heading-line {
+  display: none !important;
+}
+
+/* ============================================
+   お知らせバー
+   ============================================ */
+.notice-bar {
+  background: #111111 !important;
+  color: #FFFFFF !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* ============================================
+   ストーリーセクション
+   ============================================ */
+.story-bg    { filter: grayscale(100%) !important; }
+.story-overlay { background: rgba(0,0,0,0.55) !important; }
+.story-content h2,
+.story-sub   { color: #FFFFFF !important; }
+
+/* ============================================
+   オーダーステップ
+   ============================================ */
+.order-step.wood-sign {
+  background-image: none !important;
+  background: #FFFFFF !important;
+  border: 1px solid #CCCCCC !important;
+  box-shadow: none !important;
+}
+
+/* ============================================
+   カテゴリー / ギャラリー
+   ============================================ */
+.category-card           { border: 1px solid #CCCCCC !important; }
+.gallery-item.wood-frame { background: #FFFFFF !important; }
+
+/* ============================================
+   お知らせセクション
+   ============================================ */
+.news-list {
+  list-style: none;
+  border-top: 1px solid #CCCCCC;
+}
+.news-item {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #CCCCCC;
+}
+.news-date {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: #999999;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.news-tag {
+  font-size: 11px;
+  color: #FFFFFF;
+  background: #464646;
+  padding: 2px 10px;
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.news-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 14px;
+  color: #464646;
+  text-decoration: none;
+  line-height: 1.6;
+}
+.news-title:hover {
+  text-decoration: underline;
+  opacity: 0.7;
+}
+@media (max-width: 600px) {
+  .news-item {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+/* ============================================
+   フッター
+   ============================================ */
+.footer { background: #111111 !important; }
+
+/* ============================================
+   バッジ
+   ============================================ */
+.product-tag {
+  background: #111111 !important;
+  color: #FFFFFF !important;
+  border-radius: 0 !important;
+}
+.product-tag.sale { background: #555555 !important; }
+.product-tag.new  { background: #888888 !important; }
+
+/* ============================================
+   BioThane左側スライダー
+   ============================================ */
+.biothane-image {
+  aspect-ratio: 1 / 1 !important;
+}
+.biothane-main-swiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #F7F7F7;
+}
+.biothane-main-swiper .biothane-main-pagination {
+  bottom: 10px;
+}
+.biothane-main-swiper .swiper-pagination-bullet {
+  background: rgba(255,255,255,0.6);
+  opacity: 1;
+}
+.biothane-main-swiper .swiper-pagination-bullet-active {
+  background: #FFFFFF;
+}
