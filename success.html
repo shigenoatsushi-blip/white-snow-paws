@@ -10,18 +10,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/overrides.css">
 
   <style>
-    .complete-page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    .complete-page { min-height: 100vh; display: flex; flex-direction: column; }
     .complete-main {
       flex: 1;
       display: flex;
@@ -32,19 +26,18 @@
     .complete-card {
       max-width: 640px;
       width: 100%;
-      background: #FAF8F5;
-      border: 2px solid #4A7C59;
-      border-radius: 10px;
+      background: #FFFFFF;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
       padding: 52px 40px;
       text-align: center;
-      box-shadow: 0 8px 32px rgba(74,124,89,0.12);
     }
     @media (max-width: 480px) { .complete-card { padding: 36px 20px; } }
 
     .complete-icon {
       width: 80px;
       height: 80px;
-      background: linear-gradient(135deg, #4A7C59, #3A6349);
+      background: #111111;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -58,43 +51,34 @@
     }
 
     .complete-en {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cinzel', serif;
       font-size: 12px;
       letter-spacing: 5px;
-      color: #A08060;
+      color: #999999;
       margin-bottom: 10px;
     }
     .complete-title {
-      font-family: 'Zen Old Mincho', serif;
+      font-family: 'Noto Serif JP', serif;
       font-size: 26px;
-      color: #2C241C;
+      color: #464646;
       letter-spacing: 3px;
       margin-bottom: 20px;
     }
     .complete-order-num {
       display: inline-block;
       padding: 10px 24px;
-      background: #F5EDE3;
-      border: 1px solid #D4C4B0;
+      background: #F7F7F7;
+      border: 1px solid #CCCCCC;
       border-radius: 4px;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cinzel', serif;
       font-size: 14px;
       letter-spacing: 2px;
-      color: #8B6F47;
+      color: #666666;
       margin-bottom: 28px;
     }
-    .complete-message {
-      font-size: 14px;
-      color: #7A6B5D;
-      line-height: 2.2;
-      margin-bottom: 32px;
-    }
-    .complete-steps {
-      display: flex;
-      justify-content: center;
-      gap: 0;
-      margin-bottom: 36px;
-    }
+    .complete-message { font-size: 14px; color: #666666; line-height: 2.2; margin-bottom: 32px; }
+
+    .complete-steps { display: flex; justify-content: center; gap: 0; margin-bottom: 36px; }
     .complete-step {
       display: flex;
       flex-direction: column;
@@ -106,34 +90,30 @@
     .complete-step:not(:last-child)::after {
       content: '';
       position: absolute;
-      right: 0;
-      top: 20px;
-      width: 50%;
-      height: 2px;
-      background: #D4C4B0;
+      right: 0; top: 20px;
+      width: 50%; height: 1px;
+      background: #CCCCCC;
     }
     .complete-step:not(:first-child)::before {
       content: '';
       position: absolute;
-      left: 0;
-      top: 20px;
-      width: 50%;
-      height: 2px;
-      background: #D4C4B0;
+      left: 0; top: 20px;
+      width: 50%; height: 1px;
+      background: #CCCCCC;
     }
     .complete-step-num {
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: #F5EDE3;
-      border: 2px solid #D4C4B0;
+      background: #F7F7F7;
+      border: 1px solid #CCCCCC;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 16px;
       z-index: 1;
     }
-    .complete-step-label { font-size: 11px; color: #7A6B5D; text-align: center; line-height: 1.4; }
+    .complete-step-label { font-size: 11px; color: #666666; text-align: center; line-height: 1.4; }
 
     .complete-buttons { display: flex; flex-direction: column; gap: 12px; align-items: center; }
     .btn-to-top {
@@ -141,77 +121,65 @@
       align-items: center;
       gap: 8px;
       padding: 14px 36px;
-      background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
-      color: #FAF8F5;
-      font-family: 'Playfair Display', serif;
+      background: #111111;
+      color: #FFFFFF;
+      font-family: 'Cinzel', serif;
       font-size: 14px;
       letter-spacing: 3px;
-      border-radius: 6px;
-      transition: background 0.3s, transform 0.3s;
-      box-shadow: 0 4px 12px rgba(74,124,89,0.3);
+      border-radius: 5px;
+      border: 1px solid #111111;
+      transition: opacity 0.3s;
+      text-decoration: none;
     }
-    .btn-to-top:hover {
-      background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%);
-      transform: translateY(-2px);
-    }
-    .btn-secondary {
-      font-size: 13px;
-      color: #4A7C59;
-      text-decoration: underline;
-    }
-    .btn-secondary:hover { color: #3A6349; }
+    .btn-to-top:hover { opacity: 0.8; }
+    .btn-secondary { font-size: 13px; color: #666666; text-decoration: underline; }
+    .btn-secondary:hover { color: #111111; }
 
     .complete-card-note {
       margin-top: 28px;
       padding: 16px;
-      background: #F5EDE3;
+      background: #F7F7F7;
+      border: 1px solid #EEEEEE;
       border-radius: 4px;
       font-size: 12px;
-      color: #7A6B5D;
+      color: #666666;
       line-height: 1.8;
     }
 
-    /* アカウント作成提案カード（未ログインのみ表示） */
+    /* アカウント作成提案 */
     .account-suggest {
       display: none;
       margin-top: 28px;
       padding: 24px;
-      background: #FFF8F0;
-      border: 2px solid #D4A060;
-      border-radius: 8px;
+      background: #F7F7F7;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
       text-align: center;
     }
     .account-suggest h3 {
-      font-family: 'Zen Old Mincho', serif;
+      font-family: 'Noto Serif JP', serif;
       font-size: 16px;
-      color: #3C3228;
+      color: #464646;
       margin-bottom: 10px;
       letter-spacing: 1px;
     }
-    .account-suggest p {
-      font-size: 13px;
-      color: #7A6B5D;
-      line-height: 1.8;
-      margin-bottom: 16px;
-    }
+    .account-suggest p { font-size: 13px; color: #666666; line-height: 1.8; margin-bottom: 16px; }
     .btn-create-account {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 12px 28px;
-      background: linear-gradient(180deg, #D4A060 0%, #B88040 100%);
-      color: #FAF8F5;
-      font-family: 'Playfair Display', serif;
+      background: transparent;
+      color: #111111;
+      border: 1px solid #111111;
+      font-family: 'Cinzel', serif;
       font-size: 13px;
       letter-spacing: 2px;
-      border-radius: 6px;
-      transition: background 0.3s, transform 0.3s;
-      box-shadow: 0 4px 12px rgba(180,128,60,0.3);
+      border-radius: 5px;
+      transition: background 0.3s, color 0.3s;
+      text-decoration: none;
     }
-    .btn-create-account:hover {
-      background: linear-gradient(180deg, #B88040 0%, #9A6830 100%);
-      transform: translateY(-2px);
-    }
+    .btn-create-account:hover { background: #111111; color: #FFFFFF; }
   </style>
 </head>
 
