@@ -11,48 +11,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Zen+Old+Mincho:wght@400;700&display=swap"
-        rel="stylesheet">
-
     <!-- CSS -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/overrides.css">
 
     <style>
-        /* ページ固有スタイル */
+        /* ヒーロー */
         .contact-hero {
-            background: linear-gradient(180deg, rgba(44, 36, 28, 0.85) 0%, rgba(44, 36, 28, 0.7) 100%);
+            background: linear-gradient(180deg, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.80) 100%);
             padding: 120px 20px 50px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
-
-        .contact-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url('images/herringbone.png');
-            background-repeat: repeat;
-            background-size: 200px;
-            opacity: 0.08;
-            pointer-events: none;
-        }
-
         .contact-hero-en {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cinzel', serif;
             font-size: 13px;
             letter-spacing: 4px;
-            color: rgba(212, 196, 176, 0.8);
+            color: rgba(255,255,255,0.5);
             margin-bottom: 10px;
         }
-
         .contact-hero h1 {
-            font-family: 'Zen Old Mincho', serif;
+            font-family: 'Noto Serif JP', serif;
             font-size: 28px;
-            color: #FAF8F5;
+            color: #FFFFFF;
             letter-spacing: 4px;
         }
 
@@ -62,180 +45,123 @@
             padding: 60px 20px 80px;
         }
 
-        /* お問い合わせ前の案内 */
-        .contact-intro {
-            text-align: center;
-            margin-bottom: 48px;
-        }
+        /* 案内テキスト */
+        .contact-intro { text-align: center; margin-bottom: 48px; }
+        .contact-intro p { font-size: 14px; color: #666666; line-height: 2; }
 
-        .contact-intro p {
-            font-size: 14px;
-            color: #7A6B5D;
-            line-height: 2;
-        }
-
-        /* LINE誘導ボックス */
+        /* LINE誘導ボックス（LINE色は維持） */
         .contact-line-box {
             display: flex;
             align-items: center;
             gap: 20px;
             padding: 24px 28px;
             background: linear-gradient(135deg, #06C755 0%, #04A847 100%);
-            border-radius: 8px;
+            border-radius: 5px;
             margin-bottom: 40px;
-            box-shadow: 0 4px 16px rgba(6, 199, 85, 0.25);
             text-decoration: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: opacity 0.3s;
         }
-
-        .contact-line-box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(6, 199, 85, 0.35);
-        }
-
+        .contact-line-box:hover { opacity: 0.85; }
         .contact-line-icon {
             flex-shrink: 0;
             width: 52px;
             height: 52px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-
         .contact-line-text h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Noto Serif JP', serif;
             font-size: 16px;
             color: #fff;
             letter-spacing: 2px;
             margin-bottom: 4px;
         }
+        .contact-line-text p { font-size: 12px; color: rgba(255,255,255,0.85); line-height: 1.6; }
+        .contact-line-arrow { margin-left: auto; color: #fff; font-size: 20px; }
 
-        .contact-line-text p {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.6;
-        }
-
-        .contact-line-arrow {
-            margin-left: auto;
-            color: #fff;
-            font-size: 20px;
-        }
-
-        /* フォームセパレーター */
+        /* セパレーター */
         .contact-separator {
             display: flex;
             align-items: center;
             gap: 16px;
             margin-bottom: 40px;
         }
-
         .contact-separator::before,
-        .contact-separator::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: #D4C4B0;
-        }
-
+        .contact-separator::after { content: ''; flex: 1; height: 1px; background: #CCCCCC; }
         .contact-separator span {
-            font-family: 'Playfair Display', serif;
-            font-size: 12px;
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
             letter-spacing: 3px;
-            color: #A08060;
+            color: #999999;
             white-space: nowrap;
         }
 
-        /* お問い合わせフォーム */
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
+        /* フォーム */
+        .contact-form { display: flex; flex-direction: column; gap: 24px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
         .form-label {
             font-size: 13px;
             font-weight: 700;
-            color: #3C3228;
+            color: #464646;
             letter-spacing: 1px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-
         .required-badge {
             display: inline-block;
             padding: 2px 8px;
-            background: #C0392B;
+            background: #555555;
             color: #fff;
             font-size: 10px;
             border-radius: 3px;
             font-weight: 400;
             letter-spacing: 1px;
         }
-
         .optional-badge {
             display: inline-block;
             padding: 2px 8px;
-            background: #A08060;
+            background: #999999;
             color: #fff;
             font-size: 10px;
             border-radius: 3px;
             font-weight: 400;
             letter-spacing: 1px;
         }
-
         .form-input,
         .form-select,
         .form-textarea {
             width: 100%;
             padding: 14px 16px;
-            border: 2px solid #D4C4B0;
-            border-radius: 6px;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
             background: #FFFFFF;
             font-family: 'Noto Sans JP', sans-serif;
             font-size: 14px;
-            color: #2C241C;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            color: #464646;
+            transition: border-color 0.3s, box-shadow 0.3s;
             box-sizing: border-box;
         }
-
         .form-input:focus,
         .form-select:focus,
         .form-textarea:focus {
-            border-color: #A08060;
-            box-shadow: 0 0 0 3px rgba(160, 128, 96, 0.12);
+            border-color: #111111;
+            box-shadow: 0 0 0 2px rgba(17,17,17,0.08);
             outline: none;
         }
-
         .form-select {
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238B6F47' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999999' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 16px center;
             padding-right: 40px;
             cursor: pointer;
         }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 160px;
-            line-height: 1.8;
-        }
-
-        .form-note {
-            font-size: 12px;
-            color: #A08060;
-            line-height: 1.6;
-        }
+        .form-textarea { resize: vertical; min-height: 160px; line-height: 1.8; }
+        .form-note { font-size: 12px; color: #999999; line-height: 1.6; }
 
         /* プライバシー同意 */
         .privacy-agree {
@@ -243,133 +169,90 @@
             align-items: flex-start;
             gap: 12px;
             padding: 20px;
-            background: #F5EDE3;
-            border-radius: 6px;
-            border: 1px solid #D4C4B0;
+            background: #F7F7F7;
+            border-radius: 5px;
+            border: 1px solid #CCCCCC;
         }
-
         .privacy-agree input[type="checkbox"] {
             width: 18px;
             height: 18px;
             margin-top: 2px;
             flex-shrink: 0;
-            accent-color: #4A7C59;
+            accent-color: #111111;
             cursor: pointer;
         }
-
-        .privacy-agree label {
-            font-size: 13px;
-            color: #4A3C30;
-            line-height: 1.8;
-            cursor: pointer;
-        }
-
-        .privacy-agree a {
-            color: #4A7C59;
-            text-decoration: underline;
-        }
+        .privacy-agree label { font-size: 13px; color: #464646; line-height: 1.8; cursor: pointer; }
+        .privacy-agree a { color: #111111; text-decoration: underline; }
 
         /* 送信ボタン */
         .submit-btn {
             width: 100%;
             padding: 18px;
-            background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
-            color: #FAF8F5;
-            font-family: 'Playfair Display', serif;
-            font-size: 15px;
+            background: #111111;
+            color: #FFFFFF;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
             letter-spacing: 3px;
-            border-radius: 6px;
-            border: none;
+            border-radius: 5px;
+            border: 1px solid #111111;
             cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+            transition: opacity 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
         }
+        .submit-btn:hover { opacity: 0.8; }
 
-        .submit-btn:hover {
-            background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(74, 124, 89, 0.4);
-        }
-
-        /* 送信完了メッセージ */
+        /* 送信完了 */
         .contact-success {
             display: none;
             text-align: center;
             padding: 40px 20px;
-            background: linear-gradient(135deg, rgba(74, 124, 89, 0.05) 0%, transparent 50%), #FAF8F5;
-            border: 2px solid #4A7C59;
-            border-radius: 8px;
+            background: #FFFFFF;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
             margin-top: 24px;
         }
-
-        .contact-success .success-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-        }
-
+        .contact-success .success-icon { font-size: 48px; margin-bottom: 16px; }
         .contact-success h3 {
-            font-family: 'Zen Old Mincho', serif;
+            font-family: 'Noto Serif JP', serif;
             font-size: 22px;
-            color: #3C3228;
+            color: #464646;
             margin-bottom: 12px;
             letter-spacing: 2px;
         }
-
-        .contact-success p {
-            font-size: 14px;
-            color: #7A6B5D;
-            line-height: 2;
-        }
+        .contact-success p { font-size: 14px; color: #666666; line-height: 2; }
 
         /* ショップ情報 */
         .shop-info {
             margin-top: 60px;
             padding: 32px;
-            background: linear-gradient(135deg, rgba(212, 196, 176, 0.3) 0%, transparent 50%),
-                linear-gradient(180deg, #FAF8F5 0%, #F5EDE3 100%);
-            border: 2px solid #A08060;
-            border-radius: 6px;
+            background: #FFFFFF;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
         }
-
         .shop-info h3 {
-            font-family: 'Zen Old Mincho', serif;
+            font-family: 'Noto Serif JP', serif;
             font-size: 16px;
-            color: #3C3228;
+            color: #464646;
             letter-spacing: 2px;
             margin-bottom: 20px;
             padding-bottom: 12px;
-            border-bottom: 1px solid #D4C4B0;
+            border-bottom: 1px solid #EEEEEE;
         }
-
-        .shop-info-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .shop-info-table tr {
-            border-bottom: 1px solid rgba(212, 196, 176, 0.5);
-        }
-
+        .shop-info-table { width: 100%; border-collapse: collapse; }
+        .shop-info-table tr { border-bottom: 1px solid #EEEEEE; }
         .shop-info-table th {
             font-size: 12px;
             font-weight: 700;
-            color: #8B6F47;
+            color: #999999;
             padding: 10px 0;
             width: 120px;
             text-align: left;
             vertical-align: top;
         }
-
-        .shop-info-table td {
-            font-size: 13px;
-            color: #4A3C30;
-            padding: 10px 0;
-            line-height: 1.8;
-        }
+        .shop-info-table td { font-size: 13px; color: #464646; padding: 10px 0; line-height: 1.8; }
 
         .back-btn {
             display: inline-flex;
@@ -377,26 +260,20 @@
             gap: 8px;
             margin-top: 32px;
             padding: 12px 28px;
-            background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
-            color: #FAF8F5;
-            font-family: 'Playfair Display', serif;
+            background: transparent;
+            color: #111111;
+            border: 1px solid #111111;
+            font-family: 'Cinzel', serif;
             font-size: 13px;
             letter-spacing: 2px;
-            border-radius: 6px;
-            transition: background 0.3s ease, transform 0.3s ease;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+            text-decoration: none;
         }
-
-        .back-btn:hover {
-            background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%);
-            transform: translateY(-2px);
-        }
+        .back-btn:hover { background: #111111; color: #FFFFFF; }
 
         @media (min-width: 640px) {
-            .form-row {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 20px;
-            }
+            .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         }
     </style>
 </head>
