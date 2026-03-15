@@ -11,395 +11,226 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Zen+Old+Mincho:wght@400;700&display=swap"
-        rel="stylesheet">
-
     <!-- CSS -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/overrides.css">
 
     <style>
-        .register-page {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+        .register-page { min-height: 100vh; display: flex; flex-direction: column; }
 
         /* ヒーロー */
         .register-hero {
-            background: linear-gradient(180deg, rgba(44, 36, 28, 0.88) 0%, rgba(44, 36, 28, 0.75) 100%);
+            background: linear-gradient(180deg, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.80) 100%);
             padding: 120px 20px 48px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
-
-        .register-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url('images/herringbone.png');
-            background-repeat: repeat;
-            background-size: 200px;
-            opacity: 0.08;
-            pointer-events: none;
-        }
-
         .register-hero-en {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cinzel', serif;
             font-size: 12px;
             letter-spacing: 5px;
-            color: rgba(212, 196, 176, 0.8);
+            color: rgba(255,255,255,0.5);
             margin-bottom: 10px;
         }
-
         .register-hero h1 {
-            font-family: 'Zen Old Mincho', serif;
+            font-family: 'Noto Serif JP', serif;
             font-size: 26px;
-            color: #FAF8F5;
+            color: #FFFFFF;
             letter-spacing: 4px;
         }
 
-        /* メインコンテナ */
-        .register-container {
-            flex: 1;
-            max-width: 520px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 52px 20px 80px;
-        }
+        /* コンテナ */
+        .register-container { flex: 1; max-width: 520px; width: 100%; margin: 0 auto; padding: 52px 20px 80px; }
 
-        /* 会員特典バナー */
-        .member-benefits {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-
+        /* 会員特典 */
+        .member-benefits { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
         .benefit-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 6px;
             padding: 16px 20px;
-            background: linear-gradient(135deg, rgba(212, 196, 176, 0.3) 0%, transparent 50%),
-                linear-gradient(180deg, #FAF8F5 0%, #F5EDE3 100%);
-            border: 1px solid #D4C4B0;
-            border-radius: 8px;
+            background: #FFFFFF;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
             text-align: center;
             flex: 1;
             min-width: 120px;
         }
-
-        .benefit-icon {
-            font-size: 22px;
-        }
-
-        .benefit-item span {
-            font-size: 11px;
-            color: #7A6B5D;
-            line-height: 1.5;
-        }
+        .benefit-icon { font-size: 22px; }
+        .benefit-item span { font-size: 11px; color: #666666; line-height: 1.5; }
 
         /* フォームカード */
         .register-card {
-            background: #FAF8F5;
-            border: 2px solid #D4C4B0;
-            border-radius: 8px;
+            background: #FFFFFF;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
             padding: 36px 32px;
-            box-shadow: 0 4px 24px rgba(44, 36, 28, 0.08);
         }
-
         .register-card-title {
-            font-family: 'Zen Old Mincho', serif;
+            font-family: 'Noto Serif JP', serif;
             font-size: 18px;
-            color: #3C3228;
+            color: #464646;
             letter-spacing: 2px;
             text-align: center;
             margin-bottom: 28px;
             padding-bottom: 16px;
-            border-bottom: 2px solid #D4C4B0;
+            border-bottom: 1px solid #EEEEEE;
         }
 
-        /* フォーム共通 */
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
+        /* フォーム */
+        .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
         .form-label {
             font-size: 12px;
             font-weight: 700;
-            color: #3C3228;
+            color: #464646;
             letter-spacing: 1px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-
         .required-badge {
             display: inline-block;
             padding: 2px 7px;
-            background: #C0392B;
+            background: #555555;
             color: #fff;
             font-size: 9px;
             border-radius: 3px;
             font-weight: 400;
             letter-spacing: 0.5px;
         }
-
-        .form-input,
-        .form-select {
+        .form-input, .form-select {
             width: 100%;
             padding: 13px 16px;
-            border: 2px solid #D4C4B0;
-            border-radius: 6px;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
             background: #FFFFFF;
             font-family: 'Noto Sans JP', sans-serif;
             font-size: 14px;
-            color: #2C241C;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            color: #464646;
+            transition: border-color 0.3s, box-shadow 0.3s;
             box-sizing: border-box;
         }
-
-        .form-input:focus,
-        .form-select:focus {
-            border-color: #A08060;
-            box-shadow: 0 0 0 3px rgba(160, 128, 96, 0.12);
+        .form-input:focus, .form-select:focus {
+            border-color: #111111;
+            box-shadow: 0 0 0 2px rgba(17,17,17,0.08);
             outline: none;
         }
+        .form-input.error { border-color: #C0392B; }
+        .form-hint { font-size: 11px; color: #999999; line-height: 1.5; }
+        .form-error { font-size: 11px; color: #C0392B; display: none; }
+        .form-error.visible { display: block; }
 
-        .form-input.error {
-            border-color: #C0392B;
-        }
+        /* パスワード強度 */
+        .password-strength { margin-top: 6px; }
+        .strength-bar-bg { height: 4px; background: #EEEEEE; border-radius: 2px; overflow: hidden; }
+        .strength-bar { height: 100%; width: 0%; border-radius: 2px; transition: width 0.3s, background-color 0.3s; }
+        .strength-label { font-size: 10px; color: #999999; margin-top: 4px; }
 
-        .form-hint {
-            font-size: 11px;
-            color: #A08060;
-            line-height: 1.5;
-        }
-
-        .form-error {
-            font-size: 11px;
-            color: #C0392B;
-            display: none;
-        }
-
-        .form-error.visible {
-            display: block;
-        }
-
-        /* パスワード強度インジケーター */
-        .password-strength {
-            margin-top: 6px;
-        }
-
-        .strength-bar-bg {
-            height: 4px;
-            background: #E8DDD0;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .strength-bar {
-            height: 100%;
-            width: 0%;
-            border-radius: 2px;
-            transition: width 0.3s ease, background-color 0.3s ease;
-        }
-
-        .strength-label {
-            font-size: 10px;
-            color: #A08060;
-            margin-top: 4px;
-        }
-
-        /* 名前の行 */
-        .name-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        /* 生年月日 */
-        .birthday-row {
-            display: grid;
-            grid-template-columns: 2fr 1.5fr 1.5fr;
-            gap: 10px;
-        }
-
+        /* レイアウト */
+        .name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .birthday-row { display: grid; grid-template-columns: 2fr 1.5fr 1.5fr; gap: 10px; }
         .form-select {
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238B6F47' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999999' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 12px center;
             padding-right: 36px;
             cursor: pointer;
         }
+        .form-divider { height: 1px; background: #EEEEEE; margin: 24px 0; }
 
-        /* 区切り線 */
-        .form-divider {
-            height: 1px;
-            background: #D4C4B0;
-            margin: 24px 0;
-        }
-
-        /* 利用規約・プライバシー同意 */
-        .agree-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-
+        /* 同意チェックボックス */
+        .agree-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
         .agree-item {
             display: flex;
             align-items: flex-start;
             gap: 10px;
             padding: 14px;
-            background: #F5EDE3;
-            border: 1px solid #D4C4B0;
-            border-radius: 6px;
+            background: #F7F7F7;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
         }
-
         .agree-item input[type="checkbox"] {
             width: 17px;
             height: 17px;
             margin-top: 2px;
             flex-shrink: 0;
-            accent-color: #4A7C59;
+            accent-color: #111111;
             cursor: pointer;
         }
-
-        .agree-item label {
-            font-size: 12px;
-            color: #4A3C30;
-            line-height: 1.8;
-            cursor: pointer;
-        }
-
-        .agree-item a {
-            color: #4A7C59;
-            text-decoration: underline;
-        }
+        .agree-item label { font-size: 12px; color: #464646; line-height: 1.8; cursor: pointer; }
+        .agree-item a { color: #111111; text-decoration: underline; }
 
         /* 登録ボタン */
         .register-btn {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
-            color: #FAF8F5;
-            font-family: 'Playfair Display', serif;
+            background: #111111;
+            color: #FFFFFF;
+            font-family: 'Cinzel', serif;
             font-size: 14px;
             letter-spacing: 3px;
-            border-radius: 6px;
-            border: none;
+            border-radius: 5px;
+            border: 1px solid #111111;
             cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+            transition: opacity 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             margin-bottom: 20px;
         }
-
-        .register-btn:hover {
-            background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(74, 124, 89, 0.4);
-        }
-
-        .register-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
+        .register-btn:hover { opacity: 0.8; }
+        .register-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
         /* ログインリンク */
-        .login-link {
-            text-align: center;
-            font-size: 13px;
-            color: #7A6B5D;
-        }
-
-        .login-link a {
-            color: #4A7C59;
-            font-weight: 700;
-            text-decoration: underline;
-        }
+        .login-link { text-align: center; font-size: 13px; color: #666666; }
+        .login-link a { color: #111111; font-weight: 700; text-decoration: underline; }
 
         /* 完了メッセージ */
         .register-success {
             display: none;
             text-align: center;
             padding: 48px 24px;
-            background: #FAF8F5;
-            border: 2px solid #4A7C59;
-            border-radius: 8px;
+            background: #FFFFFF;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
         }
-
-        .register-success .success-icon {
-            font-size: 52px;
-            margin-bottom: 20px;
-        }
-
+        .register-success .success-icon { font-size: 52px; margin-bottom: 20px; }
         .register-success h2 {
-            font-family: 'Zen Old Mincho', serif;
+            font-family: 'Noto Serif JP', serif;
             font-size: 22px;
-            color: #3C3228;
+            color: #464646;
             margin-bottom: 12px;
             letter-spacing: 2px;
         }
-
-        .register-success p {
-            font-size: 13px;
-            color: #7A6B5D;
-            line-height: 2;
-            margin-bottom: 28px;
-        }
+        .register-success p { font-size: 13px; color: #666666; line-height: 2; margin-bottom: 28px; }
 
         .back-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 12px 28px;
-            background: linear-gradient(180deg, #4A7C59 0%, #3A6349 100%);
-            color: #FAF8F5;
-            font-family: 'Playfair Display', serif;
+            background: transparent;
+            color: #111111;
+            border: 1px solid #111111;
+            font-family: 'Cinzel', serif;
             font-size: 13px;
             letter-spacing: 2px;
-            border-radius: 6px;
-            transition: background 0.3s ease, transform 0.3s ease;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+            text-decoration: none;
         }
-
-        .back-btn:hover {
-            background: linear-gradient(180deg, #3A6349 0%, #2D5039 100%);
-            transform: translateY(-2px);
-        }
+        .back-btn:hover { background: #111111; color: #FFFFFF; }
 
         @media (max-width: 480px) {
-            .register-card {
-                padding: 28px 20px;
-            }
-
-            .name-row {
-                grid-template-columns: 1fr;
-            }
-
-            .birthday-row {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .birthday-row .form-group:first-child {
-                grid-column: span 2;
-            }
+            .register-card { padding: 28px 20px; }
+            .name-row { grid-template-columns: 1fr; }
+            .birthday-row { grid-template-columns: 1fr 1fr; }
+            .birthday-row .form-group:first-child { grid-column: span 2; }
         }
     </style>
 </head>
@@ -609,7 +440,7 @@
                 <!-- メルマガ -->
                 <div class="form-group">
                     <label class="form-label">メールマガジン</label>
-                    <div class="agree-item" style="background:#fff;">
+                    <div class="agree-item" style="background:#FFFFFF;">
                         <input type="checkbox" id="newsletter" name="newsletter" checked>
                         <label for="newsletter">
                             新商品・セール・カスタムオーダー情報などのお得な情報をメールでお届けします（いつでも解除できます）
