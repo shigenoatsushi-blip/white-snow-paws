@@ -308,3 +308,318 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
 .biothane-main-swiper .swiper-pagination-bullet-active {
   background: #FFFFFF;
 }
+
+/* =====================================================
+   サブページ共通上書き
+   （各ページ固有の<style>タグのウッド系色をモノトーンに）
+   ===================================================== */
+
+/* ============================================
+   ヒーローセクション（全ページ共通）
+   ============================================ */
+
+/* ヘリンボーン背景を全ページで無効化 */
+.login-hero::before,
+.register-hero::before,
+.cart-hero::before,
+.detail-hero::before,
+.mypage-hero::before,
+.contact-hero::before,
+.faq-hero::before,
+.checkout-hero::before,
+.privacy-hero::before,
+.terms-hero::before {
+  display: none !important;
+}
+
+/* ヒーロー背景をダーク系（index統一）に */
+.login-hero,
+.register-hero,
+.cart-hero,
+.detail-hero,
+.mypage-hero,
+.contact-hero,
+.faq-hero,
+.checkout-hero,
+.privacy-hero,
+.terms-hero {
+  background: linear-gradient(180deg, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.80) 100%) !important;
+}
+
+/* ヒーロー内の英語ラベル（Playfair Display → Cinzel） */
+.login-hero-en,
+.register-hero-en,
+.cart-hero-en,
+.mypage-hero-en,
+.contact-hero-en,
+.faq-hero-en,
+.checkout-hero-en,
+.complete-en,
+.cancel-en,
+.privacy-hero-en,
+.terms-hero-en {
+  font-family: 'Cinzel', serif !important;
+  color: rgba(255,255,255,0.5) !important;
+}
+
+/* ヒーロー内の日本語見出し（Zen Old Mincho → Noto Serif JP） */
+.login-hero h1,
+.register-hero h1,
+.cart-hero h1,
+.detail-hero h1,
+.mypage-hero h1,
+.contact-hero h1,
+.faq-hero h1,
+.checkout-hero h1,
+.privacy-hero h1,
+.terms-hero h1 {
+  font-family: 'Noto Serif JP', serif !important;
+  color: #FFFFFF !important;
+}
+
+/* ============================================
+   カード・コンテナ背景
+   ============================================ */
+.login-card,
+.register-container .login-card,
+.cart-item,
+.mypage-sidebar,
+.complete-card,
+.cancel-card,
+.checkout-form-card,
+.checkout-summary {
+  background: #FFFFFF !important;
+  border-color: #CCCCCC !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important;
+  border-radius: 5px !important;
+}
+
+/* ユーザー情報エリア */
+.mypage-user-info {
+  background: #F7F7F7 !important;
+  border-bottom-color: #EEEEEE !important;
+}
+
+/* ============================================
+   カードタイトル・ボーダー
+   ============================================ */
+.login-card-title {
+  font-family: 'Noto Serif JP', serif !important;
+  color: #464646 !important;
+  border-bottom-color: #EEEEEE !important;
+  border-bottom-width: 1px !important;
+}
+
+/* ============================================
+   テキスト色（茶系 → モノトーン）
+   ============================================ */
+
+/* ダーク系テキスト */
+.cart-empty h2,
+.complete-title,
+.cancel-title,
+.mypage-user-name,
+.faq-section-title,
+.privacy-section h2,
+.terms-section h2,
+.terms-toc h3 {
+  font-family: 'Noto Serif JP', serif !important;
+  color: #464646 !important;
+}
+
+/* サブテキスト */
+.cart-empty p,
+.cart-item-color,
+.complete-message,
+.cancel-message,
+.mypage-user-email,
+.contact-intro p,
+.privacy-date,
+.terms-date {
+  color: #666666 !important;
+}
+
+/* リンク色 */
+.cart-item-info h3 a,
+.breadcrumb a {
+  color: #464646 !important;
+}
+.cart-item-info h3 a:hover,
+.breadcrumb a:hover {
+  color: #111111 !important;
+}
+
+/* ============================================
+   ボーダー（ウッド系 → グレー）
+   ============================================ */
+.faq-section-title,
+.privacy-section h2,
+.terms-section h2 {
+  border-bottom-color: #CCCCCC !important;
+  border-bottom-width: 1px !important;
+}
+
+/* ============================================
+   フォーム要素
+   ============================================ */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+select,
+textarea {
+  border-color: #CCCCCC !important;
+  border-radius: 5px !important;
+  background: #FFFFFF !important;
+  color: #464646 !important;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #111111 !important;
+  box-shadow: 0 0 0 2px rgba(17,17,17,0.08) !important;
+  outline: none !important;
+}
+
+/* ============================================
+   ボタン（グリーン → モノトーン）
+   ============================================ */
+
+/* グリーンボタン全般 */
+.btn-back-cart,
+.btn-checkout,
+[class*="btn-submit"],
+[class*="btn-login"],
+[class*="btn-register"] {
+  background: #111111 !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+  border: 1px solid #111111 !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  transition: opacity 0.3s !important;
+}
+.btn-back-cart:hover,
+.btn-checkout:hover,
+[class*="btn-submit"]:hover,
+[class*="btn-login"]:hover,
+[class*="btn-register"]:hover {
+  background: #333333 !important;
+  transform: none !important;
+  opacity: 0.85;
+}
+
+/* ============================================
+   FAQタブ（グリーン → モノトーン）
+   ============================================ */
+.faq-tab {
+  border-color: #CCCCCC !important;
+  color: #666666 !important;
+  background: #FFFFFF !important;
+  border-radius: 100px !important;
+}
+.faq-tab:hover,
+.faq-tab.active {
+  border-color: #111111 !important;
+  color: #111111 !important;
+  background: rgba(17,17,17,0.05) !important;
+}
+
+/* ============================================
+   アバター・アイコン（グリーン → チャコール）
+   ============================================ */
+.mypage-avatar {
+  background: linear-gradient(135deg, #333333, #111111) !important;
+}
+.complete-icon {
+  background: linear-gradient(135deg, #333333, #111111) !important;
+}
+.cancel-icon {
+  background: linear-gradient(135deg, #555555, #333333) !important;
+}
+
+/* ============================================
+   チェックアウト ステッパー
+   ============================================ */
+.checkout-steps {
+  background: #F7F7F7 !important;
+  border-bottom-color: #EEEEEE !important;
+}
+.step-item {
+  color: #999999 !important;
+}
+.step-item.active {
+  color: #111111 !important;
+}
+.step-num {
+  border-color: #CCCCCC !important;
+}
+.step-item.active .step-num {
+  border-color: #111111 !important;
+  background: #111111 !important;
+}
+.step-arrow {
+  color: #CCCCCC !important;
+}
+
+/* ============================================
+   注文番号・インフォボックス
+   ============================================ */
+.complete-order-num {
+  font-family: 'Cinzel', serif !important;
+  background: #F7F7F7 !important;
+  border-color: #CCCCCC !important;
+  color: #464646 !important;
+  border-radius: 5px !important;
+}
+
+/* ============================================
+   紹介ボックス（プライバシー・利用規約）
+   ============================================ */
+.privacy-intro,
+.terms-intro {
+  background: #F7F7F7 !important;
+  border-left-color: #CCCCCC !important;
+  color: #464646 !important;
+}
+
+/* 目次ボックス */
+.terms-toc {
+  background: #F7F7F7 !important;
+  border-color: #CCCCCC !important;
+}
+
+/* ============================================
+   会員特典バナー（register）
+   ============================================ */
+.benefit-item {
+  background: #FFFFFF !important;
+  background-image: none !important;
+  border-color: #EEEEEE !important;
+  border-radius: 5px !important;
+}
+
+/* ============================================
+   商品詳細ページ
+   ============================================ */
+.detail-main-image {
+  border: 1px solid #CCCCCC !important;
+  border-radius: 5px !important;
+}
+.detail-thumb {
+  border: 1px solid #CCCCCC !important;
+  border-radius: 5px !important;
+}
+.detail-thumb.active {
+  border-color: #111111 !important;
+}
+
+/* パンくず */
+.breadcrumb,
+.breadcrumb a,
+.breadcrumb span {
+  color: rgba(255,255,255,0.5) !important;
+}
+.breadcrumb a:hover {
+  color: #FFFFFF !important;
+}
