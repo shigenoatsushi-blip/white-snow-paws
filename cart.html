@@ -20,24 +20,48 @@
   <style>
     /* ヒーロー */
     .cart-hero {
-      background: linear-gradient(180deg, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.80) 100%);
-      padding: 90px 20px 36px;
-      text-align: center;
       position: relative;
       overflow: hidden;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 90px 20px 50px;
+      text-align: center;
+    }
+    .cart-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/hero/sleepingdog.png');
+      background-size: cover;
+      background-position: center 40%;
+      transform: scale(1.03);
+    }
+    .cart-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(17,17,17,0.55) 0%,
+        rgba(17,17,17,0.45) 50%,
+        rgba(17,17,17,0.65) 100%);
+    }
+    .cart-hero-text {
+      position: relative;
+      z-index: 1;
     }
     .cart-hero-en {
       font-family: 'Cinzel', serif;
       font-size: 12px;
       letter-spacing: 5px;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 8px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 10px;
     }
     .cart-hero h1 {
       font-family: 'Noto Serif JP', serif;
-      font-size: 26px;
+      font-size: 28px;
       color: #FFFFFF;
-      letter-spacing: 4px;
+      letter-spacing: 6px;
     }
 
     /* コンテンツ */
@@ -284,8 +308,12 @@
 
   <!-- ヒーロー -->
   <div class="cart-hero">
-    <p class="cart-hero-en">── SHOPPING CART ──</p>
-    <h1>カート</h1>
+    <div class="cart-hero-bg"></div>
+    <div class="cart-hero-overlay"></div>
+    <div class="cart-hero-text">
+      <p class="cart-hero-en">── SHOPPING CART ──</p>
+      <h1>カート</h1>
+    </div>
   </div>
 
   <!-- ===================================
