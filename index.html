@@ -362,9 +362,13 @@
         padding: 4px;
       }
       /* モバイルではカートとハンバーガー以外のヘッダーアイコンを非表示 */
-      .header-icons > button.header-icon-btn:not(.mobile-hamburger),
-      .header-icons > a.header-icon-btn:not([href="cart.html"]) {
+      .header-icons > a.header-icon-btn,
+      .header-icons > button.header-icon-btn:not(.mobile-hamburger):not([aria-label="検索"]) {
         display: none !important;
+      }
+      .header-icons > a.header-icon-btn[href="cart.html"],
+      .header-icons > button.header-icon-btn[aria-label="検索"] {
+        display: flex !important;
       }
       /* スマホ用: 木目背景（fixedが効かないため::beforeで対応） */
       body {
