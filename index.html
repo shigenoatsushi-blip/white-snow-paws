@@ -361,6 +361,14 @@
         cursor: pointer;
         padding: 4px;
       }
+      /* モバイルではカートとハンバーガー以外のヘッダーアイコンを非表示 */
+      .header-icons .header-icon-btn:not(.mobile-hamburger),
+      .header-icons a.header-icon-btn:not([href="cart.html"]) {
+        display: none !important;
+      }
+      .header-icons a.header-icon-btn[href="cart.html"] {
+        display: flex !important;
+      }
     }
   </style>
 </head>
