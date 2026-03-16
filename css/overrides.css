@@ -47,12 +47,43 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
 .privacy-content,
 .terms-content,
 .detail-content,
+.detail-main,
 .mypage-content,
+.mypage-main,
 .cancel-main,
-.complete-main,
-.login-page > *:not(.header):not(.footer):not(script),
-.register-page > *:not(.header):not(.footer):not(script) {
+.complete-main {
   background: rgba(255,255,255,0.80) !important;
+}
+
+/* login/register はbodyクラスでページ全体を管理 */
+.login-page,
+.register-page,
+.cancel-page,
+.complete-page {
+  background-color: transparent !important;
+}
+.login-page > *:not(.header):not(.footer):not(script):not(link),
+.register-page > *:not(.header):not(.footer):not(script):not(link) {
+  background: rgba(255,255,255,0.80) !important;
+}
+
+/* ヒーローはダーク背景なので白半透明は不要 */
+.cart-hero,
+.checkout-hero,
+.contact-hero,
+.faq-hero,
+.privacy-hero,
+.terms-hero,
+.detail-hero,
+.mypage-hero,
+.login-hero,
+.register-hero {
+  background: linear-gradient(180deg, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.80) 100%) !important;
+}
+
+/* フッターも背景を明示 */
+.footer {
+  background: #111111 !important;
 }
 
 /* スマホ用: iOS Safari対応（background-attachment:fixedが効かない） */
@@ -82,11 +113,15 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
   .privacy-content,
   .terms-content,
   .detail-content,
+  .detail-main,
   .mypage-content,
+  .mypage-main,
   .cancel-main,
-  .complete-main,
-  .login-page > *:not(.header):not(.footer):not(script),
-  .register-page > *:not(.header):not(.footer):not(script) {
+  .complete-main {
+    background: rgba(255,255,255,0.45) !important;
+  }
+  .login-page > *:not(.header):not(.footer):not(script):not(link),
+  .register-page > *:not(.header):not(.footer):not(script):not(link) {
     background: rgba(255,255,255,0.45) !important;
   }
 }
