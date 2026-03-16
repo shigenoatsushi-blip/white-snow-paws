@@ -39,6 +39,22 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
 .section-wood { background: rgba(235,235,235,0.75) !important; }
 .wood-frame::before { display: none !important; }
 
+/* サブページのメインコンテンツにも白半透明 */
+.cart-content,
+.checkout-content,
+.contact-content,
+.faq-content,
+.privacy-content,
+.terms-content,
+.detail-content,
+.mypage-content,
+.cancel-main,
+.complete-main,
+.login-page > *:not(.header):not(.footer):not(script),
+.register-page > *:not(.header):not(.footer):not(script) {
+  background: rgba(255,255,255,0.80) !important;
+}
+
 /* スマホ用: iOS Safari対応（background-attachment:fixedが効かない） */
 @media (max-width: 768px) {
   body {
@@ -59,6 +75,20 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
   }
   .section:not(.section-wood) { background: rgba(255,255,255,0.45) !important; }
   .section-wood { background: rgba(235,235,235,0.40) !important; }
+  .cart-content,
+  .checkout-content,
+  .contact-content,
+  .faq-content,
+  .privacy-content,
+  .terms-content,
+  .detail-content,
+  .mypage-content,
+  .cancel-main,
+  .complete-main,
+  .login-page > *:not(.header):not(.footer):not(script),
+  .register-page > *:not(.header):not(.footer):not(script) {
+    background: rgba(255,255,255,0.45) !important;
+  }
 }
 
 /* ============================================
