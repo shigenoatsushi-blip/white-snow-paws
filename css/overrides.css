@@ -36,7 +36,8 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
 
 /* セクション半透明（木目を透かす） */
 .section:not(.section-wood) { background: rgba(255,255,255,0.80) !important; }
-.section-wood { background: rgba(235,235,235,0.75) !important; }
+.section-wood { background: rgba(255,255,255,0.80) !important; }
+.story-section { background: rgba(255,255,255,0.80) !important; }
 .wood-frame::before { display: none !important; }
 
 /* サブページのメインコンテンツにも白半透明 */
@@ -105,7 +106,8 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
     pointer-events: none;
   }
   .section:not(.section-wood) { background: rgba(255,255,255,0.45) !important; }
-  .section-wood { background: rgba(235,235,235,0.40) !important; }
+  .section-wood { background: rgba(255,255,255,0.45) !important; }
+  .story-section { background: rgba(255,255,255,0.45) !important; }
   .cart-content,
   .checkout-content,
   .contact-content,
