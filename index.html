@@ -50,14 +50,7 @@
     /* ============================================
        ベース
        ============================================ */
-    body {
-      background-color: #FFFFFF !important;
-      background-image: url('images/hero/whiteash.jpg') !important;
-      background-repeat: repeat !important;
-      background-size: 600px !important;
-      background-attachment: fixed !important;
-    }
-    body::before { display: none; }
+    /* 木目背景・body::before は overrides.css で管理 */
 
     /* ============================================
        ヘッダー: ダーク系
@@ -81,9 +74,8 @@
     /* ============================================
        セクション背景
        ============================================ */
-    .section-wood   { background: rgba(235,235,235,0.75) !important; }
+    /* セクション透過は overrides.css で管理 */
     #products       { background: #FFFFFF !important; }
-    .section:not(.section-wood):not(#products) { background: rgba(255,255,255,0.80) !important; }
     .wood-plank-divider,
     .herringbone-divider {
       background: #DDDDDD !important;
@@ -366,29 +358,7 @@
       .mobile-hamburger,
       .header-icons > [aria-label="検索"],
       .header-icons > [href="cart.html"] { display: flex !important; }
-      /* スマホ用: 木目背景（fixedが効かないため::beforeで対応） */
-      body {
-        background-image: none !important;
-      }
-      body::before {
-        content: '' !important;
-        display: block !important;
-        position: fixed !important;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background-image: url('images/hero/whiteash.jpg') !important;
-        background-repeat: repeat !important;
-        background-size: 300px !important;
-        opacity: 0.8;
-        z-index: -10;
-        pointer-events: none;
-      }
-      .section:not(.section-wood):not(#products) {
-        background: rgba(255,255,255,0.45) !important;
-      }
-      .section-wood {
-        background: rgba(235,235,235,0.40) !important;
-      }
+      /* 木目背景のスマホ対応は overrides.css で管理 */
     }
   </style>
 </head>

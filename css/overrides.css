@@ -24,7 +24,42 @@
 /* ============================================
    ベース
    ============================================ */
+/* 木目背景テクスチャ（PC） */
+body {
+  background-color: #FFFFFF !important;
+  background-image: url('../images/hero/whiteash.jpg') !important;
+  background-repeat: repeat !important;
+  background-size: 600px !important;
+  background-attachment: fixed !important;
+}
 body::before { display: none; } /* ヘリンボーン背景テクスチャ無効化 */
+
+/* セクション半透明（木目を透かす） */
+.section:not(.section-wood) { background: rgba(255,255,255,0.80) !important; }
+.section-wood { background: rgba(235,235,235,0.75) !important; }
+.wood-frame::before { display: none !important; }
+
+/* スマホ用: iOS Safari対応（background-attachment:fixedが効かない） */
+@media (max-width: 768px) {
+  body {
+    background-image: none !important;
+  }
+  body::before {
+    content: '' !important;
+    display: block !important;
+    position: fixed !important;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url('../images/hero/whiteash.jpg') !important;
+    background-repeat: repeat !important;
+    background-size: 300px !important;
+    opacity: 0.8;
+    z-index: -10;
+    pointer-events: none;
+  }
+  .section:not(.section-wood) { background: rgba(255,255,255,0.45) !important; }
+  .section-wood { background: rgba(235,235,235,0.40) !important; }
+}
 
 /* ============================================
    ヘッダー: ダーク系
