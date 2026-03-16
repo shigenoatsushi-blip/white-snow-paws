@@ -50,8 +50,14 @@
     /* ============================================
        ベース
        ============================================ */
-    body::before { display: none; } /* ヘリンボーン背景テクスチャ無効化 */
-    body { background-color: #FFFFFF !important; }
+    body {
+      background-color: #FFFFFF !important;
+      background-image: url('images/hero/whiteash.jpg') !important;
+      background-repeat: repeat !important;
+      background-size: 600px !important;
+      background-attachment: fixed !important;
+    }
+    body::before { display: none; }
 
     /* ============================================
        ヘッダー: ダーク系
@@ -75,8 +81,9 @@
     /* ============================================
        セクション背景
        ============================================ */
-    .section-wood   { background: #EFEFEF !important; }
+    .section-wood   { background: rgba(235,235,235,0.75) !important; }
     #products       { background: #FFFFFF !important; }
+    .section:not(.section-wood):not(#products) { background: rgba(255,255,255,0.80) !important; }
     .wood-plank-divider,
     .herringbone-divider {
       background: #DDDDDD !important;
@@ -88,8 +95,12 @@
        ============================================ */
     .wood-frame,
     .wood-frame-sm  { box-shadow: none !important; border: 1px solid #CCCCCC !important; }
+    .wood-frame::before { display: none !important; }
 
-    .product-card.wood-frame {
+    .product-grid { background: #FFFFFF !important; }
+    .product-card,
+    .product-card.wood-frame,
+    .product-card-info {
       background: #FFFFFF !important;
       border: 1px solid #EEEEEE !important;
       box-shadow: none !important;
@@ -336,6 +347,21 @@
     }
     .product-tag.sale { background: #555555 !important; }
     .product-tag.new  { background: #888888 !important; }
+
+    /* ハンバーガーボタン: モバイルのみ表示 */
+    .mobile-hamburger { display: none; }
+    @media (max-width: 768px) {
+      .mobile-hamburger {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        color: #FFFFFF;
+        cursor: pointer;
+        padding: 4px;
+      }
+    }
   </style>
 </head>
 
@@ -412,6 +438,15 @@
           <span class="cart-badge" id="cartBadge">0</span>
           <span class="header-icon-label">CART</span>
         </a>
+        <!-- ハンバーガー（モバイル用） -->
+        <button class="header-icon-btn mobile-hamburger" id="hamburgerBtn" aria-label="メニュー">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
       </div>
     </div>
 
@@ -431,13 +466,11 @@
   <div class="mobile-menu-overlay" id="menuOverlay"></div>
   <nav class="mobile-menu" id="mobileMenu">
     <ul>
-      <li><a href="#biothane">BIOTHANE LEAD<span class="menu-jp">バイオタンリード</span></a></li>
       <li><a href="#products">PRODUCTS<span class="menu-jp">商品一覧</span></a></li>
       <li><a href="#category">CATEGORY<span class="menu-jp">カテゴリー</span></a></li>
-      <li><a href="#story">OUR STORY<span class="menu-jp">こだわりストーリー</span></a></li>
-      <li><a href="#order">HOW TO ORDER<span class="menu-jp">オーダーの流れ</span></a></li>
-      <li><a href="#gallery">GALLERY & VOICE<span class="menu-jp">ギャラリー・お客様の声</span></a></li>
-      <li><a href="#instagram">INSTAGRAM<span class="menu-jp">インスタグラム</span></a></li>
+      <li><a href="#story">STORY<span class="menu-jp">こだわりストーリー</span></a></li>
+      <li><a href="#order">ORDER<span class="menu-jp">オーダーの流れ</span></a></li>
+      <li><a href="#gallery">GALLERY<span class="menu-jp">ギャラリー</span></a></li>
     </ul>
   </nav>
 
@@ -1215,63 +1248,7 @@
     </a>
   </div>
 
-  <nav class="mobile-bottom-nav" id="mobileBottomNav">
-    <ul>
-      <li>
-        <button aria-label="カート" style="position:relative;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <path d="M16 10a4 4 0 0 1-8 0"></path>
-          </svg>
-          <span class="cart-badge-bottom">0</span>
-          <span>CART</span>
-        </button>
-      </li>
-      <li>
-        <button aria-label="検索">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <span>SEARCH</span>
-        </button>
-      </li>
-      <li>
-        <button aria-label="閲覧履歴">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
-          <span>HISTORY</span>
-        </button>
-      </li>
-      <li>
-        <button aria-label="ログイン">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
-          <span>LOGIN</span>
-        </button>
-      </li>
-      <li>
-        <button aria-label="メニュー" id="hamburgerMobileBottom" class="mobile-bottom-menu-btn">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-          <span>MENU</span>
-        </button>
-      </li>
-    </ul>
-  </nav>
+  <!-- モバイルボトムナビ削除済み -->
 
   <!-- Swiper.js -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
