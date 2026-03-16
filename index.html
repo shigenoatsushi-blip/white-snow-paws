@@ -369,6 +369,16 @@
       .header-icons a.header-icon-btn[href="cart.html"] {
         display: flex !important;
       }
+      /* スマホ用: 木目背景を小さく＋セクション透過度アップ */
+      body {
+        background-size: 300px !important;
+      }
+      .section:not(.section-wood):not(#products) {
+        background: rgba(255,255,255,0.65) !important;
+      }
+      .section-wood {
+        background: rgba(235,235,235,0.60) !important;
+      }
     }
   </style>
 </head>
