@@ -362,16 +362,26 @@
         padding: 4px;
       }
       /* モバイルではカートとハンバーガー以外のヘッダーアイコンを非表示 */
-      .header-icons .header-icon-btn:not(.mobile-hamburger),
-      .header-icons a.header-icon-btn:not([href="cart.html"]) {
+      .header-icons > button.header-icon-btn:not(.mobile-hamburger),
+      .header-icons > a.header-icon-btn:not([href="cart.html"]) {
         display: none !important;
       }
-      .header-icons a.header-icon-btn[href="cart.html"] {
-        display: flex !important;
-      }
-      /* スマホ用: 木目背景を小さく＋セクション透過度アップ */
+      /* スマホ用: 木目背景（fixedが効かないため::beforeで対応） */
       body {
+        background-image: none !important;
+      }
+      body::before {
+        content: '' !important;
+        display: block !important;
+        position: fixed !important;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-image: url('images/hero/whiteash.jpg') !important;
+        background-repeat: repeat !important;
         background-size: 300px !important;
+        opacity: 0.35;
+        z-index: -10;
+        pointer-events: none;
       }
       .section:not(.section-wood):not(#products) {
         background: rgba(255,255,255,0.65) !important;
