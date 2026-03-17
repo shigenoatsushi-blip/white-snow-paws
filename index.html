@@ -89,18 +89,18 @@
     .wood-frame-sm  { box-shadow: none !important; border: 1px solid #CCCCCC !important; }
     .wood-frame::before { display: none !important; }
 
-    .product-grid { background: #FFFFFF !important; }
+    .product-grid { background: transparent !important; }
     .product-card,
     .product-card.wood-frame,
     .product-card-info {
-      background: #FFFFFF !important;
-      border: 1px solid #EEEEEE !important;
+      background: transparent !important;
+      border: none !important;
       box-shadow: none !important;
     }
     .product-card:hover {
       transform: none !important;
       box-shadow: none !important;
-      opacity: 0.85;
+      opacity: 1 !important;
     }
 
     /* ============================================
@@ -138,13 +138,48 @@
        2. 商品グリッド: タイトに詰める
        ============================================ */
     .product-grid {
-      gap: 8px !important;
-    }
-    .product-card-info {
-      padding: 10px 8px 14px !important;
+      gap: 20px 16px !important;
     }
     .product-desc {
       display: none !important;
+    }
+    /* カラードット・カートボタン・タグを非表示（Lutie風シンプル化） */
+    .color-dots {
+      display: none !important;
+    }
+    .btn-add-cart {
+      display: none !important;
+    }
+    .product-tag {
+      display: none !important;
+    }
+    /* 商品名: シンプルに */
+    .product-card-info h4 a {
+      font-size: 13px !important;
+      font-weight: 400 !important;
+      color: #333 !important;
+      text-decoration: none !important;
+      letter-spacing: 0.02em;
+    }
+    /* 価格: 控えめに */
+    .product-card-info .price {
+      font-size: 13px !important;
+      font-weight: 400 !important;
+      color: #333 !important;
+      margin-top: 4px !important;
+    }
+    .price-tax {
+      font-size: 11px !important;
+      color: #999 !important;
+    }
+    .price-original {
+      font-size: 11px !important;
+      color: #999 !important;
+    }
+    /* カード内余白を最小限に */
+    .product-card-info {
+      padding: 8px 0 0 !important;
+      text-align: left !important;
     }
     /* ③ hover: Lutie と同じ opacity 0.5 */
     .product-card-image img {

@@ -17,27 +17,26 @@
   <link rel="stylesheet" href="css/overrides.css?v=20260316">
 
   <style>
-    /* ヒーロー（パンくず） */
+    /* ヒーロー（パンくず）— Lutie風：白背景・左寄せ */
     .detail-hero {
-      background: linear-gradient(180deg, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.80) 100%);
-      padding: 90px 20px 36px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      background: #fff;
+      padding: 80px 20px 16px;
+      border-bottom: 1px solid #eee;
     }
     .breadcrumb {
       display: flex;
       align-items: center;
       gap: 6px;
       font-size: 11px;
-      color: rgba(255,255,255,0.5);
+      color: #999;
       letter-spacing: 1px;
-      justify-content: center;
-      font-family: 'Cinzel', serif;
+      max-width: 1090px;
+      margin: 0 auto;
+      font-family: 'Noto Sans JP', sans-serif;
     }
-    .breadcrumb a { color: rgba(255,255,255,0.5); }
-    .breadcrumb a:hover { color: rgba(255,255,255,0.9); }
-    .breadcrumb span { color: rgba(255,255,255,0.3); }
+    .breadcrumb a { color: #999; text-decoration: none; }
+    .breadcrumb a:hover { color: #333; }
+    .breadcrumb span { color: #ccc; }
 
     /* メインコンテンツ */
     .detail-content { max-width: 1090px; margin: 0 auto; padding: 48px 20px 80px; }
@@ -50,212 +49,175 @@
     }
     @media (max-width: 767px) { .detail-main { grid-template-columns: 1fr; gap: 28px; } }
 
-    /* 画像エリア */
+    /* 画像エリア — Lutie風：枠なしフラット */
     .detail-main-image {
-      border: 1px solid #CCCCCC;
-      border-radius: 5px;
       overflow: hidden;
-      margin-bottom: 12px;
-      background: #fff;
+      margin-bottom: 10px;
+      background: #f5f5f5;
     }
     .detail-main-image img {
       width: 100%;
       aspect-ratio: 1/1;
       object-fit: cover;
       display: block;
-      transition: transform 0.4s ease;
     }
-    .detail-main-image:hover img { transform: scale(1.03); }
-    .detail-thumb-row { display: flex; gap: 8px; }
+    .detail-thumb-row { display: flex; gap: 6px; }
     .detail-thumb {
-      border: 1px solid #CCCCCC;
-      border-radius: 4px;
       overflow: hidden;
       cursor: pointer;
       flex: 1;
-      transition: border-color 0.2s;
+      opacity: 0.6;
+      transition: opacity 0.2s;
     }
-    .detail-thumb.active { border-color: #111111; }
+    .detail-thumb:hover { opacity: 0.8; }
+    .detail-thumb.active { opacity: 1; }
     .detail-thumb img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
 
-    /* 情報エリア */
-    .detail-category {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 4px;
-      color: #999999;
-      margin-bottom: 8px;
-    }
+    /* 情報エリア — Lutie風：シンプル */
+    .detail-category { display: none; }
     .detail-name {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 24px;
-      color: #464646;
-      letter-spacing: 2px;
-      margin-bottom: 4px;
-      line-height: 1.4;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #333;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      line-height: 1.6;
     }
-    .detail-name-en {
-      font-family: 'Cinzel', serif;
-      font-size: 13px;
-      color: #999999;
-      letter-spacing: 2px;
-      margin-bottom: 16px;
-    }
-    .detail-price-area { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
-    .detail-price { font-family: 'Cinzel', serif; font-size: 32px; color: #111111; }
-    .detail-price-tax { font-size: 13px; color: #666666; }
-    .detail-price-original { font-size: 16px; color: #999999; text-decoration: line-through; }
-    .detail-shipping { font-size: 12px; color: #666666; margin-bottom: 20px; }
-    .detail-divider { height: 1px; background: #EEEEEE; margin: 20px 0; }
+    .detail-name-en { display: none; }
+    .detail-price-area { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+    .detail-price { font-family: 'Noto Sans JP', sans-serif; font-size: 20px; font-weight: 500; color: #111; }
+    .detail-price-tax { font-size: 12px; color: #999; }
+    .detail-price-original { font-size: 14px; color: #999; text-decoration: line-through; }
+    .detail-shipping { font-size: 12px; color: #999; margin-bottom: 24px; }
+    .detail-divider { height: 1px; background: #eee; margin: 24px 0; }
 
-    /* カラー選択 */
+    /* カラー選択 — Lutie風：ドロップダウン */
     .detail-option-label {
       font-size: 12px;
-      font-weight: 700;
-      color: #464646;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      font-weight: 400;
+      color: #666;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
     }
-    .selected-color-name { font-weight: 400; color: #666666; font-size: 12px; }
-    .color-select-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .selected-color-name { color: #333; font-size: 12px; }
+    .color-select-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
     .color-swatch {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      border: 3px solid transparent;
+      border: 2px solid transparent;
       cursor: pointer;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: border-color 0.2s;
       outline: none;
     }
-    .color-swatch:hover { transform: scale(1.15); }
-    .color-swatch.selected { border-color: #111111; }
+    .color-swatch:hover { border-color: #999; }
+    .color-swatch.selected { border-color: #111; }
 
-    /* 数量 */
-    .qty-row { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    /* 数量 — Lutie風 */
+    .qty-row { display: flex; align-items: center; gap: 0; margin-bottom: 24px; border: 1px solid #ddd; width: fit-content; }
     .qty-btn {
       width: 36px;
       height: 36px;
-      border: 1px solid #CCCCCC;
-      border-radius: 4px;
-      font-size: 18px;
-      color: #464646;
+      border: none;
+      font-size: 16px;
+      color: #666;
       background: #fff;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: border-color 0.2s;
+      transition: color 0.2s;
     }
-    .qty-btn:hover { border-color: #111111; }
+    .qty-btn:hover { color: #111; }
     .qty-input {
-      width: 52px;
+      width: 44px;
       height: 36px;
-      border: 1px solid #CCCCCC;
-      border-radius: 4px;
+      border: none;
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
       text-align: center;
-      font-size: 15px;
-      color: #464646;
+      font-size: 14px;
+      color: #333;
     }
-    .qty-input:focus { border-color: #111111; outline: none; }
+    .qty-input:focus { outline: none; }
 
-    /* カートボタン */
+    /* カートボタン — Lutie風：シンプルな黒ボタン */
     .btn-add-to-cart {
       width: 100%;
-      padding: 16px;
-      background: #111111;
-      color: #FFFFFF;
-      font-family: 'Cinzel', serif;
-      font-size: 14px;
-      letter-spacing: 3px;
-      border-radius: 5px;
-      border: 1px solid #111111;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 12px;
-      transition: opacity 0.3s;
-    }
-    .btn-add-to-cart:hover { opacity: 0.8; }
-
-    /* LINEボタン（LINE色維持） */
-    .btn-order-line {
-      width: 100%;
       padding: 14px;
-      background: linear-gradient(135deg, #06C755 0%, #04A847 100%);
+      background: #111;
       color: #fff;
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 13px;
+      font-weight: 500;
       letter-spacing: 1px;
-      border-radius: 5px;
+      border-radius: 0;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      margin-bottom: 20px;
-      transition: opacity 0.2s;
-      text-decoration: none;
+      margin-bottom: 12px;
+      transition: opacity 0.3s;
     }
-    .btn-order-line:hover { opacity: 0.85; }
+    .btn-add-to-cart:hover { opacity: 0.7; }
 
-    /* 特徴バッジ */
-    .detail-features { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-    .detail-feature-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      border: 1px solid #CCCCCC;
-      border-radius: 20px;
-      font-size: 11px;
-      color: #666666;
-      background: #F7F7F7;
-    }
+    /* LINEボタン・特徴バッジ: 非表示 */
+    .btn-order-line { display: none; }
+    .detail-features { display: none; }
 
-    /* タブ */
+    /* タブ — Lutie風：控えめなライン */
     .detail-tabs {
       display: flex;
-      border-bottom: 1px solid #CCCCCC;
+      border-bottom: 1px solid #eee;
       margin-bottom: 28px;
-      gap: 4px;
+      gap: 0;
     }
     .detail-tab-btn {
-      padding: 12px 24px;
+      padding: 12px 20px;
       font-family: 'Noto Sans JP', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: #999999;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      color: #999;
       background: none;
       border: none;
-      border-bottom: 2px solid transparent;
+      border-bottom: 1px solid transparent;
       cursor: pointer;
       margin-bottom: -1px;
       transition: color 0.2s, border-color 0.2s;
     }
-    .detail-tab-btn.active { color: #111111; border-bottom-color: #111111; }
+    .detail-tab-btn.active { color: #333; border-bottom-color: #333; }
     .detail-tab-panel { display: none; }
     .detail-tab-panel.active { display: block; }
-    .detail-tab-panel p { font-size: 14px; line-height: 2; color: #464646; margin-bottom: 16px; }
+    .detail-tab-panel p { font-size: 13px; line-height: 2; color: #555; margin-bottom: 16px; }
     .detail-tab-panel ul { padding-left: 20px; margin-bottom: 16px; }
-    .detail-tab-panel li { font-size: 14px; line-height: 2; color: #464646; margin-bottom: 4px; }
-    .detail-tab-panel ul li::marker { color: #999999; }
-    .detail-tab-panel a { color: #111111; text-decoration: underline; }
+    .detail-tab-panel li { font-size: 13px; line-height: 2; color: #555; margin-bottom: 4px; }
+    .detail-tab-panel ul li::marker { color: #ccc; }
+    .detail-tab-panel a { color: #333; text-decoration: underline; }
     .spec-table { width: 100%; border-collapse: collapse; }
-    .spec-table tr { border-bottom: 1px solid #EEEEEE; }
-    .spec-table th { font-size: 12px; font-weight: 700; color: #999999; padding: 10px 0; width: 130px; text-align: left; vertical-align: top; }
-    .spec-table td { font-size: 13px; color: #464646; padding: 10px 0; line-height: 1.8; }
+    .spec-table tr { border-bottom: 1px solid #f0f0f0; }
+    .spec-table th { font-size: 12px; font-weight: 400; color: #999; padding: 10px 0; width: 130px; text-align: left; vertical-align: top; }
+    .spec-table td { font-size: 13px; color: #555; padding: 10px 0; line-height: 1.8; }
 
-    /* 関連商品 */
+    /* 関連商品 — Lutie風：シンプル */
     .related-section { margin-top: 64px; }
-    .related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px 16px; }
     @media (max-width: 767px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
+    /* 関連商品カードもシンプル化 */
+    .related-grid .product-card,
+    .related-grid .product-card.wood-frame { background: transparent; border: none; box-shadow: none; }
+    .related-grid .product-card-info { background: transparent; border: none; box-shadow: none; padding: 8px 0 0; text-align: left; }
+    .related-grid .product-card-info h4 a { font-size: 13px; font-weight: 400; color: #333; text-decoration: none; }
+    .related-grid .product-card-info .price { font-size: 13px; font-weight: 400; color: #333; }
+    .related-grid .product-desc { display: none; }
+    .related-grid .btn-add-cart { display: none; }
+    .related-grid .product-tag { display: none; }
+    .related-grid .product-card-image img { transition: opacity 0.5s ease; }
+    .related-grid .product-card:hover .product-card-image img { opacity: 0.5; }
+    .related-grid .wood-frame::before { display: none; }
 
     /* トースト */
     .cart-toast {
@@ -512,10 +474,9 @@
          関連商品
          =================================== -->
     <div class="related-section">
-      <div class="section-heading">
-        <p class="section-heading-en">RELATED PRODUCTS</p>
-        <h2 class="section-heading-jp wood-burn">関連商品</h2>
-        <div class="section-heading-line"></div>
+      <div class="section-heading" style="margin-bottom:24px;">
+        <p class="section-heading-en" style="font-size:12px;letter-spacing:2px;color:#999;">RELATED PRODUCTS</p>
+        <div class="section-heading-line" style="margin-top:8px;"></div>
       </div>
       <div class="related-grid product-grid">
         <div class="product-card wood-frame">
