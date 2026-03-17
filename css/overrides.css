@@ -89,6 +89,31 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
     padding-left: calc((100% - 800px) / 2 + 20px) !important;
     padding-right: calc((100% - 800px) / 2 + 20px) !important;
   }
+  .login-container {
+    max-width: none !important;
+    padding-left: calc((100% - 460px) / 2 + 20px) !important;
+    padding-right: calc((100% - 460px) / 2 + 20px) !important;
+  }
+  .register-container {
+    max-width: none !important;
+    padding-left: calc((100% - 520px) / 2 + 20px) !important;
+    padding-right: calc((100% - 520px) / 2 + 20px) !important;
+  }
+  .mypage-content {
+    max-width: none !important;
+    padding-left: calc((100% - 1000px) / 2 + 20px) !important;
+    padding-right: calc((100% - 1000px) / 2 + 20px) !important;
+  }
+  .complete-main {
+    max-width: none !important;
+    padding-left: calc((100% - 640px) / 2 + 20px) !important;
+    padding-right: calc((100% - 640px) / 2 + 20px) !important;
+  }
+  .cancel-main {
+    max-width: none !important;
+    padding-left: calc((100% - 560px) / 2 + 20px) !important;
+    padding-right: calc((100% - 560px) / 2 + 20px) !important;
+  }
 }
 
 /* login/register はbodyクラスでページ全体を管理 */
@@ -98,8 +123,8 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
 .complete-page {
   background-color: transparent !important;
 }
-.login-page > *:not(.header):not(.footer):not(script):not(link),
-.register-page > *:not(.header):not(.footer):not(script):not(link) {
+.login-page > *:not(.header):not(.footer):not(.login-hero):not(script):not(link),
+.register-page > *:not(.header):not(.footer):not(.register-hero):not(script):not(link) {
   background: rgba(255,255,255,0.80) !important;
 }
 
@@ -108,9 +133,7 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
 .privacy-hero,
 .terms-hero,
 .detail-hero,
-.mypage-hero,
-.login-hero,
-.register-hero {
+.mypage-hero {
   background: linear-gradient(180deg, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.80) 100%) !important;
 }
 
@@ -154,8 +177,8 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
   .complete-main {
     background: rgba(255,255,255,0.45) !important;
   }
-  .login-page > *:not(.header):not(.footer):not(script):not(link),
-  .register-page > *:not(.header):not(.footer):not(script):not(link) {
+  .login-page > *:not(.header):not(.footer):not(.login-hero):not(script):not(link),
+  .register-page > *:not(.header):not(.footer):not(.register-hero):not(script):not(link) {
     background: rgba(255,255,255,0.45) !important;
   }
 }
@@ -467,8 +490,6 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
 }
 
 /* ヒーロー背景をダーク系（index統一）に */
-.login-hero,
-.register-hero,
 .cart-hero,
 .detail-hero,
 .mypage-hero,
