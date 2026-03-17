@@ -79,6 +79,16 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
     padding-left: calc((100% - 1090px) / 2 + 20px) !important;
     padding-right: calc((100% - 1090px) / 2 + 20px) !important;
   }
+  .contact-content {
+    max-width: none !important;
+    padding-left: calc((100% - 760px) / 2 + 20px) !important;
+    padding-right: calc((100% - 760px) / 2 + 20px) !important;
+  }
+  .faq-content {
+    max-width: none !important;
+    padding-left: calc((100% - 800px) / 2 + 20px) !important;
+    padding-right: calc((100% - 800px) / 2 + 20px) !important;
+  }
 }
 
 /* login/register はbodyクラスでページ全体を管理 */
@@ -95,8 +105,6 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
 
 /* ヒーローはダーク背景なので白半透明は不要 */
 .cart-hero,
-.contact-hero,
-.faq-hero,
 .privacy-hero,
 .terms-hero,
 .detail-hero,
@@ -464,8 +472,6 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
 .cart-hero,
 .detail-hero,
 .mypage-hero,
-.contact-hero,
-.faq-hero,
 .privacy-hero,
 .terms-hero {
   background: linear-gradient(180deg, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.80) 100%) !important;
