@@ -58,7 +58,8 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
 /* サブページ: PC全幅白背景（indexと統一） */
 .detail-content,
 .cart-content,
-.checkout-content {
+.checkout-content,
+.category-content {
   background: rgba(255,255,255,0.80) !important;
 }
 @media (min-width: 769px) {
@@ -182,7 +183,8 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
   .mypage-content,
   .mypage-main,
   .cancel-main,
-  .complete-main {
+  .complete-main,
+  .category-content {
     background: rgba(255,255,255,0.45) !important;
   }
   .login-page > *:not(.header):not(.footer):not(.login-hero):not(script):not(link),

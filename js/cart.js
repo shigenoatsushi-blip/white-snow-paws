@@ -24,9 +24,14 @@ const Cart = (() => {
   /* 商品をカートに追加 */
   function addItem(product) {
     const items = getItems();
-    // id + color で同一商品チェック
-    const key = product.id + '_' + (product.color || '');
-    const existing = items.find(i => (i.id + '_' + (i.color || '')) === key);
+    // id + color + length + options で同一商品チェック
+    const optionsKey = product.options ? JSON.stringify(product.options) : '';
+    const key = product.id + '_' + (product.color || '') + '_' + (product.length || '') + '_' + optionsKey;
+    const existing = items.find(i => {
+      const existingOptionsKey = i.options ? JSON.stringify(i.options) : '';
+      const existingKey = i.id + '_' + (i.color || '') + '_' + (i.length || '') + '_' + existingOptionsKey;
+      return existingKey === key;
+    });
     if (existing) {
       existing.quantity += product.quantity || 1;
     } else {
@@ -36,6 +41,8 @@ const Cart = (() => {
         price: product.price,
         image: product.image || '',
         color: product.color || '',
+        length: product.length || '',
+        options: product.options || null,
         quantity: product.quantity || 1,
       });
     }
@@ -44,10 +51,15 @@ const Cart = (() => {
   }
 
   /* 数量変更 */
-  function updateQuantity(id, color, quantity) {
+  function updateQuantity(id, color, length, options, quantity) {
     const items = getItems();
-    const key = id + '_' + (color || '');
-    const item = items.find(i => (i.id + '_' + (i.color || '')) === key);
+    const optionsKey = options ? JSON.stringify(options) : '';
+    const key = id + '_' + (color || '') + '_' + (length || '') + '_' + optionsKey;
+    const item = items.find(i => {
+      const existingOptionsKey = i.options ? JSON.stringify(i.options) : '';
+      const existingKey = i.id + '_' + (i.color || '') + '_' + (i.length || '') + '_' + existingOptionsKey;
+      return existingKey === key;
+    });
     if (item) {
       item.quantity = Math.max(1, quantity);
       save(items);
@@ -55,10 +67,14 @@ const Cart = (() => {
   }
 
   /* 商品削除 */
-  function removeItem(id, color) {
-    const items = getItems().filter(
-      i => !((i.id + '_' + (i.color || '')) === (id + '_' + (color || '')))
-    );
+  function removeItem(id, color, length, options) {
+    const optionsKey = options ? JSON.stringify(options) : '';
+    const key = id + '_' + (color || '') + '_' + (length || '') + '_' + optionsKey;
+    const items = getItems().filter(i => {
+      const existingOptionsKey = i.options ? JSON.stringify(i.options) : '';
+      const existingKey = i.id + '_' + (i.color || '') + '_' + (i.length || '') + '_' + existingOptionsKey;
+      return existingKey !== key;
+    });
     save(items);
   }
 
