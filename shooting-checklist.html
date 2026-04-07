@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>撮影チェックリスト｜White Snow Paws</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Serif JP', serif;
+      background: #f5f3f0;
+      color: #222;
+      padding: 24px 16px 60px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ヘッダー */
+    .header {
+      text-align: center;
+      border-bottom: 2px solid #222;
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+    .header-brand {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: #888;
+      margin-bottom: 8px;
+    }
+    .header-title {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      letter-spacing: 3px;
+      font-weight: 600;
+    }
+    .header-sub {
+      font-size: 12px;
+      color: #888;
+      margin-top: 8px;
+      letter-spacing: 1px;
+    }
+
+    /* 進捗バー */
+    .progress-wrap {
+      background: #e0ddd8;
+      border-radius: 4px;
+      height: 6px;
+      margin-bottom: 6px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: #222;
+      border-radius: 4px;
+      transition: width 0.3s;
+      width: 0%;
+    }
+    .progress-text {
+      font-size: 11px;
+      color: #888;
+      text-align: right;
+      margin-bottom: 28px;
+      letter-spacing: 1px;
+    }
+
+    /* セクション */
+    .section {
+      margin-bottom: 32px;
+    }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: #888;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    /* チェックアイテム */
+    .item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid #e8e5e0;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .item:last-child { border-bottom: none; }
+
+    .item input[type="checkbox"] { display: none; }
+
+    .check-box {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border: 1.5px solid #999;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .check-box svg { display: none; }
+
+    .item.done .check-box {
+      background: #222;
+      border-color: #222;
+    }
+    .item.done .check-box svg { display: block; }
+
+    .item-body { flex: 1; }
+    .item-label {
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+    .item-id {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      color: #aaa;
+      letter-spacing: 1px;
+      margin-right: 6px;
+    }
+    .item-note {
+      font-size: 11px;
+      color: #888;
+      line-height: 1.7;
+      margin-top: 4px;
+    }
+    .item.done .item-label { color: #aaa; text-decoration: line-through; }
+    .item.done .item-note  { color: #ccc; }
+
+    /* 優先度バッジ */
+    .badge {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: 1px;
+      font-family: 'Cinzel', serif;
+      padding: 2px 6px;
+      border-radius: 2px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .badge-must { background: #222; color: #fff; }
+    .badge-video { background: #555; color: #fff; }
+
+    /* ボタンエリア */
+    .btn-area {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .btn {
+      flex: 1;
+      padding: 14px;
+      border: 1.5px solid #222;
+      background: transparent;
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .btn:hover { background: #222; color: #fff; }
+    .btn-primary { background: #222; color: #fff; }
+    .btn-primary:hover { background: #444; }
+
+    /* 印刷用 */
+    @media print {
+      @page { margin: 14mm 16mm; size: A4; }
+      body { background: #fff; padding: 0; font-size: 12px; }
+      .btn-area { display: none; }
+      .progress-wrap, .progress-text { display: none; }
+      .check-box { border-color: #333; }
+      .item.done .check-box { background: #333; }
+      .item { page-break-inside: avoid; }
+      .section { page-break-inside: avoid; }
+      .header { margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <p class="header-brand">WHITE SNOW PAWS</p>
+    <h1 class="header-title">SHOOTING CHECKLIST</h1>
+    <p class="header-sub">河岸ロケーション撮影 — Web &amp; Instagram</p>
+  </div>
+
+  <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+  <p class="progress-text" id="progressText">0 / 17 完了</p>
+
+  <!-- A. 商品単体 -->
+  <div class="section">
+    <p class="section-title">A — 商品単体カット</p>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">A-1</span>リード・カラーを平置き（自然光・明るめ）<span class="badge badge-must">MUST</span></p>
+        <p class="item-note">ECサイトのサムネイル・カテゴリページ用。素材感が伝わる明るいトーンが購買率に直結。</p>
+      </div>
+    </label>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">A-2</span>ナスカン・金具のクローズアップ</p>
+        <p class="item-note">仕様・素材タブの補強。スペックを数字だけでなく視覚で伝える。</p>
+      </div>
+    </label>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">A-3</span>カラーを石・木に置いたフラットレイ<span class="badge badge-must">MUST</span></p>
+        <p class="item-note">Instagram投稿の一枚目に最適。スクロール停止力が高い。</p>
+      </div>
+    </label>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">A-4</span>複数カラーを並べたカラーバリエーション</p>
+        <p class="item-note">「10色展開」を文字ではなく画像で証明できる。カラーオーダーの訴求。</p>
+      </div>
+    </label>
+  </div>
+
+  <!-- B. 着用・使用シーン -->
+  <div class="section">
+    <p class="section-title">B — 着用・使用シーン</p>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">B-1</span>リードをつけた犬の歩きシーン（横から・引き）<span class="badge badge-must">MUST</span></p>
+        <p class="item-note">ECサイトheroセクション・Instagram広告のメイン素材。「使っている姿」が最も購買意欲を上げる。</p>
+      </div>
+    </label>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">B-2</span>飼い主がリードを持つ手元＋犬の鼻先（縦構図）<span class="badge badge-must">MUST</span></p>
+        <p class="item-note">手の温かみ＋ハンドメイド感。リール・ストーリーズに直結。</p>
+      </div>
+    </label>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">B-3</span>犬の首元カラーアップ（表情も入れる）</p>
+        <p class="item-note">カラー（首輪）商品ページ用メイン画像。着用サイズ感を伝える唯一の手段。</p>
+      </div>
+    </label>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">B-4</span>水辺で犬が動くシーン<span class="badge badge-must">MUST</span></p>
+        <p class="item-note">「防水・耐久性」という最大訴求ポイントを環境で証明。Instagram広告の鉄板素材。</p>
+      </div>
+    </label>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">B-5</span>人と犬が並んで歩く後ろ姿（縦・引き）</p>
+        <p class="item-note">Instagram世界観投稿として汎用性が高い。リールの冒頭・サムネにも使える。</p>
+      </div>
+    </label>
+  </div>
+
+  <!-- C. 環境・ロケーション -->
+  <div class="section">
+    <p class="section-title">C — 環境・ロケーションカット</p>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">C-1</span>河岸・水面の背景のみ（人・犬なし）</p>
+        <p class="item-note">テキストオーバーレイ用素材。Instagram広告でコピーを載せる背景として使う。</p>
+      </div>
+    </label>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">C-2</span>石・砂利・水辺にリードを置いたカット</p>
+        <p class="item-note">「雪国の自然環境で使える」ブランドストーリーをビジュアル化。ECサイトのセクション背景にも使える。</p>
+      </div>
+    </label>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">C-3</span>水面光・逆光・光の反射（情景カット）</p>
+        <p class="item-note">広告のブランドイメージ向上。商品不要でも世界観を伝えるInstagram投稿に使える。</p>
+      </div>
+    </label>
+  </div>
+
+  <!-- D. 動画クリップ -->
+  <div class="section">
+    <p class="section-title">D — 動画クリップ（ジンバル）</p>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">D-1</span>犬が走ってくるシーン・正面追い撮り<span class="badge badge-must">MUST</span><span class="badge badge-video">VIDEO</span></p>
+        <p class="item-note">Instagramリール冒頭3秒。視聴者を止める力が最も高いカット。</p>
+      </div>
+    </label>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">D-2</span>手元→犬の顔へのスローズーム／スライド<span class="badge badge-video">VIDEO</span></p>
+        <p class="item-note">リールオープニング用。ジンバルの滑らかさでハイエンド感が出る。</p>
+      </div>
+    </label>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">D-3</span>水辺で犬が動き回る・ワイドで余白あり<span class="badge badge-must">MUST</span><span class="badge badge-video">VIDEO</span></p>
+        <p class="item-note">防水性・アクティブユース訴求。BGMつけてリールにするだけで完成する素材。</p>
+      </div>
+    </label>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">D-4</span>カラー・リードのアップをスライドするクリップ<span class="badge badge-video">VIDEO</span></p>
+        <p class="item-note">ECサイトheroやInstagramストーリーズ広告の商品紹介動画素材。</p>
+      </div>
+    </label>
+  </div>
+
+  <!-- E. ブランドストーリー -->
+  <div class="section">
+    <p class="section-title">E — ブランドストーリー</p>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">E-1</span>製作者の手元・工具・素材 ※工房で別途</p>
+        <p class="item-note">「ハンドメイド一点一点」の証明。ECサイトの信頼性向上とInstagram投稿ネタになる。</p>
+      </div>
+    </label>
+
+    <label class="item" onclick="toggle(this)">
+      <input type="checkbox">
+      <div class="check-box"><svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <p class="item-label"><span class="item-id">E-2</span>タグ・ロゴ入りパッケージのカット</p>
+        <p class="item-note">購入後のアンボックス体験を事前に見せる。Instagramで拡散されやすい。</p>
+      </div>
+    </label>
+  </div>
+
+  <!-- ボタン -->
+  <div class="btn-area">
+    <button class="btn" onclick="resetAll()">RESET</button>
+    <button class="btn btn-primary" onclick="window.print()">PDF 出力 / 印刷</button>
+  </div>
+
+  <script>
+    const TOTAL = document.querySelectorAll('.item').length;
+
+    function toggle(el) {
+      el.classList.toggle('done');
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const done = document.querySelectorAll('.item.done').length;
+      const pct = Math.round(done / TOTAL * 100);
+      document.getElementById('progressBar').style.width = pct + '%';
+      document.getElementById('progressText').textContent = done + ' / ' + TOTAL + ' 完了';
+    }
+
+    function resetAll() {
+      document.querySelectorAll('.item').forEach(el => el.classList.remove('done'));
+      updateProgress();
+    }
+  </script>
+
+</body>
+</html>

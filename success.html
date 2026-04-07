@@ -146,6 +146,105 @@
       line-height: 1.8;
     }
 
+    /* 写真アップロード */
+    .photo-upload-section {
+      margin-top: 32px;
+      padding: 28px 24px;
+      background: #F7F7F7;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .photo-upload-title {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .photo-upload-heading {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 16px;
+      color: #464646;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+    }
+    .photo-upload-desc {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+    .photo-drop-area {
+      border: 2px dashed #ccc;
+      border-radius: 6px;
+      padding: 32px 16px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      margin-bottom: 12px;
+    }
+    .photo-drop-area:hover,
+    .photo-drop-area.dragover { border-color: #111; background: rgba(0,0,0,0.02); }
+    .photo-drop-area p { font-size: 13px; color: #999; }
+
+    .photo-preview {
+      display: none;
+      margin: 16px auto;
+      max-width: 280px;
+    }
+    .photo-preview img {
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    .photo-preview-name {
+      font-size: 11px;
+      color: #999;
+      margin-top: 6px;
+    }
+    .photo-change-link {
+      font-size: 12px;
+      color: #666;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-top: 6px;
+      display: inline-block;
+    }
+
+    .btn-upload-photo {
+      display: none;
+      margin: 16px auto 0;
+      padding: 14px 36px;
+      background: #111;
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      border: 1px solid #111;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    .btn-upload-photo:hover { opacity: 0.8; }
+    .btn-upload-photo:disabled { opacity: 0.4; cursor: default; }
+
+    .photo-upload-note {
+      font-size: 11px;
+      color: #999;
+      line-height: 1.7;
+      margin-top: 12px;
+    }
+    .photo-upload-done {
+      display: none;
+      margin-top: 16px;
+      padding: 14px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #464646;
+    }
+
     /* アカウント作成提案 */
     .account-suggest {
       display: none;
@@ -239,6 +338,40 @@
         <div class="complete-step">
           <div class="complete-step-num">📦</div>
           <div class="complete-step-label">発送・<br>お届け</div>
+        </div>
+      </div>
+
+      <!-- 写真アップロード -->
+      <div class="photo-upload-section" id="photoUploadSection">
+        <p class="photo-upload-title">PHOTO UPLOAD</p>
+        <h3 class="photo-upload-heading">愛犬のお写真を送信</h3>
+        <p class="photo-upload-desc">
+          ウッドバーニングをご注文のお客様は、<br>
+          制作に使用する愛犬のお写真をお送りください。
+        </p>
+
+        <div class="photo-drop-area" id="photoDropArea" onclick="document.getElementById('photoInput').click()">
+          <p>ここをタップ / クリックして写真を選択<br>または ドラッグ＆ドロップ</p>
+        </div>
+        <input type="file" id="photoInput" accept="image/jpeg,image/png,image/heic,image/webp" style="display:none">
+
+        <div class="photo-preview" id="photoPreview">
+          <img id="photoPreviewImg" src="" alt="プレビュー">
+          <p class="photo-preview-name" id="photoFileName"></p>
+          <span class="photo-change-link" onclick="document.getElementById('photoInput').click()">写真を変更する</span>
+        </div>
+
+        <button class="btn-upload-photo" id="btnUploadPhoto" onclick="uploadPhoto()">
+          写真を送信する
+        </button>
+
+        <p class="photo-upload-note">
+          JPG / PNG / HEIC 対応（6MB以下）<br>
+          正面からのお顔写真がおすすめです
+        </p>
+
+        <div class="photo-upload-done" id="photoUploadDone">
+          &#10003; 写真を送信しました。制作に入らせていただきます。
         </div>
       </div>
 
@@ -341,6 +474,94 @@
         document.getElementById('accountSuggest').style.display = 'block';
       }
     })();
+
+    /* ===================================
+       写真アップロード
+       =================================== */
+    let selectedFile = null;
+    const sessionId = new URLSearchParams(window.location.search).get('session_id');
+
+    // ファイル選択
+    document.getElementById('photoInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      if (file.size > 6 * 1024 * 1024) {
+        alert('ファイルサイズが6MBを超えています。もう少し小さい画像をお選びください。');
+        return;
+      }
+      selectedFile = file;
+      showPreview(file);
+    });
+
+    // ドラッグ＆ドロップ
+    const dropArea = document.getElementById('photoDropArea');
+    dropArea.addEventListener('dragover', function(e) { e.preventDefault(); dropArea.classList.add('dragover'); });
+    dropArea.addEventListener('dragleave', function() { dropArea.classList.remove('dragover'); });
+    dropArea.addEventListener('drop', function(e) {
+      e.preventDefault();
+      dropArea.classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      if (!file || !file.type.startsWith('image/')) return;
+      if (file.size > 6 * 1024 * 1024) {
+        alert('ファイルサイズが6MBを超えています。');
+        return;
+      }
+      selectedFile = file;
+      document.getElementById('photoInput').files = e.dataTransfer.files;
+      showPreview(file);
+    });
+
+    function showPreview(file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('photoPreviewImg').src = e.target.result;
+        document.getElementById('photoFileName').textContent = file.name;
+        document.getElementById('photoPreview').style.display = 'block';
+        document.getElementById('btnUploadPhoto').style.display = 'block';
+        document.getElementById('photoDropArea').style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    async function uploadPhoto() {
+      if (!selectedFile || !sessionId) return;
+
+      const btn = document.getElementById('btnUploadPhoto');
+      btn.disabled = true;
+      btn.textContent = '送信中...';
+
+      try {
+        // Supabase Storage にアップロード
+        const ext = selectedFile.name.split('.').pop();
+        const filePath = sessionId + '/' + Date.now() + '.' + ext;
+
+        const { error: uploadError } = await _supabase.storage
+          .from('order-photos')
+          .upload(filePath, selectedFile);
+
+        if (uploadError) throw uploadError;
+
+        // Netlify Function で DB 更新 + 管理者通知
+        const res = await fetch('/.netlify/functions/upload-order-photo', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ session_id: sessionId, photo_path: filePath }),
+        });
+
+        if (!res.ok) throw new Error('Server error');
+
+        // 完了表示
+        document.getElementById('photoPreview').style.display = 'none';
+        btn.style.display = 'none';
+        document.getElementById('photoUploadDone').style.display = 'block';
+        document.querySelector('.photo-upload-desc').textContent = 'ありがとうございます！';
+        document.querySelector('.photo-upload-note').style.display = 'none';
+      } catch (err) {
+        alert('送信に失敗しました。お手数ですがLINEまたはメールでお写真をお送りください。');
+        btn.disabled = false;
+        btn.textContent = '写真を送信する';
+      }
+    }
   </script>
 </body>
 

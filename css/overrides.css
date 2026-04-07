@@ -789,3 +789,68 @@ textarea:focus {
 .breadcrumb a:hover {
   color: #FFFFFF !important;
 }
+
+/* ============================================
+   ウッドバーニングセクション
+   ============================================ */
+.wb-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.wb-image img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+.wb-text p {
+  font-size: 14px;
+  line-height: 2.4;
+  color: #555;
+  margin-bottom: 12px;
+}
+.wb-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 8px;
+}
+.wb-info-box {
+  background: rgba(255,255,255,0.55);
+  border: 1px solid #ddd;
+  padding: 24px 28px;
+}
+.wb-info-box h3 {
+  font-family: var(--font-heading-en, 'Cinzel', serif);
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #888;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.wb-info-box ul {
+  padding-left: 0;
+  list-style: none;
+}
+.wb-info-box li {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #555;
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 4px;
+}
+.wb-info-box li::before {
+  content: '・';
+  position: absolute;
+  left: 0;
+  color: #aaa;
+}
+@media (max-width: 767px) {
+  .wb-main       { grid-template-columns: 1fr; gap: 24px; }
+  .wb-info-grid  { grid-template-columns: 1fr; gap: 16px; }
+  .wb-info-box   { padding: 20px; }
+}
