@@ -1,6 +1,7 @@
 /* ===================================
    Netlify Function: upload-order-photo
-   注文写真のDB更新 + 管理者通知
+   ファイルをbase64で受け取り、Supabase Storageに保存（service_role使用）
+   + orders.photo_url 更新 + 管理者通知
    =================================== */
 
 const { createClient } = require('@supabase/supabase-js');
@@ -13,7 +14,6 @@ const supabase = createClient(
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 exports.handler = async (event) => {
-  // CORS対応
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
@@ -28,10 +28,10 @@ exports.handler = async (event) => {
   }
 
   try {
-    const { session_id, photo_path } = JSON.parse(event.body);
+    const { session_id, file_base64, file_name, file_type } = JSON.parse(event.body);
 
-    if (!session_id || !photo_path) {
-      return { statusCode: 400, headers, body: JSON.stringify({ error: 'session_id and photo_path are required' }) };
+    if (!session_id || !file_base64 || !file_name) {
+      return { statusCode: 400, headers, body: JSON.stringify({ error: 'session_id, file_base64, file_name are required' }) };
     }
 
     // session_id で注文を取得
@@ -42,18 +42,37 @@ exports.handler = async (event) => {
       .single();
 
     if (fetchError || !order) {
+      console.error('Order not found for session_id:', session_id, fetchError);
       return { statusCode: 404, headers, body: JSON.stringify({ error: 'Order not found' }) };
     }
 
-    // photo_url を更新
+    // base64 → Buffer に変換
+    const fileBuffer = Buffer.from(file_base64, 'base64');
+    const ext = file_name.split('.').pop().toLowerCase();
+    const filePath = `${session_id}/${Date.now()}.${ext}`;
+    const contentType = file_type || 'image/jpeg';
+
+    // Supabase Storage にアップロード（service_role = RLS無視）
+    const { error: uploadError } = await supabase.storage
+      .from('order-photos')
+      .upload(filePath, fileBuffer, {
+        contentType,
+        upsert: false,
+      });
+
+    if (uploadError) {
+      console.error('Storage upload error:', uploadError);
+      return { statusCode: 500, headers, body: JSON.stringify({ error: 'Failed to upload photo' }) };
+    }
+
+    // orders.photo_url を更新
     const { error: updateError } = await supabase
       .from('orders')
-      .update({ photo_url: photo_path })
+      .update({ photo_url: filePath })
       .eq('id', order.id);
 
     if (updateError) {
       console.error('Photo URL update error:', updateError);
-      return { statusCode: 500, headers, body: JSON.stringify({ error: 'Failed to update order' }) };
     }
 
     // 管理者に通知メール
@@ -68,7 +87,7 @@ exports.handler = async (event) => {
           text: `注文 ${order.order_number} の写真が届きました。
 
 お客様メール: ${order.customer_email}
-写真パス: ${photo_path}
+写真パス: ${filePath}
 
 Supabase ダッシュボード > Storage > order-photos で確認できます。
 `,

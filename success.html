@@ -366,7 +366,7 @@
         </button>
 
         <p class="photo-upload-note">
-          JPG / PNG / HEIC 対応（6MB以下）<br>
+          JPG / PNG / HEIC 対応（4MB以下）<br>
           正面からのお顔写真がおすすめです
         </p>
 
@@ -485,8 +485,8 @@
     document.getElementById('photoInput').addEventListener('change', function(e) {
       const file = e.target.files[0];
       if (!file) return;
-      if (file.size > 6 * 1024 * 1024) {
-        alert('ファイルサイズが6MBを超えています。もう少し小さい画像をお選びください。');
+      if (file.size > 4 * 1024 * 1024) {
+        alert('ファイルサイズが4MBを超えています。もう少し小さい画像をお選びください。');
         return;
       }
       selectedFile = file;
@@ -502,8 +502,8 @@
       dropArea.classList.remove('dragover');
       const file = e.dataTransfer.files[0];
       if (!file || !file.type.startsWith('image/')) return;
-      if (file.size > 6 * 1024 * 1024) {
-        alert('ファイルサイズが6MBを超えています。');
+      if (file.size > 4 * 1024 * 1024) {
+        alert('ファイルサイズが4MBを超えています。');
         return;
       }
       selectedFile = file;
@@ -523,6 +523,15 @@
       reader.readAsDataURL(file);
     }
 
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
     async function uploadPhoto() {
       if (!selectedFile || !sessionId) return;
 
@@ -531,24 +540,24 @@
       btn.textContent = '送信中...';
 
       try {
-        // Supabase Storage にアップロード
-        const ext = selectedFile.name.split('.').pop();
-        const filePath = sessionId + '/' + Date.now() + '.' + ext;
+        // ファイルをbase64に変換してNetlify Functionに送る
+        const base64 = await fileToBase64(selectedFile);
 
-        const { error: uploadError } = await _supabase.storage
-          .from('order-photos')
-          .upload(filePath, selectedFile);
-
-        if (uploadError) throw uploadError;
-
-        // Netlify Function で DB 更新 + 管理者通知
         const res = await fetch('/.netlify/functions/upload-order-photo', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId, photo_path: filePath }),
+          body: JSON.stringify({
+            session_id: sessionId,
+            file_base64: base64,
+            file_name: selectedFile.name,
+            file_type: selectedFile.type,
+          }),
         });
 
-        if (!res.ok) throw new Error('Server error');
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.error || 'Server error');
+        }
 
         // 完了表示
         document.getElementById('photoPreview').style.display = 'none';
