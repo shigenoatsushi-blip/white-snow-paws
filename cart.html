@@ -381,10 +381,10 @@
             ${item.color ? `<p class="cart-item-color">カラー：${item.color}</p>` : ''}
             <p class="cart-item-price">¥${item.price.toLocaleString()}</p>
             <div class="cart-item-actions">
-              <button class="cart-qty-btn" onclick="changeItemQty('${item.id}','${item.color}',-1)">−</button>
+              <button class="cart-qty-btn" onclick="changeItemQty(${idx},-1)">−</button>
               <span class="cart-qty-num">${item.quantity}</span>
-              <button class="cart-qty-btn" onclick="changeItemQty('${item.id}','${item.color}',1)">＋</button>
-              <button class="btn-cart-remove" onclick="removeItem('${item.id}','${item.color}')">削除</button>
+              <button class="cart-qty-btn" onclick="changeItemQty(${idx},1)">＋</button>
+              <button class="btn-cart-remove" onclick="removeItem(${idx})">削除</button>
             </div>
           </div>
           <div class="cart-item-right">
@@ -433,22 +433,23 @@
         </div>`;
     }
 
-    function changeItemQty(id, color, delta) {
+    function changeItemQty(idx, delta) {
       const items = Cart.getItems();
-      const key = id + '_' + (color || '');
-      const item = items.find(i => (i.id + '_' + (i.color || '')) === key);
+      const item = items[idx];
       if (!item) return;
       const newQty = item.quantity + delta;
       if (newQty <= 0) {
-        removeItem(id, color);
+        removeItem(idx);
       } else {
-        Cart.updateQuantity(id, color, newQty);
+        Cart.updateQuantity(item.id, item.color, item.length, item.options, newQty);
         renderCart();
       }
     }
 
-    function removeItem(id, color) {
-      Cart.removeItem(id, color);
+    function removeItem(idx) {
+      const item = Cart.getItems()[idx];
+      if (!item) return;
+      Cart.removeItem(item.id, item.color, item.length, item.options);
       renderCart();
     }
 
