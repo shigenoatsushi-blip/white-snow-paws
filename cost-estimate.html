@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>White Snow Paws ECサイト 制作費用見積書</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: #2C241C;
+      background: #FAF8F5;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* 印刷・PDF用 */
+    @media print {
+      @page {
+        size: A4;
+        margin: 12mm 14mm;
+      }
+
+      .no-print { display: none; }
+
+      body {
+        background: #fff;
+        font-size: 11px;
+        line-height: 1.6;
+      }
+
+      .page-break { page-break-before: always; }
+
+      .cover {
+        min-height: unset;
+        height: auto;
+        padding: 40px 40px 36px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .cover-logo { font-size: 28px; margin-bottom: 6px; }
+      .cover-subtitle { font-size: 12px; margin-bottom: 36px; }
+      .cover-title { font-size: 24px; margin-bottom: 28px; }
+      .cover-divider { margin-bottom: 24px; }
+      .cover-meta { font-size: 12px; line-height: 2; }
+      .cover-paw { font-size: 80px; right: 40px; bottom: 30px; }
+
+      .container {
+        max-width: 100%;
+        padding: 16px 0;
+      }
+
+      .section {
+        padding: 24px 0;
+        break-inside: avoid;
+      }
+      .section-title {
+        font-size: 18px;
+        margin-bottom: 16px;
+        padding-bottom: 10px;
+      }
+
+      .overview-grid { gap: 12px; margin-bottom: 16px; }
+      .overview-card { padding: 14px 16px; }
+      .overview-card p { font-size: 11px; line-height: 1.7; }
+
+      .info-table th, .info-table td { padding: 8px 12px; font-size: 11px; }
+      .total-row td { font-size: 12px; }
+
+      .comparison-grid { gap: 10px; }
+      .comparison-card { padding: 14px 16px; }
+      .comparison-card .price { font-size: 16px; }
+
+      .footer-note {
+        position: fixed;
+        bottom: 0;
+        left: 14mm;
+        right: 14mm;
+        font-size: 9px;
+        border-top: 1px solid #ccc;
+        padding: 4px 0;
+        color: #888;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 12px 28px;
+      background: #4A7C59;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(74,124,89,0.3);
+      z-index: 999;
+    }
+    .print-btn:hover { background: #3A6349; }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    /* ===== 表紙 ===== */
+    .cover {
+      background: linear-gradient(135deg, #2C241C 0%, #4A3728 60%, #3A6349 100%);
+      color: #FAF8F5;
+      padding: 80px 60px 70px;
+      min-height: 360px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .cover-subtitle {
+      font-size: 13px;
+      color: rgba(250,248,245,0.6);
+      letter-spacing: 0.12em;
+      margin-bottom: 50px;
+    }
+    .cover-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 36px;
+    }
+    .cover-divider {
+      width: 60px;
+      height: 2px;
+      background: rgba(250,248,245,0.4);
+      margin-bottom: 32px;
+    }
+    .cover-meta {
+      font-size: 13px;
+      line-height: 2.2;
+      color: rgba(250,248,245,0.85);
+    }
+    .cover-meta .label {
+      color: rgba(250,248,245,0.5);
+      font-size: 11px;
+      display: inline-block;
+      width: 80px;
+      letter-spacing: 0.05em;
+    }
+    .cover-paw {
+      position: absolute;
+      right: 60px;
+      bottom: 40px;
+      font-size: 120px;
+      opacity: 0.07;
+      line-height: 1;
+    }
+
+    /* ===== セクション共通 ===== */
+    .section {
+      padding: 48px 0;
+      border-bottom: 1px solid #e8e2d9;
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #2C241C;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid #4A7C59;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: #4A7C59;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 14px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ===== 概要グリッド ===== */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .overview-card {
+      background: #fff;
+      border: 1px solid #e0d8ce;
+      border-radius: 8px;
+      padding: 20px 22px;
+    }
+    .overview-card h4 {
+      font-size: 12px;
+      color: #888;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+    .overview-card p {
+      font-size: 13px;
+      color: #2C241C;
+      line-height: 1.8;
+    }
+
+    /* ===== テーブル ===== */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+    .info-table thead th {
+      background: #2C241C;
+      color: #FAF8F5;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 12px 16px;
+      text-align: left;
+      letter-spacing: 0.05em;
+    }
+    .info-table thead th.text-right { text-align: right; }
+    .info-table thead th.text-center { text-align: center; }
+    .info-table tbody tr:nth-child(even) { background: #f7f3ee; }
+    .info-table tbody tr:hover { background: #efe9e0; }
+    .info-table td {
+      padding: 12px 16px;
+      font-size: 13px;
+      border-bottom: 1px solid #e8e2d9;
+      vertical-align: top;
+    }
+    .info-table td.text-right { text-align: right; }
+    .info-table td.text-center { text-align: center; }
+    .info-table td.num {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-variant-numeric: tabular-nums;
+    }
+    .info-table .item-no {
+      color: #aaa;
+      font-size: 11px;
+      width: 32px;
+    }
+    .info-table .item-sub {
+      font-size: 11px;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    /* 小計・消費税・合計行 */
+    .subtotal-row td {
+      background: #f0ebe4;
+      font-weight: 500;
+      border-top: 2px solid #d0c8be;
+    }
+    .tax-row td {
+      background: #f0ebe4;
+      color: #666;
+    }
+    .total-row td {
+      background: #2C241C;
+      color: #FAF8F5;
+      font-size: 15px;
+      font-weight: 700;
+      border-top: none;
+    }
+    .total-row td.num { font-size: 17px; }
+
+    /* ===== 月額コスト ===== */
+    .running-cost-note {
+      background: #e8f0eb;
+      border-left: 4px solid #4A7C59;
+      padding: 14px 18px;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #2C241C;
+    }
+
+    /* ===== 比較グリッド ===== */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 8px;
+    }
+    .comparison-card {
+      background: #fff;
+      border: 1px solid #e0d8ce;
+      border-radius: 8px;
+      padding: 18px 16px;
+      text-align: center;
+    }
+    .comparison-card.highlight {
+      border-color: #4A7C59;
+      border-width: 2px;
+      background: #f0f6f2;
+    }
+    .comparison-card .card-label {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+    .comparison-card .card-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #2C241C;
+      margin-bottom: 12px;
+    }
+    .comparison-card.highlight .card-name { color: #3A6349; }
+    .comparison-card .price {
+      font-size: 20px;
+      font-weight: 700;
+      color: #2C241C;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .comparison-card.highlight .price { color: #3A6349; }
+    .comparison-card .price-note {
+      font-size: 10px;
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+    .comparison-card .pros, .comparison-card .cons {
+      font-size: 11px;
+      text-align: left;
+      line-height: 1.8;
+    }
+    .comparison-card .pros { color: #3A6349; }
+    .comparison-card .cons { color: #c0392b; margin-top: 4px; }
+    .badge-recommend {
+      display: inline-block;
+      background: #4A7C59;
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== 備考 ===== */
+    .notes-list {
+      list-style: none;
+      padding: 0;
+    }
+    .notes-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #f0ebe4;
+      font-size: 13px;
+      display: flex;
+      gap: 10px;
+    }
+    .notes-list li:last-child { border-bottom: none; }
+    .notes-list .note-icon {
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ===== フッター ===== */
+    .footer-note {
+      text-align: center;
+      font-size: 11px;
+      color: #aaa;
+      padding: 32px 0 0;
+      margin-top: 32px;
+      border-top: 1px solid #e8e2d9;
+    }
+  </style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">PDFとして保存</button>
+
+<!-- 表紙 -->
+<div class="cover">
+  <div class="cover-logo">White Snow Paws</div>
+  <div class="cover-subtitle">PET PRODUCTS ONLINE SHOP</div>
+  <div class="cover-title">ECサイト制作費用<br>見積書（市場相場）</div>
+  <div class="cover-divider"></div>
+  <div class="cover-meta">
+    <div><span class="label">発行日</span>2026年4月</div>
+    <div><span class="label">作成者</span>重野 厚</div>
+    <div><span class="label">対象サイト</span>https://white-snow-paws.netlify.app</div>
+    <div><span class="label">備考</span>本書は制作工数に基づく市場相場の参考見積です</div>
+  </div>
+  <div class="cover-paw">🐾</div>
+</div>
+
+<div class="container">
+
+  <!-- セクション1：制作概要 -->
+  <div class="section">
+    <h2 class="section-title"><span class="section-num">1</span>制作サイト概要</h2>
+    <div class="overview-grid">
+      <div class="overview-card">
+        <h4>サイト種別</h4>
+        <p>オリジナルデザイン ECサイト<br>（フレームワーク不使用・フルカスタム）</p>
+      </div>
+      <div class="overview-card">
+        <h4>会員・認証機能</h4>
+        <p>会員登録・ログイン・マイページ<br>（Supabase 認証連携）</p>
+      </div>
+      <div class="overview-card">
+        <h4>決済機能</h4>
+        <p>クレジットカード決済（Stripe）<br>注文データ自動保存・Webhook対応</p>
+      </div>
+      <div class="overview-card">
+        <h4>メール通知</h4>
+        <p>注文確認メール（自動送信）<br>管理者通知メール（複数宛先対応）</p>
+      </div>
+      <div class="overview-card">
+        <h4>写真アップロード</h4>
+        <p>注文後の商品写真登録機能<br>クラウドストレージ連携（Supabase Storage）</p>
+      </div>
+      <div class="overview-card">
+        <h4>ホスティング・運用環境</h4>
+        <p>Netlify（CDN・サーバーレス Functions）<br>GitHub 継続的デプロイ連携</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- セクション2：見積明細 -->
+  <div class="section">
+    <h2 class="section-title"><span class="section-num">2</span>制作費用 明細（初期費用）</h2>
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th style="width:32px">#</th>
+          <th>項目</th>
+          <th>作業内容</th>
+          <th class="text-center" style="width:60px">工数</th>
+          <th class="text-right" style="width:90px">単価</th>
+          <th class="text-right" style="width:100px">金額（税抜）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="item-no">1</td>
+          <td>要件定義・設計</td>
+          <td>
+            ヒアリング・機能整理・DB設計・画面構成
+            <div class="item-sub">ワイヤーフレーム、テーブル設計書、RLS設計</div>
+          </td>
+          <td class="text-center">8h</td>
+          <td class="text-right num">¥8,000</td>
+          <td class="text-right num">¥64,000</td>
+        </tr>
+        <tr>
+          <td class="item-no">2</td>
+          <td>UIデザイン制作</td>
+          <td>
+            ブランドカラー設計・全ページデザイン（7画面）
+            <div class="item-sub">トップ・商品一覧・商品詳細・カート・購入・マイページ・完了画面</div>
+          </td>
+          <td class="text-center">20h</td>
+          <td class="text-right num">¥8,000</td>
+          <td class="text-right num">¥160,000</td>
+        </tr>
+        <tr>
+          <td class="item-no">3</td>
+          <td>フロントエンド実装</td>
+          <td>
+            HTML/CSS/JS レスポンシブ対応 全ページ実装
+            <div class="item-sub">SP/PC 両対応・アニメーション・インタラクション</div>
+          </td>
+          <td class="text-center">25h</td>
+          <td class="text-right num">¥8,000</td>
+          <td class="text-right num">¥200,000</td>
+        </tr>
+        <tr>
+          <td class="item-no">4</td>
+          <td>会員認証・DB構築</td>
+          <td>
+            Supabase 認証・ユーザー管理・セキュリティ設定
+            <div class="item-sub">登録・ログイン・パスワードリセット・RLS（行単位アクセス制御）</div>
+          </td>
+          <td class="text-center">12h</td>
+          <td class="text-right num">¥8,000</td>
+          <td class="text-right num">¥96,000</td>
+        </tr>
+        <tr>
+          <td class="item-no">5</td>
+          <td>商品・カート機能</td>
+          <td>
+            商品一覧・詳細・カート・注文確認フロー
+            <div class="item-sub">バリエーション選択（カラー・サイズ）・数量管理・在庫連携</div>
+          </td>
+          <td class="text-center">15h</td>
+          <td class="text-right num">¥8,000</td>
+          <td class="text-right num">¥120,000</td>
+        </tr>
+        <tr>
+          <td class="item-no">6</td>
+          <td>決済システム連携</td>
+          <td>
+            Stripe Checkout 実装・注文データ自動保存・Webhook
+            <div class="item-sub">テスト→本番切り替え対応・決済キャンセル処理</div>
+          </td>
+          <td class="text-center">18h</td>
+          <td class="text-right num">¥8,000</td>
+          <td class="text-right num">¥144,000</td>
+        </tr>
+        <tr>
+          <td class="item-no">7</td>
+          <td>メール通知機能</td>
+          <td>
+            注文確認メール・管理者通知の自動送信実装
+            <div class="item-sub">HTMLメールテンプレート・Resend API連携・複数宛先対応</div>
+          </td>
+          <td class="text-center">8h</td>
+          <td class="text-right num">¥8,000</td>
+          <td class="text-right num">¥64,000</td>
+        </tr>
+        <tr>
+          <td class="item-no">8</td>
+          <td>写真アップロード機能</td>
+          <td>
+            注文後の商品写真登録・クラウドStorage連携
+            <div class="item-sub">ファイル形式バリデーション・ストレージ管理・表示機能</div>
+          </td>
+          <td class="text-center">10h</td>
+          <td class="text-right num">¥8,000</td>
+          <td class="text-right num">¥80,000</td>
+        </tr>
+        <tr>
+          <td class="item-no">9</td>
+          <td>テスト・品質保証</td>
+          <td>
+            動作確認・ブラウザテスト・バグ修正
+            <div class="item-sub">Chrome/Safari/Firefox・iOS/Android・決済テスト（テストカード）</div>
+          </td>
+          <td class="text-center">12h</td>
+          <td class="text-right num">¥8,000</td>
+          <td class="text-right num">¥96,000</td>
+        </tr>
+        <tr>
+          <td class="item-no">10</td>
+          <td>本番環境構築・デプロイ</td>
+          <td>
+            Netlify設定・環境変数管理・Stripe本番移行サポート
+            <div class="item-sub">GitHub連携・自動デプロイ・ドメイン設定</div>
+          </td>
+          <td class="text-center">6h</td>
+          <td class="text-right num">¥8,000</td>
+          <td class="text-right num">¥48,000</td>
+        </tr>
+        <tr>
+          <td class="item-no">11</td>
+          <td>クライアント向け資料</td>
+          <td>
+            操作説明書・ご提案資料・ご説明ドキュメント作成
+            <div class="item-sub">PDF対応・各種設定手順書含む</div>
+          </td>
+          <td class="text-center">5h</td>
+          <td class="text-right num">¥8,000</td>
+          <td class="text-right num">¥40,000</td>
+        </tr>
+        <tr class="subtotal-row">
+          <td colspan="3" class="text-right" style="font-weight:700">小計（税抜）</td>
+          <td class="text-center">139h</td>
+          <td></td>
+          <td class="text-right num" style="font-weight:700">¥1,112,000</td>
+        </tr>
+        <tr class="tax-row">
+          <td colspan="5" class="text-right">消費税（10%）</td>
+          <td class="text-right num">¥111,200</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="5" class="text-right" style="font-size:13px;font-weight:700">合計（税込）</td>
+          <td class="text-right num">¥1,223,200</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- セクション3：月額運営コスト -->
+  <div class="section">
+    <h2 class="section-title"><span class="section-num">3</span>月額運営コスト（目安）</h2>
+    <div class="running-cost-note">
+      本サイトは月額コストを極限まで抑えた設計です。販売開始時点では<strong>月額ほぼ0円</strong>から運用を開始できます。
+    </div>
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th>サービス</th>
+          <th>用途</th>
+          <th class="text-right">月額（目安）</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Netlify</td>
+          <td>ホスティング・サーバーレス Functions</td>
+          <td class="text-right num"><strong>¥0</strong></td>
+          <td>無料プランで運用可能（月100GB帯域・125,000関数実行まで）</td>
+        </tr>
+        <tr>
+          <td>Supabase</td>
+          <td>認証・データベース・ファイルStorage</td>
+          <td class="text-right num"><strong>¥0</strong></td>
+          <td>無料プランで運用可能（月間アクティブ50,000ユーザーまで）</td>
+        </tr>
+        <tr>
+          <td>Stripe</td>
+          <td>クレジットカード決済</td>
+          <td class="text-right num">売上の3.6%</td>
+          <td>固定月額なし。¥10,000の注文あたり¥360の手数料のみ</td>
+        </tr>
+        <tr>
+          <td>Resend</td>
+          <td>注文確認メール送信</td>
+          <td class="text-right num"><strong>¥0</strong>〜¥3,000</td>
+          <td>月100通まで無料。50,000通まで＄20（約¥3,000）</td>
+        </tr>
+        <tr>
+          <td>独自ドメイン</td>
+          <td>メール送信元ドメイン認証用</td>
+          <td class="text-right num">約¥200</td>
+          <td>年払い¥1,500〜¥3,000をお名前.com等で取得</td>
+        </tr>
+        <tr class="subtotal-row">
+          <td colspan="2" class="text-right" style="font-weight:700">合計（月額・販売開始時）</td>
+          <td class="text-right num" style="font-weight:700">売上の3.6%のみ</td>
+          <td>売上が発生しない月は実質¥0</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- セクション4：他社比較 -->
+  <div class="section">
+    <h2 class="section-title"><span class="section-num">4</span>発注先別 費用比較</h2>
+    <p style="margin-bottom:20px;color:#666;font-size:13px;">同等機能のECサイトを各発注先に依頼した場合の市場相場です。</p>
+    <div class="comparison-grid">
+      <div class="comparison-card highlight">
+        <div class="badge-recommend">本制作</div>
+        <div class="card-name">フリーランス<br>個人開発者</div>
+        <div class="price">¥80万〜<br>¥120万</div>
+        <div class="price-note">（税抜）</div>
+        <div class="pros">✓ コスト効率が高い<br>✓ 直接やり取り可能<br>✓ 柔軟な対応</div>
+        <div class="cons">✗ 担当1名のため万が一のリスク</div>
+      </div>
+      <div class="comparison-card">
+        <div class="card-label">参考</div>
+        <div class="card-name">中小<br>Web制作会社</div>
+        <div class="price">¥200万〜<br>¥400万</div>
+        <div class="price-note">（税抜）</div>
+        <div class="pros">✓ チーム対応<br>✓ サポート体制</div>
+        <div class="cons">✗ コストが高い<br>✗ 調整に時間がかかる</div>
+      </div>
+      <div class="comparison-card">
+        <div class="card-label">参考</div>
+        <div class="card-name">大手<br>Web制作会社</div>
+        <div class="price">¥500万〜<br>¥1,000万</div>
+        <div class="price-note">（税抜）</div>
+        <div class="pros">✓ 大規模対応<br>✓ ブランド力・実績</div>
+        <div class="cons">✗ 中小企業には過剰<br>✗ 固定費・保守費が高額</div>
+      </div>
+      <div class="comparison-card">
+        <div class="card-label">参考</div>
+        <div class="card-name">ASP型EC<br>（Shopify等）</div>
+        <div class="price">¥30万〜<br>¥80万</div>
+        <div class="price-note">＋月額¥3,000〜¥3万</div>
+        <div class="pros">✓ 初期費用が安い<br>✓ 安定したプラットフォーム</div>
+        <div class="cons">✗ テンプレート依存でデザイン制約あり<br>✗ 月額コストが永続的に発生</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- セクション5：備考 -->
+  <div class="section">
+    <h2 class="section-title"><span class="section-num">5</span>備考・注意事項</h2>
+    <ul class="notes-list">
+      <li>
+        <span class="note-icon">📋</span>
+        <span>本見積書は制作工数（139時間）× 単価（¥8,000/h）に基づく市場相場の参考値です。実際の発注条件・要件の複雑さにより変動します。</span>
+      </li>
+      <li>
+        <span class="note-icon">🖼️</span>
+        <span>商品写真・テキストコンテンツはクライアント様にご用意いただく前提です。撮影・コピーライティングが必要な場合は別途費用が発生します。</span>
+      </li>
+      <li>
+        <span class="note-icon">🔧</span>
+        <span>公開後の保守・運用費（商品追加、機能修正、不具合対応）は含まれていません。月次保守契約は別途ご相談ください（目安：¥15,000〜¥30,000/月）。</span>
+      </li>
+      <li>
+        <span class="note-icon">💳</span>
+        <span>Stripe本番化（実際の販売開始）には別途Stripeの審査が必要です。テストモードから本番モードへの切り替え作業は上記工数に含まれています。</span>
+      </li>
+      <li>
+        <span class="note-icon">📧</span>
+        <span>メール送信機能（注文確認メール）の利用には独自ドメインの取得が必要です。ドメイン取得費用（年¥1,500〜¥3,000）は別途クライアント様のご負担となります。</span>
+      </li>
+      <li>
+        <span class="note-icon">✅</span>
+        <span>本サイトは上記すべての機能を実装済みです。ASP型ECと比較してランニングコストを大幅に抑えた設計となっています。</span>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer-note no-print" style="text-align:center;padding:20px;font-size:11px;color:#aaa;border-top:1px solid #e8e2d9;margin-top:20px;">
+  White Snow Paws ECサイト 制作費用見積書（市場相場参考） — 作成: 重野 厚 / 2026年4月
+</div>
+
+<div class="footer-note">
+  White Snow Paws ECサイト 制作費用見積書（市場相場参考） — 作成: 重野 厚 / 2026年4月
+</div>
+
+</body>
+</html>
