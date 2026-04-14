@@ -2081,3 +2081,14 @@ body.is-locked {
 .header.scrolled .desktop-nav a {
     color: var(--color-text-main);
 }
+
+/* ===================================
+   スマホ: ヒーロー広角表示
+   =================================== */
+@media (max-width: 767px) {
+    .hero {
+        height: 72vw;
+        min-height: 240px;
+        max-height: 380px;
+    }
+}
