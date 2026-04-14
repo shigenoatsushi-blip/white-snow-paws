@@ -319,12 +319,6 @@
           </svg>
           <span class="header-icon-label">SEARCH</span>
         </button>
-        <a href="register.html" class="header-icon-btn" style="text-decoration:none;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/>
-          </svg>
-          <span class="header-icon-label">SIGN UP</span>
-        </a>
         <a href="login.html" class="header-icon-btn" style="text-decoration:none;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
@@ -451,6 +445,12 @@
           <button class="qty-btn" onclick="changeQty(-1)">−</button>
           <input type="number" class="qty-input" id="qtyInput" value="1" min="1" max="10">
           <button class="qty-btn" onclick="changeQty(1)">＋</button>
+        </div>
+
+        <!-- ウッドバーニング写真案内 -->
+        <div id="woodburningNotice" style="display:none; background:#f9f6f2; border:1px solid #D4C4B0; padding:14px 16px; margin-bottom:16px; font-size:13px; line-height:1.9; color:#4A3728;">
+          ご注文確定後のページにて、お写真を添付いただけるフォームが表示されます。<br>
+          そちらより、愛犬のお写真をお送りください。
         </div>
 
         <!-- カートに入れる -->
@@ -714,9 +714,9 @@
       雪国のリアルな使用環境から生まれた、「本当に使える」ドッグカラーです。
     </p>
     <table class="spec-table">
-      <tr><th>Sサイズ</th><td>テープ幅 16mm<br>最小内径 22cm ／ 最大内径 40cm</td></tr>
-      <tr><th>Mサイズ</th><td>テープ幅 19mm<br>最小内径 29cm ／ 最大内径 48cm</td></tr>
-      <tr><th>Lサイズ</th><td>テープ幅 19mm<br>最小内径 36cm ／ 最大内径 60cm</td></tr>
+      <tr><th>Sサイズ</th><td>テープ幅 16mm<br>首回り 22㎝ 〜 40㎝</td></tr>
+      <tr><th>Mサイズ</th><td>テープ幅 19mm<br>首回り 29㎝ 〜 48㎝</td></tr>
+      <tr><th>Lサイズ</th><td>テープ幅 19mm<br>首回り 36㎝ 〜 60㎝</td></tr>
       <tr><th>金具</th><td>Dカン（金属）</td></tr>
       <tr><th>カラー</th><td>10色</td></tr>
       <tr><th>対応犬種</th><td>Sサイズ：小型犬〜中型犬推奨<br>M・Lサイズ：中型犬〜大型犬推奨</td></tr>
@@ -801,6 +801,7 @@
       7: { id:'7', name:'BioThane ハーネス',             nameEn:'Harness',             category:'BIOTHANE HARNESS', price:3480, originalPrice:null, image:'images/woodcraft/work3.png' },
       8: { id:'8', name:'BioThane リード＋カラー セット', nameEn:'Lead + Collar Set',   category:'BIOTHANE SET', price:4480, originalPrice:5160, image:'images/woodcraft/work4.png' },
       9: { id:'9', name:'BioThane トレーニングリード 500cm', nameEn:'Training Lead 500cm', category:'BIOTHANE LEAD', price:4980, originalPrice:null, image:'images/woodcraft/work1.png' },
+     11: { id:'11', name:'ウッドバーニング', nameEn:'Wood Burning', category:'WOODBURNING', price:0, originalPrice:null, image:'images/woodcraft/work3.jpg' },
     };
 
     /* URLパラメータから商品IDを取得して表示 */
@@ -835,7 +836,25 @@
       document.getElementById('detailPrice').textContent = '¥' + defaultPrice.toLocaleString();
     } else {
       const displayPrice = product.price || product.basePrice;
-      document.getElementById('detailPrice').textContent = '¥' + displayPrice.toLocaleString();
+      if (!displayPrice) {
+        document.getElementById('detailPrice').textContent = '価格調整中';
+        const cartBtn = document.getElementById('btnAddToCart');
+        if (cartBtn) { cartBtn.disabled = true; cartBtn.style.opacity = '0.4'; }
+      } else {
+        document.getElementById('detailPrice').textContent = '¥' + displayPrice.toLocaleString();
+      }
+    }
+
+    // ウッドバーニングの場合はカラー選択を非表示・写真案内を表示
+    const isWoodburning = product.category === 'WOODBURNING';
+    if (isWoodburning) {
+      const colorRow = document.getElementById('colorSelectRow');
+      if (colorRow) {
+        colorRow.style.display = 'none';
+        if (colorRow.previousElementSibling) colorRow.previousElementSibling.style.display = 'none';
+      }
+      const notice = document.getElementById('woodburningNotice');
+      if (notice) notice.style.display = 'block';
     }
 
     if (product.originalPrice) {
