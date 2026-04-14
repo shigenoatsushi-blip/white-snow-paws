@@ -2087,8 +2087,8 @@ body.is-locked {
    =================================== */
 @media (max-width: 767px) {
     .hero {
-        height: 72vw;
-        min-height: 240px;
-        max-height: 380px;
+        height: 90vw;
+        min-height: 280px;
+        max-height: 460px;
     }
 }
