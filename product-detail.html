@@ -789,10 +789,34 @@
     const PRODUCTS = {
       1:  { id:'1',  name:'BioThane リード 16mm', nameEn:'BioThane Lead 16mm', category:'BIOTHANE LEAD', basePrice:2980, originalPrice:null, image:'images/woodcraft/work1.png',
            /* 150cm・200cmは価格調整中 — 決定後に更新してください */
-           lengths: { '120cm': 2980, '150cm': 0, '200cm': 0, '300cm': 3980 }, defaultLength: '120cm' },
+           lengths: { '120cm': 2980, '150cm': 0, '200cm': 0, '300cm': 3980 }, defaultLength: '120cm',
+           colors: [
+             { name:'ブラック',       css:'#1A1A1A', image:'images/lead-16mm/black.jpg' },
+             { name:'ブラウン',       css:'#7B4F2E', image:'images/lead-16mm/brown.jpg' },
+             { name:'スカイブルー',   css:'#87CEEB', image:'images/lead-16mm/sky-blue.jpg' },
+             { name:'ブルー',         css:'#1E5CA8', image:'images/lead-16mm/blue.jpg' },
+             { name:'ライトグリーン', css:'#7EC8A0', image:'images/lead-16mm/light-green.jpg' },
+             { name:'オレンジ',       css:'#E87722', image:'images/lead-16mm/orange.jpg' },
+             { name:'レッド',         css:'#CC2222', image:'images/lead-16mm/red.jpg' },
+             { name:'ピンク',         css:'#F080A0', image:'images/lead-16mm/pink.jpg' },
+             { name:'パープル',       css:'#7B5EA7', image:'images/lead-16mm/purple.jpg' },
+             { name:'イエロー',       css:'#F5D020', image:'images/lead-16mm/yellow.jpg' },
+           ] },
       10: { id:'10', name:'BioThane リード 19mm', nameEn:'BioThane Lead 19mm', category:'BIOTHANE LEAD', basePrice:2980, originalPrice:null, image:'images/woodcraft/work1.png',
            /* 150cm・200cmは価格調整中 — 決定後に更新してください */
-           lengths: { '120cm': 2980, '150cm': 0, '200cm': 0, '300cm': 3980 }, defaultLength: '120cm' },
+           lengths: { '120cm': 2980, '150cm': 0, '200cm': 0, '300cm': 3980 }, defaultLength: '120cm',
+           colors: [
+             { name:'ブラック',       css:'#1A1A1A', image:'images/lead-19mm/black.jpg' },
+             { name:'ブラウン',       css:'#7B4F2E', image:'images/lead-19mm/brown.jpg' },
+             { name:'スカイブルー',   css:'#87CEEB', image:'images/lead-19mm/sky-blue.jpg' },
+             { name:'ブルー',         css:'#1E5CA8', image:'images/lead-19mm/blue.jpg' },
+             { name:'ライトグリーン', css:'#7EC8A0', image:'images/lead-19mm/light-green.jpg' },
+             { name:'オレンジ',       css:'#E87722', image:'images/lead-19mm/orange.jpg' },
+             { name:'レッド',         css:'#CC2222', image:'images/lead-19mm/red.jpg' },
+             { name:'ピンク',         css:'#F080A0', image:'images/lead-19mm/pink.jpg' },
+             { name:'パープル',       css:'#7B5EA7', image:'images/lead-19mm/purple.jpg' },
+             { name:'イエロー',       css:'#F5D020', image:'images/lead-19mm/yellow.jpg' },
+           ] },
       2: { id:'2', name:'BioThane ショートリード 60cm',     nameEn:'Short Lead 60cm',     category:'BIOTHANE LEAD', price:2480, originalPrice:null, image:'images/woodcraft/work1.png' },
       3: { id:'3', name:'BioThane ロングリード 300cm',     nameEn:'Long Lead 300cm',     category:'BIOTHANE LEAD', price:3980, originalPrice:null, image:'images/woodcraft/work1.png' },
       4: { id:'4', name:'BioThane カラー（首輪）S',       nameEn:'Collar S',            category:'BIOTHANE COLLAR', price:1980, originalPrice:null, image:'images/woodcraft/work2.png' },
@@ -891,11 +915,34 @@
     /* 選択中カラー */
     let selectedColor = 'フォレストグリーン';
 
+    // product.colors が定義されている場合はスウォッチを再構築
+    if (product.colors && product.colors.length > 0) {
+      const colorRow = document.getElementById('colorSelectRow');
+      colorRow.innerHTML = '';
+      product.colors.forEach(function(c, i) {
+        const btn = document.createElement('button');
+        btn.className = 'color-swatch' + (i === 0 ? ' selected' : '');
+        btn.style.background = c.css;
+        btn.title = c.name;
+        btn.dataset.color = c.name;
+        btn.dataset.image = c.image;
+        btn.setAttribute('onclick', 'selectColor(this)');
+        colorRow.appendChild(btn);
+      });
+      selectedColor = product.colors[0].name;
+      document.getElementById('selectedColorName').textContent = '— ' + selectedColor;
+    }
+
     function selectColor(btn) {
       document.querySelectorAll('.color-swatch').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
       selectedColor = btn.dataset.color;
       document.getElementById('selectedColorName').textContent = '— ' + selectedColor;
+      if (btn.dataset.image) {
+        const img = document.getElementById('mainImage');
+        img.onerror = function() { this.src = product.image; this.onerror = null; };
+        img.src = btn.dataset.image;
+      }
     }
 
     /* 数量変更 */
@@ -912,11 +959,12 @@
       if (!basePrice) return; // 価格未定の長さはカート追加不可
       const totalPrice = basePrice + (isLead && selectedOptions.karabina ? selectedOptions.karabinaPrice : 0);
 
+      const selectedColorData = product.colors && product.colors.find(c => c.name === selectedColor);
       const cartItem = {
         id: product.id,
         name: product.name,
         price: totalPrice,
-        image: product.image,
+        image: selectedColorData ? selectedColorData.image : product.image,
         color: selectedColor,
         quantity: qty,
       };
