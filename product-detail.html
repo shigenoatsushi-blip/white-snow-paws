@@ -787,7 +787,7 @@
        商品データ（本来はAPIやDBから取得）
        =================================== */
     const PRODUCTS = {
-      1:  { id:'1',  name:'BioThane リード 16mm', nameEn:'BioThane Lead 16mm', category:'BIOTHANE LEAD', basePrice:2980, originalPrice:null, image:'images/woodcraft/work1.png',
+      1:  { id:'1',  name:'BioThane リード 16mm', nameEn:'BioThane Lead 16mm', category:'BIOTHANE LEAD', basePrice:2980, originalPrice:null, image:'images/lead-16mm/sample.jpg',
            /* 150cm・200cmは価格調整中 — 決定後に更新してください */
            lengths: { '120cm': 2980, '150cm': 0, '200cm': 0, '300cm': 3980 }, defaultLength: '120cm',
            colors: [
@@ -801,6 +801,13 @@
              { name:'ピンク',         css:'#F080A0', image:'images/lead-16mm/pink.jpg' },
              { name:'パープル',       css:'#7B5EA7', image:'images/lead-16mm/purple.jpg' },
              { name:'イエロー',       css:'#F5D020', image:'images/lead-16mm/yellow.jpg' },
+           ],
+           thumbs: [
+             'images/lead-16mm/sample.jpg',
+             'images/lead-16mm/thumb2.jpg',
+             'images/lead-16mm/thumb3.jpg',
+             'images/lead-16mm/thumb4.jpg',
+             'images/lead-16mm/thumb5.jpg',
            ] },
       10: { id:'10', name:'BioThane リード 19mm', nameEn:'BioThane Lead 19mm', category:'BIOTHANE LEAD', basePrice:2980, originalPrice:null, image:'images/woodcraft/work1.png',
            /* 150cm・200cmは価格調整中 — 決定後に更新してください */
@@ -914,6 +921,23 @@
 
     /* 選択中カラー */
     let selectedColor = 'フォレストグリーン';
+
+    // product.thumbs が定義されている場合はサムネイル行を再構築
+    if (product.thumbs && product.thumbs.length > 0) {
+      document.getElementById('mainImage').src = product.thumbs[0];
+      const thumbRow = document.querySelector('.detail-thumb-row');
+      thumbRow.innerHTML = '';
+      product.thumbs.forEach(function(src, i) {
+        const div = document.createElement('div');
+        div.className = 'detail-thumb' + (i === 0 ? ' active' : '');
+        div.setAttribute('onclick', 'switchImage("' + src + '", this)');
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = 'サムネイル' + (i + 1);
+        div.appendChild(img);
+        thumbRow.appendChild(div);
+      });
+    }
 
     // product.colors が定義されている場合はスウォッチを再構築
     if (product.colors && product.colors.length > 0) {
