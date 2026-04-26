@@ -85,7 +85,16 @@
       aspect-ratio: 1 / 1;
       object-fit: cover;
       display: block;
+      transition: opacity 0.2s;
     }
+
+    .wb-gallery-grid img {
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .wb-gallery-grid img:hover { opacity: 1; }
+    .wb-gallery-grid img.active { opacity: 1; outline: 2px solid #111; outline-offset: -2px; }
 
     .wb-detail-text {
       padding-top: 8px;
@@ -159,6 +168,9 @@
     }
     @media (max-width: 767px) {
       .wb-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 768px) {
+      .wb-gallery-grid { grid-template-columns: repeat(4, 1fr); }
     }
     .wb-gallery-grid img {
       width: 100%;
@@ -297,7 +309,7 @@
     <!-- メイン: 画像 + 説明 -->
     <div class="wb-detail-main fade-up">
       <div class="wb-detail-image">
-        <img src="images/woodburning/hero.jpg" alt="ウッドバーニング作品" loading="lazy">
+        <img id="wbMainImage" src="images/woodburning/hero.jpg" alt="ウッドバーニング作品">
       </div>
       <div class="wb-detail-text">
         <p>
@@ -339,10 +351,14 @@
     <div class="wb-gallery-section fade-up">
       <p class="wb-gallery-heading">GALLERY</p>
       <div class="wb-gallery-grid">
-        <img src="images/woodcraft/work1.jpg" alt="ウッドバーニング作品1" loading="lazy">
-        <img src="images/woodcraft/work2.jpg" alt="ウッドバーニング作品2" loading="lazy">
-        <img src="images/woodcraft/work3.jpg" alt="ウッドバーニング作品3" loading="lazy">
-        <img src="images/woodcraft/work4.jpg" alt="ウッドバーニング作品4" loading="lazy">
+        <img src="images/woodburning/gallery467.jpg" alt="ウッドバーニング作品1" loading="lazy" onclick="wbSetMain(this)">
+        <img src="images/woodburning/gallery475.jpg" alt="ウッドバーニング作品2" loading="lazy" onclick="wbSetMain(this)">
+        <img src="images/woodburning/gallery480.jpg" alt="ウッドバーニング作品3" loading="lazy" onclick="wbSetMain(this)">
+        <img src="images/woodburning/gallery486.jpg" alt="ウッドバーニング作品4" loading="lazy" onclick="wbSetMain(this)">
+        <img src="images/woodburning/gallery512.jpg" alt="ウッドバーニング作品5" loading="lazy" onclick="wbSetMain(this)">
+        <img src="images/woodburning/gallery514.jpg" alt="ウッドバーニング作品6" loading="lazy" onclick="wbSetMain(this)">
+        <img src="images/woodburning/gallery516.jpg" alt="ウッドバーニング作品7" loading="lazy" onclick="wbSetMain(this)">
+        <img src="images/woodburning/gallery525.jpg" alt="ウッドバーニング作品8" loading="lazy" onclick="wbSetMain(this)">
       </div>
     </div>
 
@@ -419,6 +435,14 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    function wbSetMain(el) {
+      document.getElementById('wbMainImage').src = el.src;
+      document.querySelectorAll('.wb-gallery-grid img').forEach(img => img.classList.remove('active'));
+      el.classList.add('active');
+    }
+  </script>
 
   <!-- JavaScript -->
   <script src="js/cart.js"></script>
