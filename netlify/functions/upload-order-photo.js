@@ -87,10 +87,17 @@ exports.handler = async (event) => {
           text: `注文 ${order.order_number} の写真が届きました。
 
 お客様メール: ${order.customer_email}
-写真パス: ${filePath}
+ファイル名: ${file_name}
 
-Supabase ダッシュボード > Storage > order-photos で確認できます。
+※ 写真は本メールに添付されています。ご確認ください。
+※ 元データは Supabase Storage (order-photos/${filePath}) にも保存されています。
 `,
+          attachments: [
+            {
+              filename: file_name,
+              content: fileBuffer,
+            }
+          ],
         });
       } catch (emailErr) {
         console.error('Admin photo notification error:', emailErr);

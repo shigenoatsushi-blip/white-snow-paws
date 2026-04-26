@@ -59,7 +59,8 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
 .detail-content,
 .cart-content,
 .checkout-content,
-.category-content {
+.category-content,
+.wb-page-content {
   background: rgba(255,255,255,0.80) !important;
 }
 @media (min-width: 769px) {

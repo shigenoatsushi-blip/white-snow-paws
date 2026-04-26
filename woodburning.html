@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BioThane リード｜White Snow Paws</title>
-  <meta name="description" content="BioThane（ビオタン）素材のハンドメイドリード。幅・長さを選べます。防水・軽量・高耐久。カラーオーダー対応。">
+  <title>ウッドバーニング｜White Snow Paws</title>
+  <meta name="description" content="愛犬のお写真をもとに、木に手作業で焼き入れながら描くウッドバーニング作品。世界にひとつだけの特別な一点物。">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,7 +39,7 @@
     .breadcrumb span { color: #ccc; }
 
     /* メインコンテンツ */
-    .category-content {
+    .wb-page-content {
       max-width: 1090px;
       margin: 0 auto;
       padding: 48px 20px 80px;
@@ -65,90 +65,160 @@
       width: 40px;
       height: 1px;
       background: #ccc;
-      margin-bottom: 24px;
-    }
-    .category-intro {
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: 14px;
-      line-height: 1.8;
-      color: #666;
-      margin-bottom: 48px;
-      max-width: 640px;
+      margin-bottom: 40px;
     }
 
-    /* 幅カードグリッド */
-    .width-card-grid {
+    /* メイン: 画像 + 説明文 */
+    .wb-detail-main {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 32px;
-      margin-bottom: 48px;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+      margin-bottom: 64px;
     }
-    @media (min-width: 768px) {
-      .width-card-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-        max-width: 720px;
-      }
+    @media (max-width: 767px) {
+      .wb-detail-main { grid-template-columns: 1fr; gap: 28px; }
     }
 
-    /* 幅カード */
-    .width-card {
-      background: #fff;
-      border: 1px solid #eee;
-      display: block;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .width-card:hover {
-      border-color: #ccc;
-      transform: translateY(-4px);
-    }
-    .width-card-image {
-      overflow: hidden;
-    }
-    .width-card-image img {
+    .wb-detail-image img {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       display: block;
-      transition: transform 0.4s ease;
-    }
-    .width-card:hover .width-card-image img {
-      transform: scale(1.03);
-    }
-    .width-card-info {
-      padding: 20px;
-    }
-    .width-card-info h3 {
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: 16px;
-      font-weight: 500;
-      color: #333;
-      margin-bottom: 12px;
-    }
-    .width-card-sub {
-      font-size: 12px;
-      font-weight: 400;
-      color: #999;
     }
 
-    /* 価格テーブル */
-    .price-table {
-      width: 100%;
-      border-collapse: collapse;
+    .wb-detail-text {
+      padding-top: 8px;
     }
-    .price-table td {
+    .wb-detail-text p {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 14px;
+      line-height: 2.2;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    /* 価格 */
+    .wb-price-area {
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+      margin-top: 8px;
+      margin-bottom: 24px;
+    }
+    .wb-price-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      color: #999;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .wb-price {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: #111;
+    }
+
+    /* 注文ボタン */
+    .btn-order {
+      display: inline-block;
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 13px;
+      color: #fff;
+      background: #111;
+      text-decoration: none;
+      border: 1px solid #111;
+      padding: 14px 32px;
+      letter-spacing: 1px;
+      transition: background 0.3s, color 0.3s;
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    .btn-order:hover {
+      background: #fff;
+      color: #111;
+    }
+
+    /* ギャラリー */
+    .wb-gallery-section {
+      margin-bottom: 56px;
+    }
+    .wb-gallery-heading {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      color: #999;
+      margin-bottom: 16px;
+    }
+    .wb-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    @media (max-width: 767px) {
+      .wb-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .wb-gallery-grid img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ORDER / NOTICE */
+    .wb-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 767px) {
+      .wb-info-grid { grid-template-columns: 1fr; }
+    }
+    .wb-info-box {
+      background: #fafafa;
+      border: 1px solid #eee;
+      padding: 24px;
+    }
+    .wb-info-box h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 3px;
       color: #333;
-      padding: 8px 0;
-      border-bottom: 1px solid #f5f5f5;
+      margin-bottom: 14px;
     }
-    .price-table td:first-child {
-      width: 60%;
+    .wb-info-box ul {
+      padding-left: 0;
+      list-style: none;
     }
-    .price-table .price-cell {
-      font-weight: 500;
-      text-align: right;
+    .wb-info-box li {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      line-height: 1.9;
+      color: #555;
+      margin-bottom: 6px;
+      padding-left: 14px;
+      position: relative;
+    }
+    .wb-info-box li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: #ccc;
+    }
+
+    /* 写真案内 */
+    .wb-photo-notice {
+      background: #f9f6f2;
+      border: 1px solid #D4C4B0;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      line-height: 1.9;
+      color: #4A3728;
     }
 
     /* 戻るリンク */
@@ -161,9 +231,7 @@
       letter-spacing: 0.5px;
       transition: color 0.3s;
     }
-    .back-link:hover {
-      color: #333;
-    }
+    .back-link:hover { color: #333; }
   </style>
 </head>
 
@@ -215,57 +283,90 @@
       <span>›</span>
       <a href="index.html#products">PRODUCTS</a>
       <span>›</span>
-      <span>BioThane リード</span>
+      <span>ウッドバーニング</span>
     </nav>
   </div>
 
   <!-- メインコンテンツ -->
-  <main class="category-content">
-    <h1 class="category-title-en">BIOTHANE LEAD</h1>
-    <p class="category-title-jp">BioThane リード</p>
+  <main class="wb-page-content">
+
+    <h1 class="category-title-en">WOOD BURNING</h1>
+    <p class="category-title-jp">ウッドバーニング</p>
     <div class="category-title-line"></div>
-    <p class="category-intro">
-      防水・軽量・高耐久のBioThane素材を使用したハンドメイドリード。<br>
-      幅と長さを選んでカードをクリック。詳細ページでカラーやオプションが選べます。
-    </p>
 
-    <div class="width-card-grid">
-      <!-- 16mm幅 -->
-      <a href="product-detail.html?id=1" class="width-card fade-up" style="text-decoration:none;color:inherit;">
-        <div class="width-card-image">
-          <img src="images/lead-16mm/sample.jpg" alt="BioThane リード 16mm幅" loading="lazy">
-        </div>
-        <div class="width-card-info">
-          <h3>16mm幅 <span class="width-card-sub">— 小型〜中型犬推奨</span></h3>
-          <table class="price-table">
-            <tbody>
-              <tr><td>120cm</td><td class="price-cell">¥2,980</td></tr>
-              <tr><td>150cm</td><td class="price-cell">価格調整中</td></tr>
-              <tr><td>200cm</td><td class="price-cell">価格調整中</td></tr>
-              <tr><td>300cm</td><td class="price-cell">¥3,980</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </a>
+    <!-- メイン: 画像 + 説明 -->
+    <div class="wb-detail-main fade-up">
+      <div class="wb-detail-image">
+        <img src="images/woodburning/hero.jpg" alt="ウッドバーニング作品" loading="lazy">
+      </div>
+      <div class="wb-detail-text">
+        <p>
+          お客様からお送りいただいた愛犬のお写真をもとに、<br>
+          一点ずつ、木に手作業で焼き入れながら描くウッドバーニング作品です。
+        </p>
+        <p>
+          機械ではなく、ひとつひとつ丁寧に焦がし描くことで、<br>
+          毛並みや表情のニュアンスまで、あたたかく表現します。
+        </p>
+        <p>
+          木のやさしい風合いと、焼き色の濃淡。<br>
+          世界にひとつだけの、特別な仕上がりに。
+        </p>
+        <p>
+          同じものは二つと存在しない、<br>
+          あなただけの"愛犬のかたち"をお届けします。
+        </p>
+        <p>
+          日々の暮らしの中に、そっと寄り添う存在として。<br>
+          記念日や贈り物にもおすすめの、心に残る一点です。
+        </p>
 
-      <!-- 19mm幅 -->
-      <a href="product-detail.html?id=10" class="width-card fade-up" style="text-decoration:none;color:inherit;">
-        <div class="width-card-image">
-          <img src="images/lead-19mm/sample.jpg" alt="BioThane リード 19mm幅" loading="lazy">
+        <div class="wb-price-area">
+          <p class="wb-price-label">PRICE</p>
+          <p class="wb-price">価格調整中</p>
         </div>
-        <div class="width-card-info">
-          <h3>19mm幅 <span class="width-card-sub">— 中型〜大型犬推奨</span></h3>
-          <table class="price-table">
-            <tbody>
-              <tr><td>120cm</td><td class="price-cell">¥2,980</td></tr>
-              <tr><td>150cm</td><td class="price-cell">価格調整中</td></tr>
-              <tr><td>200cm</td><td class="price-cell">価格調整中</td></tr>
-              <tr><td>300cm</td><td class="price-cell">¥3,980</td></tr>
-            </tbody>
-          </table>
+
+        <a href="product-detail.html?id=11" class="btn-order">ご注文はこちら</a>
+
+        <div class="wb-photo-notice">
+          ご注文確定後のページにて、お写真を添付いただけるフォームが表示されます。<br>
+          そちらより、愛犬のお写真をお送りください。
         </div>
-      </a>
+      </div>
     </div>
+
+    <!-- 作品ギャラリー -->
+    <div class="wb-gallery-section fade-up">
+      <p class="wb-gallery-heading">GALLERY</p>
+      <div class="wb-gallery-grid">
+        <img src="images/woodcraft/work1.jpg" alt="ウッドバーニング作品1" loading="lazy">
+        <img src="images/woodcraft/work2.jpg" alt="ウッドバーニング作品2" loading="lazy">
+        <img src="images/woodcraft/work3.jpg" alt="ウッドバーニング作品3" loading="lazy">
+        <img src="images/woodcraft/work4.jpg" alt="ウッドバーニング作品4" loading="lazy">
+      </div>
+    </div>
+
+    <!-- ORDER / NOTICE -->
+    <div class="wb-info-grid fade-up">
+      <div class="wb-info-box">
+        <h3>ORDER</h3>
+        <ul>
+          <li>ご購入後、愛犬のお写真をお送りください</li>
+          <li>いただいたお写真をもとに制作いたします</li>
+          <li>すべて手作業のため、仕上がりには個体差がございます</li>
+        </ul>
+      </div>
+      <div class="wb-info-box">
+        <h3>NOTICE</h3>
+        <ul>
+          <li>写真の構図や画質によって仕上がりが変わる場合がございます</li>
+          <li>ひとつひとつ手作業で制作するため、多少の焼きムラや個体差がございます</li>
+          <li>万が一の事故やトラブルについては当店では責任を負いかねます</li>
+        </ul>
+      </div>
+    </div>
+
+    <a href="index.html#products" class="back-link">← 商品一覧に戻る</a>
 
   </main>
 
