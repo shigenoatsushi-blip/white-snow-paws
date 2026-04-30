@@ -1,0 +1,17 @@
+node_modules
+.claude/
+CLAUDE.md
+skills-lock.json
+css/style_new.css
+tmp_*.html
+tmp_*.css
+images/Biothane*/
+images/Biothan*/
+images/リード単体/
+images/首輪単体/
+images/首輪リード/
+images/加工写真/
+images/woodburing/
+images/dog_pics/*.HEIC
+images/dog_pics/*.mov
+images/hero/S__*

@@ -34,6 +34,47 @@ body {
 }
 body::before { display: none; } /* ヘリンボーン背景テクスチャ無効化 */
 
+/* ヘッダー中央テキストロゴ */
+.header-center-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+  white-space: nowrap;
+}
+.header-inner { position: relative; }
+
+/* ロゴ画像 */
+.logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+@media (min-width: 768px) {
+  .logo-img { height: 44px; }
+}
+.footer-logo .logo-img {
+  height: 44px;
+}
+.footer-logo-img-link {
+  margin-left: auto;
+}
+.footer-logo-img-large {
+  height: 132px;
+  width: auto;
+  display: block;
+  opacity: 0.85;
+}
+
 /* セクション半透明（木目を透かす） */
 .section:not(.section-wood) { background: rgba(255,255,255,0.80) !important; }
 .section-wood { background: rgba(255,255,255,0.80) !important; }
