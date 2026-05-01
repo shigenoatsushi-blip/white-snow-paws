@@ -353,8 +353,8 @@
   <script src="js/cart.js"></script>
   <script src="js/main.js?v=20260316"></script>
   <script>
-    const SHIPPING_FEE = 550;
-    const FREE_SHIPPING_THRESHOLD = 5000;
+    const SHIPPING_FEE = 900;   // 3点以上の場合
+    const SHIPPING_THRESHOLD = 3; // 3点以上で送料発生
 
     function renderCart() {
       const items = Cart.getItems();
@@ -372,7 +372,8 @@
       }
 
       const subtotal = Cart.total();
-      const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
+      const totalQty = Cart.count();
+      const shipping = totalQty >= SHIPPING_THRESHOLD ? SHIPPING_FEE : 0;
       const total = subtotal + shipping;
 
       const listHTML = items.map((item, idx) => `
@@ -409,7 +410,10 @@
             <span>送料</span>
             <span>${shipping === 0 ? '無料' : '¥' + shipping.toLocaleString()}</span>
           </div>
-          ${shipping > 0 ? `<div class="summary-row" style="font-size:11px;color:#666666;">あと¥${(FREE_SHIPPING_THRESHOLD - subtotal).toLocaleString()}で送料無料</div>` : ''}
+          <div class="summary-row" style="font-size:11px;color:#666666;">
+            3点以上のご購入は佐川急便 ¥900 / 地域別送料あり<br>
+            <a href="#" onclick="return false;" style="color:#999;text-decoration:underline;font-size:11px;">北海道+300円・沖縄+600円は住所入力時に自動加算</a>
+          </div>
           <div class="summary-divider"></div>
           <div class="summary-total-row">
             <span class="summary-total-label">合計</span>
@@ -432,7 +436,7 @@
           <a href="index.html#products" class="btn-continue">← 買い物を続ける</a>
           <p class="summary-note">
             🔒 安全な SSL 暗号化通信<br>
-            ¥5,000以上で送料無料
+            送料は商品価格に含まれています（3点以上は別途¥900）
           </p>
         </div>`;
     }

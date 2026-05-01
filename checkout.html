@@ -493,8 +493,17 @@
   <script src="js/cart.js"></script>
   <script src="js/main.js?v=20260316"></script>
   <script>
-    const SHIPPING_FEE = 500;
-    const FREE_SHIPPING_THRESHOLD = 5000;
+    const SHIPPING_FEE = 900;
+    const SHIPPING_THRESHOLD = 3;
+    const REGIONAL_SURCHARGE = { '北海道': 300, '沖縄県': 600 };
+
+    function calcShipping() {
+      const qty = Cart.count();
+      const base = qty >= SHIPPING_THRESHOLD ? SHIPPING_FEE : 0;
+      const pref = document.getElementById('prefecture') ? document.getElementById('prefecture').value : '';
+      const regional = REGIONAL_SURCHARGE[pref] || 0;
+      return { base, regional, total: base + regional };
+    }
 
     function renderOrderSummary() {
       const items = Cart.getItems();
@@ -503,8 +512,8 @@
         return;
       }
       const subtotal = Cart.total();
-      const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
-      const total = subtotal + shipping;
+      const { base, regional, total: shippingTotal } = calcShipping();
+      const total = subtotal + shippingTotal;
 
       const listHTML = items.map(item => `
         <div class="order-item-row">
@@ -519,8 +528,11 @@
       document.getElementById('orderItemList').innerHTML = listHTML;
       document.getElementById('subtotalRow').innerHTML = `<span>小計</span><span>¥${subtotal.toLocaleString()}</span>`;
       const shippingEl = document.getElementById('shippingRow');
-      shippingEl.innerHTML = `<span>送料</span><span>${shipping === 0 ? '無料' : '¥' + shipping.toLocaleString()}</span>`;
-      if (shipping === 0) shippingEl.classList.add('free');
+      let shippingLabel = shippingTotal === 0 ? '無料' : '¥' + shippingTotal.toLocaleString();
+      if (regional > 0) shippingLabel += ` (地域別+¥${regional})`;
+      shippingEl.innerHTML = `<span>送料</span><span>${shippingLabel}</span>`;
+      if (shippingTotal === 0) shippingEl.classList.add('free');
+      else shippingEl.classList.remove('free');
       document.getElementById('totalPrice').textContent = '¥' + total.toLocaleString();
     }
 
@@ -633,6 +645,9 @@
 
     renderOrderSummary();
     prefillFromProfile();
+
+    // 都道府県変更時に送料を再計算
+    document.getElementById('prefecture').addEventListener('change', renderOrderSummary);
   </script>
 </body>
 
