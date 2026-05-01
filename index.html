@@ -112,9 +112,27 @@
     .biothane-main-swiper .swiper-slide img {
       width: 100%;
       height: 100%;
-      object-fit: contain;  /* 見切れないよう contain */
+      object-fit: cover;
       display: block;
-      background: #F7F7F7;
+      margin: 0;
+      padding: 0;
+    }
+    .biothane-main-swiper .swiper-slide {
+      padding: 0;
+      margin: 0;
+      line-height: 0;
+    }
+    .biothane-main-swiper .swiper-button-prev,
+    .biothane-main-swiper .swiper-button-next {
+      color: #fff;
+      background: rgba(0,0,0,0.3);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
+    .biothane-main-swiper .swiper-button-prev::after,
+    .biothane-main-swiper .swiper-button-next::after {
+      font-size: 14px;
     }
     .biothane-main-swiper .biothane-main-pagination {
       bottom: 10px;
@@ -595,14 +613,15 @@
               </div>
             </div>
             <div class="swiper-pagination biothane-main-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
           </div>
           <div class="biothane-text">
             <h3>防水・軽量・高耐久。<br>ひとつひとつハンドメイドで、<br>納得の価格をお届け。</h3>
             <p>
               新潟・十日町の工房で、一本一本丁寧にハンドメイドするBioThane（ビオタン）素材のリード＆カラー。
               雪にも雨にも泥にも強い防水素材で、お手入れは水洗いだけ。<br><br>
-              工房から直接お届けするから、手間をかけてもリーズナブル。
-              カラーオーダーで、あなたの愛犬だけの特別な一本を。
+              あなたの愛犬だけの特別な一本を。
             </p>
             <!-- 特徴バッジ -->
             <div class="feature-badges">
@@ -637,20 +656,6 @@
                 </svg>
                 お手入れ簡単
               </span>
-              <span class="feature-badge">
-                <svg class="feature-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  stroke-width="2">
-                  <circle cx="13.5" cy="6.5" r="2.5" />
-                  <path d="M17.5 10.5 21 3" />
-                  <circle cx="6" cy="12" r="2" />
-                  <path d="M2 12h4" />
-                  <circle cx="18" cy="16" r="2" />
-                  <path d="M22 16h-4" />
-                  <path d="m9 10-5 6" />
-                  <path d="m12 14 6 4" />
-                </svg>
-                カラーオーダー可
-              </span>
             </div>
             <!-- ハンドメイドの理由 -->
             <div class="handmade-reason">
@@ -662,9 +667,8 @@
                 </svg>
               </div>
               <div class="handmade-reason-content">
-                <span class="handmade-reason-label">ハンドメイドだから、リーズナブル</span>
-                <span class="handmade-reason-price">¥2,980〜<span>(税込)</span></span>
-                <p class="handmade-reason-text">工房から直接お届けするから、中間コストがかかりません。</p>
+                <span class="handmade-reason-price">¥2,980〜<span>(税込・送料無料)</span></span>
+                <p class="handmade-reason-text">※3点以上ご購入の場合は佐川急便にて発送となり、別途送料を頂戴いたします。</p>
               </div>
             </div>
             <a href="#products" class="btn-primary">商品を見る <span class="arrow">→</span></a>

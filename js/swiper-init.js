@@ -22,33 +22,34 @@ document.addEventListener('DOMContentLoaded', () => {
         },
     });
 
-    // --- BioThaneメイン画像スライダー ---
+    // --- BioThaneメイン画像スライダー（矢印ナビ付き・手動切替） ---
     new Swiper('.biothane-main-swiper', {
         loop: true,
-        autoplay: {
-            delay: 4000,
-            disableOnInteraction: false,
-        },
-        speed: 800,
+        speed: 600,
         pagination: {
             el: '.biothane-main-pagination',
             clickable: true,
         },
+        navigation: {
+            nextEl: '.biothane-main-swiper .swiper-button-next',
+            prevEl: '.biothane-main-swiper .swiper-button-prev',
+        },
     });
 
-    // --- BioThane商品ギャラリー ---
+    // --- BioThane商品ギャラリー（自動スクロール） ---
     const biothaneGallery = new Swiper('.biothane-gallery', {
         slidesPerView: 'auto',
         spaceBetween: 12,
-        freeMode: true,
+        loop: true,
         grabCursor: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        speed: 800,
         breakpoints: {
-            768: {
-                spaceBetween: 16,
-            },
-            1024: {
-                spaceBetween: 20,
-            }
+            768: { spaceBetween: 16 },
+            1024: { spaceBetween: 20 }
         }
     });
 
