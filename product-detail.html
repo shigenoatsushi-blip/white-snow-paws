@@ -598,6 +598,66 @@
     </div>
 
     <!-- ===================================
+         ウッドバーニング専用タブ（WOODBURNING カテゴリのみ表示）
+         =================================== -->
+    <div id="wb-tabs-section" style="display:none;">
+      <div class="detail-tabs">
+        <button class="detail-tab-btn active" onclick="switchWbTab('wb-flow', this)">ご注文の流れ</button>
+        <button class="detail-tab-btn" onclick="switchWbTab('wb-spec', this)">仕様・素材</button>
+        <button class="detail-tab-btn" onclick="switchWbTab('wb-notice', this)">ご注意</button>
+        <button class="detail-tab-btn" onclick="switchWbTab('wb-shipping', this)">配送・返品</button>
+      </div>
+
+      <div id="tab-wb-flow" class="detail-tab-panel active">
+        <ol style="padding-left:20px;line-height:2;font-size:14px;color:#555;">
+          <li>ご購入後に、愛犬のお写真をフォームにて送信していただきます</li>
+          <li>お送りいただいた写真をもとにデザインを作成いたします</li>
+          <li>ウッドバーニングにて制作いたします</li>
+          <li>完成後、発送いたします</li>
+        </ol>
+        <p style="font-size:13px;color:#888;line-height:1.9;margin-top:12px;">※制作開始から発送までは、1週間ほどお時間をいただきます。<br>※手作業での制作のため、ご注文状況によりさらにお時間をいただく場合がございます。</p>
+      </div>
+
+      <div id="tab-wb-spec" class="detail-tab-panel">
+        <table class="spec-table">
+          <tr><th>サイズ</th><td>横17㎝ × 縦26㎝ × 厚さ9㎜</td></tr>
+          <tr><th>素材</th><td>木材</td></tr>
+        </table>
+        <p style="font-size:13px;color:#888;line-height:1.9;margin-top:16px;">
+          ※犬の目に色味がある場合、その個性を表現するために色味を加えることがございます。ただし、木材の風合いやデザインとのバランスにより、すべての作品に反映されるものではございません。<br>
+          ※背景はお送りいただくお写真をもとに制作いたしますが、木材の特性やデザインとのバランスにより、実際の背景をそのまま再現するものではございません。写真ごとに表現が異なりますので、あらかじめご了承ください。<br>
+          ※商品イメージ写真の台座は付属いたしません。
+        </p>
+      </div>
+
+      <div id="tab-wb-notice" class="detail-tab-panel">
+        <ul style="padding-left:20px;line-height:2;font-size:14px;color:#555;">
+          <li>手作業での制作のため、線の風合いや濃淡に個体差がございます。</li>
+          <li>木材の性質上、木目や色味には個体差があります。</li>
+          <li>お写真の画質や構図によって、仕上がりに影響が出る場合がございます。</li>
+          <li>強い衝撃や水濡れは、破損の原因となりますのでご注意ください。</li>
+          <li>万が一の事故やトラブルについては当店では責任を負いかねます。</li>
+        </ul>
+      </div>
+
+      <div id="tab-wb-shipping" class="detail-tab-panel">
+        <p><strong>ウッドバーニング　¥5,500（税込）</strong></p>
+        <p style="margin-top:12px;"><strong>送料</strong></p>
+        <ul style="padding-left:20px;line-height:2;font-size:14px;color:#555;">
+          <li>無料（商品価格込み）通常クリックポスト使用</li>
+          <li>3点以上購入の場合　佐川急便となり、送料900円</li>
+          <li>地域別送料：北海道 +300円 ／ 沖縄 +600円</li>
+        </ul>
+        <p style="margin-top:16px;"><strong>返品・交換について</strong></p>
+        <ul style="padding-left:20px;line-height:2;font-size:14px;color:#555;">
+          <li>商品到着後7日以内に限り、製造上の不具合・誤送品のみ対応いたします。</li>
+          <li>一点物のため、不具合がない限り返品・交換はお受けできません。</li>
+          <li>詳しくは<a href="terms.html#art5">利用規約（第5条）</a>をご確認ください。</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===================================
          関連商品
          =================================== -->
     <div class="related-section">
@@ -667,7 +727,8 @@
     <div class="footer-inner">
       <div class="footer-logo">
         <a href="index.html" class="logo">
-          <img src="images/wsplogowhite.png" alt="White Snow Paws" class="logo-img">
+          <span class="logo-mark">✦</span>
+          White Snow Paws
         </a>
       </div>
       <div class="footer-columns">
@@ -849,7 +910,7 @@
       7: { id:'7', name:'BioThane ハーネス',             nameEn:'Harness',             category:'BIOTHANE HARNESS', price:3480, originalPrice:null, image:'images/woodcraft/work3.png' },
       8: { id:'8', name:'BioThane リード＋カラー セット', nameEn:'Lead + Collar Set',   category:'BIOTHANE SET', price:4480, originalPrice:5160, image:'images/woodcraft/work4.png' },
       9: { id:'9', name:'BioThane トレーニングリード 500cm', nameEn:'Training Lead 500cm', category:'BIOTHANE LEAD', price:4980, originalPrice:null, image:'images/woodcraft/work1.png' },
-     11: { id:'11', name:'ウッドバーニング', nameEn:'Wood Burning', category:'WOODBURNING', price:0, originalPrice:null, image:'images/woodcraft/work3.jpg' },
+     11: { id:'11', name:'ウッドバーニング', nameEn:'Wood Burning', category:'WOODBURNING', price:5500, originalPrice:null, image:'images/woodcraft/work3.jpg' },
     };
 
     /* URLパラメータから商品IDを取得して表示 */
@@ -893,7 +954,7 @@
       }
     }
 
-    // ウッドバーニングの場合はカラー選択を非表示・写真案内を表示
+    // ウッドバーニングの場合はカラー選択を非表示・写真案内を表示・専用タブに切り替え
     const isWoodburning = product.category === 'WOODBURNING';
     if (isWoodburning) {
       const colorRow = document.getElementById('colorSelectRow');
@@ -903,6 +964,10 @@
       }
       const notice = document.getElementById('woodburningNotice');
       if (notice) notice.style.display = 'block';
+      // 通常タブを非表示、ウッドバーニング専用タブを表示
+      document.querySelector('.detail-tabs').style.display = 'none';
+      document.querySelectorAll('.detail-tab-panel').forEach(el => el.style.display = 'none');
+      document.getElementById('wb-tabs-section').style.display = 'block';
     }
 
     if (product.originalPrice) {
@@ -1037,6 +1102,14 @@
     function switchTab(name, btn) {
       document.querySelectorAll('.detail-tab-panel').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.detail-tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + name).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    /* ウッドバーニング専用タブ切替 */
+    function switchWbTab(name, btn) {
+      document.querySelectorAll('#wb-tabs-section .detail-tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('#wb-tabs-section .detail-tab-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('tab-' + name).classList.add('active');
       btn.classList.add('active');
     }

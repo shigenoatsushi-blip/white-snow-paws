@@ -233,6 +233,49 @@
       color: #4A3728;
     }
 
+    /* タブ */
+    .wb-tabs { display: flex; border-bottom: 1px solid #eee; margin-bottom: 28px; gap: 0; }
+    .wb-tab-btn {
+      padding: 12px 20px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      color: #aaa;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .wb-tab-btn.active { color: #333; border-bottom-color: #333; }
+    .wb-tab-panel { display: none; font-family: 'Noto Sans JP', sans-serif; font-size: 14px; line-height: 2; color: #555; }
+    .wb-tab-panel.active { display: block; }
+    .wb-tab-panel ol, .wb-tab-panel ul { padding-left: 20px; margin-bottom: 12px; }
+    .wb-tab-panel li { margin-bottom: 4px; }
+    .wb-tab-panel table { border-collapse: collapse; width: 100%; margin-bottom: 16px; }
+    .wb-tab-panel th, .wb-tab-panel td { padding: 10px 14px; border: 1px solid #eee; font-size: 13px; }
+    .wb-tab-panel th { background: #fafafa; font-weight: 500; width: 30%; }
+    .wb-tab-note { font-size: 12px; color: #999; line-height: 1.8; margin-top: 12px; }
+
+    /* カートボタン */
+    .btn-add-to-cart {
+      display: block;
+      width: 100%;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      color: #fff;
+      background: #111;
+      border: 1px solid #111;
+      padding: 14px 32px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    .btn-add-to-cart:hover { background: #fff; color: #111; }
+    .btn-add-to-cart:disabled { background: #4A7C59; border-color: #4A7C59; cursor: default; }
+
     /* 戻るリンク */
     .back-link {
       display: inline-block;
@@ -340,12 +383,14 @@
 
         <div class="wb-price-area">
           <p class="wb-price-label">PRICE</p>
-          <p class="wb-price">価格調整中</p>
+          <p class="wb-price">¥5,500 <span style="font-size:12px;font-weight:400;color:#999;">(税込)</span></p>
         </div>
 
-        <a href="product-detail.html?id=11" class="btn-order">ご注文はこちら</a>
+        <p style="font-family:'Noto Sans JP',sans-serif;font-size:12px;line-height:1.8;color:#888;margin-bottom:12px;">※ご注文前に、下部の詳細説明を必ずご確認ください。内容をご理解いただいた上でのご注文をお願いいたします。</p>
 
-        <div class="wb-photo-notice">
+        <button id="wbCartBtn" class="btn-add-to-cart" onclick="wbAddToCart()">カートに入れる</button>
+
+        <div class="wb-photo-notice" style="margin-top:16px;">
           ご注文確定後のページにて、お写真を添付いただけるフォームが表示されます。<br>
           そちらより、愛犬のお写真をお送りください。
         </div>
@@ -367,22 +412,60 @@
       </div>
     </div>
 
-    <!-- ORDER / NOTICE -->
-    <div class="wb-info-grid fade-up">
-      <div class="wb-info-box">
-        <h3>ORDER</h3>
+    <!-- 詳細タブ -->
+    <div class="fade-up" style="margin-bottom:48px;">
+      <div class="wb-tabs">
+        <button class="wb-tab-btn active" onclick="switchWbTab('flow', this)">ご注文の流れ</button>
+        <button class="wb-tab-btn" onclick="switchWbTab('spec', this)">仕様・素材</button>
+        <button class="wb-tab-btn" onclick="switchWbTab('notice', this)">ご注意</button>
+        <button class="wb-tab-btn" onclick="switchWbTab('shipping', this)">配送・返品</button>
+      </div>
+
+      <div id="wbtab-flow" class="wb-tab-panel active">
+        <ol>
+          <li>ご購入後に、愛犬のお写真をフォームにて送信していただきます</li>
+          <li>お送りいただいた写真をもとにデザインを作成いたします</li>
+          <li>ウッドバーニングにて制作いたします</li>
+          <li>完成後、発送いたします</li>
+        </ol>
+        <p class="wb-tab-note">※制作開始から発送までは、1週間ほどお時間をいただきます。<br>※手作業での制作のため、ご注文状況によりさらにお時間をいただく場合がございます。</p>
+      </div>
+
+      <div id="wbtab-spec" class="wb-tab-panel">
+        <table>
+          <tr><th>サイズ</th><td>横17㎝ × 縦26㎝ × 厚さ9㎜</td></tr>
+          <tr><th>素材</th><td>木材</td></tr>
+        </table>
+        <p class="wb-tab-note">
+          ※犬の目に色味がある場合、その個性を表現するために色味を加えることがございます。ただし、木材の風合いやデザインとのバランスにより、すべての作品に反映されるものではございません。<br>
+          ※背景はお送りいただくお写真をもとに制作いたしますが、木材の特性やデザインとのバランスにより、実際の背景をそのまま再現するものではございません。写真ごとに表現が異なりますので、あらかじめご了承ください。<br>
+          ※商品イメージ写真の台座は付属いたしません。
+        </p>
+      </div>
+
+      <div id="wbtab-notice" class="wb-tab-panel">
         <ul>
-          <li>ご購入後、愛犬のお写真をお送りください</li>
-          <li>いただいたお写真をもとに制作いたします</li>
-          <li>すべて手作業のため、仕上がりには個体差がございます</li>
+          <li>手作業での制作のため、線の風合いや濃淡に個体差がございます。</li>
+          <li>木材の性質上、木目や色味には個体差があります。</li>
+          <li>お写真の画質や構図によって、仕上がりに影響が出る場合がございます。</li>
+          <li>強い衝撃や水濡れは、破損の原因となりますのでご注意ください。</li>
+          <li>万が一の事故やトラブルについては当店では責任を負いかねます。</li>
         </ul>
       </div>
-      <div class="wb-info-box">
-        <h3>NOTICE</h3>
+
+      <div id="wbtab-shipping" class="wb-tab-panel">
+        <p><strong>ウッドバーニング　¥5,500（税込）</strong></p>
+        <p style="margin-top:14px;"><strong>送料</strong></p>
         <ul>
-          <li>写真の構図や画質によって仕上がりが変わる場合がございます</li>
-          <li>ひとつひとつ手作業で制作するため、多少の焼きムラや個体差がございます</li>
-          <li>万が一の事故やトラブルについては当店では責任を負いかねます</li>
+          <li>無料（商品価格込み）　通常クリックポスト使用</li>
+          <li>3点以上購入の場合　佐川急便となり、送料900円</li>
+          <li>地域別送料：北海道 +300円 ／ 沖縄 +600円</li>
+        </ul>
+        <p style="margin-top:14px;"><strong>返品・交換について</strong></p>
+        <ul>
+          <li>商品到着後7日以内に限り、製造上の不具合・誤送品のみ対応いたします。</li>
+          <li>一点物のため、不具合がない限り返品・交換はお受けできません。</li>
+          <li>詳しくは<a href="terms.html#art5" style="color:#333;">利用規約（第5条）</a>をご確認ください。</li>
         </ul>
       </div>
     </div>
@@ -397,7 +480,8 @@
     <div class="footer-inner">
       <div class="footer-logo">
         <a href="index.html" class="logo">
-          <img src="images/wsplogowhite.png" alt="White Snow Paws" class="logo-img">
+          <span class="logo-mark">✦</span>
+          White Snow Paws
         </a>
       </div>
       <div class="footer-columns">
@@ -449,6 +533,30 @@
       document.getElementById('wbMainImage').src = el.src;
       document.querySelectorAll('.wb-gallery-grid img').forEach(img => img.classList.remove('active'));
       el.classList.add('active');
+    }
+
+    function switchWbTab(name, btn) {
+      document.querySelectorAll('.wb-tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.wb-tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('wbtab-' + name).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    function wbAddToCart() {
+      Cart.addItem({
+        id: '11',
+        name: 'ウッドバーニング',
+        price: 5500,
+        image: 'images/woodburning/hero.jpg',
+        quantity: 1,
+      });
+      const btn = document.getElementById('wbCartBtn');
+      btn.textContent = '✓ カートに追加しました';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'カートに入れる';
+        btn.disabled = false;
+      }, 1500);
     }
   </script>
 
