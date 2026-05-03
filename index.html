@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="css/style.css?v=20260316">
 
   <!-- ===== サイト共通スタイル上書き ===== -->
-  <link rel="stylesheet" href="css/overrides.css?v=20260316">
+  <link rel="stylesheet" href="css/overrides.css?v=20260503">
   <style>
     /* ============================================
        カラー変数をモノトーンに上書き
@@ -412,6 +412,45 @@
       #headerCartLink { display: flex !important; }
       .header-icons > [aria-label="検索"] { display: flex !important; }
       /* 木目背景のスマホ対応は overrides.css で管理 */
+    }
+    /* 商品カード: ホバー時ズームイン（フェードなし） */
+    html body .product-card-image img {
+      transition: transform 0.4s ease !important;
+      opacity: 1 !important;
+    }
+    html body .product-card:hover .product-card-image img {
+      transform: scale(1.06) !important;
+      opacity: 1 !important;
+    }
+    html body .product-card:hover {
+      transform: none !important;
+      opacity: 1 !important;
+    }
+
+    /* 商品ラインナップ: ウォールナット背景・白文字 */
+    section#products .section-heading-en { color: rgba(255,255,255,0.6) !important; }
+    section#products .section-heading-jp {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none !important;
+      text-shadow: none !important;
+    }
+    section#products .section-heading { border-color: rgba(255,255,255,0.2) !important; }
+    section#products .product-card-info {
+      background: rgba(255,255,255,0.95) !important;
+      padding: 16px !important;
+    }
+    section#products .product-card-info h4 {
+      font-weight: 700 !important;
+      color: #111 !important;
+    }
+    section#products .product-card-info .product-desc {
+      font-weight: 600 !important;
+      color: #333 !important;
+    }
+    section#products .product-card-info .price {
+      font-weight: 700 !important;
+      color: #111 !important;
     }
   </style>
 </head>

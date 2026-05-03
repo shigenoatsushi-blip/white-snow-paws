@@ -90,6 +90,15 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
 .section:not(.section-wood) { background: rgba(255,255,255,0.80) !important; }
 .section-wood { background: rgba(255,255,255,0.80) !important; }
 .story-section { background: rgba(255,255,255,0.80) !important; }
+
+/* 商品ラインナップセクション: ウォールナット背景（上記を上書き） */
+#products {
+  background: url('../images/hero/walnut.jpg') repeat fixed !important;
+  background-size: 600px !important;
+}
+#products .section-heading-en { color: rgba(255,255,255,0.6) !important; }
+#products .section-heading-jp { color: #fff !important; }
+#products .section-heading { border-color: rgba(255,255,255,0.2) !important; }
 .wood-frame::before { display: none !important; }
 
 /* サブページのメインコンテンツにも白半透明 */
@@ -306,13 +315,30 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
 .product-desc {
   display: none !important;
 }
-/* hover: Lutie と同じ opacity 0.5 */
+/* 商品カード: 高さ統一 */
+.product-grid {
+  align-items: stretch !important;
+}
+.product-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+.product-card-image {
+  overflow: hidden !important;
+}
+.product-card-info {
+  flex: 1 !important;
+}
+
+/* hover: 画像ズームイン（フェードなし） */
 .product-card-image img {
-  transition: opacity 0.5s ease !important;
+  transition: transform 0.4s ease !important;
+  opacity: 1 !important;
 }
 .product-card:hover .product-card-image img {
-  transform: none !important;
-  opacity: 0.5 !important;
+  transform: scale(1.06) !important;
+  opacity: 1 !important;
 }
 .product-card:hover {
   transform: none !important;
@@ -406,6 +432,11 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
 .section-heading-line {
   display: none !important;
 }
+
+/* 商品ラインナップセクション: 見出し文字を白に */
+#products .section-heading-en { color: rgba(255,255,255,0.6) !important; }
+#products .section-heading-jp { color: #fff !important; }
+#products .section-heading { border-color: rgba(255,255,255,0.2) !important; }
 
 /* ============================================
    お知らせバー
