@@ -266,6 +266,12 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
   background: rgba(17, 17, 17, 0.98) !important;
   box-shadow: 0 1px 0 rgba(255,255,255,0.08) !important;
 }
+/* ナビバー: ウォールナット背景（商品セクションと統一） */
+.desktop-nav {
+  background: url('../images/hero/walnut.jpg') repeat fixed !important;
+  background-size: 600px !important;
+}
+
 /* スクロール後もナビ文字は白を維持 */
 .header.scrolled .desktop-nav a {
   color: rgba(255, 255, 255, 0.7) !important;
