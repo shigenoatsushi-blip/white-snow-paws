@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>配送・送料について｜White Snow Paws</title>
+  <meta name="description" content="White Snow Pawsの配送方法・送料についてご案内します。">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css?v=20260330">
+  <link rel="stylesheet" href="css/overrides.css?v=20260503">
+
+  <style>
+    .shipping-hero {
+      background: linear-gradient(180deg, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.80) 100%);
+      padding: 80px 20px 36px;
+      text-align: center;
+    }
+    .shipping-hero-en {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 5px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 10px;
+    }
+    .shipping-hero h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 26px;
+      color: #fff;
+      letter-spacing: 3px;
+    }
+    .shipping-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 52px 20px 80px;
+    }
+    .shipping-lead {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      line-height: 2;
+      color: #555;
+      margin-bottom: 40px;
+    }
+    .shipping-section {
+      margin-bottom: 36px;
+      padding: 24px 28px;
+      background: #fff;
+      border: 1px solid #eee;
+    }
+    .shipping-section h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: #333;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .shipping-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .shipping-section li {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      line-height: 2;
+      color: #555;
+      padding-left: 12px;
+      position: relative;
+    }
+    .shipping-section li::before {
+      content: '・';
+      position: absolute;
+      left: 0;
+      color: #aaa;
+    }
+    .shipping-section .indent {
+      padding-left: 28px;
+    }
+    .shipping-note {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      color: #999;
+      line-height: 1.9;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #eee;
+    }
+    .back-link {
+      display: inline-block;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      color: #999;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+    }
+    .back-link:hover { color: #333; }
+  </style>
+</head>
+
+<body>
+  <!-- ヘッダー -->
+  <header class="header scrolled" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/wsplogowhite.png" alt="White Snow Paws" class="logo-img">
+      </a>
+      <!-- ヘッダー中央テキスト -->
+      <a href="index.html" class="header-center-logo">
+        <span class="logo-mark">✦</span>
+        White Snow Paws
+      </a>
+      <div class="header-icons">
+        <button aria-label="検索" class="header-icon-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <span class="header-icon-label">SEARCH</span>
+        </button>
+        <a href="login.html" class="header-icon-btn" style="text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span class="header-icon-label">LOGIN</span>
+        </a>
+        <a href="cart.html" class="header-icon-btn" style="position:relative;text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+          <span class="header-icon-label">CART</span>
+        </a>
+      </div>
+    </div>
+    <nav class="desktop-nav">
+      <ul>
+        <li><a href="index.html#products">PRODUCTS</a></li>
+        <li><a href="index.html#category">CATEGORY</a></li>
+        <li><a href="index.html#story">STORY</a></li>
+        <li><a href="index.html#order">ORDER</a></li>
+        <li><a href="index.html#gallery">GALLERY</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ヒーロー -->
+  <div class="shipping-hero">
+    <p class="shipping-hero-en">SHIPPING & DELIVERY</p>
+    <h1>配送・送料について</h1>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <main class="shipping-content">
+
+    <p class="shipping-lead">ご注文内容に応じて、最適な配送方法にてお届けいたします。</p>
+
+    <div class="shipping-section">
+      <h2>DELIVERY METHOD</h2>
+      <ul>
+        <li>商品2点まで → クリックポストにて発送</li>
+        <li>商品3点以上 → 佐川急便にて発送</li>
+      </ul>
+    </div>
+
+    <div class="shipping-section">
+      <h2>WOOD BURNING</h2>
+      <ul>
+        <li>ウッドバーニング商品のみのご注文 → クリックポストにて発送</li>
+        <li>ウッドバーニング商品＋他商品（2点以上） → 佐川急便にて発送</li>
+        <li>ウッドバーニング商品は、ご注文いただいてから約1週間ほどで発送いたします</li>
+        <li>手作業での制作のため、ご注文状況によりさらにお時間をいただく場合がございます</li>
+      </ul>
+    </div>
+
+    <div class="shipping-section">
+      <h2>SHIPPING FEE</h2>
+      <ul>
+        <li>基本送料無料（クリックポスト対象）</li>
+        <li>商品3点以上のご購入の場合（佐川急便） → 送料 ¥900</li>
+      </ul>
+      <p class="shipping-note">
+        ※佐川急便をご利用の場合<br>
+        北海道：+300円　／　沖縄：+600円
+      </p>
+    </div>
+
+    <div class="shipping-section">
+      <h2>DELIVERY TIME</h2>
+      <ul>
+        <li>クリックポスト：発送後 2〜4日程度</li>
+        <li>佐川急便：発送後 1〜3日程度</li>
+      </ul>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#777;margin-top:14px;">北海道・沖縄へのお届け</p>
+      <ul>
+        <li>北海道：発送後 2〜4日程度</li>
+        <li>沖縄：発送後 3〜7日程度</li>
+      </ul>
+      <p class="shipping-note">※天候や交通状況、配送状況により前後する場合がございます。</p>
+    </div>
+
+    <div class="shipping-section">
+      <h2>NOTE</h2>
+      <ul>
+        <li>配送方法はご注文内容に応じて当店にて選択いたします。</li>
+        <li>配送方法のご指定は承っておりませんので、あらかじめご了承ください。</li>
+      </ul>
+    </div>
+
+    <a href="index.html" class="back-link">← トップページに戻る</a>
+
+  </main>
+
+  <!-- フッター -->
+  <div class="wood-plank-divider"></div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">✦</span>
+          White Snow Paws
+        </a>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h4>SHOP</h4>
+          <ul>
+            <li><a href="biothane-lead.html">BioThane リード</a></li>
+            <li><a href="biothane-collar.html">BioThane カラー</a></li>
+            <li><a href="woodburning.html">ウッドバーニング</a></li>
+            <li><span style="color:#999;">フード（準備中）</span></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>GUIDE</h4>
+          <ul>
+            <li><a href="index.html#order">オーダーの流れ</a></li>
+            <li><a href="faq.html">よくある質問</a></li>
+            <li><a href="terms.html#art5">返品について</a></li>
+            <li><a href="contact.html">お問い合わせ</a></li>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>FOLLOW US</h4>
+          <div class="footer-social">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+          </div>
+          <a href="index.html" class="footer-logo-img-link">
+            <img src="images/wsplogowhite.png" alt="White Snow Paws" class="footer-logo-img-large">
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <a href="terms.html">利用規約</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+        <a href="tradelaw.html">特定商取引法</a>
+        <a href="contact.html">お問い合わせ</a>
+        &copy; 2026 White Snow Paws. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/cart.js"></script>
+  <script src="js/main.js?v=20260330"></script>
+  <script src="js/scroll-anime.js"></script>
+</body>
+
+</html>
