@@ -396,7 +396,7 @@
         <p class="detail-purchase-notice">必ず商品説明・仕様素材などをお確かめの上ご購入ください。</p>
 
         <div class="detail-price-area">
-          <span class="detail-price" id="detailPrice">¥2,980</span>
+          <span class="detail-price" id="detailPrice">¥3,600</span>
           <span class="detail-price-tax">(税込)</span>
           <span class="detail-price-original" id="detailOriginalPrice" style="display:none;"></span>
         </div>
@@ -409,10 +409,10 @@
           <div class="lead-length-select">
             <label for="lengthSelect">長さを選ぶ</label>
             <select id="lengthSelect" onchange="updateLeadPrice()">
-              <option value="120cm" selected>120cm — ¥2,980</option>
-              <option value="150cm">150cm — 価格調整中</option>
-              <option value="200cm">200cm — 価格調整中</option>
-              <option value="300cm">300cm — ¥3,980</option>
+              <option value="120cm" selected>120cm — ¥3,600</option>
+              <option value="150cm">150cm — ¥3,800</option>
+              <option value="200cm">200cm — ¥4,100</option>
+              <option value="300cm">300cm — ¥4,500</option>
             </select>
           </div>
           <div class="lead-options-group">
@@ -420,7 +420,7 @@
             <div class="lead-options-list">
               <div class="lead-option-item">
                 <input type="checkbox" id="karabinaOption" onchange="updateLeadPrice()">
-                <label for="karabinaOption">カラビナ変更 <span class="lead-option-price">(+¥500)</span></label>
+                <label for="karabinaOption">カラビナ変更 <span class="lead-option-price">(+¥1,300)</span></label>
               </div>
             </div>
           </div>
@@ -858,9 +858,8 @@
        商品データ（本来はAPIやDBから取得）
        =================================== */
     const PRODUCTS = {
-      1:  { id:'1',  name:'BioThane リード 16mm', nameEn:'BioThane Lead 16mm', category:'BIOTHANE LEAD', basePrice:2980, originalPrice:null, image:'images/lead-16mm/sample.jpg',
-           /* 150cm・200cmは価格調整中 — 決定後に更新してください */
-           lengths: { '120cm': 2980, '150cm': 0, '200cm': 0, '300cm': 3980 }, defaultLength: '120cm',
+      1:  { id:'1',  name:'BioThane リード 16mm', nameEn:'BioThane Lead 16mm', category:'BIOTHANE LEAD', basePrice:3600, originalPrice:null, image:'images/lead-16mm/sample.jpg',
+           lengths: { '120cm': 3600, '150cm': 3800, '200cm': 4100, '300cm': 4500 }, defaultLength: '120cm',
            colors: [
              { name:'ブラック',       css:'#1A1A1A', image:'images/lead-16mm/black.jpg' },
              { name:'レッド',         css:'#CC2222', image:'images/lead-16mm/red.jpg' },
@@ -880,9 +879,8 @@
              'images/lead-16mm/thumb4.jpg',
              'images/lead-16mm/thumb5.jpg',
            ] },
-      10: { id:'10', name:'BioThane リード 19mm', nameEn:'BioThane Lead 19mm', category:'BIOTHANE LEAD', basePrice:2980, originalPrice:null, image:'images/lead-19mm/sample.jpg',
-           /* 150cm・200cmは価格調整中 — 決定後に更新してください */
-           lengths: { '120cm': 2980, '150cm': 0, '200cm': 0, '300cm': 3980 }, defaultLength: '120cm',
+      10: { id:'10', name:'BioThane リード 19mm', nameEn:'BioThane Lead 19mm', category:'BIOTHANE LEAD', basePrice:4000, originalPrice:null, image:'images/lead-19mm/sample.jpg',
+           lengths: { '120cm': 4000, '150cm': 4200, '200cm': 4500, '300cm': 4900 }, defaultLength: '120cm',
            colors: [
              { name:'ブラック',       css:'#1A1A1A', image:'images/lead-19mm/black.jpg' },
              { name:'レッド',         css:'#CC2222', image:'images/lead-19mm/red.jpg' },
@@ -978,7 +976,7 @@
 
     /* リード用: 長さ・オプション管理 */
     let selectedLength = product.defaultLength || '120cm';
-    let selectedOptions = { karabina: false, karabinaPrice: 500 };
+    let selectedOptions = { karabina: false, karabinaPrice: 1300 };
 
     function updateLeadPrice() {
       if (!isLead) return;
