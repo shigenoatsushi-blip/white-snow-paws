@@ -895,6 +895,48 @@ textarea:focus {
   aspect-ratio: 1 / 1;
   object-fit: cover;
 }
+/* ウッドバーニング作業スライダー */
+.wb-work-swiper {
+  width: 100%;
+  position: relative;
+}
+.wb-work-swiper .swiper-slide img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+.wb-work-pagination { bottom: 10px; }
+.wb-work-swiper .swiper-pagination-bullet {
+  background: rgba(255,255,255,0.5);
+  opacity: 1;
+}
+.wb-work-swiper .swiper-pagination-bullet-active {
+  background: #ffffff;
+}
+.wb-work-prev, .wb-work-next {
+  color: #fff;
+  background: rgba(0,0,0,0.3);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+.wb-work-prev::after, .wb-work-next::after { font-size: 14px; }
+
+/* ビネット＋グラデーションオーバーレイ */
+.wb-image-effect {
+  position: relative;
+  overflow: hidden;
+}
+.wb-image-effect::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.45) 100%),
+    linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 50%);
+  pointer-events: none;
+}
 .wb-text p {
   font-size: 14px;
   line-height: 2.4;

@@ -53,4 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- ウッドバーニング作業スライダー（矢印付き） ---
+    new Swiper('.wb-work-swiper', {
+        loop: true,
+        speed: 600,
+        pagination: {
+            el: '.wb-work-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.wb-work-next',
+            prevEl: '.wb-work-prev',
+        },
+    });
+
 });
