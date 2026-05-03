@@ -140,7 +140,12 @@
       text-align: center;
       font-size: 14px;
       color: #333;
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+      appearance: textfield;
     }
+    .qty-input::-webkit-inner-spin-button,
+    .qty-input::-webkit-outer-spin-button { display: none; }
     .qty-input:focus { outline: none; }
 
     /* カートボタン — Lutie風：シンプルな黒ボタン */
@@ -400,7 +405,7 @@
           <span class="detail-price-tax">(税込)</span>
           <span class="detail-price-original" id="detailOriginalPrice" style="display:none;"></span>
         </div>
-        <p class="detail-shipping">送料無料（3点以上は¥900 / 北海道+300円・沖縄+600円）</p>
+        <p class="detail-shipping">送料無料 / 商品を3点以上ご購入の場合は佐川急便での発送となり、送料¥900を頂戴いたします。</p>
 
         <div class="detail-divider"></div>
 
@@ -547,7 +552,6 @@
         <tr><th>ウェビング</th><td>BioThane® 素材（PVC）</td></tr>
         <tr><th>ナスカン（黒丸／黒四角）</th><td>対荷重：約158.7kgf　素材：亜鉛合金</td></tr>
         <tr><th>回転自動ロック式カラビナ</th><td>対荷重：約400kgf　素材：アルミニウム合金</td></tr>
-        <tr><th>原産国</th><td>日本（新潟県十日町市 ハンドメイド）</td></tr>
       </table>
     </div>
 
@@ -864,7 +868,7 @@
              { name:'ブラック',       css:'#1A1A1A', image:'images/lead-16mm/black.jpg' },
              { name:'レッド',         css:'#CC2222', image:'images/lead-16mm/red.jpg' },
              { name:'オレンジ',       css:'#E87722', image:'images/lead-16mm/orange.jpg' },
-             { name:'イエロー',       css:'#F5D020', image:'images/lead-16mm/yellow.jpg' },
+             { name:'イエロー',       css:'#FFFF00', image:'images/lead-16mm/yellow.jpg' },
              { name:'ピンク',         css:'#F080A0', image:'images/lead-16mm/pink.jpg' },
              { name:'グリーン',       css:'#7EC8A0', image:'images/lead-16mm/green.jpg' },
              { name:'ブラウン',       css:'#7B4F2E', image:'images/lead-16mm/brown.jpg' },
@@ -885,7 +889,7 @@
              { name:'ブラック',       css:'#1A1A1A', image:'images/lead-19mm/black.jpg' },
              { name:'レッド',         css:'#CC2222', image:'images/lead-19mm/red.jpg' },
              { name:'オレンジ',       css:'#E87722', image:'images/lead-19mm/orange.jpg' },
-             { name:'イエロー',       css:'#F5D020', image:'images/lead-19mm/yellow.jpg' },
+             { name:'イエロー',       css:'#FFFF00', image:'images/lead-19mm/yellow.jpg' },
              { name:'ピンク',         css:'#F080A0', image:'images/lead-19mm/pink.jpg' },
              { name:'グリーン',       css:'#7EC8A0', image:'images/lead-19mm/green.jpg' },
              { name:'ブラウン',       css:'#7B4F2E', image:'images/lead-19mm/brown.jpg' },
