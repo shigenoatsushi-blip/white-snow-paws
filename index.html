@@ -412,6 +412,11 @@
       #headerCartLink { display: flex !important; }
       .header-icons > [aria-label="検索"] { display: flex !important; }
       /* 木目背景のスマホ対応は overrides.css で管理 */
+      /* カテゴリーカード高さ統一 */
+      .category-card-main,
+      .category-card-sub {
+        aspect-ratio: 16 / 9 !important;
+      }
     }
     /* 商品カード: ホバー時ズームイン（フェードなし） */
     html body .product-card-image img {

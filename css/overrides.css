@@ -86,6 +86,14 @@ body::before { display: none; } /* ヘリンボーン背景テクスチャ無効
   .footer-logo-img-link { display: none; }
 }
 
+/* カテゴリーカード: モバイルでアスペクト比統一 */
+@media (max-width: 767px) {
+  .category-card-main,
+  .category-card-sub {
+    aspect-ratio: 16 / 9 !important;
+  }
+}
+
 /* セクション半透明（木目を透かす） */
 .section:not(.section-wood) { background: rgba(255,255,255,0.80) !important; }
 .section-wood { background: rgba(255,255,255,0.80) !important; }
