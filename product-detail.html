@@ -61,7 +61,30 @@
       object-fit: cover;
       display: block;
     }
-    .detail-thumb-row { display: flex; gap: 6px; }
+    /* 画像矢印ナビ */
+    .detail-main-image { position: relative; }
+    .img-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.35);
+      color: #fff;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      transition: background 0.2s;
+    }
+    .img-nav-btn:hover { background: rgba(0,0,0,0.6); }
+    .img-nav-prev { left: 8px; }
+    .img-nav-next { right: 8px; }
+    .detail-thumb-row { display: flex; gap: 6px; overflow-x: auto; }
     .detail-thumb {
       overflow: hidden;
       cursor: pointer;
@@ -376,6 +399,8 @@
       <div class="detail-images">
         <div class="detail-main-image">
           <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="商品画像" id="mainImage">
+          <button class="img-nav-btn img-nav-prev" onclick="navImage(-1)" aria-label="前の画像">&#8249;</button>
+          <button class="img-nav-btn img-nav-next" onclick="navImage(1)" aria-label="次の画像">&#8250;</button>
         </div>
         <div class="detail-thumb-row">
           <div class="detail-thumb active" onclick="switchImage('images/woodcraft/work1.png', this)">
@@ -890,6 +915,8 @@
              'images/lead-16mm/thumb3.jpg',
              'images/lead-16mm/thumb4.jpg',
              'images/lead-16mm/thumb5.jpg',
+             'images/lead-16mm/usage1.jpg',
+             'images/lead-16mm/usage2.jpg',
            ] },
       10: { id:'10', name:'BioThane リード 19mm', nameEn:'BioThane Lead 19mm', category:'BIOTHANE LEAD', basePrice:4000, originalPrice:null, image:'images/lead-19mm/sample.jpg',
            lengths: { '120cm': 4000, '150cm': 4200, '200cm': 4500, '300cm': 4900 }, defaultLength: '120cm',
@@ -1106,6 +1133,17 @@
       document.getElementById('mainImage').src = src;
       document.querySelectorAll('.detail-thumb').forEach(t => t.classList.remove('active'));
       thumb.classList.add('active');
+    }
+
+    function navImage(dir) {
+      const thumbs = document.querySelectorAll('.detail-thumb');
+      if (!thumbs.length) return;
+      let current = 0;
+      thumbs.forEach((t, i) => { if (t.classList.contains('active')) current = i; });
+      const next = (current + dir + thumbs.length) % thumbs.length;
+      const nextThumb = thumbs[next];
+      const img = nextThumb.querySelector('img');
+      if (img) switchImage(img.src, nextThumb);
     }
 
     /* タブ切替 */
