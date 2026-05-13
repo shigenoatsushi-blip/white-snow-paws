@@ -655,6 +655,25 @@
 
       try {
         const invoiceRequested = document.getElementById('invoiceRequest').checked;
+
+        // ログイン済みの場合、住所をデフォルトとして保存（次回自動入力用）
+        if (user) {
+            const { data: existingAddr } = await _supabase
+                .from('addresses').select('id').eq('user_id', user.id).eq('is_default', true).maybeSingle();
+            if (existingAddr) {
+                await _supabase.from('addresses').update({
+                    postal_code: shipping.postal, prefecture: shipping.prefecture,
+                    city: shipping.city, address1: shipping.address,
+                }).eq('id', existingAddr.id);
+            } else {
+                await _supabase.from('addresses').insert({
+                    user_id: user.id, postal_code: shipping.postal,
+                    prefecture: shipping.prefecture, city: shipping.city,
+                    address1: shipping.address, is_default: true,
+                });
+            }
+        }
+
         const resp = await fetch('/.netlify/functions/create-checkout-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
