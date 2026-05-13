@@ -57,6 +57,7 @@ async function handleCheckoutComplete(session) {
   const shippingFee = parseInt(meta.shipping_fee || '0', 10);
   const total = subtotal + shippingFee;
   const userId = meta.user_id || null;
+  const invoiceRequested = meta.invoice_requested === 'true';
 
   // 注文番号生成（WSP-YYYYMMDD-XXXXX）
   const now = new Date();
@@ -84,6 +85,7 @@ async function handleCheckoutComplete(session) {
       subtotal,
       shipping_fee: shippingFee,
       total,
+      invoice_requested: invoiceRequested,
     })
     .select()
     .single();
@@ -112,7 +114,7 @@ async function handleCheckoutComplete(session) {
   await sendCustomerEmail(order, cart, shipping);
 
   // 管理者通知メール送信
-  await sendAdminEmail(order, cart, shipping);
+  await sendAdminEmail(order, cart, shipping, invoiceRequested);
 }
 
 async function sendCustomerEmail(order, cart, shipping) {
@@ -178,7 +180,7 @@ async function sendCustomerEmail(order, cart, shipping) {
   }
 }
 
-async function sendAdminEmail(order, cart, shipping) {
+async function sendAdminEmail(order, cart, shipping, invoiceRequested = false) {
   const adminEmail = process.env.ADMIN_EMAIL;
   if (!adminEmail) return;
 
@@ -207,6 +209,8 @@ ${itemsList}
 【お届け先】
 〒${shipping.postal} ${shipping.prefecture}${shipping.city}${shipping.address}
 TEL: ${shipping.phone}
+
+【納品書兼請求書】${invoiceRequested ? '同封希望あり ✓' : '希望なし'}
 `,
     });
   } catch (err) {

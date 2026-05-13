@@ -274,6 +274,28 @@
     .btn-place-order:hover { opacity: 0.8; }
     .btn-place-order:disabled { opacity: 0.5; cursor: not-allowed; }
     .order-note { font-size: 11px; color: #999999; text-align: center; margin-top: 12px; line-height: 1.8; }
+    .invoice-request-row {
+      margin: 16px 0;
+      padding: 12px 14px;
+      background: #f9f6f2;
+      border: 1px solid #D4C4B0;
+      border-radius: 4px;
+    }
+    .invoice-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #3C3228;
+      cursor: pointer;
+    }
+    .invoice-label input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: #3C3228;
+    }
+    .invoice-note { font-size: 11px; color: #999; margin-top: 4px; padding-left: 24px; }
   </style>
 </head>
 
@@ -465,6 +487,14 @@
       </div>
       <p class="checkout-tax">（税込）</p>
 
+      <div class="invoice-request-row">
+        <label class="invoice-label">
+          <input type="checkbox" id="invoiceRequest">
+          <span>納品書兼請求書の同封を希望する</span>
+        </label>
+        <p class="invoice-note">※ご希望の方は配送時に同封いたします</p>
+      </div>
+
       <button class="btn-place-order" onclick="placeOrder()" id="placeOrderBtn">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
@@ -631,10 +661,11 @@
       }));
 
       try {
+        const invoiceRequested = document.getElementById('invoiceRequest').checked;
         const resp = await fetch('/.netlify/functions/create-checkout-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ cart, shipping, userId: user ? user.id : null }),
+          body: JSON.stringify({ cart, shipping, userId: user ? user.id : null, invoiceRequested }),
         });
         const data = await resp.json();
         if (data.url) {

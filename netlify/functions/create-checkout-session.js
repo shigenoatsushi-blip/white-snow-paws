@@ -30,7 +30,7 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON' }) };
   }
 
-  const { cart, shipping, userId } = body;
+  const { cart, shipping, userId, invoiceRequested } = body;
 
   if (!cart || !Array.isArray(cart) || cart.length === 0) {
     return { statusCode: 400, body: JSON.stringify({ error: 'カートが空です' }) };
@@ -83,6 +83,7 @@ exports.handler = async (event) => {
         user_id: userId || '',
         subtotal: String(subtotal),
         shipping_fee: String(shippingFee),
+        invoice_requested: invoiceRequested ? 'true' : 'false',
       },
       success_url: `${siteUrl}/success.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/cancel.html`,
