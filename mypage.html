@@ -105,16 +105,6 @@
       letter-spacing: 1px;
     }
     .mypage-user-email { font-size: 12px; color: #7A6B5D; }
-    .mypage-points {
-      margin-top: 12px;
-      padding: 8px 16px;
-      background: rgba(74,124,89,0.1);
-      border-radius: 100px;
-      font-size: 12px;
-      color: #4A7C59;
-      font-weight: 700;
-    }
-
     .mypage-nav { padding: 8px 0; }
     .mypage-nav-item {
       display: flex;
@@ -262,30 +252,6 @@
     .favorites-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
     @media (max-width: 480px) { .favorites-grid { grid-template-columns: 1fr; } }
 
-    /* ポイント */
-    .points-card {
-      background: linear-gradient(135deg, #4A7C59, #3A6349);
-      border-radius: 8px;
-      padding: 28px 24px;
-      color: #fff;
-      margin-bottom: 24px;
-    }
-    .points-label { font-size: 12px; letter-spacing: 3px; opacity: 0.8; margin-bottom: 8px; }
-    .points-value { font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 4px; }
-    .points-unit { font-size: 14px; opacity: 0.8; }
-    .points-history { display: flex; flex-direction: column; gap: 0; }
-    .points-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(212,196,176,0.5);
-      font-size: 13px;
-    }
-    .points-row-date { color: #7A6B5D; }
-    .points-row-desc { color: #2C241C; flex: 1; padding: 0 16px; }
-    .points-row-plus { color: #4A7C59; font-weight: 700; }
-    .points-row-minus { color: #C0392B; font-weight: 700; }
-
     /* ログアウトボタン */
     .btn-logout {
       display: flex;
@@ -347,7 +313,6 @@
         <div class="mypage-avatar">🐾</div>
         <div class="mypage-user-name" id="sidebarName">読み込み中...</div>
         <div class="mypage-user-email" id="sidebarEmail"></div>
-        <div class="mypage-points">🌟 保有ポイント：<span id="sidebarPoints">0</span>pt</div>
       </div>
       <nav class="mypage-nav">
         <div class="mypage-nav-item active" onclick="showPanel('orders', this)">
@@ -361,12 +326,6 @@
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
           </svg>
           お気に入り
-        </div>
-        <div class="mypage-nav-item" onclick="showPanel('points', this)">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-          </svg>
-          ポイント
         </div>
         <div class="mypage-nav-divider"></div>
         <div class="mypage-nav-item" onclick="showPanel('account', this)">
@@ -421,42 +380,6 @@
               <p class="price">¥4,980 <span class="price-tax">(税込)</span></p>
               <button class="btn-add-cart" data-id="9" data-name="BioThane トレーニングリード 500cm" data-price="4980" data-image="images/woodcraft/work1.png">カートに入れる</button>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ポイント -->
-      <div class="mypage-panel" id="panel-points">
-        <h2 class="panel-title">ポイント</h2>
-        <div class="points-card">
-          <div class="points-label">CURRENT POINTS</div>
-          <div class="points-value">300</div>
-          <div class="points-unit">ポイント（¥300相当）</div>
-        </div>
-        <p style="font-size:13px;color:#7A6B5D;margin-bottom:20px;line-height:2;">
-          ポイントはご購入金額の3%が付与されます。1pt = ¥1として次回のお買い物にご利用いただけます。
-        </p>
-        <h3 style="font-size:14px;font-weight:700;color:#3C3228;margin-bottom:12px;letter-spacing:1px;">獲得・使用履歴</h3>
-        <div class="points-history">
-          <div class="points-row">
-            <span class="points-row-date">2026/03/05</span>
-            <span class="points-row-desc">ご注文 WSP-2026-38271</span>
-            <span class="points-row-plus">+171pt</span>
-          </div>
-          <div class="points-row">
-            <span class="points-row-date">2026/02/18</span>
-            <span class="points-row-desc">ご注文 WSP-2026-19045</span>
-            <span class="points-row-plus">+129pt</span>
-          </div>
-          <div class="points-row">
-            <span class="points-row-date">2026/01/15</span>
-            <span class="points-row-desc">会員登録特典</span>
-            <span class="points-row-plus">+300pt</span>
-          </div>
-          <div class="points-row">
-            <span class="points-row-date">2026/02/10</span>
-            <span class="points-row-desc">ポイント使用</span>
-            <span class="points-row-minus">-300pt</span>
           </div>
         </div>
       </div>
@@ -597,7 +520,6 @@
       document.getElementById('accPhone').textContent = profile?.phone || '—';
       document.getElementById('sidebarName').textContent = name || user.email;
       document.getElementById('sidebarEmail').textContent = user.email;
-      document.getElementById('sidebarPoints').textContent = (profile?.points || 0).toLocaleString();
     }
 
     function renderAddresses(addresses) {
