@@ -25,145 +25,128 @@
   <link rel="stylesheet" href="css/overrides.css?v=20260503">
 
   <style>
-    /* ヒーロー：黒背景に画像オーバーレイ */
-    .story-page-hero {
+    /* 背景固定 + テキストオーバーレイ */
+    .story-page {
       position: relative;
-      height: 60vh;
-      min-height: 380px;
-      overflow: hidden;
-      background: #111;
+      min-height: 100vh;
+      background-image: url('images/hero/hero1.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
     }
-    .story-page-hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.55;
+    /* モバイルではfixed不可なので通常表示 */
+    @media (max-width: 767px) {
+      .story-page { background-attachment: scroll; }
     }
-    .story-page-hero-overlay {
+    .story-page::before {
+      content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-      padding: 80px 20px 20px;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1;
     }
-    .story-page-hero-en {
+    .story-page-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 140px 32px 120px;
+      color: #fff;
+      text-align: center;
+    }
+
+    /* タイトル部 */
+    .story-page-en {
       font-family: 'Cinzel', serif;
       font-size: 14px;
       letter-spacing: 8px;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 18px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 20px;
     }
-    .story-page-hero h1 {
+    .story-page-title {
       font-family: 'Noto Serif JP', serif;
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 500;
       color: #fff;
       letter-spacing: 6px;
-      line-height: 1.6;
+      line-height: 1.7;
+      margin-bottom: 24px;
     }
-    @media (max-width: 767px) {
-      .story-page-hero h1 { font-size: 22px; letter-spacing: 4px; }
-      .story-page-hero-en { font-size: 12px; letter-spacing: 5px; }
+    .story-page-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.6);
+      margin: 0 auto 64px;
     }
 
     /* 本文 */
-    .story-page-body {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 80px 24px 100px;
-      background: #FAF8F5;
-    }
     .story-block {
       margin-bottom: 56px;
       font-family: 'Noto Serif JP', serif;
       font-size: 16px;
       line-height: 2.4;
-      color: #2C241C;
+      color: rgba(255,255,255,0.95);
       letter-spacing: 0.05em;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
     }
     .story-block:last-child { margin-bottom: 0; }
-    .story-block.center { text-align: center; }
     .story-block p { margin-bottom: 0; }
 
-    /* 詩的な短い行ブロック（雪道を駆ける姿。等） */
+    /* 詩的ブロック（雪道を駆ける姿。等） */
     .story-poetic {
       font-family: 'Noto Serif JP', serif;
       font-size: 17px;
       line-height: 2.8;
-      color: #3C3228;
-      text-align: center;
+      color: #fff;
       letter-spacing: 0.1em;
       margin: 56px 0;
       padding: 32px 0;
-      border-top: 1px solid #d8d1c4;
-      border-bottom: 1px solid #d8d1c4;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
     }
 
-    /* キーセクション（本当に必要なのは、） */
+    /* キーセクション */
     .story-keylist {
       font-family: 'Noto Serif JP', serif;
       font-size: 16px;
       line-height: 2.6;
-      color: #3C3228;
-      text-align: center;
+      color: #fff;
       margin: 32px 0;
       padding: 24px 0;
       letter-spacing: 0.08em;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
     }
     .story-keylist .label {
       font-family: 'Cinzel', serif;
       font-size: 11px;
       letter-spacing: 4px;
-      color: #999;
+      color: rgba(255,255,255,0.7);
       display: block;
       margin-top: 16px;
-      margin-bottom: -8px;
+      margin-bottom: -4px;
     }
 
-    /* 中央配置の画像 */
-    .story-image {
-      width: 100%;
-      max-width: 800px;
-      margin: 64px auto;
-      overflow: hidden;
-    }
-    .story-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-    }
-    @media (max-width: 767px) {
-      .story-page-body { padding: 56px 20px 72px; }
-      .story-block { font-size: 15px; line-height: 2.2; margin-bottom: 40px; }
-      .story-poetic { font-size: 15px; line-height: 2.4; margin: 40px 0; }
-      .story-image { margin: 48px auto; }
-    }
-
-    /* 末尾の署名・ブランドロゴ */
+    /* 署名 */
     .story-signature {
-      text-align: center;
       margin-top: 80px;
       padding-top: 48px;
-      border-top: 1px solid #d8d1c4;
+      border-top: 1px solid rgba(255,255,255,0.3);
     }
     .story-signature .brand {
       font-family: 'Cinzel', serif;
-      font-size: 18px;
-      letter-spacing: 6px;
-      color: #2C241C;
+      font-size: 20px;
+      letter-spacing: 7px;
+      color: #fff;
       margin-bottom: 10px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
     }
     .story-signature .tagline {
       font-family: 'Noto Sans JP', sans-serif;
-      font-size: 12px;
-      color: #888;
-      letter-spacing: 3px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 4px;
     }
 
     /* CTA */
@@ -175,26 +158,36 @@
       display: inline-block;
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 13px;
-      color: #fff;
-      background: #111;
+      color: #111;
+      background: #fff;
       text-decoration: none;
       padding: 14px 40px;
       letter-spacing: 2px;
       transition: opacity 0.3s;
+      border: 1px solid #fff;
     }
-    .story-cta .btn-primary:hover { opacity: 0.75; }
+    .story-cta .btn-primary:hover { background: transparent; color: #fff; }
 
     .back-link {
       display: inline-block;
       font-family: 'Noto Sans JP', sans-serif;
-      font-size: 13px;
-      color: #999;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
       text-decoration: none;
-      letter-spacing: 0.5px;
-      margin-top: 56px;
+      letter-spacing: 1px;
+      margin-top: 40px;
       transition: color 0.3s;
     }
-    .back-link:hover { color: #333; }
+    .back-link:hover { color: #fff; }
+
+    @media (max-width: 767px) {
+      .story-page-inner { padding: 96px 24px 80px; }
+      .story-page-title { font-size: 22px; letter-spacing: 4px; }
+      .story-page-en { font-size: 12px; letter-spacing: 5px; }
+      .story-block { font-size: 15px; line-height: 2.2; margin-bottom: 40px; }
+      .story-poetic { font-size: 15px; line-height: 2.4; margin: 40px 0; }
+      .story-signature .brand { font-size: 17px; letter-spacing: 5px; }
+    }
   </style>
 </head>
 
@@ -241,90 +234,77 @@
     </nav>
   </header>
 
-  <!-- ヒーロー -->
-  <div class="story-page-hero">
-    <img src="images/hero/hero1.jpg" alt="雪国と愛犬" loading="eager">
-    <div class="story-page-hero-overlay">
-      <p class="story-page-hero-en">OUR STORY</p>
-      <h1>雪国で生まれた、<br>愛犬のための物語。</h1>
-    </div>
-  </div>
+  <!-- ストーリーセクション（背景固定＋テキストオーバーレイ） -->
+  <section class="story-page">
+    <div class="story-page-inner">
 
-  <!-- 本文 -->
-  <main class="story-page-body">
+      <p class="story-page-en">OUR STORY</p>
+      <h1 class="story-page-title">雪国で生まれた、<br>愛犬のための物語。</h1>
+      <div class="story-page-divider"></div>
 
-    <div class="story-block">
-      <p>
-        雪深い土地で暮らす中で、<br>
-        私たちは犬と"共に生きる"という感覚を自然と学んできました。
-      </p>
-    </div>
+      <div class="story-block">
+        <p>
+          雪深い土地で暮らす中で、<br>
+          私たちは犬と"共に生きる"という感覚を自然と学んできました。
+        </p>
+      </div>
 
-    <div class="story-poetic">
-      雪道を駆ける姿。<br>
-      冷たい風の中でも、真っ直ぐにこちらを見る目。<br>
-      言葉はなくても伝わる信頼関係。
-    </div>
+      <div class="story-poetic">
+        雪道を駆ける姿。<br>
+        冷たい風の中でも、真っ直ぐにこちらを見る目。<br>
+        言葉はなくても伝わる信頼関係。
+      </div>
 
-    <div class="story-image">
-      <img src="images/dog_pics/hero3.jpg" alt="雪国の愛犬" loading="lazy">
-    </div>
+      <div class="story-block">
+        <p>
+          愛犬との時間の中で感じたのは、<br>
+          犬用品は「可愛さ」だけでは足りないということでした。
+        </p>
+      </div>
 
-    <div class="story-block">
-      <p>
-        愛犬との時間の中で感じたのは、<br>
-        犬用品は「可愛さ」だけでは足りないということでした。
-      </p>
-    </div>
+      <div class="story-keylist">
+        本当に必要なのは、<br>
+        <span class="label">— STRENGTH —</span>
+        過酷な環境でも使える強さ。<br>
+        <span class="label">— UTILITY —</span>
+        毎日使っても壊れない実用性。<br>
+        <span class="label">— BOND —</span>
+        そして、ハンドラーと犬の時間をより深くする絆であること。
+      </div>
 
-    <div class="story-keylist">
-      本当に必要なのは、<br>
-      <span class="label">— STRENGTH —</span>
-      過酷な環境でも使える強さ。<br>
-      <span class="label">— UTILITY —</span>
-      毎日使っても壊れない実用性。<br>
-      <span class="label">— BOND —</span>
-      そして、ハンドラーと犬の時間をより深くする絆であること。
-    </div>
+      <div class="story-block">
+        <p>
+          だから私たちは、<br>
+          雪国という環境から学んだ"本物志向"を形にし、<br>
+          デザインだけではなく、耐久性・機能性・存在感にこだわった犬用品を作り始めました。
+        </p>
+      </div>
 
-    <div class="story-image">
-      <img src="images/woodcraft/work3.jpg" alt="愛犬との時間" loading="lazy">
-    </div>
+      <div class="story-poetic">
+        犬は家族であり、相棒であり、<br>
+        人生を共に歩く存在。
+      </div>
 
-    <div class="story-block">
-      <p>
-        だから私たちは、<br>
-        雪国という環境から学んだ"本物志向"を形にし、<br>
-        デザインだけではなく、耐久性・機能性・存在感にこだわった犬用品を作り始めました。
-      </p>
-    </div>
+      <div class="story-block">
+        <p>
+          White Snow Paws は、<br>
+          そんな想いから生まれたブランドです。
+        </p>
+      </div>
 
-    <div class="story-poetic">
-      犬は家族であり、相棒であり、<br>
-      人生を共に歩く存在。
-    </div>
+      <div class="story-signature">
+        <div class="brand">WHITE SNOW PAWS</div>
+        <div class="tagline">NIIGATA · TOKAMACHI</div>
+      </div>
 
-    <div class="story-block center">
-      <p>
-        White Snow Paws は、<br>
-        そんな想いから生まれたブランドです。
-      </p>
-    </div>
+      <div class="story-cta">
+        <a href="index.html#products" class="btn-primary">商品を見る</a>
+      </div>
 
-    <div class="story-signature">
-      <div class="brand">WHITE SNOW PAWS</div>
-      <div class="tagline">NIIGATA · TOKAMACHI</div>
-    </div>
-
-    <div class="story-cta">
-      <a href="index.html#products" class="btn-primary">商品を見る</a>
-    </div>
-
-    <div style="text-align:center;">
       <a href="index.html" class="back-link">← トップページに戻る</a>
-    </div>
 
-  </main>
+    </div>
+  </section>
 
   <!-- フッター -->
   <div class="wood-plank-divider"></div>
