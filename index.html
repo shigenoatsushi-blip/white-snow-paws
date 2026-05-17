@@ -466,6 +466,29 @@
       color: #111 !important;
     }
   </style>
+
+  <!-- ============================================
+       一時: 英語フォントを游明朝(太字)に置き換え
+       元のCinzelに戻すには、この<style id="english-font-override">ブロックを削除
+       ============================================ -->
+  <style id="english-font-override">
+    :root {
+      --font-heading-en: 'Yu Mincho', '游明朝', YuMincho, 'Hiragino Mincho ProN', serif;
+    }
+    .logo,
+    .header-center-logo,
+    .section-heading-en,
+    .news-date,
+    .header-icon-label,
+    .desktop-nav a,
+    .footer-logo .logo,
+    .footer-column h4,
+    .btn-outline,
+    .btn-primary {
+      font-family: 'Yu Mincho', '游明朝', YuMincho, 'Hiragino Mincho ProN', serif !important;
+      font-weight: 700 !important;
+    }
+  </style>
 </head>
 
 <body>
