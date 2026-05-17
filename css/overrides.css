@@ -4,6 +4,23 @@
    ===================================================== */
 
 /* ============================================
+   一時: 全ページ全テキストを游明朝(太字)に統一
+   元に戻すにはこのブロック(/* FONT-OVERRIDE-START */ から
+   /* FONT-OVERRIDE-END */ まで)を削除
+   ============================================ */
+/* FONT-OVERRIDE-START */
+:root {
+  --font-heading-en: 'Yu Mincho', '游明朝', YuMincho, 'Hiragino Mincho ProN', serif;
+  --font-jp: 'Yu Mincho', '游明朝', YuMincho, 'Hiragino Mincho ProN', serif;
+}
+body, body *, button, input, select, textarea {
+  font-family: 'Yu Mincho', '游明朝', YuMincho, 'Hiragino Mincho ProN', serif !important;
+  font-weight: 700 !important;
+}
+svg, svg * { font-weight: normal !important; }
+/* FONT-OVERRIDE-END */
+
+/* ============================================
    カラー変数をモノトーンに上書き
    ============================================ */
 :root {

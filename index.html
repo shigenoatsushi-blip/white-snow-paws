@@ -466,22 +466,6 @@
     }
   </style>
 
-  <!-- ============================================
-       一時: indexの全テキストを游明朝(太字)に置き換え
-       元のフォントに戻すには、この<style id="english-font-override">ブロックを削除
-       ============================================ -->
-  <style id="english-font-override">
-    :root {
-      --font-heading-en: 'Yu Mincho', '游明朝', YuMincho, 'Hiragino Mincho ProN', serif;
-      --font-jp: 'Yu Mincho', '游明朝', YuMincho, 'Hiragino Mincho ProN', serif;
-    }
-    body, body * {
-      font-family: 'Yu Mincho', '游明朝', YuMincho, 'Hiragino Mincho ProN', serif !important;
-      font-weight: 700 !important;
-    }
-    /* SVGアイコン等のfont-weight影響は不要なので除外 */
-    svg, svg * { font-weight: normal !important; }
-  </style>
 </head>
 
 <body>
