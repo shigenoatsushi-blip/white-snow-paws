@@ -76,6 +76,8 @@ async function handleCheckoutComplete(session) {
       customer_email: session.customer_email || shipping.email,
       shipping_last_name: shipping.lastName,
       shipping_first_name: shipping.firstName,
+      shipping_last_kana: shipping.lastKana || '',
+      shipping_first_kana: shipping.firstKana || '',
       shipping_postal: shipping.postal,
       shipping_prefecture: shipping.prefecture,
       shipping_city: shipping.city,

@@ -193,7 +193,7 @@
       </div>
 
       <div class="notes">
-        ※ お振込人名義は <strong id="payerName">ご注文者様</strong> でお願いいたします。<br>
+        ※ お振込人名義（カタカナ）: <strong id="payerName">—</strong><br>
         ※ <strong>振込手数料はお客様ご負担</strong>にてお願いいたします。<br>
         ※ 振込先情報・注文内容のメールも送信しております。ご確認ください。<br>
         ※ ご入金確認後、発送準備に入らせていただきます。
@@ -246,8 +246,8 @@
         if (!order) throw new Error('not found');
         document.getElementById('orderNumberDisplay').textContent = order.order_number;
         document.getElementById('amountDisplay').textContent = '¥' + order.total.toLocaleString();
-        document.getElementById('payerName').textContent =
-          `${order.shipping_last_name} ${order.shipping_first_name} 様`;
+        const kana = `${(order.shipping_last_kana || '').toUpperCase()} ${(order.shipping_first_kana || '').toUpperCase()}`.trim();
+        document.getElementById('payerName').textContent = kana || `${order.shipping_last_name} ${order.shipping_first_name}`;
         document.getElementById('loading').style.display = 'none';
         document.getElementById('content').style.display = 'block';
       } catch (e) {

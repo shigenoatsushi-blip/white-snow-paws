@@ -76,6 +76,8 @@ exports.handler = async (event) => {
       customer_email: shipping.email,
       shipping_last_name: shipping.lastName,
       shipping_first_name: shipping.firstName,
+      shipping_last_kana: shipping.lastKana || '',
+      shipping_first_kana: shipping.firstKana || '',
       shipping_postal: shipping.postal,
       shipping_prefecture: shipping.prefecture,
       shipping_city: shipping.city,
@@ -158,7 +160,7 @@ async function sendCustomerEmail(order, cart, shipping) {
     <tr><td style="padding:6px 8px;color:#7A6B5D;">お振込金額</td><td style="padding:6px 8px;font-weight:bold;color:#C0392B;">¥${order.total.toLocaleString()}</td></tr>
   </table>
   <p style="font-size:13px;color:#7A6B5D;line-height:1.8;">
-    ※ お振込人名義は <strong>${shipping.lastName} ${shipping.firstName}</strong> 様でお願いいたします。<br>
+    ※ お振込人名義（カタカナ）: <strong>${(shipping.lastKana || '').toUpperCase()} ${(shipping.firstKana || '').toUpperCase()}</strong><br>
     ※ <strong>振込手数料はお客様ご負担</strong>でお願いいたします。<br>
     ※ ご入金確認後、発送準備に入らせていただきます。
   </p>
