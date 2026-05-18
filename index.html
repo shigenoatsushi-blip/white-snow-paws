@@ -418,11 +418,14 @@
         cursor: pointer;
         padding: 4px;
       }
-      /* モバイルではログイン・カート・ハンバーガーのみ表示 */
+      /* モバイルヘッダーアイコン制御 */
       .header-icons > * { display: none !important; }
       .mobile-hamburger { display: flex !important; }
-      #headerCartLink, #headerLoginLink { display: flex !important; }
-      /* アイコンのラベル(LOGIN等の文字)はスマホで非表示にしてコンパクトに */
+      #headerCartLink { display: flex !important; }
+      /* 未ログイン: LOGIN表示 / ログイン中: MYPAGE表示 */
+      body:not(.is-logged-in) #headerLoginLink { display: flex !important; }
+      body.is-logged-in #headerMypageLink { display: flex !important; }
+      /* アイコンラベルは非表示にしてコンパクト */
       .header-icon-label { display: none !important; }
       .header-icon-btn { padding: 0 6px !important; }
       /* 木目背景のスマホ対応は overrides.css で管理 */

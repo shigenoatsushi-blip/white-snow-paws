@@ -75,6 +75,7 @@ const WSP_Auth = {
 
     if (user) {
       // ログイン済み：マイページ + ログアウト表示
+      document.body.classList.add('is-logged-in');
       if (loginLink) loginLink.style.display = 'none';
       if (signupLink) signupLink.style.display = 'none';
       if (mypageLink) mypageLink.style.display = '';
@@ -87,6 +88,7 @@ const WSP_Auth = {
       }
     } else {
       // 未ログイン：ログイン + 新規登録表示
+      document.body.classList.remove('is-logged-in');
       if (loginLink) loginLink.style.display = '';
       if (signupLink) signupLink.style.display = '';
       if (mypageLink) mypageLink.style.display = 'none';
