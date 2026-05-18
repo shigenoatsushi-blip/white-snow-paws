@@ -423,12 +423,6 @@
           </div>
           <p class="summary-tax">（税込）</p>
 
-          <!-- クーポン -->
-          <div class="coupon-row">
-            <input type="text" class="coupon-input" id="couponInput" placeholder="クーポンコード">
-            <button class="btn-coupon" onclick="applyCoupon()">適用</button>
-          </div>
-
           <a href="checkout.html" class="btn-checkout">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -461,15 +455,6 @@
       if (!item) return;
       Cart.removeItem(item.id, item.color, item.length, item.options);
       renderCart();
-    }
-
-    function applyCoupon() {
-      const code = document.getElementById('couponInput').value.trim().toUpperCase();
-      if (code === 'SNOW10') {
-        alert('クーポン「SNOW10」を適用しました（10%割引）※現在デモ表示のみ');
-      } else {
-        alert('クーポンコードが正しくありません。');
-      }
     }
 
     // 初回レンダリング
