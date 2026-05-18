@@ -404,6 +404,10 @@
     /* ハンバーガーボタン: モバイルのみ表示 */
     .mobile-hamburger { display: none; }
     @media (max-width: 768px) {
+      /* スマホ専用 ヒーロー画像の位置調整 */
+      .hero-swiper img[src*="hero1.jpg"] { object-position: 30% 50% !important; }
+      .hero-swiper img[src*="hero2.jpg"] { object-position: 40% 20% !important; }
+
       .mobile-hamburger {
         display: flex !important;
         align-items: center;
