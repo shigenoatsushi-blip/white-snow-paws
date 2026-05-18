@@ -418,10 +418,13 @@
         cursor: pointer;
         padding: 4px;
       }
-      /* モバイルではカート・ハンバーガーのみ表示 */
+      /* モバイルではログイン・カート・ハンバーガー表示 */
       .header-icons > * { display: none !important; }
       .mobile-hamburger { display: flex !important; }
-      #headerCartLink { display: flex !important; }
+      #headerCartLink, #headerLoginLink, #headerMypageLink, #headerLogoutBtn { display: flex !important; }
+      /* アイコンのラベル(SEARCH/LOGIN等の文字)はスマホで非表示にしてコンパクトに */
+      .header-icon-label { display: none !important; }
+      .header-icon-btn { padding: 0 6px !important; }
       /* 木目背景のスマホ対応は overrides.css で管理 */
       /* カテゴリーカード高さ統一 */
       .category-card-main,
