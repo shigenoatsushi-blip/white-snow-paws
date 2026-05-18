@@ -444,17 +444,24 @@
             お支払い方法
           </h2>
           <div class="payment-options">
-            <div class="payment-option" style="background:#F7F7F7;border:2px solid #111111;border-radius:5px;padding:16px;cursor:default;">
-              <div>
-                <div class="payment-option-label" style="color:#111111;font-weight:700;">🔒 クレジットカード（Stripe 安全決済）</div>
-                <div class="payment-option-desc" style="margin-top:6px;">Visa / Mastercard / JCB / AMEX 対応<br>カード情報はStripeの安全なページで入力します。このサイトにカード番号は送信されません。</div>
+            <label class="payment-option" style="background:#F7F7F7;border:2px solid #111111;border-radius:5px;padding:16px;cursor:pointer;display:block;margin-bottom:10px;">
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <input type="radio" name="paymentMethod" value="card" checked style="margin-top:4px;">
+                <div style="flex:1;">
+                  <div class="payment-option-label" style="color:#111111;font-weight:700;">🔒 クレジットカード（Stripe 安全決済）</div>
+                  <div class="payment-option-desc" style="margin-top:6px;">Visa / Mastercard / JCB / AMEX 対応<br>カード情報はStripeの安全なページで入力します。このサイトにカード番号は送信されません。</div>
+                </div>
               </div>
-              <div class="payment-icons">
-                <span class="payment-icon">VISA</span>
-                <span class="payment-icon">MC</span>
-                <span class="payment-icon">JCB</span>
+            </label>
+            <label class="payment-option" style="background:#fff;border:2px solid #E0DCD5;border-radius:5px;padding:16px;cursor:pointer;display:block;">
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <input type="radio" name="paymentMethod" value="bank_transfer" style="margin-top:4px;">
+                <div style="flex:1;">
+                  <div class="payment-option-label" style="color:#111111;font-weight:700;">🏦 銀行振込</div>
+                  <div class="payment-option-desc" style="margin-top:6px;">ご注文完了画面およびメールに振込先口座をご案内いたします。<br>ご入金確認後、発送準備に入らせていただきます。<br><span style="color:#C0392B;">※振込手数料はお客様ご負担となります。</span></div>
+                </div>
               </div>
-            </div>
+            </label>
           </div>
         </div>
 
@@ -655,6 +662,7 @@
 
       try {
         const invoiceRequested = document.getElementById('invoiceRequest').checked;
+        const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
 
         // ログイン済みの場合、住所をデフォルトとして保存（次回自動入力用）
         if (user) {
@@ -674,18 +682,34 @@
             }
         }
 
-        const resp = await fetch('/.netlify/functions/create-checkout-session', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ cart, shipping, userId: user ? user.id : null, invoiceRequested }),
-        });
-        const data = await resp.json();
-        if (data.url) {
-          // カートをクリア
-          localStorage.removeItem('wsp_cart');
-          window.location.href = data.url;
+        if (paymentMethod === 'bank_transfer') {
+          // 銀行振込
+          const resp = await fetch('/.netlify/functions/submit-bank-transfer-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ cart, shipping, userId: user ? user.id : null, invoiceRequested }),
+          });
+          const data = await resp.json();
+          if (data.order_number) {
+            localStorage.removeItem('wsp_cart');
+            window.location.href = `bank-transfer-success.html?order=${encodeURIComponent(data.order_number)}`;
+          } else {
+            throw new Error(data.error || '注文の作成に失敗しました');
+          }
         } else {
-          throw new Error(data.error || '決済ページの作成に失敗しました');
+          // クレジットカード（Stripe）
+          const resp = await fetch('/.netlify/functions/create-checkout-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ cart, shipping, userId: user ? user.id : null, invoiceRequested }),
+          });
+          const data = await resp.json();
+          if (data.url) {
+            localStorage.removeItem('wsp_cart');
+            window.location.href = data.url;
+          } else {
+            throw new Error(data.error || '決済ページの作成に失敗しました');
+          }
         }
       } catch (err) {
         alert('エラーが発生しました: ' + err.message);
