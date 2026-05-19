@@ -11,7 +11,7 @@ const WSP_CONFIG = {
 
   // Stripe 公開キー
   // https://dashboard.stripe.com/apikeys から取得
-  STRIPE_PUBLISHABLE_KEY: 'pk_test_51SVQVQDe3meem57meNW5D9idOoPV5OzpxXgXypz8JhOxQpasiZRpfdiYLhZOXGb1XyBcwShKCsz9XFnjUsBPu2ls00U13ug381',
+  STRIPE_PUBLISHABLE_KEY: 'pk_live_51SVQVBRW30wtyRtV07f1QHZcJWQy3Gsv4jXvoEHPueEXhjiuRf8crFLI2YSKVUJQeb9pLCNerRA5BZbtEb8ivxLV00HJEeXqyZ',
 
   // サイト設定
   SITE_NAME: 'White Snow Paws',
