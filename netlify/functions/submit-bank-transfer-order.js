@@ -17,7 +17,7 @@ const BANK_INFO = {
   branchName: '十日町支店',
   accountType: '普通',
   accountNumber: '3551258',
-  accountHolder: 'カブシキカイシャユウキコウギヨウ',
+  accountHolder: 'カ）ユウキコウギヨウ',
 };
 
 exports.handler = async (event) => {
