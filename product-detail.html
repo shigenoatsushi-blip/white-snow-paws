@@ -1010,6 +1010,13 @@
     const isLead = product.category === 'BIOTHANE LEAD' && product.lengths;
     if (isLead) {
       document.querySelector('.lead-options').classList.add('show');
+      // 長さ選択ドロップダウンを商品データから動的生成
+      const lengthSelect = document.getElementById('lengthSelect');
+      if (lengthSelect && product.lengths) {
+        lengthSelect.innerHTML = Object.entries(product.lengths).map(([len, price]) =>
+          `<option value="${len}"${len === (product.defaultLength || '120cm') ? ' selected' : ''}>${len} — ¥${price.toLocaleString()}</option>`
+        ).join('');
+      }
       // デフォルト価格を設定
       const defaultPrice = product.lengths[product.defaultLength || '120cm'];
       document.getElementById('detailPrice').textContent = '¥' + defaultPrice.toLocaleString();
