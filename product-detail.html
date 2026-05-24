@@ -427,7 +427,7 @@
       <div class="detail-info">
         <p class="detail-category" id="detailCategory">BIOTHANE LEAD</p>
         <h1 class="detail-name" id="detailName">BioThane リード</h1>
-        <p class="detail-name-en" id="detailNameEn">Standard Lead 120cm — Handmade</p>
+        <p class="detail-name-en" id="detailNameEn">Standard Lead 1200mm — Handmade</p>
         <p class="detail-purchase-notice">必ず商品説明・仕様素材などをお確かめの上ご購入ください。</p>
 
         <div class="detail-price-area">
@@ -444,10 +444,10 @@
           <div class="lead-length-select">
             <label for="lengthSelect">長さを選ぶ</label>
             <select id="lengthSelect" onchange="updateLeadPrice()">
-              <option value="120cm" selected>120cm — ¥3,800</option>
-              <option value="150cm">150cm — ¥4,000</option>
-              <option value="200cm">200cm — ¥4,300</option>
-              <option value="300cm">300cm — ¥4,700</option>
+              <option value="1200mm" selected>1200mm — ¥3,800</option>
+              <option value="1500mm">1500mm — ¥4,000</option>
+              <option value="2m">2m — ¥4,300</option>
+              <option value="3m">3m — ¥4,700</option>
             </select>
           </div>
           <div class="lead-options-group">
@@ -897,7 +897,7 @@
        =================================== */
     const PRODUCTS = {
       1:  { id:'1',  name:'BioThane リード 16mm', nameEn:'BioThane Lead 16mm', category:'BIOTHANE LEAD', basePrice:3800, originalPrice:null, image:'images/biothane/wsp-color-lineup.jpg',
-           lengths: { '120cm': 3800, '150cm': 4000, '200cm': 4300, '300cm': 4700 }, defaultLength: '120cm',
+           lengths: { '1200mm': 3800, '1500mm': 4000, '2m': 4300, '3m': 4700 }, defaultLength: '1200mm',
            colors: [
              { name:'ブラック',       css:'#1A1A1A', image:'images/lead-16mm/black.jpg' },
              { name:'レッド',         css:'#CC2222', image:'images/lead-16mm/red.jpg' },
@@ -919,7 +919,7 @@
              'images/common/carabiner-info.jpg',
            ] },
       10: { id:'10', name:'BioThane リード 19mm', nameEn:'BioThane Lead 19mm', category:'BIOTHANE LEAD', basePrice:4200, originalPrice:null, image:'images/lead-19mm/sample.jpg',
-           lengths: { '120cm': 4200, '150cm': 4400, '200cm': 4700, '300cm': 5100 }, defaultLength: '120cm',
+           lengths: { '1200mm': 4200, '1500mm': 4400, '2m': 4700, '3m': 5100 }, defaultLength: '1200mm',
            colors: [
              { name:'ブラック',       css:'#1A1A1A', image:'images/lead-19mm/black.jpg' },
              { name:'レッド',         css:'#CC2222', image:'images/lead-19mm/red.jpg' },
@@ -941,7 +941,7 @@
              'images/common/carabiner-info.jpg',
            ] },
       2: { id:'2', name:'BioThane ショートリード 60cm',     nameEn:'Short Lead 60cm',     category:'BIOTHANE LEAD', price:2480, originalPrice:null, image:'images/woodcraft/work1.png' },
-      3: { id:'3', name:'BioThane ロングリード 300cm',     nameEn:'Long Lead 300cm',     category:'BIOTHANE LEAD', price:3980, originalPrice:null, image:'images/woodcraft/work1.png' },
+      3: { id:'3', name:'BioThane ロングリード 3m',     nameEn:'Long Lead 3m',     category:'BIOTHANE LEAD', price:3980, originalPrice:null, image:'images/woodcraft/work1.png' },
       4: { id:'4', name:'BioThane カラー（首輪）S',       nameEn:'Collar S',            category:'BIOTHANE COLLAR', price:1980, originalPrice:null, image:'images/woodcraft/work2.png' },
       5: { id:'5', name:'BioThane カラー（首輪）M',       nameEn:'Collar M',            category:'BIOTHANE COLLAR', price:2180, originalPrice:null, image:'images/woodcraft/work2.png' },
       6: { id:'6', name:'BioThane カラー（首輪）L',       nameEn:'Collar L',            category:'BIOTHANE COLLAR', price:2380, originalPrice:null, image:'images/woodcraft/work2.png' },
@@ -1014,11 +1014,11 @@
       const lengthSelect = document.getElementById('lengthSelect');
       if (lengthSelect && product.lengths) {
         lengthSelect.innerHTML = Object.entries(product.lengths).map(([len, price]) =>
-          `<option value="${len}"${len === (product.defaultLength || '120cm') ? ' selected' : ''}>${len} — ¥${price.toLocaleString()}</option>`
+          `<option value="${len}"${len === (product.defaultLength || '1200mm') ? ' selected' : ''}>${len} — ¥${price.toLocaleString()}</option>`
         ).join('');
       }
       // デフォルト価格を設定
-      const defaultPrice = product.lengths[product.defaultLength || '120cm'];
+      const defaultPrice = product.lengths[product.defaultLength || '1200mm'];
       document.getElementById('detailPrice').textContent = '¥' + defaultPrice.toLocaleString();
     } else {
       const displayPrice = product.price || product.basePrice;
@@ -1054,7 +1054,7 @@
     }
 
     /* リード用: 長さ・オプション管理 */
-    let selectedLength = product.defaultLength || '120cm';
+    let selectedLength = product.defaultLength || '1200mm';
     let selectedOptions = { karabina: false, karabinaPrice: 1300 };
 
     function updateLeadPrice() {
