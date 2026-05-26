@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SDYCLMNHCY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SDYCLMNHCY');
+  </script>
+  <title>注文確認｜White Snow Paws</title>
+  <meta name="description" content="ご注文内容の最終確認">
+  <meta name="robots" content="noindex, follow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css?v=20260330">
+  <link rel="stylesheet" href="css/overrides.css?v=20260520">
+
+  <style>
+    .confirm-container { max-width: 880px; margin: 0 auto; padding: 60px 24px 80px; }
+    .confirm-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 8px;
+      color: #2C241C;
+    }
+    .confirm-sub {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 40px;
+    }
+    .confirm-steps {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 40px;
+      font-size: 12px;
+      color: #999;
+      letter-spacing: 1px;
+    }
+    .confirm-steps .step.active { color: #2C241C; font-weight: 700; }
+    .confirm-steps .step .num {
+      display: inline-block;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: #ddd; color: #fff;
+      text-align: center; line-height: 20px;
+      margin-right: 6px;
+      font-size: 11px;
+    }
+    .confirm-steps .step.active .num { background: #2C241C; }
+
+    .confirm-section {
+      background: #fff;
+      border: 1px solid #eee;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+    }
+    .confirm-section h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #333;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .confirm-section .edit-link {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      color: #999;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .confirm-section .edit-link:hover { color: #333; }
+    .confirm-row {
+      display: flex;
+      padding: 8px 0;
+      font-size: 13px;
+      line-height: 1.8;
+      gap: 16px;
+    }
+    .confirm-row .label {
+      flex-shrink: 0;
+      width: 120px;
+      color: #888;
+    }
+    .confirm-row .value {
+      flex: 1;
+      color: #333;
+    }
+    .confirm-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .confirm-item {
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px dashed #eee;
+    }
+    .confirm-item:last-child { border-bottom: none; }
+    .confirm-item img { width: 60px; height: 60px; object-fit: cover; }
+    .confirm-item .name { font-size: 13px; line-height: 1.7; color: #333; }
+    .confirm-item .qty { font-size: 11px; color: #888; }
+    .confirm-item .price { font-size: 13px; color: #333; font-weight: 500; }
+
+    .confirm-total {
+      background: #fafafa;
+      border: 1px solid #eee;
+      padding: 18px 24px;
+      margin-bottom: 32px;
+    }
+    .confirm-total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      padding: 6px 0;
+      color: #555;
+    }
+    .confirm-total-final {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 12px;
+      margin-top: 8px;
+      border-top: 1px solid #ddd;
+    }
+    .confirm-total-final .label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #2C241C;
+    }
+    .confirm-total-final .amount {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #2C241C;
+    }
+    .confirm-total-tax { font-size: 11px; color: #888; text-align: right; margin-top: 4px; }
+
+    .confirm-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .btn-back, .btn-confirm-order {
+      flex: 1;
+      padding: 16px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border: 1px solid;
+      transition: opacity 0.3s, background 0.3s, color 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-back {
+      background: #fff;
+      color: #333;
+      border-color: #999;
+    }
+    .btn-back:hover { background: #f5f5f5; }
+    .btn-confirm-order {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+      font-weight: 500;
+    }
+    .btn-confirm-order:hover { opacity: 0.8; }
+    .btn-confirm-order:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    @media (max-width: 600px) {
+      .confirm-actions { flex-direction: column-reverse; }
+      .confirm-row .label { width: 90px; font-size: 12px; }
+      .confirm-row .value { font-size: 13px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ヘッダー -->
+  <header class="header scrolled" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/wsplogowhite.png" alt="White Snow Paws" class="logo-img">
+      </a>
+      <a href="index.html" class="header-center-logo">White Snow Paws</a>
+      <div class="header-icons">
+        <a href="login.html" class="header-icon-btn" id="headerLoginLink" style="text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span class="header-icon-label">LOGIN</span>
+        </a>
+        <a href="mypage.html" class="header-icon-btn" id="headerMypageLink" style="display:none;text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span class="header-icon-label">MYPAGE</span>
+        </a>
+        <a href="cart.html" class="header-icon-btn" id="headerCartLink" style="position:relative;text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+          <span class="header-icon-label">CART</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="confirm-container">
+    <h1 class="confirm-title">ご注文内容の確認</h1>
+    <p class="confirm-sub">下記の内容でよろしければ「注文を確定する」を押してください</p>
+
+    <div class="confirm-steps">
+      <span class="step"><span class="num">1</span>配送・支払い</span>
+      <span class="step active"><span class="num">2</span>注文確認</span>
+      <span class="step"><span class="num">3</span>完了</span>
+    </div>
+
+    <!-- 注文内容 -->
+    <div class="confirm-section">
+      <h2>
+        <span>ご注文商品</span>
+        <a href="cart.html" class="edit-link">カートを編集</a>
+      </h2>
+      <div class="confirm-items" id="itemsList"></div>
+    </div>
+
+    <!-- お届け先 -->
+    <div class="confirm-section">
+      <h2>
+        <span>お届け先</span>
+        <a href="checkout.html" class="edit-link">修正する</a>
+      </h2>
+      <div id="shippingInfo"></div>
+    </div>
+
+    <!-- 決済方法 -->
+    <div class="confirm-section">
+      <h2>
+        <span>お支払い方法</span>
+        <a href="checkout.html" class="edit-link">修正する</a>
+      </h2>
+      <div id="paymentInfo"></div>
+    </div>
+
+    <!-- 金額 -->
+    <div class="confirm-total" id="totalArea"></div>
+
+    <div class="confirm-actions">
+      <button class="btn-back" onclick="location.href='checkout.html'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        修正する
+      </button>
+      <button class="btn-confirm-order" id="confirmBtn" onclick="confirmOrder()">
+        注文を確定する
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <div class="wood-plank-divider"></div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <a href="index.html" class="logo">White Snow Paws</a>
+      </div>
+      <div class="footer-bottom">
+        <a href="terms.html">利用規約</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+        <a href="tradelaw.html">特定商取引法</a>
+        <a href="contact.html">お問い合わせ</a>
+        &copy; 2026 White Snow Paws. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js?v=20260330"></script>
+  <script>
+    const SHIPPING_FEE = 900;
+    const SHIPPING_THRESHOLD = 3;
+    const REGIONAL_SURCHARGE = { '北海道': 300, '沖縄県': 600 };
+
+    // sessionStorageからデータ復元
+    const checkoutData = JSON.parse(sessionStorage.getItem('wsp_checkout_data') || 'null');
+    if (!checkoutData) {
+      alert('注文情報が見つかりません。最初からやり直してください。');
+      location.href = 'checkout.html';
+    }
+
+    const items = Cart.getItems();
+    if (items.length === 0) {
+      alert('カートが空です。');
+      location.href = 'cart.html';
+    }
+
+    const { shipping, invoiceRequested, paymentMethod } = checkoutData;
+
+    // 商品一覧
+    document.getElementById('itemsList').innerHTML = items.map(item => `
+      <div class="confirm-item">
+        <img src="${item.image || 'images/woodcraft/work1.png'}" alt="${item.name}">
+        <div>
+          <div class="name">${item.name}${item.color ? ' / ' + item.color : ''}${item.length ? ' / ' + item.length : ''}</div>
+          <div class="qty">数量: ${item.quantity}</div>
+        </div>
+        <div class="price">¥${(item.price * item.quantity).toLocaleString()}</div>
+      </div>
+    `).join('');
+
+    // お届け先
+    document.getElementById('shippingInfo').innerHTML = `
+      <div class="confirm-row"><span class="label">お名前</span><span class="value">${shipping.lastName} ${shipping.firstName} 様${shipping.lastKana ? ` (${shipping.lastKana} ${shipping.firstKana})` : ''}</span></div>
+      <div class="confirm-row"><span class="label">郵便番号</span><span class="value">〒${shipping.postal}</span></div>
+      <div class="confirm-row"><span class="label">住所</span><span class="value">${shipping.prefecture}${shipping.city}${shipping.address}</span></div>
+      <div class="confirm-row"><span class="label">電話番号</span><span class="value">${shipping.phone}</span></div>
+      <div class="confirm-row"><span class="label">メール</span><span class="value">${shipping.email}</span></div>
+    `;
+
+    // 決済方法
+    const paymentLabel = paymentMethod === 'bank_transfer' ? '銀行振込（ご入金確認後、発送準備に入ります）' : 'クレジットカード（Stripe）';
+    document.getElementById('paymentInfo').innerHTML = `
+      <div class="confirm-row"><span class="label">方法</span><span class="value">${paymentLabel}</span></div>
+      <div class="confirm-row"><span class="label">納品書同封</span><span class="value">${invoiceRequested ? '希望する' : '希望しない'}</span></div>
+    `;
+
+    // 金額計算
+    const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const qty = items.reduce((sum, item) => sum + item.quantity, 0);
+    const base = qty >= SHIPPING_THRESHOLD ? SHIPPING_FEE : 0;
+    const regional = REGIONAL_SURCHARGE[shipping.prefecture] || 0;
+    const shippingTotal = base + regional;
+    const total = subtotal + shippingTotal;
+
+    let shippingLabel = shippingTotal === 0 ? '無料' : '¥' + shippingTotal.toLocaleString();
+    if (regional > 0 && base > 0) shippingLabel += ` (地域別+¥${regional})`;
+
+    document.getElementById('totalArea').innerHTML = `
+      <div class="confirm-total-row"><span>小計</span><span>¥${subtotal.toLocaleString()}</span></div>
+      <div class="confirm-total-row"><span>送料</span><span>${shippingLabel}</span></div>
+      <div class="confirm-total-final"><span class="label">合計</span><span class="amount">¥${total.toLocaleString()}</span></div>
+      <p class="confirm-total-tax">（税込）</p>
+    `;
+
+    // 注文確定
+    async function confirmOrder() {
+      const btn = document.getElementById('confirmBtn');
+      btn.textContent = '処理中...';
+      btn.disabled = true;
+
+      const user = await WSP_Auth.getUser();
+      const cart = items.map(item => ({
+        id: item.id || '',
+        name: item.name,
+        color: item.color || '',
+        price: item.price,
+        quantity: item.quantity,
+      }));
+
+      try {
+        // ログイン済みの場合、住所をデフォルトとして保存
+        if (user) {
+          const { data: existingAddr } = await _supabase
+            .from('addresses').select('id').eq('user_id', user.id).eq('is_default', true).maybeSingle();
+          if (existingAddr) {
+            await _supabase.from('addresses').update({
+              postal_code: shipping.postal, prefecture: shipping.prefecture,
+              city: shipping.city, address1: shipping.address,
+            }).eq('id', existingAddr.id);
+          } else {
+            await _supabase.from('addresses').insert({
+              user_id: user.id, postal_code: shipping.postal,
+              prefecture: shipping.prefecture, city: shipping.city,
+              address1: shipping.address, is_default: true,
+            });
+          }
+        }
+
+        if (paymentMethod === 'bank_transfer') {
+          const resp = await fetch('/.netlify/functions/submit-bank-transfer-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ cart, shipping, userId: user ? user.id : null, invoiceRequested }),
+          });
+          const data = await resp.json();
+          if (data.order_number) {
+            localStorage.removeItem('wsp_cart');
+            sessionStorage.removeItem('wsp_checkout_data');
+            location.href = `bank-transfer-success.html?order=${encodeURIComponent(data.order_number)}`;
+          } else {
+            throw new Error(data.error || '注文の作成に失敗しました');
+          }
+        } else {
+          const resp = await fetch('/.netlify/functions/create-checkout-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ cart, shipping, userId: user ? user.id : null, invoiceRequested }),
+          });
+          const data = await resp.json();
+          if (data.url) {
+            localStorage.removeItem('wsp_cart');
+            sessionStorage.removeItem('wsp_checkout_data');
+            location.href = data.url;
+          } else {
+            throw new Error(data.error || '決済ページの作成に失敗しました');
+          }
+        }
+      } catch (err) {
+        alert('エラーが発生しました: ' + err.message);
+        btn.textContent = '注文を確定する';
+        btn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>

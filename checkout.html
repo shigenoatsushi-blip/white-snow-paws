@@ -495,11 +495,11 @@
         <p class="invoice-note">※ご希望の方は配送時に同封いたします</p>
       </div>
 
-      <button class="btn-place-order" onclick="placeOrder()" id="placeOrderBtn">
+      <button class="btn-place-order" onclick="goToConfirm()" id="placeOrderBtn">
+        確認画面へ進む
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
-        注文を確定する
       </button>
       <p class="order-note">
         🔒 安全な SSL 暗号化通信で<br>お客様の情報を保護しています
@@ -614,6 +614,45 @@
           }
         }
       }
+    }
+
+    function goToConfirm() {
+      const form = document.getElementById('checkoutForm');
+      const required = form.querySelectorAll('[required]');
+      let valid = true;
+      required.forEach(el => {
+        if (!el.value.trim()) {
+          el.style.borderColor = '#C0392B';
+          valid = false;
+        } else {
+          el.style.borderColor = '';
+        }
+      });
+      if (!valid) {
+        alert('必須項目をすべてご入力ください。');
+        return;
+      }
+
+      const shipping = {
+        lastName: document.getElementById('lastName').value,
+        firstName: document.getElementById('firstName').value,
+        lastKana: document.getElementById('lastKana') ? document.getElementById('lastKana').value : '',
+        firstKana: document.getElementById('firstKana') ? document.getElementById('firstKana').value : '',
+        postal: document.getElementById('postal').value,
+        prefecture: document.getElementById('prefecture').value,
+        city: document.getElementById('city').value,
+        address: document.getElementById('address').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        remarks: document.querySelector('[name="remarks"]') ? document.querySelector('[name="remarks"]').value : '',
+      };
+      const invoiceRequested = document.getElementById('invoiceRequest').checked;
+      const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+      sessionStorage.setItem('wsp_checkout_data', JSON.stringify({
+        shipping, invoiceRequested, paymentMethod,
+      }));
+      window.location.href = 'checkout-confirm.html';
     }
 
     async function placeOrder() {
