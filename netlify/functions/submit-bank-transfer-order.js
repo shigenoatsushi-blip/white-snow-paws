@@ -235,7 +235,7 @@ ${itemsList}
 【お届け先】
 〒${shipping.postal} ${shipping.prefecture}${shipping.city}${shipping.address}
 
-【納品書兼請求書】${invoiceRequested ? '同封希望あり ✓' : '希望なし'}
+【領収書】${invoiceRequested ? '同封希望あり ✓' : '希望なし'}
 
 ※ご入金確認後、Stripeダッシュボードもしくはオーダー管理画面で status を paid に更新してください。
 `,

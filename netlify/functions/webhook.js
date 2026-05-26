@@ -212,7 +212,7 @@ ${itemsList}
 〒${shipping.postal} ${shipping.prefecture}${shipping.city}${shipping.address}
 TEL: ${shipping.phone}
 
-【納品書兼請求書】${invoiceRequested ? '同封希望あり ✓' : '希望なし'}
+【領収書】${invoiceRequested ? '同封希望あり ✓' : '希望なし'}
 `,
     });
   } catch (err) {

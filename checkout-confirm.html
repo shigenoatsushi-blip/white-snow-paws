@@ -349,7 +349,7 @@
     const paymentLabel = paymentMethod === 'bank_transfer' ? '銀行振込（ご入金確認後、発送準備に入ります）' : 'クレジットカード（Stripe）';
     document.getElementById('paymentInfo').innerHTML = `
       <div class="confirm-row"><span class="label">方法</span><span class="value">${paymentLabel}</span></div>
-      <div class="confirm-row"><span class="label">納品書同封</span><span class="value">${invoiceRequested ? '希望する' : '希望しない'}</span></div>
+      <div class="confirm-row"><span class="label">領収書同封</span><span class="value">${invoiceRequested ? '希望する' : '希望しない'}</span></div>
     `;
 
     // 金額計算
