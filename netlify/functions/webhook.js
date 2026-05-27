@@ -121,15 +121,16 @@ async function handleCheckoutComplete(session) {
 
 async function sendCustomerEmail(order, cart, shipping) {
   const itemsHtml = cart
-    .map(
-      (item) =>
-        `<tr>
-          <td style="padding:8px;border-bottom:1px solid #eee;">${item.name}${item.color ? ` (${item.color})` : ''}</td>
+    .map((item) => {
+      const variants = [item.color, item.length, item.options && item.options.karabina ? 'カラビナ変更(+¥1,300)' : ''].filter(Boolean).join(' / ');
+      const displayName = item.name + (variants ? ` (${variants})` : '');
+      return `<tr>
+          <td style="padding:8px;border-bottom:1px solid #eee;">${displayName}</td>
           <td style="padding:8px;border-bottom:1px solid #eee;text-align:right;">¥${item.price.toLocaleString()}</td>
           <td style="padding:8px;border-bottom:1px solid #eee;text-align:center;">${item.quantity}</td>
           <td style="padding:8px;border-bottom:1px solid #eee;text-align:right;">¥${(item.price * item.quantity).toLocaleString()}</td>
-        </tr>`
-    )
+        </tr>`;
+    })
     .join('');
 
   const html = `
@@ -190,7 +191,11 @@ async function sendAdminEmail(order, cart, shipping, invoiceRequested = false) {
   const adminEmails = adminEmail.split(',').map(e => e.trim()).filter(Boolean);
 
   const itemsList = cart
-    .map((item) => `・${item.name}${item.color ? ` (${item.color})` : ''} × ${item.quantity} = ¥${(item.price * item.quantity).toLocaleString()}`)
+    .map((item) => {
+      const variants = [item.color, item.length, item.options && item.options.karabina ? 'カラビナ変更' : ''].filter(Boolean).join(' / ');
+      const displayName = item.name + (variants ? ` (${variants})` : '');
+      return `・${displayName} × ${item.quantity} = ¥${(item.price * item.quantity).toLocaleString()}`;
+    })
     .join('\n');
 
   try {

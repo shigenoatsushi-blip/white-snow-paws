@@ -39,9 +39,12 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: '配送情報が不足しています' }) };
   }
 
-  // 送料計算（例: 500円 / 5000円以上で無料）
+  // 送料計算: 3点以上は¥900 (佐川急便) / 北海道+¥300・沖縄+¥600
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const shippingFee = subtotal >= 5000 ? 0 : 500;
+  const qty = cart.reduce((sum, item) => sum + item.quantity, 0);
+  let shippingFee = qty >= 3 ? 900 : 0;
+  if (shipping.prefecture === '北海道') shippingFee += 300;
+  if (shipping.prefecture === '沖縄県') shippingFee += 600;
 
   const siteUrl = process.env.SITE_URL || 'http://localhost:8888';
 
@@ -52,17 +55,23 @@ exports.handler = async (event) => {
       locale: 'ja',
       customer_email: shipping.email,
       line_items: [
-        ...cart.map((item) => ({
-          price_data: {
-            currency: 'jpy',
-            product_data: {
-              name: item.name,
-              description: item.color ? `カラー: ${item.color}` : undefined,
+        ...cart.map((item) => {
+          const descParts = [];
+          if (item.color) descParts.push(`カラー: ${item.color}`);
+          if (item.length) descParts.push(`長さ: ${item.length}`);
+          if (item.options && item.options.karabina) descParts.push('カラビナ変更');
+          return {
+            price_data: {
+              currency: 'jpy',
+              product_data: {
+                name: item.name,
+                description: descParts.length ? descParts.join(' / ') : undefined,
+              },
+              unit_amount: item.price,
             },
-            unit_amount: item.price,
-          },
-          quantity: item.quantity,
-        })),
+            quantity: item.quantity,
+          };
+        }),
         // 送料
         ...(shippingFee > 0
           ? [
