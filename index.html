@@ -429,9 +429,9 @@
       /* 未ログイン: LOGIN表示 / ログイン中: MYPAGE表示 */
       body:not(.is-logged-in) #headerLoginLink { display: flex !important; }
       body.is-logged-in #headerMypageLink { display: flex !important; }
-      /* アイコンラベルは非表示にしてコンパクト */
-      .header-icon-label { display: none !important; }
-      .header-icon-btn { padding: 0 6px !important; }
+      /* ラベルを表示して他ページと統一（ハンバーガーはアイコンと上揃え） */
+      .header-icon-btn { padding: 6px 7px !important; }
+      .header-icons { align-items: flex-start; }
       /* 木目背景のスマホ対応は overrides.css で管理 */
       /* カテゴリーカード高さ統一 */
       .category-card-main,
