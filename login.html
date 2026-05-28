@@ -31,11 +31,14 @@
         /* ヒーロー */
         .login-hero {
             background: url('images/hero/login-hero.jpg') center/cover no-repeat;
-            background-position: center 30%;
-            padding: 90px 20px 36px;
+            background-position: center 15%;
+            padding: 180px 20px 72px;
             text-align: center;
             position: relative;
             overflow: hidden;
+        }
+        @media (max-width: 767px) {
+            .login-hero { padding: 90px 20px 36px; background-size: auto 165%; background-position: 58% top; }
         }
         .login-hero-en {
             font-family: 'Cinzel', serif;
