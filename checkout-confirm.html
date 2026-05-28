@@ -24,7 +24,52 @@
   <link rel="stylesheet" href="css/overrides.css?v=20260520">
 
   <style>
-    .confirm-container { max-width: 880px; margin: 0 auto; padding: 120px 24px 80px; }
+    /* ヒーロー */
+    .confirm-hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 135px 20px 75px;
+      text-align: center;
+    }
+    .confirm-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/hero/cart-dogs.jpg');
+      background-size: cover;
+      background-position: center 35%;
+      transform: scale(1.03);
+    }
+    .confirm-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(17,17,17,0.55) 0%,
+        rgba(17,17,17,0.45) 50%,
+        rgba(17,17,17,0.65) 100%);
+    }
+    .confirm-hero-text { position: relative; z-index: 1; }
+    .confirm-hero-en {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 5px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 10px;
+    }
+    .confirm-hero h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 28px;
+      color: #FFFFFF;
+      letter-spacing: 6px;
+    }
+    @media (max-width: 767px) {
+      .confirm-hero { min-height: 260px; padding: 90px 20px 50px; }
+    }
+    .confirm-container { max-width: 880px; margin: 0 auto; padding: 48px 24px 80px; }
     .confirm-title {
       font-family: 'Noto Serif JP', serif;
       font-size: 24px;
@@ -229,8 +274,17 @@
     </div>
   </header>
 
+  <!-- ヒーロー -->
+  <div class="confirm-hero">
+    <div class="confirm-hero-bg"></div>
+    <div class="confirm-hero-overlay"></div>
+    <div class="confirm-hero-text">
+      <p class="confirm-hero-en">── CONFIRM ──</p>
+      <h1>ご注文内容の確認</h1>
+    </div>
+  </div>
+
   <main class="confirm-container">
-    <h1 class="confirm-title">ご注文内容の確認</h1>
     <p class="confirm-sub">下記の内容でよろしければ「注文を確定する」を押してください</p>
 
     <div class="confirm-steps">
