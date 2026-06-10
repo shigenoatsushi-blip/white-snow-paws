@@ -539,7 +539,7 @@
         const form = document.getElementById('contactForm');
         const success = document.getElementById('contactSuccess');
 
-        form.addEventListener('submit', function (e) {
+        form.addEventListener('submit', async function (e) {
             e.preventDefault();
 
             // 同意チェック確認
@@ -548,16 +548,38 @@
                 return;
             }
 
-            // 送信完了演出（実際のバックエンドがない場合のデモ）
             const btn = document.getElementById('submitBtn');
+            const originalText = btn.textContent;
             btn.textContent = '送信中...';
             btn.disabled = true;
 
-            setTimeout(() => {
+            const payload = {
+                lastName: document.getElementById('lastName').value.trim(),
+                firstName: document.getElementById('firstName').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                inquiryType: document.getElementById('inquiryType').value,
+                message: document.getElementById('message').value.trim(),
+            };
+
+            try {
+                const res = await fetch('/.netlify/functions/contact-submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+                const data = await res.json().catch(() => ({}));
+                if (!res.ok) {
+                    throw new Error(data.error || '送信に失敗しました');
+                }
                 form.style.display = 'none';
                 success.style.display = 'block';
                 success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 1200);
+            } catch (err) {
+                alert('送信に失敗しました。お手数ですがしばらくしてから再度お試しください。\n' + (err.message || ''));
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
         });
     </script>
 
