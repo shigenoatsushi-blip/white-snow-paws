@@ -2,6 +2,10 @@
   publish = "."
   functions = "netlify/functions"
 
+# Supabase 自動ポーズ防止（毎日1回 keep-alive 実行 = 7日タイマー常時リセット）
+[functions."keep-alive"]
+  schedule = "@daily"
+
 [dev]
   port = 8888
   targetPort = 3000
