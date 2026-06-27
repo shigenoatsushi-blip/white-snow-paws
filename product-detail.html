@@ -92,17 +92,27 @@
     .img-nav-btn:hover { background: rgba(0,0,0,0.6); }
     .img-nav-prev { left: 8px; }
     .img-nav-next { right: 8px; }
-    .detail-thumb-row { display: flex; gap: 6px; overflow-x: auto; }
+    .detail-thumb-row { display: flex; gap: 6px; overflow-x: auto; align-items: flex-start; }
     .detail-thumb {
+      flex: 1 1 0;
+      min-width: 0;
+      aspect-ratio: 1 / 1;
+      position: relative;
       overflow: hidden;
       cursor: pointer;
-      flex: 1;
       opacity: 0.6;
       transition: opacity 0.2s;
     }
     .detail-thumb:hover { opacity: 0.8; }
     .detail-thumb.active { opacity: 1; }
-    .detail-thumb img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
+    .detail-thumb img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
     /* 情報エリア — Lutie風：シンプル */
     .detail-category { display: none; }
@@ -942,9 +952,66 @@
            ] },
       2: { id:'2', name:'BioThane ショートリード 60cm',     nameEn:'Short Lead 60cm',     category:'BIOTHANE LEAD', price:2480, originalPrice:null, image:'images/woodcraft/work1.png' },
       3: { id:'3', name:'BioThane ロングリード 3m',     nameEn:'Long Lead 3m',     category:'BIOTHANE LEAD', price:3980, originalPrice:null, image:'images/woodcraft/work1.png' },
-      4: { id:'4', name:'BioThane カラー（首輪）S',       nameEn:'Collar S',            category:'BIOTHANE COLLAR', price:1980, originalPrice:null, image:'images/woodcraft/work2.png' },
-      5: { id:'5', name:'BioThane カラー（首輪）M',       nameEn:'Collar M',            category:'BIOTHANE COLLAR', price:2180, originalPrice:null, image:'images/woodcraft/work2.png' },
-      6: { id:'6', name:'BioThane カラー（首輪）L',       nameEn:'Collar L',            category:'BIOTHANE COLLAR', price:2380, originalPrice:null, image:'images/woodcraft/work2.png' },
+      4: { id:'4', name:'BioThane カラー（首輪）S', nameEn:'Collar S', category:'BIOTHANE COLLAR', price:2600, originalPrice:null, image:'images/biothane/collar-s.jpg',
+           colors: [
+             { name:'ブラック',       css:'#1A1A1A', image:'images/collar-s/black.jpg' },
+             { name:'レッド',         css:'#CC2222', image:'images/collar-s/red.jpg' },
+             { name:'オレンジ',       css:'#E87722', image:'images/collar-s/orange.jpg' },
+             { name:'イエロー',       css:'#FFFF00', image:'images/collar-s/yellow.jpg' },
+             { name:'ピンク',         css:'#F080A0', image:'images/collar-s/pink.jpg' },
+             { name:'グリーン',       css:'#7EC8A0', image:'images/collar-s/green.jpg' },
+             { name:'ブラウン',       css:'#7B4F2E', image:'images/collar-s/brown.jpg' },
+             { name:'ブルー',         css:'#1E5CA8', image:'images/collar-s/blue.jpg' },
+             { name:'スカイブルー',   css:'#87CEEB', image:'images/collar-s/sky-blue.jpg' },
+             { name:'パープル',       css:'#7B5EA7', image:'images/collar-s/purple.jpg' },
+           ],
+           thumbs: [
+             'images/biothane/collar-1.jpg',
+             'images/biothane/collar-2.jpg',
+             'images/biothane/collar-3.jpg',
+             'images/biothane/wsp-color-lineup.jpg',
+             'images/biothane/collar-size-guide.jpg',
+           ] },
+      5: { id:'5', name:'BioThane カラー（首輪）M', nameEn:'Collar M', category:'BIOTHANE COLLAR', price:2900, originalPrice:null, image:'images/biothane/collar-m.jpg',
+           colors: [
+             { name:'ブラック',       css:'#1A1A1A', image:'images/collar-s/black.jpg' },
+             { name:'レッド',         css:'#CC2222', image:'images/collar-s/red.jpg' },
+             { name:'オレンジ',       css:'#E87722', image:'images/collar-s/orange.jpg' },
+             { name:'イエロー',       css:'#FFFF00', image:'images/collar-s/yellow.jpg' },
+             { name:'ピンク',         css:'#F080A0', image:'images/collar-s/pink.jpg' },
+             { name:'グリーン',       css:'#7EC8A0', image:'images/collar-s/green.jpg' },
+             { name:'ブラウン',       css:'#7B4F2E', image:'images/collar-s/brown.jpg' },
+             { name:'ブルー',         css:'#1E5CA8', image:'images/collar-s/blue.jpg' },
+             { name:'スカイブルー',   css:'#87CEEB', image:'images/collar-s/sky-blue.jpg' },
+             { name:'パープル',       css:'#7B5EA7', image:'images/collar-s/purple.jpg' },
+           ],
+           thumbs: [
+             'images/biothane/collar-m-1.jpg',
+             'images/biothane/collar-m-2.jpg',
+             'images/biothane/collar-m-3.jpg',
+             'images/biothane/wsp-color-lineup.jpg',
+             'images/biothane/collar-size-guide.jpg',
+           ] },
+      6: { id:'6', name:'BioThane カラー（首輪）L', nameEn:'Collar L', category:'BIOTHANE COLLAR', price:3100, originalPrice:null, image:'images/biothane/collar-l.jpg',
+           colors: [
+             { name:'ブラック',       css:'#1A1A1A', image:'images/collar-s/black.jpg' },
+             { name:'レッド',         css:'#CC2222', image:'images/collar-s/red.jpg' },
+             { name:'オレンジ',       css:'#E87722', image:'images/collar-s/orange.jpg' },
+             { name:'イエロー',       css:'#FFFF00', image:'images/collar-s/yellow.jpg' },
+             { name:'ピンク',         css:'#F080A0', image:'images/collar-s/pink.jpg' },
+             { name:'グリーン',       css:'#7EC8A0', image:'images/collar-s/green.jpg' },
+             { name:'ブラウン',       css:'#7B4F2E', image:'images/collar-s/brown.jpg' },
+             { name:'ブルー',         css:'#1E5CA8', image:'images/collar-s/blue.jpg' },
+             { name:'スカイブルー',   css:'#87CEEB', image:'images/collar-s/sky-blue.jpg' },
+             { name:'パープル',       css:'#7B5EA7', image:'images/collar-s/purple.jpg' },
+           ],
+           thumbs: [
+             'images/biothane/collar-l-1.jpg',
+             'images/biothane/collar-l-2.jpg',
+             'images/biothane/collar-l-3.jpg',
+             'images/biothane/wsp-color-lineup.jpg',
+             'images/biothane/collar-size-guide.jpg',
+           ] },
       7: { id:'7', name:'BioThane ハーネス',             nameEn:'Harness',             category:'BIOTHANE HARNESS', price:3480, originalPrice:null, image:'images/woodcraft/work3.png' },
       8: { id:'8', name:'BioThane リード＋カラー セット', nameEn:'Lead + Collar Set',   category:'BIOTHANE SET', price:4480, originalPrice:5160, image:'images/woodcraft/work4.png' },
       9: { id:'9', name:'BioThane トレーニングリード 500cm', nameEn:'Training Lead 500cm', category:'BIOTHANE LEAD', price:4980, originalPrice:null, image:'images/woodcraft/work1.png' },
