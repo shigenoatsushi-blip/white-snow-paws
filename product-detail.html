@@ -69,6 +69,8 @@
       object-fit: cover;
       display: block;
     }
+    /* 特定画像のメイン表示位置調整（被写体が下寄りの縦長写真） */
+    .detail-main-image img[src*="collar-l-2"] { object-position: center 70%; }
     /* 画像矢印ナビ */
     .detail-main-image { position: relative; }
     .img-nav-btn {
