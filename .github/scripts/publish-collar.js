@@ -53,6 +53,22 @@ if (idx.includes(footFrom)) {
   console.log('SKIP: フッターは公開済みまたは対象なし');
 }
 
+// 3) BioThaneセクションの価格表示を リード＋カラー 2種併記に
+const priceFrom = `                <span class="handmade-reason-price">¥3,800〜<span>(税込・送料無料)</span></span>`;
+const priceTo = `                <span class="handmade-reason-price" style="display:block;line-height:1.8;">
+                  <span style="font-size:13px;margin-left:0;">ビオタンリード</span> ¥3,800〜<br>
+                  <span style="font-size:13px;margin-left:0;">ビオタンカラー</span> ¥2,600〜
+                  <span>(税込・送料無料)</span>
+                </span>`;
+if (idx.includes(priceFrom)) {
+  idx = idx.replace(priceFrom, priceTo);
+  console.log('OK: 価格表示をリード＋カラー2種併記に');
+} else if (idx.includes('ビオタンカラー</span> ¥2,600〜')) {
+  console.log('SKIP: 価格表示は更新済み');
+} else {
+  console.error('WARN: 価格表示のパターンが見つかりません（要確認）');
+}
+
 if (idx !== idxOrig) { fs.writeFileSync('index.html', idx); changed = true; }
 
 /* ---------- biothane-collar.html ---------- */
