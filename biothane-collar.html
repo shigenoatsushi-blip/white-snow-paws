@@ -14,8 +14,6 @@
   </script>
   <title>BioThane カラー（首輪）｜White Snow Paws</title>
   <meta name="description" content="BioThane（ビオタン）素材のハンドメイド首輪。S/M/Lサイズ展開。防水・軽量・高耐久。カラーオーダー対応。">
-  <!-- 準備中ページのため検索エンジンに載せない -->
-  <meta name="robots" content="noindex,nofollow">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -190,44 +188,6 @@
 </head>
 
 <body>
-  <!-- 準備中ページ用パスワードゲート（クライアント内内確認用） -->
-  <div id="pwGate" style="position:fixed;inset:0;background:#1a1a1a;z-index:99999;display:flex;align-items:center;justify-content:center;font-family:'Noto Sans JP',sans-serif;padding:20px;">
-    <div style="background:#fff;padding:40px 32px;border-radius:8px;max-width:360px;width:100%;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.3);">
-      <h2 style="margin:0 0 8px;font-size:18px;color:#222;font-weight:600;letter-spacing:2px;">確認用ページ</h2>
-      <p style="font-size:13px;color:#666;margin:0 0 24px;line-height:1.7;">準備中のページです。<br>パスワードを入力してください。</p>
-      <input id="pwInput" type="password" placeholder="パスワード" autocomplete="off" style="width:100%;padding:12px;border:1px solid #ccc;border-radius:4px;margin-bottom:12px;font-size:14px;box-sizing:border-box;">
-      <button id="pwSubmit" type="button" style="width:100%;padding:12px;background:#1a1a1a;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:14px;letter-spacing:2px;">確認</button>
-      <p id="pwError" style="color:#c00;font-size:12px;margin:12px 0 0;display:none;">パスワードが違います</p>
-    </div>
-  </div>
-  <script>
-    (function() {
-      var PW = 'wspcollar';
-      var gate = document.getElementById('pwGate');
-      if (sessionStorage.getItem('wspCollarAuth') === '1') {
-        gate.style.display = 'none';
-        return;
-      }
-      document.documentElement.style.overflow = 'hidden';
-      var input = document.getElementById('pwInput');
-      var submit = document.getElementById('pwSubmit');
-      var error = document.getElementById('pwError');
-      function check() {
-        if (input.value === PW) {
-          sessionStorage.setItem('wspCollarAuth', '1');
-          document.documentElement.style.overflow = '';
-          gate.style.display = 'none';
-        } else {
-          error.style.display = 'block';
-          input.value = '';
-          input.focus();
-        }
-      }
-      submit.addEventListener('click', check);
-      input.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); check(); } });
-      setTimeout(function() { input.focus(); }, 100);
-    })();
-  </script>
 
   <!-- ヘッダー -->
   <header class="header scrolled" id="header">
