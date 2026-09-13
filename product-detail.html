@@ -1205,11 +1205,11 @@
       20: { id:'20', name:'Polyester Webbing リード', nameEn:'Polyester Webbing Lead', category:'POLYESTER LEAD', basePrice:3200, originalPrice:null, image:'images/polyester-lead/card.jpg',
            lengths: { '1200mm': 3200, '1500mm': 3500 }, defaultLength: '1200mm',
            colors: [
-             { name:'tile',     css:'#6E8CA0', image:'images/lead-19mm/card.jpg' },
-             { name:'moroccan', css:'#C0794A', image:'images/lead-19mm/card.jpg' },
-             { name:'native',   css:'#8A6D53', image:'images/lead-19mm/card.jpg' },
-             { name:'ortega',   css:'#B5524A', image:'images/lead-19mm/card.jpg' },
-             { name:'paisley',   css:'#5C6B8C', image:'images/lead-19mm/card.jpg' },
+             { name:'moroccan', css:'#C0794A', swatch:'images/polyester-swatch/moroccan.jpg', image:'images/lead-19mm/card.jpg' },
+             { name:'native',   css:'#8A6D53', swatch:'images/polyester-swatch/native.jpg',   image:'images/lead-19mm/card.jpg' },
+             { name:'ortega',   css:'#B5524A', swatch:'images/polyester-swatch/ortega.jpg',   image:'images/lead-19mm/card.jpg' },
+             { name:'paisley',   css:'#5C6B8C', swatch:'images/polyester-swatch/paisley.jpg', image:'images/lead-19mm/card.jpg' },
+             { name:'tile',     css:'#6E8CA0', swatch:'images/polyester-swatch/tile.jpg',     image:'images/lead-19mm/card.jpg' },
            ],
            thumbs: [
              'images/polyester-lead/card.jpg',
@@ -1440,7 +1440,13 @@
       product.colors.forEach(function(c, i) {
         const btn = document.createElement('button');
         btn.className = 'color-swatch' + (i === 0 ? ' selected' : '');
-        btn.style.background = c.css;
+        if (c.swatch) {
+          btn.style.backgroundImage = 'url(' + c.swatch + ')';
+          btn.style.backgroundSize = 'cover';
+          btn.style.backgroundPosition = 'center';
+        } else {
+          btn.style.background = c.css;
+        }
         btn.title = c.name;
         btn.dataset.color = c.name;
         btn.dataset.image = c.image;
