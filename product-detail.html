@@ -71,6 +71,11 @@
     }
     /* 特定画像のメイン表示位置調整（被写体が下寄りの縦長写真） */
     .detail-main-image img[src*="collar-l-2"] { object-position: center 70%; }
+    /* Polyester リード サムネイル4・5枚目（被写体が左寄りの写真） */
+    .detail-main-image img[src*="thumb4"],
+    .detail-thumb img[src*="thumb4"] { object-position: 60% center; }
+    .detail-main-image img[src*="thumb5"],
+    .detail-thumb img[src*="thumb5"] { object-position: 60% center; }
     /* 画像矢印ナビ */
     .detail-main-image { position: relative; }
     .img-nav-btn {
@@ -1197,7 +1202,7 @@
 
       // ===== Polyester Webbing シリーズ（準備中：入口ページにパスワードゲート） =====
       // ※ デザイン画像は準備中のため仮画像。用意でき次第 image を差し替え。
-      20: { id:'20', name:'Polyester Webbing リード', nameEn:'Polyester Webbing Lead', category:'POLYESTER LEAD', basePrice:3200, originalPrice:null, image:'images/lead-19mm/card.jpg',
+      20: { id:'20', name:'Polyester Webbing リード', nameEn:'Polyester Webbing Lead', category:'POLYESTER LEAD', basePrice:3200, originalPrice:null, image:'images/polyester-lead/card.jpg',
            lengths: { '1200mm': 3200, '1500mm': 3500 }, defaultLength: '1200mm',
            colors: [
              { name:'tile',     css:'#6E8CA0', image:'images/lead-19mm/card.jpg' },
@@ -1205,6 +1210,13 @@
              { name:'native',   css:'#8A6D53', image:'images/lead-19mm/card.jpg' },
              { name:'ortega',   css:'#B5524A', image:'images/lead-19mm/card.jpg' },
              { name:'paisley',   css:'#5C6B8C', image:'images/lead-19mm/card.jpg' },
+           ],
+           thumbs: [
+             'images/polyester-lead/card.jpg',
+             'images/polyester-lead/thumb2.jpg',
+             'images/polyester-lead/thumb3.jpg',
+             'images/polyester-lead/thumb4.jpg',
+             'images/polyester-lead/thumb5.jpg',
            ] },
       21: { id:'21', name:'Polyester Webbing 首輪 S', nameEn:'Polyester Webbing Collar S', category:'POLYESTER COLLAR', price:2300, originalPrice:null, image:'images/biothane/collar-8375.jpg',
            colors: [
