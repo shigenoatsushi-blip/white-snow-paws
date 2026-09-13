@@ -72,10 +72,18 @@
     /* 特定画像のメイン表示位置調整（被写体が下寄りの縦長写真） */
     .detail-main-image img[src*="collar-l-2"] { object-position: center 70%; }
     /* Polyester リード サムネイル4・5枚目（被写体が左寄りの写真） */
-    .detail-main-image img[src*="thumb4"],
-    .detail-thumb img[src*="thumb4"] { object-position: 60% center; }
-    .detail-main-image img[src*="thumb5"],
-    .detail-thumb img[src*="thumb5"] { object-position: 60% center; }
+    .detail-main-image img[src*="polyester-lead/thumb4"],
+    .detail-thumb img[src*="polyester-lead/thumb4"] { object-position: 60% center; }
+    .detail-main-image img[src*="polyester-lead/thumb5"],
+    .detail-thumb img[src*="polyester-lead/thumb5"] { object-position: 60% center; }
+    /* Polyester 首輪 サムネイル2枚目（被写体が左寄りの写真） */
+    .detail-main-image img[src*="polyester-collar/thumb2"],
+    .detail-thumb img[src*="polyester-collar/thumb2"] { object-position: 60% center; }
+    /* Polyester 首輪 サムネイル4・5枚目（被写体が左寄りの写真） */
+    .detail-main-image img[src*="polyester-collar/thumb4"],
+    .detail-thumb img[src*="polyester-collar/thumb4"] { object-position: 70% center; }
+    .detail-main-image img[src*="polyester-collar/thumb5"],
+    .detail-thumb img[src*="polyester-collar/thumb5"] { object-position: 70% center; }
     /* 画像矢印ナビ */
     .detail-main-image { position: relative; }
     .img-nav-btn {
@@ -1205,11 +1213,11 @@
       20: { id:'20', name:'Polyester Webbing リード', nameEn:'Polyester Webbing Lead', category:'POLYESTER LEAD', basePrice:3200, originalPrice:null, image:'images/polyester-lead/card.jpg',
            lengths: { '1200mm': 3200, '1500mm': 3500 }, defaultLength: '1200mm',
            colors: [
-             { name:'moroccan', css:'#C0794A', swatch:'images/polyester-swatch/moroccan.jpg', image:'images/lead-19mm/card.jpg' },
-             { name:'native',   css:'#8A6D53', swatch:'images/polyester-swatch/native.jpg',   image:'images/lead-19mm/card.jpg' },
-             { name:'ortega',   css:'#B5524A', swatch:'images/polyester-swatch/ortega.jpg',   image:'images/lead-19mm/card.jpg' },
-             { name:'paisley',   css:'#5C6B8C', swatch:'images/polyester-swatch/paisley.jpg', image:'images/lead-19mm/card.jpg' },
-             { name:'tile',     css:'#6E8CA0', swatch:'images/polyester-swatch/tile.jpg',     image:'images/lead-19mm/card.jpg' },
+             { name:'moroccan', css:'#C0794A', swatch:'images/polyester-swatch/moroccan.jpg', image:'images/polyester-lead/moroccan.jpg' },
+             { name:'native',   css:'#8A6D53', swatch:'images/polyester-swatch/native.jpg',   image:'images/polyester-lead/native.jpg' },
+             { name:'ortega',   css:'#B5524A', swatch:'images/polyester-swatch/ortega.jpg',   image:'images/polyester-lead/ortega.jpg' },
+             { name:'paisley',   css:'#5C6B8C', swatch:'images/polyester-swatch/paisley.jpg', image:'images/polyester-lead/paisley.jpg' },
+             { name:'tile',     css:'#6E8CA0', swatch:'images/polyester-swatch/tile.jpg',     image:'images/polyester-lead/tile.jpg' },
            ],
            thumbs: [
              'images/polyester-lead/card.jpg',
@@ -1220,27 +1228,48 @@
            ] },
       21: { id:'21', name:'Polyester Webbing 首輪 S', nameEn:'Polyester Webbing Collar S', category:'POLYESTER COLLAR', price:2300, originalPrice:null, image:'images/biothane/collar-8375.jpg',
            colors: [
-             { name:'tile',     css:'#6E8CA0', image:'images/biothane/collar-8375.jpg' },
-             { name:'moroccan', css:'#C0794A', image:'images/biothane/collar-8375.jpg' },
-             { name:'native',   css:'#8A6D53', image:'images/biothane/collar-8375.jpg' },
-             { name:'ortega',   css:'#B5524A', image:'images/biothane/collar-8375.jpg' },
-             { name:'paisley',   css:'#5C6B8C', image:'images/biothane/collar-8375.jpg' },
+             { name:'moroccan', css:'#C0794A', swatch:'images/polyester-swatch/moroccan.jpg', image:'images/polyester-collar/moroccan.jpg' },
+             { name:'native',   css:'#8A6D53', swatch:'images/polyester-swatch/native.jpg',   image:'images/polyester-collar/native.jpg' },
+             { name:'ortega',   css:'#B5524A', swatch:'images/polyester-swatch/ortega.jpg',   image:'images/polyester-collar/ortega.jpg' },
+             { name:'paisley',   css:'#5C6B8C', swatch:'images/polyester-swatch/paisley.jpg', image:'images/polyester-collar/paisley.jpg' },
+             { name:'tile',     css:'#6E8CA0', swatch:'images/polyester-swatch/tile.jpg',     image:'images/polyester-collar/tile.jpg' },
+           ],
+           thumbs: [
+             'images/polyester-collar/card.jpg',
+             'images/polyester-collar/thumb2.jpg',
+             'images/polyester-collar/thumb3.jpg',
+             'images/polyester-collar/thumb4.jpg',
+             'images/polyester-collar/thumb5.jpg',
            ] },
       22: { id:'22', name:'Polyester Webbing 首輪 M', nameEn:'Polyester Webbing Collar M', category:'POLYESTER COLLAR', price:2500, originalPrice:null, image:'images/biothane/collar-8375.jpg',
            colors: [
-             { name:'tile',     css:'#6E8CA0', image:'images/biothane/collar-8375.jpg' },
-             { name:'moroccan', css:'#C0794A', image:'images/biothane/collar-8375.jpg' },
-             { name:'native',   css:'#8A6D53', image:'images/biothane/collar-8375.jpg' },
-             { name:'ortega',   css:'#B5524A', image:'images/biothane/collar-8375.jpg' },
-             { name:'paisley',   css:'#5C6B8C', image:'images/biothane/collar-8375.jpg' },
+             { name:'moroccan', css:'#C0794A', swatch:'images/polyester-swatch/moroccan.jpg', image:'images/polyester-collar/moroccan.jpg' },
+             { name:'native',   css:'#8A6D53', swatch:'images/polyester-swatch/native.jpg',   image:'images/polyester-collar/native.jpg' },
+             { name:'ortega',   css:'#B5524A', swatch:'images/polyester-swatch/ortega.jpg',   image:'images/polyester-collar/ortega.jpg' },
+             { name:'paisley',   css:'#5C6B8C', swatch:'images/polyester-swatch/paisley.jpg', image:'images/polyester-collar/paisley.jpg' },
+             { name:'tile',     css:'#6E8CA0', swatch:'images/polyester-swatch/tile.jpg',     image:'images/polyester-collar/tile.jpg' },
+           ],
+           thumbs: [
+             'images/polyester-collar/card.jpg',
+             'images/polyester-collar/thumb2.jpg',
+             'images/polyester-collar/thumb3.jpg',
+             'images/polyester-collar/thumb4.jpg',
+             'images/polyester-collar/thumb5.jpg',
            ] },
       23: { id:'23', name:'Polyester Webbing 首輪 L', nameEn:'Polyester Webbing Collar L', category:'POLYESTER COLLAR', price:2800, originalPrice:null, image:'images/biothane/collar-8375.jpg',
            colors: [
-             { name:'tile',     css:'#6E8CA0', image:'images/biothane/collar-8375.jpg' },
-             { name:'moroccan', css:'#C0794A', image:'images/biothane/collar-8375.jpg' },
-             { name:'native',   css:'#8A6D53', image:'images/biothane/collar-8375.jpg' },
-             { name:'ortega',   css:'#B5524A', image:'images/biothane/collar-8375.jpg' },
-             { name:'paisley',   css:'#5C6B8C', image:'images/biothane/collar-8375.jpg' },
+             { name:'moroccan', css:'#C0794A', swatch:'images/polyester-swatch/moroccan.jpg', image:'images/polyester-collar/moroccan.jpg' },
+             { name:'native',   css:'#8A6D53', swatch:'images/polyester-swatch/native.jpg',   image:'images/polyester-collar/native.jpg' },
+             { name:'ortega',   css:'#B5524A', swatch:'images/polyester-swatch/ortega.jpg',   image:'images/polyester-collar/ortega.jpg' },
+             { name:'paisley',   css:'#5C6B8C', swatch:'images/polyester-swatch/paisley.jpg', image:'images/polyester-collar/paisley.jpg' },
+             { name:'tile',     css:'#6E8CA0', swatch:'images/polyester-swatch/tile.jpg',     image:'images/polyester-collar/tile.jpg' },
+           ],
+           thumbs: [
+             'images/polyester-collar/card.jpg',
+             'images/polyester-collar/thumb2.jpg',
+             'images/polyester-collar/thumb3.jpg',
+             'images/polyester-collar/thumb4.jpg',
+             'images/polyester-collar/thumb5.jpg',
            ] },
     };
 
