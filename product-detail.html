@@ -71,19 +71,28 @@
     }
     /* 特定画像のメイン表示位置調整（被写体が下寄りの縦長写真） */
     .detail-main-image img[src*="collar-l-2"] { object-position: center 70%; }
-    /* Polyester リード サムネイル4・5枚目（被写体が左寄りの写真） */
+    /* Polyester リード サムネイル2・4・5枚目（余白なし優先。多少の見切れは許容） */
+    .detail-main-image img[src*="polyester-lead/thumb2"],
+    .detail-thumb img[src*="polyester-lead/thumb2"],
     .detail-main-image img[src*="polyester-lead/thumb4"],
-    .detail-thumb img[src*="polyester-lead/thumb4"] { object-position: 60% center; }
+    .detail-thumb img[src*="polyester-lead/thumb4"],
     .detail-main-image img[src*="polyester-lead/thumb5"],
-    .detail-thumb img[src*="polyester-lead/thumb5"] { object-position: 60% center; }
-    /* Polyester 首輪 サムネイル2枚目（被写体が左寄りの写真） */
+    .detail-thumb img[src*="polyester-lead/thumb5"] {
+      object-fit: cover;
+      object-position: center;
+    }
+    /* Polyester 首輪 サムネイル2・3・4・5枚目（余白なし優先。多少の見切れは許容） */
     .detail-main-image img[src*="polyester-collar/thumb2"],
-    .detail-thumb img[src*="polyester-collar/thumb2"] { object-position: 60% center; }
-    /* Polyester 首輪 サムネイル4・5枚目（被写体が左寄りの写真） */
+    .detail-thumb img[src*="polyester-collar/thumb2"],
+    .detail-main-image img[src*="polyester-collar/thumb3"],
+    .detail-thumb img[src*="polyester-collar/thumb3"],
     .detail-main-image img[src*="polyester-collar/thumb4"],
-    .detail-thumb img[src*="polyester-collar/thumb4"] { object-position: 70% center; }
+    .detail-thumb img[src*="polyester-collar/thumb4"],
     .detail-main-image img[src*="polyester-collar/thumb5"],
-    .detail-thumb img[src*="polyester-collar/thumb5"] { object-position: 70% center; }
+    .detail-thumb img[src*="polyester-collar/thumb5"] {
+      object-fit: cover;
+      object-position: center;
+    }
     /* 画像矢印ナビ */
     .detail-main-image { position: relative; }
     .img-nav-btn {
