@@ -473,6 +473,11 @@
         transform-origin: center top;
       }
       .hero-swiper img[src*="hero5.jpg"] { object-position: 20% 20% !important; }
+      /* スマホのみ: ヒーロー5枚目の文字・ボタンを中央に戻す（PC版はright:15%のまま） */
+      .hero-content.hero-content-right {
+        right: 0;
+        left: 0;
+      }
 
       .mobile-hamburger {
         display: flex !important;
