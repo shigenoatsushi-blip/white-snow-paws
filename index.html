@@ -251,6 +251,21 @@
       background: #FFFFFF !important;
       color: #111111 !important;
     }
+    /* ヒーロー5枚目（Polyester Webbing）: 文字を右寄せ・ボタンを濃いグレーに */
+    .hero-content.hero-content-right {
+      text-align: center;
+      left: auto;
+      right: 15%;
+    }
+    .hero .btn-primary.btn-dark-gray {
+      background: rgba(40,40,40,0.75) !important;
+      border-color: rgba(255,255,255,0.35) !important;
+      color: #FFFFFF !important;
+    }
+    .hero .btn-primary.btn-dark-gray:hover {
+      background: rgba(20,20,20,0.9) !important;
+      color: #FFFFFF !important;
+    }
 
     /* カートボタン */
     .btn-add-cart {
@@ -457,6 +472,7 @@
         transform: scale(1.5);
         transform-origin: center top;
       }
+      .hero-swiper img[src*="hero5.jpg"] { object-position: 20% 20% !important; }
 
       .mobile-hamburger {
         display: flex !important;
@@ -670,10 +686,10 @@
         <div class="swiper-slide">
           <img src="images/dog_pics/hero5.jpg" alt="Polyester Webbing リード＆首輪と愛犬" class="hero-image" loading="lazy" style="object-position: center 30%;">
           <div class="hero-overlay" style="background: linear-gradient(to bottom, rgba(44,36,28,0.05) 0%, rgba(44,36,28,0.1) 50%, rgba(44,36,28,0.55) 100%);"></div>
-          <div class="hero-content">
+          <div class="hero-content hero-content-right">
             <p class="hero-copy-en">New Arrival — Polyester Webbing</p>
             <h1 class="hero-copy-jp">毎日の散歩を彩る、<br>新しいデザインシリーズ</h1>
-            <a href="#products" class="btn-primary">VIEW PRODUCTS <span class="arrow">→</span></a>
+            <a href="#products" class="btn-primary btn-dark-gray">VIEW PRODUCTS <span class="arrow">→</span></a>
           </div>
         </div>
       </div>
