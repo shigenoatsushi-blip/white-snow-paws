@@ -71,6 +71,12 @@
     }
     /* 特定画像のメイン表示位置調整（被写体が下寄りの縦長写真） */
     .detail-main-image img[src*="collar-l-2"] { object-position: center 70%; }
+    /* Polyester リード サムネイル3枚目（正方形で余白ゼロのためpositionが効かず、
+       scaleで拡大してアップにする） */
+    .detail-main-image img[src*="polyester-lead/thumb3"],
+    .detail-thumb img[src*="polyester-lead/thumb3"] {
+      transform: scale(1.2);
+    }
     /* Polyester リード サムネイル2・4・5枚目（余白なし優先。多少の見切れは許容） */
     .detail-main-image img[src*="polyester-lead/thumb2"],
     .detail-thumb img[src*="polyester-lead/thumb2"],
