@@ -383,52 +383,6 @@
 
 <body>
   <!-- ===================================
-       準備中パスワードゲート（Polyester Webbing 商品 id=20〜23 のみ）
-       ※ 他の商品ページには一切影響しません
-       =================================== -->
-  <div id="pwGate" style="position:fixed;inset:0;background:#1a1a1a;z-index:99999;display:none;align-items:center;justify-content:center;font-family:'Noto Sans JP',sans-serif;padding:20px;">
-    <div style="background:#fff;padding:40px 32px;border-radius:8px;max-width:360px;width:100%;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.3);">
-      <h2 style="margin:0 0 8px;font-size:18px;color:#222;font-weight:600;letter-spacing:2px;">確認用ページ</h2>
-      <p style="font-size:13px;color:#666;margin:0 0 24px;line-height:1.7;">準備中の商品ページです。<br>パスワードを入力してください。</p>
-      <input id="pwInput" type="password" placeholder="パスワード" autocomplete="off" style="width:100%;padding:12px;border:1px solid #ccc;border-radius:4px;margin-bottom:12px;font-size:14px;box-sizing:border-box;">
-      <button id="pwSubmit" type="button" style="width:100%;padding:12px;background:#1a1a1a;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:14px;letter-spacing:2px;">確認</button>
-      <p id="pwError" style="color:#c00;font-size:12px;margin:12px 0 0;display:none;">パスワードが違います</p>
-    </div>
-  </div>
-  <script>
-    (function() {
-      var POLY_IDS = ['20', '21', '22', '23'];
-      var params = new URLSearchParams(location.search);
-      var pgId = params.get('id') || '';
-      // ポリエステル準備中商品以外は何もしない（既存商品に影響なし）
-      if (POLY_IDS.indexOf(pgId) === -1) return;
-      if (sessionStorage.getItem('wspPolyAuth') === '1') return;
-
-      var PW = 'wsppoly';
-      var gate = document.getElementById('pwGate');
-      gate.style.display = 'flex';
-      document.documentElement.style.overflow = 'hidden';
-      var input = document.getElementById('pwInput');
-      var submit = document.getElementById('pwSubmit');
-      var error = document.getElementById('pwError');
-      function check() {
-        if (input.value === PW) {
-          sessionStorage.setItem('wspPolyAuth', '1');
-          document.documentElement.style.overflow = '';
-          gate.style.display = 'none';
-        } else {
-          error.style.display = 'block';
-          input.value = '';
-          input.focus();
-        }
-      }
-      submit.addEventListener('click', check);
-      input.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); check(); } });
-      setTimeout(function() { input.focus(); }, 100);
-    })();
-  </script>
-
-  <!-- ===================================
        ヘッダー
        =================================== -->
   <header class="header scrolled" id="header">
@@ -829,17 +783,16 @@
             <p class="price">¥2,600〜¥3,100 <span class="price-tax">(税込)</span></p>
           </div>
         </a>
-        <!-- リード（COMING SOON） -->
-        <div class="product-card wood-frame" style="cursor:default;">
+        <!-- Polyester Webbing リード -->
+        <a href="product-detail.html?id=20" class="product-card wood-frame" style="text-decoration:none;color:inherit;">
           <div class="product-card-image">
-            <img src="images/polyester-lead/card.jpg" alt="リード" loading="lazy">
-            <div class="category-coming-soon"><span>COMING SOON</span></div>
+            <img src="images/polyester-lead/card.jpg" alt="Polyester Webbing リード" loading="lazy">
           </div>
           <div class="product-card-info">
-            <h4>リード</h4>
-            <p class="price" style="color:#999;">準備中</p>
+            <h4>Polyester Webbing リード</h4>
+            <p class="price">¥3,200〜¥3,500 <span class="price-tax">(税込)</span></p>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </main>
