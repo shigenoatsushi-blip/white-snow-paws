@@ -1,0 +1,354 @@
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: #1F2A37;
+      background: #F4F6FA;
+      font-size: 13px;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+
+    /* 印刷・PDF用（A4・複数ページOK。ブロックは途中で切らない） */
+    @media print {
+      @page { size: A4; margin: 12mm 14mm; }
+      .no-print { display: none; }
+      html, body {
+        background: #fff; padding: 0; margin: 0;
+        font-size: 10.5px; line-height: 1.55;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+      .report { box-shadow: none; padding: 0; max-width: 100%; }
+      .report-header, .report-parties, .howto, .kpi-grid, .section {
+        break-inside: avoid; page-break-inside: avoid;
+      }
+      .bar-row, .funnel-step, .geo-row, .insight { break-inside: avoid; }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 12px 28px;
+      background: #1E40AF;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(30,64,175,0.3);
+      z-index: 999;
+    }
+    .print-btn:hover { background: #1E3A8A; }
+
+    .report {
+      max-width: 760px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      padding: 48px 56px;
+      box-shadow: 0 4px 24px rgba(31,42,55,0.08);
+    }
+
+    /* ヘッダー */
+    .report-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 3px double #1E40AF;
+    }
+    .report-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 27px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: #1E40AF;
+      line-height: 1.35;
+    }
+    .report-title small {
+      display: block;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: #6B7280;
+      font-weight: 400;
+      margin-top: 4px;
+    }
+    .report-meta {
+      text-align: right;
+      font-size: 12px;
+      line-height: 1.9;
+      color: #4B5563;
+      white-space: nowrap;
+    }
+    .report-meta strong { color: #1F2A37; }
+
+    /* 宛先・差出人 */
+    .report-parties {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 32px;
+      margin-bottom: 24px;
+    }
+    .report-to { flex: 1; }
+    .report-to .client {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1F2A37;
+      padding-bottom: 6px;
+      border-bottom: 1.5px solid #1F2A37;
+      letter-spacing: 1px;
+    }
+    .report-to .honor {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      margin-left: 8px;
+      letter-spacing: 2px;
+    }
+    .report-to .intro {
+      margin-top: 14px;
+      font-size: 12.5px;
+      color: #374151;
+      line-height: 1.85;
+    }
+    .report-from {
+      text-align: right;
+      font-size: 11px;
+      line-height: 1.8;
+      color: #374151;
+    }
+    .report-from-logo {
+      width: 150px;
+      margin-bottom: 8px;
+      margin-left: auto;
+      display: block;
+    }
+    .report-from .name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1F2A37;
+      margin-bottom: 2px;
+    }
+
+    /* このレポートの見方 */
+    .howto {
+      background: #EEF3FB;
+      border: 1px solid #D5E0F2;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .howto h3 {
+      font-size: 13px;
+      color: #1E40AF;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .howto dl {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4px 12px;
+      font-size: 11.5px;
+      line-height: 1.7;
+    }
+    .howto dt { color: #1E40AF; font-weight: 700; white-space: nowrap; }
+    .howto dd { color: #374151; }
+
+    /* セクション見出し */
+    .section { margin-bottom: 26px; }
+    .section-title {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1E40AF;
+      letter-spacing: 1px;
+      padding: 6px 0 6px 12px;
+      border-left: 4px solid #1E40AF;
+      margin-bottom: 14px;
+    }
+    .section-title .en {
+      font-size: 11px;
+      color: #9CA3AF;
+      font-weight: 400;
+      margin-left: 8px;
+      letter-spacing: 1px;
+    }
+    .lead {
+      font-size: 12.5px;
+      color: #374151;
+      margin-bottom: 14px;
+      line-height: 1.85;
+    }
+    .takeaway {
+      background: #F0FAF5;
+      border-left: 4px solid #059669;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: #374151;
+      line-height: 1.8;
+      margin-top: 12px;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .takeaway b { color: #047857; }
+
+    /* KPIカード */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+    .kpi {
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      padding: 14px 14px 12px;
+      background: #FFFFFF;
+    }
+    .kpi .k-label {
+      font-size: 11px;
+      color: #6B7280;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .kpi .k-value {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #1F2A37;
+      line-height: 1.1;
+    }
+    .kpi .k-value small { font-size: 12px; font-weight: 400; color: #6B7280; margin-left: 2px; }
+    .kpi .k-desc { font-size: 10.5px; color: #6B7280; margin-top: 5px; line-height: 1.5; }
+
+    /* 横棒バー（グラフ） */
+    .bars { margin-top: 4px; }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 190px 1fr 118px;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+    .bar-row .b-name { color: #1F2A37; font-weight: 500; line-height: 1.35; }
+    .bar-row .b-name small { display: block; font-size: 10px; color: #6B7280; font-weight: 400; }
+    .bar-track {
+      display: block;
+      background: #EEF2F7;
+      border-radius: 4px;
+      height: 20px;
+      overflow: hidden;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .bar-fill {
+      display: block;
+      height: 100%;
+      min-width: 3px;
+      background: linear-gradient(90deg, #1E40AF 0%, #3B82F6 100%);
+      border-radius: 4px;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .bar-fill.green { background: linear-gradient(90deg, #047857 0%, #10B981 100%); }
+    .bar-row .b-val {
+      text-align: right;
+      color: #1F2A37;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+    .bar-row .b-val small { color: #6B7280; font-weight: 400; font-size: 10.5px; }
+
+    /* テーブル */
+    .tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .tbl thead { background: #1F2A37; color: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .tbl th { padding: 8px 12px; text-align: left; font-weight: 500; font-size: 11.5px; letter-spacing: 0.5px; }
+    .tbl th.num, .tbl td.num { text-align: right; }
+    .tbl td { padding: 8px 12px; border-bottom: 1px solid #E5E7EB; }
+    .tbl td.num { font-variant-numeric: tabular-nums; font-weight: 500; }
+    .tbl tr:last-child td { border-bottom: none; }
+    .tbl .sub { color: #6B7280; font-size: 10.5px; }
+    .tbl tr.hi td { background: #F5F8FE; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+    /* ファネル */
+    .funnel { margin-top: 6px; }
+    .funnel-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 7px;
+    }
+    .funnel-bar {
+      background: linear-gradient(90deg, #1E40AF 0%, #3B82F6 100%);
+      color: #fff;
+      border-radius: 5px;
+      padding: 10px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .funnel-bar .fb-num { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 15px; }
+    .funnel-drop { font-size: 10.5px; color: #6B7280; white-space: nowrap; width: 118px; }
+    .funnel-note { font-size: 10.5px; color: #9CA3AF; margin-top: 8px; line-height: 1.7; }
+
+    /* 地域 2カラム */
+    .geo-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .geo-h { font-size: 12px; font-weight: 700; color: #374151; margin-bottom: 8px; }
+    .geo-row {
+      display: grid;
+      grid-template-columns: 1fr 52px;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      padding: 5px 0;
+      border-bottom: 1px dashed #E5E7EB;
+    }
+    .geo-row .g-name { color: #1F2A37; }
+    .geo-row .g-val { text-align: right; font-variant-numeric: tabular-nums; color: #1F2A37; font-weight: 500; }
+    .geo-row .g-val small { color: #6B7280; font-weight: 400; font-size: 10px; }
+
+    /* 所見・提案 */
+    .insight {
+      background: #F9FAFB;
+      border-left: 4px solid #1E40AF;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .insight h4 {
+      font-size: 12.5px;
+      color: #1E40AF;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .insight p { font-size: 11.5px; color: #374151; line-height: 1.75; }
+    .insight .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      background: #059669;
+      border-radius: 3px;
+      padding: 1px 7px;
+      margin-left: 6px;
+      vertical-align: middle;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .insight .tag.watch { background: #D97706; }
+    .insight .tag.todo { background: #1E40AF; }
+
+    .report-notes {
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid #E5E7EB;
+      font-size: 10.5px;
+      color: #6B7280;
+      line-height: 1.8;
+    }

@@ -1,0 +1,43 @@
+name: 月次アクセス解析レポート
+
+# 毎月1日 9:07 JST（= 0:07 UTC）に前月分を作成。混雑回避で数分ずらしている
+# 手動実行: GitHub の Actions タブ →「Run workflow」→ 月（例: 2026-08）を入力。空欄なら前月
+# 作成したレポートはコミットせず、実行結果ページの「Artifacts」からダウンロードする（公開リポジトリのため）
+on:
+  schedule:
+    - cron: '7 0 1 * *'
+  workflow_dispatch:
+    inputs:
+      month:
+        description: '対象月（YYYY-MM）。空欄なら前月'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリを取得
+        uses: actions/checkout@v4
+
+      - name: Node.js を準備
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: レポート作成
+        env:
+          GA4_SA_KEY: ${{ secrets.GA4_SA_KEY }}
+          REPORT_PROFILE: ${{ secrets.REPORT_PROFILE }}
+          REPORT_MONTH: ${{ github.event.inputs.month }}
+        run: node .github/scripts/monthly-report.js
+
+      - name: レポートを保存（Artifacts）
+        uses: actions/upload-artifact@v4
+        with:
+          name: monthly-report
+          path: _reports/report-*.html
+          retention-days: 90

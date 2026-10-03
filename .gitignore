@@ -15,3 +15,6 @@ images/woodburing/
 images/dog_pics/*.HEIC
 images/dog_pics/*.mov
 images/hero/S__*
+
+# 月次レポート（個人情報・GA鍵を含むためコミットしない）
+_reports/
