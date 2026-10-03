@@ -4,6 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 運営者の端末を計測から除外（?notrack=1 で印をつける / ?notrack=0 で解除） -->
+  <script>
+    try {
+      var nt = new URLSearchParams(location.search).get('notrack');
+      if (nt === '1') localStorage.setItem('wsp_notrack', '1');
+      if (nt === '0') localStorage.removeItem('wsp_notrack');
+      if (localStorage.getItem('wsp_notrack') === '1') window['ga-disable-G-SDYCLMNHCY'] = true;
+    } catch (e) {}
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SDYCLMNHCY"></script>
   <script>
