@@ -250,13 +250,24 @@
         return;
       }
       try {
-        const { data: order } = await _supabase
-          .from('orders').select('*').eq('order_number', orderNumber).single();
-        if (!order) throw new Error('not found');
-        document.getElementById('orderNumberDisplay').textContent = order.order_number;
-        document.getElementById('amountDisplay').textContent = '¥' + order.total.toLocaleString();
-        const kana = `${(order.shipping_last_kana || '').toUpperCase()} ${(order.shipping_first_kana || '').toUpperCase()}`.trim();
-        document.getElementById('payerName').textContent = kana || `${order.shipping_last_name} ${order.shipping_first_name}`;
+        // 注文直後に checkout 側で保存した情報を表示（匿名でのDB読み取りはしない）
+        let saved = null;
+        try { saved = JSON.parse(sessionStorage.getItem('wsp_bank_order') || 'null'); } catch (_) {}
+        let view;
+        if (saved && saved.order_number === orderNumber) {
+          view = { number: saved.order_number, total: saved.total, payer: saved.payer };
+        } else {
+          // ログイン中のお客様は本人の注文として読める（RLS: 本人のみ）
+          const { data: order } = await _supabase
+            .from('orders').select('order_number, total, shipping_last_name, shipping_first_name, shipping_last_kana, shipping_first_kana')
+            .eq('order_number', orderNumber).maybeSingle();
+          if (!order) throw new Error('not found');
+          const kana = `${order.shipping_last_kana || ''} ${order.shipping_first_kana || ''}`.trim();
+          view = { number: order.order_number, total: order.total, payer: kana || `${order.shipping_last_name} ${order.shipping_first_name}` };
+        }
+        document.getElementById('orderNumberDisplay').textContent = view.number;
+        document.getElementById('amountDisplay').textContent = '¥' + Number(view.total).toLocaleString();
+        document.getElementById('payerName').textContent = (view.payer || '').toUpperCase();
         document.getElementById('loading').style.display = 'none';
         document.getElementById('content').style.display = 'block';
       } catch (e) {

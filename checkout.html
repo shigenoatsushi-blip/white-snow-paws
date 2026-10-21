@@ -772,6 +772,12 @@
           });
           const data = await resp.json();
           if (data.order_number) {
+            // 完了ページ表示用（DBを匿名で読まずに済むよう、ここで渡す）
+            sessionStorage.setItem('wsp_bank_order', JSON.stringify({
+              order_number: data.order_number,
+              total: data.total,
+              payer: `${shipping.lastKana || ''} ${shipping.firstKana || ''}`.trim() || `${shipping.lastName} ${shipping.firstName}`,
+            }));
             localStorage.removeItem('wsp_cart');
             window.location.href = `bank-transfer-success.html?order=${encodeURIComponent(data.order_number)}`;
           } else {

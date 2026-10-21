@@ -459,24 +459,25 @@
       // URLパラメータから session_id を取得
       const sessionId = new URLSearchParams(window.location.search).get('session_id');
 
-      // Supabaseから注文番号を取得
+      // サーバー経由で注文番号だけを取得（匿名でのDB読み取りはしない）
+      const fetchOrderNumber = async () => {
+        try {
+          const resp = await fetch('/.netlify/functions/get-order-number?session_id=' + encodeURIComponent(sessionId));
+          if (!resp.ok) return null;
+          const data = await resp.json();
+          return data.order_number ? data : null;
+        } catch (_) { return null; }
+      };
+
       if (sessionId) {
-        const { data: order } = await _supabase
-          .from('orders')
-          .select('order_number')
-          .eq('stripe_session_id', sessionId)
-          .single();
+        const order = await fetchOrderNumber();
 
         if (order) {
           document.getElementById('orderNum').textContent = 'ORDER # ' + order.order_number;
         } else {
           // Webhookがまだ完了していない可能性があるため少し待って再試行
           setTimeout(async () => {
-            const { data: retryOrder } = await _supabase
-              .from('orders')
-              .select('order_number')
-              .eq('stripe_session_id', sessionId)
-              .single();
+            const retryOrder = await fetchOrderNumber();
             if (retryOrder) {
               document.getElementById('orderNum').textContent = 'ORDER # ' + retryOrder.order_number;
             } else {
