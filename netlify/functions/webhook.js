@@ -13,6 +13,13 @@ const supabase = createClient(
 );
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// HTMLメールに入れるお客様入力値の無害化（タグ・リンクの埋め込み防止）
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[<>&"']/g, (c) => ({
+    '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
@@ -123,11 +130,11 @@ async function sendCustomerEmail(order, cart, shipping) {
   const itemsHtml = cart
     .map((item) => {
       const variants = [item.color, item.length, item.options && item.options.karabina ? 'カラビナ変更(+¥1,300)' : ''].filter(Boolean).join(' / ');
-      const displayName = item.name + (variants ? ` (${variants})` : '');
+      const displayName = esc(item.name + (variants ? ` (${variants})` : ''));
       return `<tr>
           <td style="padding:8px;border-bottom:1px solid #eee;">${displayName}</td>
-          <td style="padding:8px;border-bottom:1px solid #eee;text-align:right;">¥${item.price.toLocaleString()}</td>
-          <td style="padding:8px;border-bottom:1px solid #eee;text-align:center;">${item.quantity}</td>
+          <td style="padding:8px;border-bottom:1px solid #eee;text-align:right;">¥${Number(item.price).toLocaleString()}</td>
+          <td style="padding:8px;border-bottom:1px solid #eee;text-align:center;">${Number(item.quantity)}</td>
           <td style="padding:8px;border-bottom:1px solid #eee;text-align:right;">¥${(item.price * item.quantity).toLocaleString()}</td>
         </tr>`;
     })
@@ -141,7 +148,7 @@ async function sendCustomerEmail(order, cart, shipping) {
   <h1 style="font-size:20px;text-align:center;border-bottom:2px solid #D4C4B0;padding-bottom:16px;">
     ご注文ありがとうございます ✦ White Snow Paws
   </h1>
-  <p>${shipping.lastName} ${shipping.firstName} 様</p>
+  <p>${esc(shipping.lastName)} ${esc(shipping.firstName)} 様</p>
   <p>ご注文を受け付けました。商品の準備が整い次第、発送いたします。</p>
   <p><strong>注文番号: ${order.order_number}</strong></p>
   <table style="width:100%;border-collapse:collapse;margin:16px 0;">
@@ -160,9 +167,9 @@ async function sendCustomerEmail(order, cart, shipping) {
   <p style="text-align:right;font-size:18px;font-weight:bold;">合計: ¥${order.total.toLocaleString()}</p>
   <hr style="border:1px solid #D4C4B0;">
   <h2 style="font-size:16px;">お届け先</h2>
-  <p>${shipping.lastName} ${shipping.firstName}<br>
-  〒${shipping.postal} ${shipping.prefecture}${shipping.city}${shipping.address}<br>
-  TEL: ${shipping.phone}</p>
+  <p>${esc(shipping.lastName)} ${esc(shipping.firstName)}<br>
+  〒${esc(shipping.postal)} ${esc(shipping.prefecture)}${esc(shipping.city)}${esc(shipping.address)}<br>
+  TEL: ${esc(shipping.phone)}</p>
   <hr style="border:1px solid #D4C4B0;">
   <p style="font-size:12px;color:#7A6B5D;">
     ご不明な点はお気軽にお問い合わせください。<br>
