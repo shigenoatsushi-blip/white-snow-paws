@@ -2,7 +2,7 @@ name: 月次アクセス解析レポート
 
 # 毎月1日 9:07 JST（= 0:07 UTC）に前月分を作成。混雑回避で数分ずらしている
 # 手動実行: GitHub の Actions タブ →「Run workflow」→ 月（例: 2026-08）を入力。空欄なら前月
-# 作成したレポートはコミットせず、実行結果ページの「Artifacts」からダウンロードする（公開リポジトリのため）
+# 作成したレポートはコミットせず、PDFを重野さんあてにメール送信＋「Artifacts」にも保存（公開リポジトリのため）
 on:
   schedule:
     - cron: '7 0 1 * *'
@@ -35,9 +35,30 @@ jobs:
           REPORT_MONTH: ${{ github.event.inputs.month }}
         run: node .github/scripts/monthly-report.js
 
+      - name: 日本語フォントを準備
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
+
+      - name: PDFに変換
+        run: |
+          f=$(ls _reports/report-*.html)
+          google-chrome --headless=new --disable-gpu --no-sandbox --no-pdf-header-footer \
+            --virtual-time-budget=10000 --print-to-pdf="${f%.html}.pdf" "file://$PWD/$f"
+          ls -l _reports
+
       - name: レポートを保存（Artifacts）
         uses: actions/upload-artifact@v4
         with:
           name: monthly-report
-          path: _reports/report-*.html
+          path: |
+            _reports/report-*.html
+            _reports/report-*.pdf
           retention-days: 90
+
+      - name: 重野さんあてにメール送信
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          REPORT_PROFILE: ${{ secrets.REPORT_PROFILE }}
+        run: |
+          npm install --prefix /tmp/mailer --no-save --silent nodemailer@6
+          NODE_PATH=/tmp/mailer/node_modules node .github/scripts/send-report-mail.js
