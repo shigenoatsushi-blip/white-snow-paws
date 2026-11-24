@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 準備中のため検索エンジンに載せない（一般公開時に削除） -->
+  <meta name="robots" content="noindex, nofollow">
+  <!-- 運営者の端末を計測から除外（?notrack=1 で印をつける / ?notrack=0 で解除） -->
+  <script>
+    try {
+      var nt = new URLSearchParams(location.search).get('notrack');
+      if (nt === '1') localStorage.setItem('wsp_notrack', '1');
+      if (nt === '0') localStorage.removeItem('wsp_notrack');
+      if (localStorage.getItem('wsp_notrack') === '1') window['ga-disable-G-SDYCLMNHCY'] = true;
+    } catch (e) {}
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SDYCLMNHCY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SDYCLMNHCY');
+  </script>
+  <title>フード｜White Snow Paws</title>
+  <meta name="description" content="White Snow Paws の犬用おやつ。毎日のごほうびやおやつにおすすめです。">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css?v=20260330">
+  <link rel="stylesheet" href="css/overrides.css?v=20260330">
+
+  <style>
+    /* パンくず */
+    .detail-hero { background: #fff; padding: 80px 20px 16px; border-bottom: 1px solid #eee; }
+    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #999; letter-spacing: 1px; max-width: 1090px; margin: 0 auto; font-family: 'Noto Sans JP', sans-serif; flex-wrap: wrap; }
+    .breadcrumb a { color: #999; text-decoration: none; }
+    .breadcrumb a:hover { color: #333; }
+    .breadcrumb span { color: #ccc; }
+
+    .fd-page-content { max-width: 1090px; margin: 0 auto; padding: 48px 20px 80px; background: rgba(255,255,255,0.80); }
+
+    /* メイン: 左=写真＋注意事項 / 右=商品情報 */
+    .fd-main { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; margin-bottom: 64px; }
+    @media (max-width: 767px) {
+      .fd-main { grid-template-columns: 1fr; gap: 28px; }
+      /* スマホは 写真 → 商品情報 → 注意事項 の順 */
+      .fd-left { display: contents; }
+      .fd-photos { order: 1; }
+      .fd-right { order: 2; }
+      .fd-notice { order: 3; margin-top: 0; }
+    }
+
+    .fd-main-image img { width: 100%; aspect-ratio: 1199 / 1312; object-fit: contain; background: #fff; display: block; border: 1px solid #eee; }
+    .fd-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 8px; }
+    .fd-thumbs button { padding: 0; border: none; background: none; cursor: pointer; }
+    .fd-thumbs img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; opacity: 0.6; transition: opacity 0.2s; border: 1px solid #eee; }
+    .fd-thumbs button:hover img { opacity: 1; }
+    .fd-thumbs button.active img { opacity: 1; outline: 2px solid #111; outline-offset: -2px; }
+    .fd-thumb-hint { font-family: 'Noto Sans JP', sans-serif; font-size: 11px; color: #999; margin-top: 6px; }
+
+    /* 注意事項（写真の下） */
+    .fd-notice { background: #fafafa; border: 1px solid #eee; padding: 22px 24px; margin-top: 28px; }
+    .fd-notice h2 { font-family: 'Noto Sans JP', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1px; color: #333; margin-bottom: 12px; }
+    .fd-notice ul { list-style: none; padding: 0; margin: 0; }
+    .fd-notice li { font-family: 'Noto Sans JP', sans-serif; font-size: 13px; line-height: 1.9; color: #555; margin-bottom: 4px; padding-left: 14px; position: relative; }
+    .fd-notice li::before { content: '・'; position: absolute; left: 0; color: #999; }
+    .fd-notice .fd-notice-sep { border-top: 1px dashed #ddd; margin: 10px 0; }
+
+    /* 右側 商品情報 */
+    .fd-category { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 3px; color: #999; margin-bottom: 6px; }
+    .fd-name { font-family: 'Noto Serif JP', serif; font-size: 24px; font-weight: 500; color: #111; letter-spacing: 1px; margin-bottom: 20px; line-height: 1.5; }
+    .fd-desc p { font-family: 'Noto Serif JP', serif; font-size: 14px; line-height: 2.1; color: #555; margin-bottom: 14px; }
+
+    .fd-section-title { font-family: 'Noto Sans JP', sans-serif; font-size: 13px; font-weight: 500; color: #333; letter-spacing: 1px; margin: 28px 0 10px; padding-bottom: 6px; border-bottom: 1px solid #eee; }
+    .fd-table { border-collapse: collapse; width: 100%; font-family: 'Noto Sans JP', sans-serif; }
+    .fd-table th, .fd-table td { padding: 9px 12px; border: 1px solid #eee; font-size: 13px; line-height: 1.7; color: #555; text-align: left; vertical-align: top; }
+    .fd-table th { background: #fafafa; font-weight: 500; width: 38%; color: #333; }
+    .fd-note { font-family: 'Noto Sans JP', sans-serif; font-size: 12px; color: #888; line-height: 1.8; margin-top: 8px; }
+
+    /* 価格・カート */
+    .fd-price-area { border-top: 1px solid #eee; padding-top: 20px; margin-top: 32px; margin-bottom: 20px; }
+    .fd-price-label { font-family: 'Noto Sans JP', sans-serif; font-size: 11px; color: #999; letter-spacing: 1px; margin-bottom: 4px; }
+    .fd-price { font-family: 'Noto Sans JP', sans-serif; font-size: 20px; font-weight: 500; color: #111; }
+    .fd-price small { font-size: 12px; font-weight: 400; color: #999; }
+    .fd-volume { font-family: 'Noto Sans JP', sans-serif; font-size: 13px; color: #555; margin-top: 4px; }
+    .btn-add-to-cart { display: block; width: 100%; font-family: 'Noto Sans JP', sans-serif; font-size: 13px; color: #fff; background: #111; border: 1px solid #111; padding: 14px 32px; letter-spacing: 1px; cursor: pointer; transition: background 0.3s, color 0.3s; text-align: center; box-sizing: border-box; }
+    .btn-add-to-cart:hover { background: #fff; color: #111; }
+    .btn-add-to-cart:disabled { background: #4A7C59; border-color: #4A7C59; color: #fff; cursor: default; }
+
+    /* 配送・返品 */
+    .fd-info-box { background: #fafafa; border: 1px solid #eee; padding: 24px; margin-bottom: 40px; font-family: 'Noto Sans JP', sans-serif; font-size: 13px; line-height: 1.9; color: #555; }
+    .fd-info-box h2 { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 3px; color: #333; margin-bottom: 12px; }
+    .fd-info-box ul { padding-left: 18px; margin-bottom: 12px; }
+    .fd-info-box a { color: #111; text-decoration: underline; }
+
+    .back-link { display: inline-block; font-family: 'Noto Sans JP', sans-serif; font-size: 13px; color: #999; text-decoration: none; letter-spacing: 0.5px; }
+    .back-link:hover { color: #333; }
+  </style>
+</head>
+
+<body>
+  <!-- ===================================
+       準備中パスワードゲート（フードページのみ・一般公開時に削除）
+       =================================== -->
+  <div id="pwGate" style="position:fixed;inset:0;background:#1a1a1a;z-index:99999;display:none;align-items:center;justify-content:center;font-family:'Noto Sans JP',sans-serif;padding:20px;">
+    <div style="background:#fff;padding:40px 32px;border-radius:8px;max-width:360px;width:100%;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.3);">
+      <h2 style="margin:0 0 8px;font-size:18px;color:#222;font-weight:600;letter-spacing:2px;">確認用ページ</h2>
+      <p style="font-size:13px;color:#666;margin:0 0 24px;line-height:1.7;">準備中の商品ページです。<br>パスワードを入力してください。</p>
+      <input id="pwInput" type="password" placeholder="パスワード" autocomplete="off" aria-label="パスワード" style="width:100%;padding:12px;border:1px solid #ccc;border-radius:4px;margin-bottom:12px;font-size:16px;box-sizing:border-box;">
+      <button id="pwSubmit" type="button" style="width:100%;padding:12px;background:#1a1a1a;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:14px;letter-spacing:2px;">確認</button>
+      <p id="pwError" style="color:#c00;font-size:12px;margin:12px 0 0;display:none;">パスワードが違います</p>
+    </div>
+  </div>
+  <script>
+    (function() {
+      if (sessionStorage.getItem('wspFoodAuth') === '1') return;
+      var PW = 'wspfood';
+      var gate = document.getElementById('pwGate');
+      gate.style.display = 'flex';
+      document.documentElement.style.overflow = 'hidden';
+      var input = document.getElementById('pwInput');
+      var error = document.getElementById('pwError');
+      function check() {
+        if (input.value === PW) {
+          sessionStorage.setItem('wspFoodAuth', '1');
+          document.documentElement.style.overflow = '';
+          gate.style.display = 'none';
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+          input.focus();
+        }
+      }
+      document.getElementById('pwSubmit').addEventListener('click', check);
+      input.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); check(); } });
+      setTimeout(function() { input.focus(); }, 100);
+    })();
+  </script>
+  <!-- ヘッダー -->
+  <header class="header scrolled" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/wsplogowhite.png" alt="White Snow Paws" class="logo-img">
+      </a>
+
+      <!-- ヘッダー中央テキスト -->
+      <a href="index.html" class="header-center-logo">
+        
+        White Snow Paws
+      </a>
+      <div class="header-icons">
+        <a href="login.html" class="header-icon-btn" style="text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span class="header-icon-label">LOGIN</span>
+        </a>
+        <a href="cart.html" class="header-icon-btn" style="position:relative;text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+          <span class="header-icon-label">CART</span>
+        </a>
+      </div>
+    </div>
+    <nav class="desktop-nav">
+      <ul>
+        <li><a href="index.html#products">PRODUCTS</a></li>
+        <li><a href="index.html#category">CATEGORY</a></li>
+        <li><a href="index.html#story">STORY</a></li>
+        <li><a href="index.html#order">ORDER</a></li>
+        <li><a href="index.html#gallery">GALLERY</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- パンくず -->
+  <div class="detail-hero">
+    <nav class="breadcrumb">
+      <a href="index.html">HOME</a>
+      <span>›</span>
+      <a href="food.html">FOOD</a>
+      <span>›</span>
+      <span id="fdBreadcrumb"></span>
+    </nav>
+  </div>
+
+  <main class="fd-page-content">
+    <div class="fd-main">
+      <!-- 左: 写真＋注意事項 -->
+      <div class="fd-left">
+        <div class="fd-photos">
+        <div class="fd-main-image">
+          <img id="fdMainImage" src="" alt="">
+        </div>
+        <div class="fd-thumbs" id="fdThumbs"></div>
+        <p class="fd-thumb-hint">写真を選ぶと大きく表示されます</p>
+        </div>
+
+        <div class="fd-notice">
+          <h2>保存方法・注意事項</h2>
+          <ul id="fdNoticeOwn"></ul>
+          <div class="fd-notice-sep"></div>
+          <ul>
+            <li>開封後は冷蔵庫（0〜10℃）で保管し、賞味期限にかかわらず早めにお与えください。</li>
+            <li>ペットフードとしての用途をお守りください。</li>
+            <li>本品は間食用です。主食として与えないでください。</li>
+            <li>自然の原材料を使用しているため、色や形状にばらつきがありますが、品質には差し支えありません。</li>
+            <li>賞味期限：商品パッケージに記載</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 右: 商品情報 -->
+      <div class="fd-right">
+        <p class="fd-category">FOOD</p>
+        <h1 class="fd-name" id="fdName"></h1>
+        <div class="fd-desc" id="fdDesc"></div>
+
+        <h2 class="fd-section-title">商品詳細</h2>
+        <table class="fd-table">
+          <tr><th>原材料</th><td id="fdIngredients"></td></tr>
+          <tr><th>原産国</th><td>日本</td></tr>
+          <tr><th>用途</th><td>犬用一般食（おやつ）</td></tr>
+          <tr><th>内容量</th><td id="fdVolumeRow"></td></tr>
+        </table>
+
+        <h2 class="fd-section-title">成分分析値</h2>
+        <table class="fd-table" id="fdAnalysis"></table>
+
+        <h2 class="fd-section-title">1日あたりの給与量の目安</h2>
+        <table class="fd-table" id="fdFeeding"></table>
+        <p class="fd-note">上記の給与量を基準に、1日1〜2回に分けて与えてください。与える量は犬種・年齢・性質・運動量・季節等により異なります。</p>
+
+        <div class="fd-price-area">
+          <p class="fd-price-label">PRICE</p>
+          <p class="fd-price" id="fdPrice"></p>
+          <p class="fd-volume" id="fdVolume"></p>
+        </div>
+        <button id="fdCartBtn" class="btn-add-to-cart" type="button">カートに入れる</button>
+      </div>
+    </div>
+
+    <div class="fd-info-box">
+      <h2>SHIPPING &amp; RETURNS</h2>
+      <p><strong>送料</strong></p>
+      <ul>
+        <li>送料：無料</li>
+        <li>商品を3点以上ご購入の場合は佐川急便での発送となり、送料¥900を頂戴いたします。</li>
+        <li>北海道は+¥300、沖縄県は+¥600となります。</li>
+        <li>日本国内のみ対応（海外発送は現在未対応）</li>
+      </ul>
+      <p><strong>返品・交換について</strong></p>
+      <p>食品のため、お客様都合による返品・交換はお受けしておりません。誤配送や商品到着時の破損・不良の場合は、商品到着後7日以内にご連絡ください。</p>
+      <p style="margin-top:12px;"><a href="shipping.html">配送・送料について →</a></p>
+    </div>
+
+    <a href="food.html" class="back-link">← フード一覧に戻る</a>
+  </main>
+
+  <!-- フッター -->
+  <div class="wood-plank-divider"></div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <a href="index.html" class="logo">
+          
+          White Snow Paws
+        </a>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h4>SHOP</h4>
+          <ul>
+            <li><a href="biothane-lead.html">BioThane リード</a></li>
+            <li><a href="biothane-collar.html">BioThane カラー</a></li>
+            <li><a href="woodburning.html">ウッドバーニング</a></li>
+            <li><span style="color:#999;">フード（準備中）</span></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>GUIDE</h4>
+          <ul>
+            <li><a href="shipping.html">配送・送料について</a></li>
+            <li><a href="faq.html">よくある質問</a></li>
+            <li><a href="terms.html#art5">返品について</a></li>
+            <li><a href="contact.html">お問い合わせ</a></li>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>FOLLOW US</h4>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/whitesnowpaws.dog/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+          </div>
+          <a href="index.html" class="footer-logo-img-link">
+            <img src="images/wsplogowhite.png" alt="White Snow Paws" class="footer-logo-img-large">
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <a href="terms.html">利用規約</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+        <a href="tradelaw.html">特定商取引法</a>
+        <a href="contact.html">お問い合わせ</a>
+        &copy; 2026 White Snow Paws. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/food-data.js"></script>
+  <script>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var item = FOOD_ITEMS.find(function (f) { return f.id === params.get('id'); }) || FOOD_ITEMS[0];
+
+      document.title = item.name + '｜White Snow Paws';
+      document.getElementById('fdBreadcrumb').textContent = item.name;
+      document.getElementById('fdName').textContent = item.name;
+
+      var desc = document.getElementById('fdDesc');
+      item.desc.forEach(function (t) { var p = document.createElement('p'); p.textContent = t; desc.appendChild(p); });
+
+      document.getElementById('fdIngredients').textContent = item.ingredients;
+      document.getElementById('fdVolumeRow').textContent = item.volume;
+
+      function fillTable(id, rows) {
+        var tbl = document.getElementById(id);
+        rows.forEach(function (r) {
+          var tr = document.createElement('tr');
+          var th = document.createElement('th'); th.textContent = r[0];
+          var td = document.createElement('td'); td.textContent = r[1];
+          tr.appendChild(th); tr.appendChild(td); tbl.appendChild(tr);
+        });
+      }
+      fillTable('fdAnalysis', item.analysis);
+      fillTable('fdFeeding', item.feeding);
+
+      var own = document.getElementById('fdNoticeOwn');
+      item.notice.forEach(function (t) { var li = document.createElement('li'); li.textContent = t; own.appendChild(li); });
+
+      document.getElementById('fdPrice').innerHTML = '¥' + item.price.toLocaleString() + ' <small>(税込)</small>';
+      document.getElementById('fdVolume').textContent = '内容量：' + item.volume;
+
+      // 写真（商品写真・成分表）
+      var main = document.getElementById('fdMainImage');
+      var thumbs = document.getElementById('fdThumbs');
+      var labels = ['商品写真', '成分表'];
+      item.images.forEach(function (src, i) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', item.name + ' ' + labels[i] + 'を表示');
+        var img = document.createElement('img');
+        img.src = src; img.alt = item.name + ' ' + labels[i]; img.loading = 'lazy';
+        b.appendChild(img);
+        b.addEventListener('click', function () {
+          main.src = src; main.alt = img.alt;
+          thumbs.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); });
+          b.classList.add('active');
+        });
+        if (i === 0) b.classList.add('active');
+        thumbs.appendChild(b);
+      });
+      main.src = item.images[0];
+      main.alt = item.name + ' ' + labels[0];
+
+      var btn = document.getElementById('fdCartBtn');
+      btn.addEventListener('click', function () {
+        Cart.addItem({ id: item.id, name: item.name, price: item.price, image: item.images[0], quantity: 1 });
+        btn.textContent = '✓ カートに追加しました';
+        btn.disabled = true;
+        setTimeout(function () { btn.textContent = 'カートに入れる'; btn.disabled = false; }, 1500);
+      });
+    })();
+  </script>
+
+  <!-- JavaScript -->
+  <script src="js/cart.js"></script>
+  <script src="js/main.js?v=20260330"></script>
+  <script src="js/scroll-anime.js"></script>
+</body>
+
+</html>

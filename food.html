@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 準備中のため検索エンジンに載せない（一般公開時に削除） -->
+  <meta name="robots" content="noindex, nofollow">
+  <!-- 運営者の端末を計測から除外（?notrack=1 で印をつける / ?notrack=0 で解除） -->
+  <script>
+    try {
+      var nt = new URLSearchParams(location.search).get('notrack');
+      if (nt === '1') localStorage.setItem('wsp_notrack', '1');
+      if (nt === '0') localStorage.removeItem('wsp_notrack');
+      if (localStorage.getItem('wsp_notrack') === '1') window['ga-disable-G-SDYCLMNHCY'] = true;
+    } catch (e) {}
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SDYCLMNHCY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SDYCLMNHCY');
+  </script>
+  <title>フード｜White Snow Paws</title>
+  <meta name="description" content="White Snow Paws の犬用おやつ一覧。ささみ・砂肝・さつまいも・鹿肉のトリーツをご用意しています。">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css?v=20260330">
+  <link rel="stylesheet" href="css/overrides.css?v=20260330">
+
+  <style>
+    .detail-hero { background: #fff; padding: 80px 20px 16px; border-bottom: 1px solid #eee; }
+    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #999; letter-spacing: 1px; max-width: 1090px; margin: 0 auto; font-family: 'Noto Sans JP', sans-serif; }
+    .breadcrumb a { color: #999; text-decoration: none; }
+    .breadcrumb a:hover { color: #333; }
+    .breadcrumb span { color: #ccc; }
+
+    .fl-page-content { max-width: 1090px; margin: 0 auto; padding: 48px 20px 80px; background: rgba(255,255,255,0.80); }
+    .category-title-en { font-family: 'Cinzel', serif; font-size: 28px; font-weight: 400; letter-spacing: 3px; color: #111; margin-bottom: 4px; }
+    .category-title-jp { font-family: 'Noto Sans JP', sans-serif; font-size: 13px; font-weight: 400; color: #999; margin-bottom: 8px; }
+    .category-title-line { width: 40px; height: 1px; background: #ccc; margin-bottom: 40px; }
+
+    .fl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 56px; }
+    @media (max-width: 900px) { .fl-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+
+    .fl-card { display: block; text-decoration: none; color: inherit; background: #fff; border: 1px solid #e5e5e5; transition: border-color 0.3s; }
+    .fl-card:hover { border-color: #111; }
+    .fl-card-image { overflow: hidden; background: #f5f5f5; }
+    .fl-card-image img { width: 100%; aspect-ratio: 1199 / 1312; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .fl-card:hover .fl-card-image img { transform: scale(1.05); }
+    .fl-card-info { padding: 14px 16px 18px; font-family: 'Noto Sans JP', sans-serif; }
+    .fl-card-info h2 { font-size: 14px; font-weight: 500; color: #111; line-height: 1.6; margin-bottom: 6px; }
+    .fl-card-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+    .fl-card-price { font-size: 15px; font-weight: 500; color: #111; }
+    .fl-card-price small { font-size: 11px; font-weight: 400; color: #999; }
+    .fl-card-volume { font-size: 12px; color: #888; }
+    @media (max-width: 480px) {
+      .fl-card-info { padding: 10px 10px 14px; }
+      .fl-card-info h2 { font-size: 13px; }
+    }
+
+    .back-link { display: inline-block; font-family: 'Noto Sans JP', sans-serif; font-size: 13px; color: #999; text-decoration: none; letter-spacing: 0.5px; }
+    .back-link:hover { color: #333; }
+  </style>
+</head>
+
+<body>
+  <!-- ===================================
+       準備中パスワードゲート（フードページのみ・一般公開時に削除）
+       =================================== -->
+  <div id="pwGate" style="position:fixed;inset:0;background:#1a1a1a;z-index:99999;display:none;align-items:center;justify-content:center;font-family:'Noto Sans JP',sans-serif;padding:20px;">
+    <div style="background:#fff;padding:40px 32px;border-radius:8px;max-width:360px;width:100%;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.3);">
+      <h2 style="margin:0 0 8px;font-size:18px;color:#222;font-weight:600;letter-spacing:2px;">確認用ページ</h2>
+      <p style="font-size:13px;color:#666;margin:0 0 24px;line-height:1.7;">準備中の商品ページです。<br>パスワードを入力してください。</p>
+      <input id="pwInput" type="password" placeholder="パスワード" autocomplete="off" aria-label="パスワード" style="width:100%;padding:12px;border:1px solid #ccc;border-radius:4px;margin-bottom:12px;font-size:16px;box-sizing:border-box;">
+      <button id="pwSubmit" type="button" style="width:100%;padding:12px;background:#1a1a1a;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:14px;letter-spacing:2px;">確認</button>
+      <p id="pwError" style="color:#c00;font-size:12px;margin:12px 0 0;display:none;">パスワードが違います</p>
+    </div>
+  </div>
+  <script>
+    (function() {
+      if (sessionStorage.getItem('wspFoodAuth') === '1') return;
+      var PW = 'wspfood';
+      var gate = document.getElementById('pwGate');
+      gate.style.display = 'flex';
+      document.documentElement.style.overflow = 'hidden';
+      var input = document.getElementById('pwInput');
+      var error = document.getElementById('pwError');
+      function check() {
+        if (input.value === PW) {
+          sessionStorage.setItem('wspFoodAuth', '1');
+          document.documentElement.style.overflow = '';
+          gate.style.display = 'none';
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+          input.focus();
+        }
+      }
+      document.getElementById('pwSubmit').addEventListener('click', check);
+      input.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); check(); } });
+      setTimeout(function() { input.focus(); }, 100);
+    })();
+  </script>
+  <!-- ヘッダー -->
+  <header class="header scrolled" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/wsplogowhite.png" alt="White Snow Paws" class="logo-img">
+      </a>
+
+      <!-- ヘッダー中央テキスト -->
+      <a href="index.html" class="header-center-logo">
+        
+        White Snow Paws
+      </a>
+      <div class="header-icons">
+        <a href="login.html" class="header-icon-btn" style="text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span class="header-icon-label">LOGIN</span>
+        </a>
+        <a href="cart.html" class="header-icon-btn" style="position:relative;text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+          <span class="header-icon-label">CART</span>
+        </a>
+      </div>
+    </div>
+    <nav class="desktop-nav">
+      <ul>
+        <li><a href="index.html#products">PRODUCTS</a></li>
+        <li><a href="index.html#category">CATEGORY</a></li>
+        <li><a href="index.html#story">STORY</a></li>
+        <li><a href="index.html#order">ORDER</a></li>
+        <li><a href="index.html#gallery">GALLERY</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- パンくず -->
+  <div class="detail-hero">
+    <nav class="breadcrumb">
+      <a href="index.html">HOME</a>
+      <span>›</span>
+      <a href="index.html#category">CATEGORY</a>
+      <span>›</span>
+      <span>フード</span>
+    </nav>
+  </div>
+
+  <main class="fl-page-content">
+    <h1 class="category-title-en">FOOD</h1>
+    <p class="category-title-jp">フード（犬用おやつ）</p>
+    <div class="category-title-line"></div>
+
+    <div class="fl-grid" id="foodGrid"></div>
+
+    <a href="index.html#category" class="back-link">← カテゴリーに戻る</a>
+  </main>
+
+  <!-- フッター -->
+  <div class="wood-plank-divider"></div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <a href="index.html" class="logo">
+          
+          White Snow Paws
+        </a>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h4>SHOP</h4>
+          <ul>
+            <li><a href="biothane-lead.html">BioThane リード</a></li>
+            <li><a href="biothane-collar.html">BioThane カラー</a></li>
+            <li><a href="woodburning.html">ウッドバーニング</a></li>
+            <li><span style="color:#999;">フード（準備中）</span></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>GUIDE</h4>
+          <ul>
+            <li><a href="shipping.html">配送・送料について</a></li>
+            <li><a href="faq.html">よくある質問</a></li>
+            <li><a href="terms.html#art5">返品について</a></li>
+            <li><a href="contact.html">お問い合わせ</a></li>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>FOLLOW US</h4>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/whitesnowpaws.dog/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+          </div>
+          <a href="index.html" class="footer-logo-img-link">
+            <img src="images/wsplogowhite.png" alt="White Snow Paws" class="footer-logo-img-large">
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <a href="terms.html">利用規約</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+        <a href="tradelaw.html">特定商取引法</a>
+        <a href="contact.html">お問い合わせ</a>
+        &copy; 2026 White Snow Paws. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/food-data.js"></script>
+  <script>
+    (function () {
+      var grid = document.getElementById('foodGrid');
+      FOOD_ITEMS.forEach(function (item) {
+        var a = document.createElement('a');
+        a.className = 'fl-card';
+        a.href = 'food-detail.html?id=' + item.id;
+
+        var imgWrap = document.createElement('div');
+        imgWrap.className = 'fl-card-image';
+        var img = document.createElement('img');
+        img.src = item.images[0]; img.alt = item.name; img.loading = 'lazy';
+        imgWrap.appendChild(img);
+
+        var info = document.createElement('div');
+        info.className = 'fl-card-info';
+        var h2 = document.createElement('h2'); h2.textContent = item.name;
+        var meta = document.createElement('div'); meta.className = 'fl-card-meta';
+        var price = document.createElement('p'); price.className = 'fl-card-price';
+        price.innerHTML = '¥' + item.price.toLocaleString() + ' <small>(税込)</small>';
+        var vol = document.createElement('p'); vol.className = 'fl-card-volume'; vol.textContent = '内容量 ' + item.volume;
+        meta.appendChild(price); meta.appendChild(vol);
+        info.appendChild(h2); info.appendChild(meta);
+
+        a.appendChild(imgWrap); a.appendChild(info);
+        grid.appendChild(a);
+      });
+    })();
+  </script>
+
+  <!-- JavaScript -->
+  <script src="js/cart.js"></script>
+  <script src="js/main.js?v=20260330"></script>
+  <script src="js/scroll-anime.js"></script>
+</body>
+
+</html>

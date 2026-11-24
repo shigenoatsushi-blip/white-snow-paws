@@ -388,13 +388,15 @@
       const shipping = totalQty >= SHIPPING_THRESHOLD ? SHIPPING_FEE : 0;
       const total = subtotal + shipping;
 
+      // フード（id=30〜34）は専用ページ、それ以外は従来どおり product-detail
+      const itemUrl = (id) => (/^3[0-4]$/.test(String(id)) ? 'food-detail.html?id=' : 'product-detail.html?id=') + id;
       const listHTML = items.map((item, idx) => `
         <div class="cart-item" id="cart-item-${idx}">
-          <a href="product-detail.html?id=${item.id}" class="cart-item-image">
+          <a href="${itemUrl(item.id)}" class="cart-item-image">
             <img src="${item.image || 'images/woodcraft/work1.png'}" alt="${item.name}" loading="lazy">
           </a>
           <div class="cart-item-info">
-            <h3><a href="product-detail.html?id=${item.id}">${item.name}</a></h3>
+            <h3><a href="${itemUrl(item.id)}">${item.name}</a></h3>
             ${item.color ? `<p class="cart-item-color">カラー：${item.color}</p>` : ''}
             <p class="cart-item-price">¥${item.price.toLocaleString()}</p>
             <div class="cart-item-actions">
