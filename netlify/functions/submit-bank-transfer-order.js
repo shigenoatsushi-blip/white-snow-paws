@@ -5,6 +5,7 @@
 
 const { createClient } = require('@supabase/supabase-js');
 const { Resend } = require('resend');
+const { checkAndNotify } = require('./_shared/price-check');
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -118,6 +119,9 @@ exports.handler = async (event) => {
     quantity: item.quantity,
   }));
   await supabase.from('order_items').insert(items);
+
+  // 価格照合（合わなければ重野さんへ通知のみ・注文は止めない）
+  await checkAndNotify(cart, { method: '銀行振込', email: shipping.email, orderNumber });
 
   await sendCustomerEmail(order, cart, shipping);
   await sendAdminEmail(order, cart, shipping, invoiceRequested);

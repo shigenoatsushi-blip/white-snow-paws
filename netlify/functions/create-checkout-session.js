@@ -4,6 +4,7 @@
    =================================== */
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const { checkAndNotify } = require('./_shared/price-check');
 
 exports.handler = async (event) => {
   // CORS プリフライト対応
@@ -45,6 +46,9 @@ exports.handler = async (event) => {
   let shippingFee = qty >= 3 ? 900 : 0;
   if (shipping.prefecture === '北海道') shippingFee += 300;
   if (shipping.prefecture === '沖縄県') shippingFee += 600;
+
+  // 価格照合（合わなければ重野さんへ通知のみ・決済は止めない）
+  await checkAndNotify(cart, { method: 'カード（Stripe）', email: shipping.email });
 
   const siteUrl = process.env.SITE_URL || 'http://localhost:8888';
 
